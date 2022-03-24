@@ -1,5 +1,5 @@
 
 
-public class Recipe extends Entity implements Searchable {
-    
+public class Recipe extends Entity implements Searchable, Categorizable {
+
 }
