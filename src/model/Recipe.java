@@ -5,21 +5,34 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
 
     private String name;
     private String description;
-    private int recipeServingSize;
+    private int servingSize;
     private Date createdOn;
     private IngredientList ingredientList;
     private List<Review> reviews;
     private List<Category> categories;
     private List<String> instructions;
 
+    public Recipe(RecipeBuilder builder){
+        this.name = builder.name;
+        this.description = builder.description;
+        this.servingSize = builder.servingSize;
+        this.createdOn = builder.createdOn;
+        this.ingredientList = builder.ingredientList;
+        this.reviews = builder.reviews;
+        this.categories = builder.categories;
+        this.instructions = builder.instructions;
+    }
+
+
+
     /**
-     * Builder Class for Recipe Objects
+     * Nested builder class for Recipe objects
      */
-    public static class RecipeBuilder
+    public class RecipeBuilder
     {
         private String name;
         private String description;
-        private int recipeServingSize;
+        private int servingSize;
         private Date createdOn;
         private IngredientList ingredientList;
         private List<Review> reviews;
@@ -45,8 +58,8 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
             return this;
         }
 
-        public RecipeBuilder setServingSize(int recipeServingSize){
-            this.recipeServingSize = recipeServingSize;
+        public RecipeBuilder setServingSize(int servingSize){
+            this.servingSize = servingSize;
             return this;
         }
 
