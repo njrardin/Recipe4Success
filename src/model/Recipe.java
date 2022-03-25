@@ -46,11 +46,18 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
 
         /**
          * RecipeBuilder Constructor
-         * - call this method to dot-chain attribute additions
+         * - call this method first, then dot-chain attribute setters
          * - initializes createdOn date to the date and time this was called
+         * - initializes reviews, categories, and instructions to empty ArrayLists
+         * 
+         * @param name - the Recipe's name. Name is required to create a Recipe.
          */
-        public RecipeBuilder(){
+        public RecipeBuilder(String name){
+            this.name = name;
             this.createdOn = new Date();
+            this.reviews = new ArrayList<Review>();
+            this.categories = new ArrayList<Category>();
+            this.instructions = new ArrayList<String>();
         }
 
         /**
