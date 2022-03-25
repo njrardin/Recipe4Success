@@ -16,29 +16,28 @@ This project is currently being developed as a part of our IT326 course at Illin
 Nate Rardin, Josh Nepomuceno, Shu Liao, Alex Smith, and Zach Plattner
 
 
-## Repository Branch Info
+### Repository Branch Info
 
 > *"Branch early and branch often"* - some person
 
 
-main - the main production branch of the application
+main - the main production branch of the application. 
+**Do not commit directly to this branch.**
 
-development - the branch used to develop between full iterations of the project
+development - the branch used to develop between full iterations of the project. **Do not commit directly to this branch.**
 
-[authorName]-devBranch - individual main development sandboxes for the members of this project (ex: rardin-devBranch is Nate's personal development sandbox)
+all other branches - should branch once per feature and have one branch per new feature. Only work on the feature listed in its associated branch.
 
-feature-[descriptiveFeatureName] - naming mechanism for branches created for specific purpose of bringing in a new feature/fix. (ex: feature-addRecipeRating to bring in the rate recipe use case)
-
-other - all other branches created for various purposes that are not the standard branch types listed above.
+---
 
 ## System Enviornment Information:
 
-All information regarding the system enviornment including but not limited to the ____
+Recipe4Success is a desktop app being built using Java with a GUI provided through the Java Swing package included in the JDK.
 
-### Installing Electron and Node.js
+### Software Versions
 
-no longer applicable
+Java: 17.0.2
 
-### Tutorials/Quick Starts:
+### Downloads:
 
-git clone https://github.com/electron/electron-quick-start
+Java: https://java.com/en/download/
