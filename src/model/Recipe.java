@@ -29,6 +29,31 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         this.instructions = builder.instructions;
     }
 
+    public void RemoveCategory(Category theCategory){
+
+    }
+
+    public void AddCategory(Category theCategory){
+
+    }
+    
+    public void RemoveIngredient(Ingredient theIngredient){
+
+    }
+
+    public void AddIngredient(Ingredient theIngredient){
+
+    }
+    
+    public void RemoveReview(Review theReview){
+
+    }
+
+    public void AddReview(Review theReview){
+
+    }
+
+
     //================================Getters and Setters=================================
     /*note: getters and setters for collections and R4S entities are commented out because
     they allow for values to be manipulated through the getters so they need to be reworked
