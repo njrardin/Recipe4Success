@@ -5,6 +5,7 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
 
     private String name;
     private String description;
+    private int recipeServingSize;
     private Date createdOn;
     private IngredientList ingredientList;
     private List<Review> reviews;
