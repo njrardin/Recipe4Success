@@ -79,7 +79,7 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         }
         
         public RecipeBuilder setInstructions(List<String> instructions){
-            this.instructions = instructions
+            this.instructions = instructions;
             return this;
         }
     } 
