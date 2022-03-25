@@ -29,10 +29,72 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         this.instructions = builder.instructions;
     }
 
+    //================================Getters and Setters=================================
+    /*note: getters and setters for collections and R4S entities are commented out because
+    they allow for values to be manipulated through the getters so they need to be reworked
+    */
+    public String getName() {
+        return this.name;
+    }
 
-    /**
-     * Nested builder class for Recipe objects
-     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getServingSize() {
+        return this.servingSize;
+    }
+
+    public void setServingSize(int servingSize) {
+        this.servingSize = servingSize;
+    }
+
+    public Date getCreatedOn() {
+        return (Date) this.createdOn.clone();
+    }
+
+    // public IngredientList getIngredientList() {
+    //     return this.ingredientList;
+    // }
+
+    // public void setIngredientList(IngredientList ingredientList) {
+    //     this.ingredientList = ingredientList;
+    // }
+
+    // public List<Review> getReviews() {
+    //     return this.reviews;
+    // }
+
+    // public void setReviews(List<Review> reviews) {
+    //     this.reviews = reviews;
+    // }
+
+    // public List<Category> getCategories() {
+    //     return this.categories;
+    // }
+
+    // public void setCategories(List<Category> categories) {
+    //     this.categories = categories;
+    // }
+
+    // public List<String> getInstructions() {
+    //     return this.instructions;
+    // }
+
+    // public void setInstructions(List<String> instructions) {
+    //     this.instructions = instructions;
+    // }
+
+
+    //=======================================RecipeBuilder=======================================
     public class RecipeBuilder
     {
         private String name;
