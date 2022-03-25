@@ -29,28 +29,28 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         this.instructions = builder.instructions;
     }
 
-    public void RemoveCategory(Category theCategory){
-
-    }
-
-    public void AddCategory(Category theCategory){
-
+    public void removeCategory(Category theCategory){
+        categories.remove(theCategory);
     }
     
-    public void RemoveIngredient(Ingredient theIngredient){
-
-    }
-
-    public void AddIngredient(Ingredient theIngredient){
-
+    public void addCategory(Category theCategory){
+        categories.add(theCategory);
     }
     
-    public void RemoveReview(Review theReview){
-
+    public void removeIngredient(Ingredient theIngredient){
+        ingredientList.removeIngredient(theIngredient);
     }
-
-    public void AddReview(Review theReview){
-
+    
+    public void addIngredient(Ingredient theIngredient){
+        ingredientList.addIngredient(theIngredient);
+    }
+    
+    public void removeReview(Review theReview){
+        reviews.add(theReview);
+    }
+    
+    public void addReview(Review theReview){
+        reviews.remove(theReview);
     }
 
 
