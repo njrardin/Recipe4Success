@@ -12,7 +12,13 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
     private List<Category> categories;
     private List<String> instructions;
 
-    public Recipe(RecipeBuilder builder){
+    /**
+     * Constructor for Recipe using the nested class RecipeBuilder
+     * - only used inside the RecipeBuilder constructor. RecipeBuilder must be used to create Recipe objects.
+     * 
+     * @param builder - the RecipeBuilder object to create the class from
+     */
+    private Recipe(RecipeBuilder builder){
         this.name = builder.name;
         this.description = builder.description;
         this.servingSize = builder.servingSize;
@@ -39,14 +45,25 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         private List<Category> categories;
         private List<String> instructions;
 
+        /**
+         * RecipeBuilder Constructor
+         * - call this method to dot-chain attribute additions
+         * - initializes createdOn date to the date and time this was called
+         */
         public RecipeBuilder(){
             this.createdOn = new Date();
         }
 
+        /**
+         * Final method in the dot-chain which returns a Recipe object
+         * @return the Recipe object built using the 
+         */
         public Recipe build(){
             Recipe recipe = new Recipe(this);
             return recipe;
         }
+
+        //setters for each attribute (allows for dot-chaining)
 
         public RecipeBuilder setName(String name){
             this.name = name;
