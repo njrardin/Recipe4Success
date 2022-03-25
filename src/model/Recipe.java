@@ -16,7 +16,7 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
      * Constructor for Recipe using the nested class RecipeBuilder
      * - only used inside the RecipeBuilder constructor. RecipeBuilder must be used to create Recipe objects.
      * 
-     * @param builder - the RecipeBuilder object to create the class from
+     * @param builder - the RecipeBuilder object from which to create the class
      */
     private Recipe(RecipeBuilder builder){
         this.name = builder.name;
@@ -28,7 +28,6 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         this.categories = builder.categories;
         this.instructions = builder.instructions;
     }
-
 
 
     /**
