@@ -55,9 +55,6 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
 
 
     //================================Getters and Setters=================================
-    /*note: getters and setters for collections and R4S entities are commented out because
-    they allow for values to be manipulated through the getters so they need to be reworked
-    */
     public String getName() {
         return this.name;
     }
@@ -87,30 +84,57 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
     }
 
     public IngredientList getIngredientList() {
-        return (IngredientList) this.ingredientList.clone();
+        return this.ingredientList;
     }
 
     public void setIngredientList(IngredientList ingredientList) {
-        this.ingredientList = (IngredientList) ingredientList.clone();
+        this.ingredientList = ingredientList;
     }
 
     public List<Review> getReviews() {
-        List<Review> listReturn = new ArrayList<Review>();
-        for (Category aReview : this.categories) {
-            listReturn.add((Review) aReview.clone());
-        }    }
+        return this.reviews;
+    }
 
     public List<Category> getCategories() {
-        List<Category> listReturn = new ArrayList<Category>();
-        for (Category aCategory : this.categories) {
-            listReturn.add((Category) aCategory.clone());
-        }
-     
-        return listReturn;
+        return this.categories;
     }
+
+    /*
+     * 
+     * Getters and Setters that don't break encapsulation 
+     * 
+     * 
+     */
+    // public IngredientList getIngredientList() {
+    //     return (IngredientList) this.ingredientList.clone();
+    // }
+
+    // public void setIngredientList(IngredientList ingredientList) {
+    //     this.ingredientList = (IngredientList) ingredientList.clone();
+    // }
+
+    // public List<Review> getReviews() {
+    //     List<Review> listReturn = new ArrayList<Review>();
+    //     for (Category aReview : this.categories) {
+    //         listReturn.add((Review) aReview.clone());
+    //     }    }
+
+    // public List<Category> getCategories() {
+    //     List<Category> listReturn = new ArrayList<Category>();
+    //     for (Category aCategory : this.categories) {
+    //         listReturn.add((Category) aCategory.clone());
+    //     }
+     
+    //     return listReturn;
+    // }
 
     public List<String> getInstructions() {
         return new ArrayList<String>(this.instructions);
+    }
+
+    @Override
+    public String toString(){
+        return name + ": " + description; 
     }
 
     //=======================================RecipeBuilder=======================================
