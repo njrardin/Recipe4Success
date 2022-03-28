@@ -86,38 +86,32 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         return (Date) this.createdOn.clone();
     }
 
-    // public IngredientList getIngredientList() {
-    //     return this.ingredientList;
-    // }
+    public IngredientList getIngredientList() {
+        return (IngredientList) this.ingredientList.clone();
+    }
 
-    // public void setIngredientList(IngredientList ingredientList) {
-    //     this.ingredientList = ingredientList;
-    // }
+    public void setIngredientList(IngredientList ingredientList) {
+        this.ingredientList = (IngredientList) ingredientList.clone();
+    }
 
-    // public List<Review> getReviews() {
-    //     return this.reviews;
-    // }
+    public List<Review> getReviews() {
+        List<Review> listReturn = new ArrayList<Review>();
+        for (Category aReview : this.categories) {
+            listReturn.add((Review) aReview.clone());
+        }    }
 
-    // public void setReviews(List<Review> reviews) {
-    //     this.reviews = reviews;
-    // }
+    public List<Category> getCategories() {
+        List<Category> listReturn = new ArrayList<Category>();
+        for (Category aCategory : this.categories) {
+            listReturn.add((Category) aCategory.clone());
+        }
+     
+        return listReturn;
+    }
 
-    // public List<Category> getCategories() {
-    //     return this.categories;
-    // }
-
-    // public void setCategories(List<Category> categories) {
-    //     this.categories = categories;
-    // }
-
-    // public List<String> getInstructions() {
-    //     return this.instructions;
-    // }
-
-    // public void setInstructions(List<String> instructions) {
-    //     this.instructions = instructions;
-    // }
-
+    public List<String> getInstructions() {
+        return new ArrayList<String>(this.instructions);
+    }
 
     //=======================================RecipeBuilder=======================================
     public class RecipeBuilder
