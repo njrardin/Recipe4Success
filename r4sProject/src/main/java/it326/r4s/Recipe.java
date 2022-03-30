@@ -1,4 +1,4 @@
-package model;
+package main.java.it326.r4s;
 import java.util.*;
 
 public class Recipe extends Entity implements Searchable, Categorizable, Exportable {
