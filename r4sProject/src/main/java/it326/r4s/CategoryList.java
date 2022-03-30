@@ -1,4 +1,4 @@
-package main.java.it326.r4s;
+package it326.r4s;
 
 public class CategoryList {
     
