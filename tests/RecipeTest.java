@@ -1,3 +1,3 @@
-public class Recipe {
+public class RecipeTest {
     
 }
