@@ -1,4 +1,4 @@
-package it326.r4s;
+package model;
 import java.util.Collection;
 import java.util.HashSet;
 
