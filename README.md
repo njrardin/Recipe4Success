@@ -37,7 +37,10 @@ Recipe4Success is a desktop app being built using Java with a GUI provided throu
 ### Software Versions
 
 Java: 17.0.2
+Maven: 3.8.5
 
 ### Downloads:
 
-Java: https://java.com/en/download/
+JDK: https://www.oracle.com/java/technologies/downloads/
+
+Maven: https://maven.apache.org/install.html
