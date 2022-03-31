@@ -176,11 +176,6 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
 
         //setters for each attribute (allows for dot-chaining)
 
-        public RecipeBuilder setName(String name){
-            this.name = name;
-            return this;
-        }
-
         public RecipeBuilder setDescription(String description){
             this.description = description;
             return this;
