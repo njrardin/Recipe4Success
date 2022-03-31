@@ -138,7 +138,7 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
     }
 
     //=======================================RecipeBuilder=======================================
-    public class RecipeBuilder
+    public static class RecipeBuilder
     {
         private String name;
         private String description;
