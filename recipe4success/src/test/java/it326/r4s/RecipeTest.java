@@ -6,6 +6,20 @@ import org.junit.Test;
 
 public class RecipeTest {
     
+    static Recipe testingRecipe;
+
+    @BeforeClass
+    public static void setUp(){
+        
+        testingRecipe = new Recipe.RecipeBuilder("Mac and Cheese")
+        .setDescription("A yummy meal!")
+        .setServingSize(2)
+        .setIngredientList(new IngredientList())
+        .setReviews(new ArrayList<Review>())
+        .setCategories(new ArrayList<Category>())
+        .setInstructions(new ArrayList<String>())
+        .build();
+    }
 
     @Test
     public void testRecipeBuilder(){
