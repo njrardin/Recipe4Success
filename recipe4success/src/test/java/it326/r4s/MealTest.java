@@ -2,7 +2,7 @@ package it326.r4s;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.junit.BeforeClass;
+import org.junit.Before;
 
 public class MealTest {
     
@@ -10,8 +10,8 @@ public class MealTest {
     static Meal theMeal;
     static final int SERVINGSIZE = 5;
 
-    @BeforeClass
-    public static void before(){
+    @Before
+    public void before(){
 
         theRecipe = new Recipe.RecipeBuilder("Red Velvet Cupcakes")
         .setDescription("Believe it or not it's actually just red chocolate.")
@@ -19,6 +19,7 @@ public class MealTest {
 
         theMeal = new Meal(theRecipe, SERVINGSIZE);
     }
+    
 
     @Test
     public void testConstructor(){
