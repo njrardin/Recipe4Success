@@ -24,4 +24,8 @@ public class MealTest {
         assertNotNull(theMeal);
     }
     
+    @Test
+    public void testGetRecipe(){
+        assertEquals(theRecipe, theMeal.getRecipe());
+    }
 }
