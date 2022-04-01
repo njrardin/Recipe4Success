@@ -37,4 +37,30 @@ public class RecipeTest {
 
         assertTrue(testRecipe.getCategories().contains(newCategory));
     }
+
+    @Test
+    public void testRemoveCategory(){
+        Category newCategory = new Category();
+        boolean passesTest;
+
+
+        testRecipe.addCategory(newCategory);
+        if (!testRecipe.getCategories().contains(newCategory)){
+            passesTest = false;
+        }
+        else
+        {
+            testRecipe.removeCategory(newCategory);
+            if(!testRecipe.getCategories().contains(newCategory))
+            {
+                passesTest = true;
+            }
+            else
+            {
+                passesTest = false;
+            }
+        }
+
+        assertTrue(passesTest);
+    }
 }
