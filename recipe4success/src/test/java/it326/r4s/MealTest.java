@@ -46,4 +46,13 @@ public class MealTest {
 
         assertEquals(newRecipe, theMeal.getRecipe());
     }
+
+    @Test
+    public void testSetServingSize(){
+
+        int newServingSize = 4;
+        theMeal.setServingSize(newServingSize);
+
+        assertEquals(newServingSize, theMeal.getServingSize());
+    }
 }
