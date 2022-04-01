@@ -8,6 +8,7 @@ public class MealTest {
     
     static Recipe theRecipe;
     static Meal theMeal;
+    static final int SERVINGSIZE = 5;
 
     @BeforeClass
     public static void before(){
@@ -16,7 +17,7 @@ public class MealTest {
         .setDescription("Believe it or not it's actually just red chocolate.")
         .build();
 
-        theMeal = new Meal(theRecipe, 5);
+        theMeal = new Meal(theRecipe, SERVINGSIZE);
     }
 
     @Test
@@ -27,5 +28,10 @@ public class MealTest {
     @Test
     public void testGetRecipe(){
         assertEquals(theRecipe, theMeal.getRecipe());
+    }
+    
+    @Test
+    public void testGetServinSize(){
+        assertEquals(SERVINGSIZE, theMeal.getServingSize());
     }
 }
