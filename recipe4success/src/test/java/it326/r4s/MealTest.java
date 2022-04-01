@@ -34,4 +34,16 @@ public class MealTest {
     public void testGetServinSize(){
         assertEquals(SERVINGSIZE, theMeal.getServingSize());
     }
+
+    @Test
+    public void testSetRecipe(){
+
+        Recipe newRecipe = new Recipe.RecipeBuilder("Chocolate Cupcakes")
+        .setDescription("Believe it or not it's actually red velvet but colored dark brown.")
+        .build();
+
+        theMeal.setRecipe(newRecipe);
+
+        assertEquals(newRecipe, theMeal.getRecipe());
+    }
 }
