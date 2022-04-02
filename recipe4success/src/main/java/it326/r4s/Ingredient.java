@@ -5,5 +5,7 @@ public class Ingredient {
     private double quantity;
     private UnitConverter.Unit unit;
 
-    
+    public boolean changeUnit(){
+        return false;
+    }
 }
