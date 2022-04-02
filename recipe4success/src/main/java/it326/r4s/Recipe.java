@@ -46,11 +46,11 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
     }
     
     public void removeReview(Review theReview){
-        reviews.add(theReview);
+        reviews.remove(theReview);
     }
     
     public void addReview(Review theReview){
-        reviews.remove(theReview);
+        reviews.add(theReview);
     }
 
 

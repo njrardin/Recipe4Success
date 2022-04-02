@@ -75,4 +75,27 @@ public class RecipeTest {
 
         assertTrue(aRecipe.getIngredientList().getIngredients().contains(testIngredient));
     }
+
+    @Test 
+    public void testRemoveReview(){
+        Review newReview = new Review();
+        ArrayList<Review> reviewList = new ArrayList<Review>();
+        reviewList.add(newReview);
+
+        Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Reviews").setReviews(reviewList).build();
+
+        aRecipe.removeReview(newReview);
+
+        assertFalse(aRecipe.getReviews().contains(newReview));
+    }
+
+    @Test
+    public void testAddReview(){
+        Review newReview = new Review();
+
+        setupRecipe.addReview(newReview);
+
+        assertTrue(setupRecipe.getReviews().contains(newReview));
+    }
+
 }
