@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class RecipeTest {
     
-    static Recipe testRecipe;
+    static Recipe setupRecipe;
 
     @Before
     public void setUp(){
         
-        testRecipe = new Recipe.RecipeBuilder("Mac and Cheese")
+        setupRecipe = new Recipe.RecipeBuilder("Mac and Cheese")
         .setDescription("A yummy meal!")
         .setServingSize(2)
         .setIngredientList(new IngredientList())
@@ -26,7 +26,7 @@ public class RecipeTest {
     @Test
     public void testRecipeBuilder(){
 
-        assertNotNull(testRecipe);
+        assertNotNull(setupRecipe);
     }
     
     @Test
@@ -46,9 +46,9 @@ public class RecipeTest {
     public void testAddCategory(){
         Category newCategory = new Category("CATEGORY");
 
-        testRecipe.addCategory(newCategory);
+        setupRecipe.addCategory(newCategory);
 
-        assertTrue(testRecipe.getCategories().contains(newCategory));
+        assertTrue(setupRecipe.getCategories().contains(newCategory));
     }
 
     @Test
@@ -61,7 +61,18 @@ public class RecipeTest {
 
         aRecipe.removeIngredient(testIngredient);
 
-        assertFalse(aRecipe.getIngredientList().removeIngredient(testIngredient));
+        assertFalse(aRecipe.getIngredientList().getIngredients().contains(testIngredient));
     }
 
+    @Test
+    public void testAddIngredient(){
+        IngredientList ingredientList = new IngredientList();
+        Ingredient testIngredient = new Ingredient();
+        
+        Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Ingredientlist").setIngredientList(ingredientList).build();
+        
+        aRecipe.addIngredient(testIngredient);
+
+        assertTrue(aRecipe.getIngredientList().getIngredients().contains(testIngredient));
+    }
 }
