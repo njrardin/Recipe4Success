@@ -41,7 +41,7 @@ public class RecipeTest {
 
         assertFalse(aRecipe.getCategories().contains(glutenFree));
     }
-    
+
     @Test
     public void testAddCategory(){
         Category newCategory = new Category("CATEGORY");
@@ -51,6 +51,17 @@ public class RecipeTest {
         assertTrue(testRecipe.getCategories().contains(newCategory));
     }
 
+    @Test
+    public void testRemoveIngredient(){
+        IngredientList ingredientList = new IngredientList();
+        Ingredient testIngredient = new Ingredient();
+        IngredientList.add(testIngredient);
+        
+        Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Ingredientlist").setIngredientList(ingredientList).build();
 
+        aRecipe.removeIngredient(testIngredient);
+
+        assertFalse(aRecipe.getIngredientList().contains(testIngredient));
+    }
 
 }
