@@ -55,13 +55,13 @@ public class RecipeTest {
     public void testRemoveIngredient(){
         IngredientList ingredientList = new IngredientList();
         Ingredient testIngredient = new Ingredient();
-        IngredientList.add(testIngredient);
+        ingredientList.addIngredient(testIngredient);
         
         Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Ingredientlist").setIngredientList(ingredientList).build();
 
         aRecipe.removeIngredient(testIngredient);
 
-        assertFalse(aRecipe.getIngredientList().contains(testIngredient));
+        assertFalse(aRecipe.getIngredientList().removeIngredient(testIngredient));
     }
 
 }
