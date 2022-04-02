@@ -28,16 +28,7 @@ public class RecipeTest {
 
         assertNotNull(testRecipe);
     }
-
-    @Test
-    public void testAddCategory(){
-        Category newCategory = new Category("CATEGORY");
-
-        testRecipe.addCategory(newCategory);
-
-        assertTrue(testRecipe.getCategories().contains(newCategory));
-    }
-
+    
     @Test
     public void testRemoveCategory(){
         ArrayList<Category> categoryList = new ArrayList<Category>();
@@ -50,4 +41,16 @@ public class RecipeTest {
 
         assertFalse(aRecipe.getCategories().contains(glutenFree));
     }
+    
+    @Test
+    public void testAddCategory(){
+        Category newCategory = new Category("CATEGORY");
+
+        testRecipe.addCategory(newCategory);
+
+        assertTrue(testRecipe.getCategories().contains(newCategory));
+    }
+
+
+
 }
