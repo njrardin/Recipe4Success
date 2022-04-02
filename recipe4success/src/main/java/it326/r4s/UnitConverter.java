@@ -1,7 +1,5 @@
 package it326.r4s;
 
-import java.util.ArrayList;
-
 public class UnitConverter {
     public enum Unit{
         //Fill with types
