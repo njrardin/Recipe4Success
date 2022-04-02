@@ -31,7 +31,7 @@ public class RecipeTest {
 
     @Test
     public void testAddCategory(){
-        Category newCategory = new Category();
+        Category newCategory = new Category("CATEGORY");
 
         testRecipe.addCategory(newCategory);
 
@@ -40,27 +40,14 @@ public class RecipeTest {
 
     @Test
     public void testRemoveCategory(){
-        Category newCategory = new Category();
-        boolean passesTest;
+        ArrayList<Category> categoryList = new ArrayList<Category>();
+        Category glutenFree = new Category("Gluten Free");
+        categoryList.add(glutenFree);
 
+        Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with categories").setCategories(categoryList).build();
 
-        testRecipe.addCategory(newCategory);
-        if (!testRecipe.getCategories().contains(newCategory)){
-            passesTest = false;
-        }
-        else
-        {
-            testRecipe.removeCategory(newCategory);
-            if(!testRecipe.getCategories().contains(newCategory))
-            {
-                passesTest = true;
-            }
-            else
-            {
-                passesTest = false;
-            }
-        }
+        aRecipe.removeCategory(glutenFree);
 
-        assertTrue(passesTest);
+        assertFalse(aRecipe.getCategories().contains(glutenFree));
     }
 }
