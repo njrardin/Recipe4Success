@@ -21,7 +21,7 @@ public class IngredientTest {
         @Test
         public void quantityConverted(Unit initialUnit, Unit newUnit, double initialQuantity, double expextedNewQuantity){
 
-            Ingredient theIngredient = new Ingredient(new FoodItem(), 10, initialUnit);
+            Ingredient theIngredient = new Ingredient(new FoodItem(), initialQuantity, initialUnit);
 
             theIngredient.changeUnit(newUnit);
 
@@ -31,7 +31,7 @@ public class IngredientTest {
 
         }
 
-        @Parameterized.Parameters
+        @Parameters
         public static Collection checkConversionData(){
             return Arrays.asList(new Object[][]{
                 {Unit.TEASPOON, Unit.TABLESPOON, 5, 1.666667},
@@ -40,8 +40,33 @@ public class IngredientTest {
                 {Unit.GALLON, Unit.POUND, 10, -1}
             });
         }
+    }
 
+    @RunWith(Parameterized.class)
+    public class testChangeUnitUnits{
         
+        @Test
+        public void unitConverted(Unit initialUnit, Unit newUnit){
+
+            final double TEST_QUANTITY = 10; //should be irrelevant but is changable here
+            Ingredient theIngredient = new Ingredient(new FoodItem(), TEST_QUANTITY, initialUnit);
+
+            theIngredient.changeUnit(newUnit);
+
+            Unit returnedUnit = theIngredient.getUnit();
+            
+            assertEquals(newUnit, returnedUnit);
+        }
+
+        @Parameters
+        public static Collection checkConversionData(){
+            return Arrays.asList(new Object[][]{
+                {Unit.TEASPOON, Unit.TABLESPOON},
+                {Unit.KILOGRAM, Unit.GRAM},
+                {Unit.GALLON, Unit.CUP},
+                {Unit.GALLON, Unit.POUND}
+            });
+        }
     }
 
 }
