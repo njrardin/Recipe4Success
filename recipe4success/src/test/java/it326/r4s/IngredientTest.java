@@ -15,6 +15,7 @@ import it326.r4s.UnitConverter.*;
 @RunWith(Enclosed.class)
 public class IngredientTest {
     
+    //Inner class used to run parameterized tests for testing correct quantity conversion in the method changeUnit() in Ingredient.java
     @RunWith(Parameterized.class)
     public class testChangeUnitQuanities{
 
@@ -42,6 +43,7 @@ public class IngredientTest {
         }
     }
 
+    //Inner class used to run parameterized tests for testing correct unit conversion in the method changeUnit() in Ingredient.java
     @RunWith(Parameterized.class)
     public class testChangeUnitUnits{
         
