@@ -16,31 +16,27 @@ import it326.r4s.UnitConverter.*;
 @RunWith(Enclosed.class)
 public class IngredientTest {
     
-    //Inner class used to run parameterized tests for testing correct quantity conversion in the method changeUnit() in Ingredient.java
+    /*Inner class used to run parameterized tests for that the method changeUnit() in Ingredient.java
+    correctly returns either false or true based on the validity of the quantity entered*/
     @RunWith(Parameterized.class)
-    public static class testChangeUnitQuanities{
+    public static class testChangeUnitReturnValidity{
         
-        private Unit initialUnit;
-        private Unit newUnit;
         private double initialQuantity;
-        private double expextedNewQuantity;
+        private boolean expectedValidity; //whether that quantity should return true or false
 
         //Initializes this class with different specified parameters each time
-        public testChangeUnitQuanities(Unit initialUnit, Unit newUnit, double initialQuantity, double expextedNewQuantity){
-            this.initialUnit = initialUnit;
-            this.newUnit = newUnit;
+        public testChangeUnitReturnValidity(double initialQuantity, Boolean expectedValidity){
             this.initialQuantity = initialQuantity;
-            this.expextedNewQuantity = expextedNewQuantity;
+            this.expectedValidity = expectedValidity;
         }
 
         //The sets of parameters with which testChangeUnitQuantities is initialized. Each set is ran once when the test class is run
         @Parameters
         public static Collection checkConversionData(){
             return Arrays.asList(new Object[][]{
-                {Unit.TEASPOON, Unit.TABLESPOON, 5, 1.666667},
-                {Unit.KILOGRAM, Unit.GRAM, 10, 10000},
-                {Unit.GALLON, Unit.CUP, -2, -1},
-                {Unit.GALLON, Unit.POUND, 10, -1}
+                {5, true},
+                {10, true},
+                {-2, false},
             });
         }
 
@@ -48,13 +44,12 @@ public class IngredientTest {
         @Test
         public void quantityConverted(){
 
-            Ingredient theIngredient = new Ingredient(new FoodItem(), initialQuantity, initialUnit);
+            final Unit INIT_UNIT = Unit.TEASPOON; //this should be irrelevant but is changable here just in case
+            Ingredient theIngredient = new Ingredient(new FoodItem(), initialQuantity, INIT_UNIT);
 
-            theIngredient.changeUnit(newUnit);
-
-            double returnedQuantity = theIngredient.getQuantity();
+            boolean returnedValidity = theIngredient.changeUnit(INIT_UNIT);
             
-            assertEquals(expextedNewQuantity, returnedQuantity, 0.01);
+            assertEquals(expectedValidity, returnedValidity);
 
         }
 
