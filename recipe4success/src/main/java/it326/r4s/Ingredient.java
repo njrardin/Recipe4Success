@@ -19,5 +19,29 @@ public class Ingredient {
             return true;
         }
     }
+
+    public FoodItem getFoodItem() {
+        return this.foodItem;
+    }
+
+    public void setFoodItem(FoodItem foodItem) {
+        this.foodItem = foodItem;
+    }
+
+    public double getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+
+    public Unit getUnit() {
+        return this.unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
     
 }
