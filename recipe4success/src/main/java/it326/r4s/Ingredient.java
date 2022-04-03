@@ -7,6 +7,12 @@ public class Ingredient {
     private double quantity;
     private Unit unit;
 
+    public Ingredient(FoodItem foodItem, double quantity, Unit unit){
+        this.foodItem = foodItem;
+        this.quantity = quantity;
+        this.unit = unit;
+    }
+
     public boolean changeUnit(Unit newUnit){
         double returnValue = UnitConverter.convertUnit(this.unit, this.quantity, newUnit);
 
