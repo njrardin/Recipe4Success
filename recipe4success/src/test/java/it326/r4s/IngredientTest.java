@@ -25,6 +25,7 @@ public class IngredientTest {
         private double initialQuantity;
         private double expextedNewQuantity;
 
+        //Initializes this class with different specified parameters each time
         public testChangeUnitQuanities(Unit initialUnit, Unit newUnit, double initialQuantity, double expextedNewQuantity){
             this.initialUnit = initialUnit;
             this.newUnit = newUnit;
@@ -32,6 +33,7 @@ public class IngredientTest {
             this.expextedNewQuantity = expextedNewQuantity;
         }
 
+        //The sets of parameters with which testChangeUnitQuantities is initialized. Each set is ran once when the test class is run
         @Parameters
         public static Collection checkConversionData(){
             return Arrays.asList(new Object[][]{
@@ -42,6 +44,7 @@ public class IngredientTest {
             });
         }
 
+        //Actual test for Ingredient.changeUnit() which checks for correct quantity conversion
         @Test
         public void quantityConverted(){
 
@@ -64,12 +67,13 @@ public class IngredientTest {
         private Unit initialUnit;
         private Unit newUnit;
 
-
+        //Initializes this class with different specified parameters each time
         public testChangeUnitUnits(Unit initialUnit, Unit newUnit){
             this.initialUnit = initialUnit;
             this.newUnit = newUnit;
         }
 
+        //The sets of parameters with which testChangeUnitQuantities is initialized. Each set is ran once when the test class is run
         @Parameters
         public static Collection checkConversionData(){
             return Arrays.asList(new Object[][]{
@@ -80,6 +84,7 @@ public class IngredientTest {
             });
         }
 
+        //Actual test for Ingredient.changeUnit() which checks for correct quantity conversion
         @Test
         public void unitConverted(Unit initialUnit, Unit newUnit){
 
