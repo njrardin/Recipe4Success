@@ -13,15 +13,20 @@ public class Ingredient {
         this.unit = unit;
     }
 
+    /**
+     * 
+     * @param newUnit
+     * @return - A boolean representing the validity of the value. 
+     */
     public boolean changeUnit(Unit newUnit){
-        double returnValue = UnitConverter.convertUnit(this.unit, this.quantity, newUnit);
+        double convertedValue = UnitConverter.convertUnit(this.unit, this.quantity, newUnit);
 
-        if(returnValue == -1){
+        if(convertedValue == -1){
             return false;
         }
         else{
             this.unit = newUnit;
-            this.quantity = returnValue;
+            this.quantity = convertedValue;
             return true;
         }
     }
