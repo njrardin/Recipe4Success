@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static org.junit.Assert.*;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 import org.junit.experimental.runners.Enclosed;
@@ -19,6 +21,18 @@ public class IngredientTest {
     @RunWith(Parameterized.class)
     public static class testChangeUnitQuanities{
         
+        private Unit initialUnit;
+        private Unit newUnit;
+        private double initialQuantity;
+        private double expextedNewQuantity;
+
+        public testChangeUnitQuanities(Unit initialUnit, Unit newUnit, double initialQuantity, double expextedNewQuantity){
+            this.initialUnit = initialUnit;
+            this.newUnit = newUnit;
+            this.initialQuantity = initialQuantity;
+            this.expextedNewQuantity = expextedNewQuantity;
+        }
+
         @Parameters
         public static Collection checkConversionData(){
             return Arrays.asList(new Object[][]{
@@ -28,9 +42,9 @@ public class IngredientTest {
                 {Unit.GALLON, Unit.POUND, 10, -1}
             });
         }
-        
+
         @Test
-        public void quantityConverted(Unit initialUnit, Unit newUnit, double initialQuantity, double expextedNewQuantity){
+        public void quantityConverted(){
 
             Ingredient theIngredient = new Ingredient(new FoodItem(), initialQuantity, initialUnit);
 
@@ -48,6 +62,15 @@ public class IngredientTest {
     @RunWith(Parameterized.class)
     public static class testChangeUnitUnits{
         
+        private Unit initialUnit;
+        private Unit newUnit;
+
+
+        public testChangeUnitUnits(Unit initialUnit, Unit newUnit){
+            this.initialUnit = initialUnit;
+            this.newUnit = newUnit;
+        }
+
         @Parameters
         public static Collection checkConversionData(){
             return Arrays.asList(new Object[][]{
