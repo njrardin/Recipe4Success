@@ -13,7 +13,13 @@ public class UnitConverter {
         //Fill with types
     };
 
-    //returns double of new units value. returns -1 if unconvertable
+    /**
+     * 
+     * @param oldUnit - The original unit which is being converted
+     * @param oldUnitAmount - The quantity of substance as measured in the oldUnit
+     * @param newUnit - The desired new unit
+     * @return - The quantity of substance as measured in the newUnit; returns -1 if units incompatible
+     */
     public static double convertUnit(Unit oldUnit, double oldUnitAmount, Unit newUnit){
         return 0; //Implement
     }
