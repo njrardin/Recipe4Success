@@ -41,7 +41,7 @@ public class UnitConverter {
      * @param oldUnit - The original unit which is being converted
      * @param oldUnitAmount - The quantity of substance as measured in the oldUnit
      * @param newUnit - The desired new unit
-     * @return - The quantity of substance as measured in the newUnit; returns -1 if units are unconvertable or quantitys not valid
+     * @return - The quantity of substance as measured in the newUnit; returns -1 if units are unconvertable or quantities not valid
      */
     public static double convertUnit(Unit oldUnit, double oldUnitAmount, Unit newUnit){
         return 0; //Implement
