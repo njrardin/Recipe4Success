@@ -6,30 +6,17 @@ import java.util.Collection;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runners.Parameterized;
+import org.junit.experimental.runners.Enclosed;
 import org.junit.runners.Parameterized.*;
 import org.junit.runner.RunWith;
 
 import it326.r4s.UnitConverter.*;
 
-
+@RunWith(Enclosed.class)
 public class IngredientTest {
     
     @RunWith(Parameterized.class)
-    public class testChangeUnit{
-    
-        @Test
-        public void unitConverted(Unit initialUnit, Unit newUnit){
-
-            final double TEST_QUANTITY = 10; //should be irrelevant
-            Ingredient theIngredient = new Ingredient(new FoodItem(), TEST_QUANTITY, initialUnit);
-
-            theIngredient.changeUnit(newUnit);
-
-            Unit returnedUnit = theIngredient.getUnit();
-            
-            assertEquals(newUnit, returnedUnit);
-
-        }
+    public class testChangeUnitQuanities{
 
         @Test
         public void quantityConverted(Unit initialUnit, Unit newUnit, double initialQuantity, double expextedNewQuantity){
