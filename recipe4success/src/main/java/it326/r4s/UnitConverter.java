@@ -14,15 +14,15 @@ public class UnitConverter {
     };
 
     //returns double of new units value. returns -1 if unconvertable
-    public double convertUnit(Unit unit1, double unit1Amount, Unit unit2){
+    public static double convertUnit(Unit oldUnit, double oldUnitAmount, Unit newUnit){
         return 0; //Implement
     }
 
-    public double convertMass(Unit unit1, double unit1Amount, Unit unit2){
+    private static double convertMass(Unit oldUnit, double oldUnitAmount, Unit newUnit){
         return 0; //Implement
     }
 
-    public double convertVolume(Unit unit1, double unit1Amount, Unit unit2){
+    private static double convertVolume(Unit oldUnit, double oldUnitAmount, Unit newUnit){
         return 0; //Implement
     }
 }

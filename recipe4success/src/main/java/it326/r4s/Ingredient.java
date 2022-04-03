@@ -7,7 +7,17 @@ public class Ingredient {
     private double quantity;
     private Unit unit;
 
-    public boolean changeUnit(Unit unit){
-        
+    public boolean changeUnit(Unit newUnit){
+        double returnValue = UnitConverter.convertUnit(this.unit, this.quantity, newUnit);
+
+        if(returnValue == -1){
+            return false;
+        }
+        else{
+            this.unit = newUnit;
+            this.quantity = returnValue;
+            return true;
+        }
     }
+    
 }
