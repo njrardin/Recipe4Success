@@ -3,8 +3,30 @@ package it326.r4s;
 public class UnitConverter {
     
     public enum Unit{
-        TEASPOON, TABLESPOON, FLUID_OUNCE, CUP, PINT, QUART, GALLON, MILLILITER, LITER, 
-        POUND, OUNCE, MILLIGRAM, GRAM, KILOGRAM
+        //Volume Units (Imperial units are US imperial. UK imperial is different); BASE UNIT = Milliliter
+        TEASPOON (4.92892), 
+        TABLESPOON (14.7868), 
+        FLUID_OUNCE (29.5735), 
+        CUP (240), 
+        PINT (473.176), 
+        QUART (946.353), 
+        GALLON (3785.41), 
+        MILLILITER (1), 
+        LITER (1000), 
+        
+        //Mass/Weight Units; BASE UNIT = gram
+        POUND (453.592), 
+        OUNCE (28.3495), 
+        MILLIGRAM (0.001), 
+        GRAM (1), 
+        KILOGRAM (100);
+
+        public final double amountInBaseUnit;
+
+        Unit(double amountInBaseUnit){
+            this.amountInBaseUnit = amountInBaseUnit;
+        }
+        
     }
 
     private final Unit[] massUnits = {

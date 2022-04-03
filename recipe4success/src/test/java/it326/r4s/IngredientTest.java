@@ -2,22 +2,25 @@ package it326.r4s;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.junit.experimental.theories.*;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.*;
 import org.junit.runner.RunWith;
+
 import it326.r4s.UnitConverter.*;
 
 
 public class IngredientTest {
     
-    @RunWith(Theories.class)
+    @RunWith(Parameterized.class)
     public class testChangeUnit{
     
-        @Theory
-        public void unitConverted(Unit initialUnit, Unit finalUnit){
-            
-            final double INIT_QUANTITY = 10;
+        @Test
+        public void unitConverted(Unit initialUnit, Unit newUnit, double testQuantity){
 
-            Ingredient ingredient = new Ingredient(new FoodItem(), 10, initialUnit);
+            Ingredient theIngredient = new Ingredient(new FoodItem(), 10, initialUnit);
+
+            theIngredient.changeUnit(newUnit);
+
 
             
         }
