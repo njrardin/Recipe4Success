@@ -17,7 +17,7 @@ public class IngredientTest {
     
     //Inner class used to run parameterized tests for testing correct quantity conversion in the method changeUnit() in Ingredient.java
     @RunWith(Parameterized.class)
-    public class testChangeUnitQuanities{
+    public static class testChangeUnitQuanities{
 
         @Test
         public void quantityConverted(Unit initialUnit, Unit newUnit, double initialQuantity, double expextedNewQuantity){
@@ -45,7 +45,7 @@ public class IngredientTest {
 
     //Inner class used to run parameterized tests for testing correct unit conversion in the method changeUnit() in Ingredient.java
     @RunWith(Parameterized.class)
-    public class testChangeUnitUnits{
+    public static class testChangeUnitUnits{
         
         @Test
         public void unitConverted(Unit initialUnit, Unit newUnit){
