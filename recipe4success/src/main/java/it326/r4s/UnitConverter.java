@@ -3,7 +3,8 @@ package it326.r4s;
 public class UnitConverter {
     
     public enum Unit{
-        //Fill with types
+        TEASPOON, TABLESPOON, FLUID_OUNCE, CUP, PINT, QUART, GALLON, MILLILITER, LITER, 
+        POUND, OUNCE, MILLIGRAM, GRAM, KILOGRAM
     }
 
     private final Unit[] massUnits = {
