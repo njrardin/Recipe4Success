@@ -86,7 +86,7 @@ public class IngredientTest {
 
         //Actual test for Ingredient.changeUnit() which checks for correct quantity conversion
         @Test
-        public void unitConverted(Unit initialUnit, Unit newUnit){
+        public void unitConverted(){
 
             final double TEST_QUANTITY = 10; //should be irrelevant but is changable here
             Ingredient theIngredient = new Ingredient(new FoodItem(), TEST_QUANTITY, initialUnit);
