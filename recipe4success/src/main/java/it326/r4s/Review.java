@@ -2,8 +2,21 @@ package it326.r4s;
 
 public class Review extends Entity{
 
-    private User theUser;
-    private int rating;
+    private User reviewer;
+    private Rating rating;
 
-    
+    public static enum Rating{  
+
+        ONE (1), TWO (2), THREE (3), FOUR (4), FIVE (5);
+
+        private int value;
+        Rating(int value){
+            this.value = value;
+        }
+    }
+
+    public Review(User reviewer, Rating rating){
+        this.reviewer = reviewer;
+        this.rating = rating;
+    }
 }
