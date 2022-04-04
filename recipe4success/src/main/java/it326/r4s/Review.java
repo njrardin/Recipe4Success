@@ -19,4 +19,25 @@ public class Review extends Entity{
         this.reviewer = reviewer;
         this.rating = rating;
     }
+
+    public int getRatingValue(){
+        return this.rating.value;
+    }
+
+    public User getReviewer() {
+        return this.reviewer;
+    }
+
+    public void setReviewer(User reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    public Rating getRating() {
+        return this.rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
 }
