@@ -81,8 +81,14 @@ public class User {
      * @return True if all ingredients were moved, false otherwise.
      */
     public boolean moveGroceryListToPantry() {
-        // TODO implement moveGroceryListToPantry
-        return false;
+        // TODO decide if pantry and grocery list should extend ingredient list.
+        // Add all of the ingredients from the grocery list to the pantry.
+        boolean result = pantry.getIngredientList().addIngredients(groceryList.getIngredientList().getIngredients());
+
+        // Clear the grocery list's ingredients.
+        groceryList.getIngredientList().clearIngredients();
+
+        return result;   
     }
 
     /**
