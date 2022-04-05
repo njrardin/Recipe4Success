@@ -88,7 +88,7 @@ public class User {
         // Clear the grocery list's ingredients.
         groceryList.getIngredientList().clearIngredients();
 
-        return result;   
+        return result;
     }
 
     /**
@@ -194,10 +194,18 @@ public class User {
     }
 
     /**
-     * Gets the user's active meal plan index.
-     * @param activeMealPlanIndex the new active meal plan index.
+     * Sets the user's active meal plan index.
+     * @param index the new active meal plan index.
      */
-    public void setActiveMealPlanIndex(int activeMealPlanIndex) {
-        this.activeMealPlanIndex = activeMealPlanIndex;
+    public boolean setActiveMealPlanIndex(int index) {
+        boolean result = false;
+
+        // Check that the new index is within bounds.
+        if (index < mealPlans.size() && index > -1) {
+            this.activeMealPlanIndex = index;
+            result = true;
+        }
+        
+        return result;
     }
 }
