@@ -96,8 +96,16 @@ public class User {
      * @return The collection of makeable recipes.
      */
     public Collection<Recipe> getMakeableRecipes() {
-        // TODO implement getMakeableRecipes
-        return null;
+        Collection<Recipe> makeable = new ArrayList<Recipe>();
+
+        // Add each recipe in the user's collection that can be made with ingredients in the pantry.
+        for (Recipe recipe : recipes) {
+            if (pantry.getIngredientList().containsIngredients(recipe.getIngredientList().getIngredients())) {
+                makeable.add(recipe);
+            }
+        }
+
+        return makeable;
     }
 
     /**
@@ -196,6 +204,7 @@ public class User {
     /**
      * Sets the user's active meal plan index.
      * @param index the new active meal plan index.
+     * @return True if within bounds, false otherwise.
      */
     public boolean setActiveMealPlanIndex(int index) {
         boolean result = false;
