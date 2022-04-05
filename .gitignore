@@ -25,6 +25,7 @@ replay_pid*
 
 # vscode files
 .vscode
+.dccache
 
 # MAVEN reccomended gitignore
 
