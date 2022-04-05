@@ -46,8 +46,7 @@ public class User {
      * @return True if the meal plan was added, false otherwise.
      */
     public boolean addMealPlan(MealPlan mealPlan) {
-        // TODO implement addMealPlan
-        return false;
+        return mealPlans.add(mealPlan);
     }
 
     /**
@@ -56,8 +55,7 @@ public class User {
      * @return True if the meal plan was removed, false otherwise.
      */
     public boolean removeMealPlan(MealPlan mealPlan) {
-        // TODO implement removeMealPlan
-        return false;
+        return mealPlans.remove(mealPlan);
     }
 
     /**
@@ -66,8 +64,7 @@ public class User {
      * @return True if the recipe was added, false otherwise.
      */
     public boolean addRecipe(Recipe recipe) {
-        // TODO implement addRecipe
-        return false;
+        return recipes.add(recipe);
     }
 
     /**
@@ -76,8 +73,7 @@ public class User {
      * @return True if the recipe was removed, false otherwise.
      */
     public boolean removeRecipe(Recipe recipe) {
-        // TODO implement removeRecipe
-        return false;        
+        return recipes.add(recipe);        
     }
 
     /**
