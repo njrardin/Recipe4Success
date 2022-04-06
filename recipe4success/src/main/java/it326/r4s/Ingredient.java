@@ -19,15 +19,14 @@ public class Ingredient {
      * @return - A boolean representing the validity of the value. 
      */
     public boolean changeUnit(Unit newUnit){
-        double convertedValue = UnitConverter.convertUnit(this.unit, this.quantity, newUnit);
 
-        if(convertedValue == -1){
-            return false;
-        }
-        else{
+        try {
+            double convertedValue = UnitConverter.convertUnit(this.unit, this.quantity, newUnit);
             this.unit = newUnit;
             this.quantity = convertedValue;
             return true;
+        } catch (IllegalArgumentException e) {
+            return false;
         }
     }
 
