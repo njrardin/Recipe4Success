@@ -1,7 +1,5 @@
 package it326.r4s;
 
-import java.lang.Exception.*;
-
 public class UnitConverter {
     
     public static enum UnitType{
@@ -12,22 +10,22 @@ public class UnitConverter {
 
     public static enum Unit{
         //Volume Units (Imperial units are US imperial. UK imperial is different); BASE UNIT = Milliliter
-        TEASPOON (4.92892, UnitType.VOLUME), 
-        TABLESPOON (14.7868, UnitType.VOLUME), 
-        FLUID_OUNCE (29.5735, UnitType.VOLUME), 
-        CUP (240, UnitType.VOLUME), 
+        TEASPOON (4.928, UnitType.VOLUME), 
+        TABLESPOON (14.786, UnitType.VOLUME), 
+        FLUID_OUNCE (29.573, UnitType.VOLUME), 
+        CUP (240.000, UnitType.VOLUME), 
         PINT (473.176, UnitType.VOLUME), 
         QUART (946.353, UnitType.VOLUME), 
-        GALLON (3785.41, UnitType.VOLUME), 
-        MILLILITER (1, UnitType.VOLUME), 
-        LITER (1000, UnitType.VOLUME), 
+        GALLON (3785.410, UnitType.VOLUME), 
+        MILLILITER (1.000, UnitType.VOLUME), 
+        LITER (1000.000, UnitType.VOLUME), 
         
         //Mass/Weight Units; BASE UNIT = gram
         POUND (453.592, UnitType.WEIGHT), 
-        OUNCE (28.3495, UnitType.WEIGHT), 
+        OUNCE (28.350, UnitType.WEIGHT), 
         MILLIGRAM (0.001, UnitType.MASS), 
-        GRAM (1, UnitType.MASS), 
-        KILOGRAM (100, UnitType.MASS);
+        GRAM (1.000, UnitType.MASS), 
+        KILOGRAM (100.000, UnitType.MASS);
 
         public final double amountInBaseUnit;
         public final UnitType unitType;
