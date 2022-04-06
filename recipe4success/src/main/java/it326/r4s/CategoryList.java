@@ -1,90 +1,85 @@
 package it326.r4s;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-enum CategoryType {
-    Recipe, FoodItem
-}
+enum CategoryType { Recipe, FoodItem }
 
 public class CategoryList {
-    private List<Category> recipeCategories;
-    private List<Category> foodCategories;
-    private CategoryType categoryType;
+    private static List<Category> recipeCategories = new ArrayList<Category>();
+    private static List<Category> foodCategories = new ArrayList<Category>();
 
-    public CategoryList(CategoryType categoryType) {
+    private CategoryList(CategoryType categoryType) {
         if (categoryType == CategoryType.Recipe) {
-            this.recipeCategories = new ArrayList<Category>();
-            this.categoryType = categoryType;
+            recipeCategories = new ArrayList<Category>();
         }
         else if (categoryType == CategoryType.FoodItem) {
-            this.foodCategories = new ArrayList<Category>();
-            this.categoryType = categoryType;
+            foodCategories = new ArrayList<Category>();
         }
     }
 
-    public List<Category> getCategories() {
-        if (this.categoryType == CategoryType.Recipe) {
-            return this.recipeCategories;
+    public static List<Category> getCategories(CategoryType categoryType) {
+        if (categoryType == CategoryType.Recipe) {
+            return recipeCategories;
         }
-        else if (this.categoryType == CategoryType.FoodItem) {
-            return this.foodCategories;
+        else if (categoryType == CategoryType.FoodItem) {
+            return foodCategories;
         }
         else return null; // this will never actually happen, just avoiding vs code getting mad at me
     }
 
-    public void addCategoryToList(Category category) {
-        if (this.categoryType == CategoryType.Recipe) {
-            this.recipeCategories.add(category);
+    public static void addCategoryToList(CategoryType categoryType, Category category) {
+        if (categoryType == CategoryType.Recipe) {
+            recipeCategories.add(category);
         }
-        else if (this.categoryType == CategoryType.FoodItem) {
-            this.foodCategories.add(category);
+        else if (categoryType == CategoryType.FoodItem) {
+            foodCategories.add(category);
         }
     }
 
-    public Category getCategory(String name) {
-        if (this.categoryType == CategoryType.Recipe) {
-            for (Category category : this.recipeCategories) {
+    public static Category getCategory(CategoryType categoryType, String name) {
+        if (categoryType == CategoryType.Recipe) {
+            for (Category category : recipeCategories) {
                 if (name == category.getName()) {
                     return category;
                 }
             }
             // if category does not exist
             Category category = new Category(name);
-            addCategoryToList(category);
+            addCategoryToList(categoryType, category);
             return category;
         }
-        else if (this.categoryType == CategoryType.FoodItem) {
-            for (Category category : this.foodCategories) {
+        else if (categoryType == CategoryType.FoodItem) {
+            for (Category category : foodCategories) {
                 if (name == category.getName()) {
                     return category;
                 }
             }
             // if category does not exist
             Category category = new Category(name);
-            addCategoryToList(category);
+            addCategoryToList(categoryType, category);
             return category;
         }
         else return null; // this will never actually happen, just avoiding vs code getting mad at me
     }
 
-    public boolean removeCategory(String name) {
-        if (this.categoryType == CategoryType.Recipe) {
-            for (Category category : this.recipeCategories) {
+    public boolean removeCategory(CategoryType categoryType, String name) {
+        if (categoryType == CategoryType.Recipe) {
+            for (Category category : recipeCategories) {
                 if (name == category.getName()) {
-                    this.recipeCategories.remove(category);
+                    recipeCategories.remove(category);
                     return true;
                 }
             }
         }
-        else if (this.categoryType == CategoryType.FoodItem) {
-            for (Category category : this.foodCategories) {
+        else if (categoryType == CategoryType.FoodItem) {
+            for (Category category : foodCategories) {
                 if (name == category.getName()) {
-                    this.foodCategories.remove(category);
+                    foodCategories.remove(category);
                     return true;
                 }
             }
         }
         return false;
     }
-    
 }
