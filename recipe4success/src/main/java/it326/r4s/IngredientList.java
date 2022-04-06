@@ -9,7 +9,7 @@ import java.util.HashSet;
 */
 
 public class IngredientList extends Entity implements Exportable {
-    private HashSet<Ingredient> ingredients;
+    private Collection<Ingredient> ingredients;
 
     // constructors
     public IngredientList() {
@@ -26,9 +26,11 @@ public class IngredientList extends Entity implements Exportable {
     
     // returns false if toAdd is already in ingredients
     public boolean addIngredient(Ingredient toAdd) { return ingredients.add(toAdd); }
+    // TODO add logic for combining ingredient objects together (can't just call add())
 
     // returns false if toAdd is already in ingredients
     public boolean addIngredients(Collection<Ingredient> toAdd) { return ingredients.addAll(toAdd); }
+    // TODO add logic for combining ingredient objects together (can't just call addAll())
 
     // returns false if toRemove is not in ingredients
     public boolean removeIngredient(Ingredient toRemove) { return ingredients.remove(toRemove); }
@@ -38,6 +40,18 @@ public class IngredientList extends Entity implements Exportable {
 
     public void clearIngredients() { ingredients.clear(); }
 
+    /**
+     * Checks whether this ingredient list contains all the ingredients of another collection.
+     * @param ingredients the collection of ingredients to be compared against.
+     * @return True if this ingredient list contains all the ingredients (quantities of this list must be larger) of the collection, false otherwise.
+     */
+    public boolean containsIngredients(Collection<Ingredient> ingredients) {
+        // TODO implement containsIngredients (can't just call containsAll(), need to compare the fooditem, quantity, and unit). Feel free to make submethods in other classes.
+        return false;
+    }
+
     // getter
-    public HashSet<Ingredient> getIngredients() { return this.ingredients; }
+    public Collection<Ingredient> getIngredients() { return this.ingredients; }
+
+    
 }
