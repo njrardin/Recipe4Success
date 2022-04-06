@@ -50,6 +50,39 @@ public class UnitConverterTest {
 
             assertEquals(expectedReturn, actualReturn, DELTA);
         }
+    }
 
+    @RunWith(Parameterized.class)
+    public static class testConvertUnit_DifferentUnit{
+
+        private Unit oldUnit;
+        private Unit newUnit;
+        private double oldUnitQuantity;
+        private double unitTypeConversionFactor;
+
+        private double expectedReturn;
+        private final double DELTA = 0.2;
+        
+        public testConvertUnit_DifferentUnit(Unit oldUnit, Unit newUnit, double oldUnitQuantity, double unitTypeConversionFactor, double expectedReturn){
+            this.oldUnit = oldUnit;
+            this.newUnit = newUnit;
+            this.oldUnitQuantity = oldUnitQuantity;
+            this.expectedReturn = expectedReturn;
+        }
+        
+        @Parameters
+        public static Collection testConvertUnit_DifferentUnit_Data(){
+            return Arrays.asList(new Object[][]{
+                //{oldunit, newUnit, oldUnitQuantity, expectedReturn}
+                {Unit.POUND, Unit.LITER, 2, 0.7, 1.296}
+            });
+        }
+
+        @Test
+        public void testConvertUnit(){
+            double actualReturn = UnitConverter.convertUnit(oldUnit, oldUnitQuantity, newUnit, unitTypeConversionFactor);
+
+            assertEquals(expectedReturn, actualReturn, DELTA);
+        }
     }
 }
