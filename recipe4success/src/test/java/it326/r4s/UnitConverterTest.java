@@ -76,7 +76,7 @@ public class UnitConverterTest {
             return Arrays.asList(new Object[][]{
                 //{oldunit, newUnit, oldUnitQuantity, unitTypeConversionFactor, expectedReturn}
                 {Unit.POUND, Unit.LITER, 2, 0.7, 1.296},
-                {Unit.MILLILITER, Unit.POUND, 502, 1.38, 1.527}
+                {Unit.MILLILITER, Unit.POUND, 502, (1/1.38), 1.527}
             });
         }
 
