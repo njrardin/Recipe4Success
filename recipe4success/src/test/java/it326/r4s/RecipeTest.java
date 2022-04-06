@@ -3,6 +3,7 @@ package it326.r4s;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import it326.r4s.Review.Rating;
 import it326.r4s.UnitConverter.Unit;
 
 import org.junit.Before;
@@ -81,7 +82,7 @@ public class RecipeTest {
 
     @Test 
     public void testRemoveReview(){
-        Review newReview = new Review();
+        Review newReview = new Review(new User("Testman"), Rating.FOUR);
         ArrayList<Review> reviewList = new ArrayList<Review>();
         reviewList.add(newReview);
 
@@ -94,7 +95,7 @@ public class RecipeTest {
 
     @Test
     public void testAddReview(){
-        Review newReview = new Review();
+        Review newReview = new Review(new User("Testman"), Rating.FOUR);
 
         setupRecipe.addReview(newReview);
 
