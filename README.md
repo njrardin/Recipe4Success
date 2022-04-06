@@ -61,6 +61,10 @@ Maven: 3.8.5
     - For VScode: Read this guide: 
         - https://code.visualstudio.com/docs/java/java-build
 
+    - Zach's example on Mac to set up maven path. Additional google searches will be helpful, but this should do the trick.
+        - export PATH=/Users/zachplatt/Documents/apache-maven-3.8.5/bin/:$PATH
+
+
 3) Test that your Maven installation works
 
     - Run `mvn -v` on the commandline to verify installation
