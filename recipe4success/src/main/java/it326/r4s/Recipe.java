@@ -46,11 +46,11 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
     }
     
     public void removeReview(Review theReview){
-        reviews.add(theReview);
+        reviews.remove(theReview);
     }
     
     public void addReview(Review theReview){
-        reviews.remove(theReview);
+        reviews.add(theReview);
     }
 
 
@@ -117,7 +117,8 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
     //     List<Review> listReturn = new ArrayList<Review>();
     //     for (Category aReview : this.categories) {
     //         listReturn.add((Review) aReview.clone());
-    //     }    }
+    //     }   
+    // }
 
     // public List<Category> getCategories() {
     //     List<Category> listReturn = new ArrayList<Category>();
