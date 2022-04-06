@@ -42,22 +42,28 @@ public class UnitConverter {
     /**
      * 
      * @param oldUnit - The original unit which is being converted
-     * @param oldUnitAmount - The quantity of substance as measured in the oldUnit, must be valid quantity > 0
+     * @param oldUnitQuantity - The quantity of substance as measured in the oldUnit, must be valid quantity > 0
      * @param newUnit - The desired new unit
-     * @return - The quantity of substance as measured in the newUnit; returns -1 if units are unconvertable or quantities not valid
+     * @return - The quantity of substance as measured in the newUnit; throws IllegalArgumentException if units are unconvertable or quantities not valid
+     * @throws IllegalArgumentException if units are unconvertable or quantity is not valid
      */
-    public static double convertUnit(Unit oldUnit, double oldUnitAmount, Unit newUnit) throws IllegalArgumentException{
-        if(oldUnitAmount <= 0){
+    public static double convertUnit(Unit oldUnit, double oldUnitQuantity, Unit newUnit) throws IllegalArgumentException{
+        if(oldUnitQuantity <= 0){
             throw new IllegalArgumentException();
         }
+        if(oldUnit.unitType != newUnit.unitType){
+            throw new IllegalArgumentException();
+        }
+        else{ 
+            return (double) ( oldUnitQuantity * ( oldUnit.amountInBaseUnit/newUnit.amountInBaseUnit) );
+        }
+    }
+
+    private static double convertMass(Unit oldUnit, double oldUnitQuantity, Unit newUnit){
         return 0; //Implement
     }
 
-    private static double convertMass(Unit oldUnit, double oldUnitAmount, Unit newUnit){
-        return 0; //Implement
-    }
-
-    private static double convertVolume(Unit oldUnit, double oldUnitAmount, Unit newUnit){
+    private static double convertVolume(Unit oldUnit, double oldUnitQuantity, Unit newUnit){
         return 0; //Implement
     }
 }
