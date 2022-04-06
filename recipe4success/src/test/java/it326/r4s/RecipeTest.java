@@ -70,7 +70,7 @@ public class RecipeTest {
     @Test
     public void testAddIngredient(){
         IngredientList ingredientList = new IngredientList();
-        Ingredient testIngredient = new Ingredient();
+        Ingredient testIngredient = new Ingredient(new FoodItem(), 1, Unit.CUP);
         
         Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Ingredientlist").setIngredientList(ingredientList).build();
         
