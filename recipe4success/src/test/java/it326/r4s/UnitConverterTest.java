@@ -36,7 +36,11 @@ public class UnitConverterTest {
         public static Collection getRatingValueData(){
             return Arrays.asList(new Object[][]{
                 //{oldunit, newUnit, oldUnitQuantity, expectedReturn}
-                {}
+                {Unit.TEASPOON, Unit.PINT, 16, 0.167},
+                {Unit.FLUID_OUNCE, Unit.LITER, 4789, 141.628},
+                {Unit.GALLON, Unit.MILLILITER, 20, 75708.236},
+                {Unit.CUP, Unit.TABLESPOON, 0.46, 7.36},
+                {Unit.QUART, Unit.FLUID_OUNCE, 3.2, 102.4}
             });
         }
 
