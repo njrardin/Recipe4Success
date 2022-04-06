@@ -1,5 +1,8 @@
 package it326.r4s;
 
+import java.lang.Exception.*;
+import java.util.IllegalFormatException;
+
 public class UnitConverter {
     
     public enum Unit{
@@ -39,13 +42,13 @@ public class UnitConverter {
     /**
      * 
      * @param oldUnit - The original unit which is being converted
-     * @param oldUnitAmount - The quantity of substance as measured in the oldUnit
+     * @param oldUnitAmount - The quantity of substance as measured in the oldUnit, must be valid quantity > 0
      * @param newUnit - The desired new unit
      * @return - The quantity of substance as measured in the newUnit; returns -1 if units are unconvertable or quantities not valid
      */
-    public static double convertUnit(Unit oldUnit, double oldUnitAmount, Unit newUnit){
+    public static double convertUnit(Unit oldUnit, double oldUnitAmount, Unit newUnit) throws IllegalArgumentException{
         if(oldUnitAmount <= 0){
-            return -1;
+            throw new IllegalArgumentException();
         }
         return 0; //Implement
     }
