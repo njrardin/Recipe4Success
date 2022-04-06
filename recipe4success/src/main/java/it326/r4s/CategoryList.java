@@ -29,13 +29,15 @@ public class CategoryList {
         else return null; // this will never actually happen, just avoiding vs code getting mad at me
     }
 
-    public static void addCategoryToList(CategoryType categoryType, Category category) {
+    private static Category addCategoryToList(CategoryType categoryType, String name) {
+        Category category = new Category(name);
         if (categoryType == CategoryType.RECIPE) {
             recipeCategories.add(category);
         }
         else if (categoryType == CategoryType.FOODITEM) {
             foodCategories.add(category);
         }
+        return category;
     }
 
     public static Category getCategory(CategoryType categoryType, String name) {
@@ -46,9 +48,7 @@ public class CategoryList {
                 }
             }
             // if category does not exist
-            Category category = new Category(name);
-            addCategoryToList(categoryType, category);
-            return category;
+            return addCategoryToList(categoryType, name);
         }
         else if (categoryType == CategoryType.FOODITEM) {
             for (Category category : foodCategories) {
@@ -57,9 +57,7 @@ public class CategoryList {
                 }
             }
             // if category does not exist
-            Category category = new Category(name);
-            addCategoryToList(categoryType, category);
-            return category;
+            return addCategoryToList(categoryType, name);
         }
         else return null; // this will never actually happen, just avoiding vs code getting mad at me
     }
