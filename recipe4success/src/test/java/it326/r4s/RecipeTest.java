@@ -2,6 +2,9 @@ package it326.r4s;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import it326.r4s.UnitConverter.Unit;
+
 import org.junit.Before;
 import java.util.ArrayList;
 
@@ -54,7 +57,7 @@ public class RecipeTest {
     @Test
     public void testRemoveIngredient(){
         IngredientList ingredientList = new IngredientList();
-        Ingredient testIngredient = new Ingredient();
+        Ingredient testIngredient = new Ingredient(new FoodItem(), 1, Unit.CUP);
         ingredientList.addIngredient(testIngredient);
         
         Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Ingredientlist").setIngredientList(ingredientList).build();
