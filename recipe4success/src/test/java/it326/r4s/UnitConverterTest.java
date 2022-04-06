@@ -23,7 +23,7 @@ public class UnitConverterTest {
         private double oldUnitQuantity;
 
         private double expectedReturn;
-        private final double DELTA = 0.01;
+        private final double DELTA = 0.2;
         
         public testConvertUnit_SameUnit(Unit oldUnit, Unit newUnit, double oldUnitQuantity, double expectedReturn){
             this.oldUnit = oldUnit;
