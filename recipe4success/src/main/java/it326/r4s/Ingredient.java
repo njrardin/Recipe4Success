@@ -53,5 +53,13 @@ public class Ingredient {
     public void setUnit(Unit unit) {
         this.unit = unit;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Ingredient other = (Ingredient) obj;
+        if (!this.getFoodItem().equals(other.getFoodItem())) return false;
+        else if (!this.getUnit().equals(other.getUnit())) return false;
+        else return this.getQuantity() == other.getQuantity();
+    }
     
 }

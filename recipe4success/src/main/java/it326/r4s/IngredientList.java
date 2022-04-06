@@ -24,13 +24,28 @@ public class IngredientList extends Entity implements Exportable {
 
     // methods
     
-    // returns false if toAdd is already in ingredients
-    public boolean addIngredient(Ingredient toAdd) { return ingredients.add(toAdd); }
-    // TODO add logic for combining ingredient objects together (can't just call add())
+    // returns true if toAdd is already in ingredients
+    public boolean addIngredient(Ingredient toAdd) {
+        for (Ingredient ingredient : this.ingredients) {
+            if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
+                if (!ingredient.getUnit().equals(toAdd.getUnit()))
+                    UnitConverter.convertUnit(ingredient.getUnit(), ingredient.getQuantity(), toAdd.getUnit());
+                ingredient.setQuantity(ingredient.getQuantity() + toAdd.getQuantity());
+                return true;
+            }
+        }
+        this.ingredients.add(toAdd);
+        return false;
+    }
 
-    // returns false if toAdd is already in ingredients
-    public boolean addIngredients(Collection<Ingredient> toAdd) { return ingredients.addAll(toAdd); }
-    // TODO add logic for combining ingredient objects together (can't just call addAll())
+    // returns true if toAdd is already in ingredients
+    public boolean addIngredients(Collection<Ingredient> toAdd) {
+        boolean flag = true;
+        for (Ingredient ingredientToAdd : toAdd) {
+            if (!this.addIngredient(ingredientToAdd)) flag = false;
+        }
+        return flag;
+    }
 
     // returns false if toRemove is not in ingredients
     public boolean removeIngredient(Ingredient toRemove) { return ingredients.remove(toRemove); }
@@ -45,9 +60,18 @@ public class IngredientList extends Entity implements Exportable {
      * @param ingredients the collection of ingredients to be compared against.
      * @return True if this ingredient list contains all the ingredients (quantities of this list must be larger) of the collection, false otherwise.
      */
-    public boolean containsIngredients(Collection<Ingredient> ingredients) {
-        // TODO implement containsIngredients (can't just call containsAll(), need to compare the fooditem, quantity, and unit). Feel free to make submethods in other classes.
-        return false;
+    public boolean containsIngredients(Collection<Ingredient> otherIngredients) {
+        if (this.ingredients.containsAll(otherIngredients)) return true;
+        else {
+            for (Ingredient ingredient : otherIngredients) {
+                for (Ingredient otherIngredient : this.ingredients) {
+                    if (!ingredient.equals(otherIngredient)) {
+                        if (ingredient.getQuantity() > otherIngredient.getQuantity()) return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     // getter
