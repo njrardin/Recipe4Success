@@ -55,15 +55,25 @@ public class UnitConverter {
             throw new IllegalArgumentException();
         }
         else{ 
-            return (double) ( oldUnitQuantity * ( oldUnit.amountInBaseUnit/newUnit.amountInBaseUnit) );
+            return convertUnit(oldUnit, oldUnitQuantity, newUnit, 1);
         }
     }
 
-    private static double convertMass(Unit oldUnit, double oldUnitQuantity, Unit newUnit){
-        return 0; //Implement
-    }
-
-    private static double convertVolume(Unit oldUnit, double oldUnitQuantity, Unit newUnit){
-        return 0; //Implement
+    /**
+     * 
+     * @param oldUnit - The original unit which is being converted
+     * @param oldUnitQuantity - The quantity of substance as measured in the oldUnit, must be valid quantity > 0
+     * @param newUnit - The desired new unit
+     * @param unitTypeConversionFactor - The conversion factor between units types in terms of (old base unit type)/(new base unit type). (i.e, if oldUnit is a mass and newUnit is a volume, this should be the conversion factor of grams/milliliter)
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public static double convertUnit(Unit oldUnit, double oldUnitQuantity, Unit newUnit, double unitTypeConversionFactor) throws IllegalArgumentException{
+        if(oldUnitQuantity <= 0){
+            throw new IllegalArgumentException();
+        }
+        else{ 
+            return (double) (oldUnitQuantity * oldUnit.amountInBaseUnit * (1 / unitTypeConversionFactor)  * (1 / newUnit.amountInBaseUnit));
+        }
     }
 }
