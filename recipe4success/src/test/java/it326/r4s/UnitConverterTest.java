@@ -33,7 +33,7 @@ public class UnitConverterTest {
         }
         
         @Parameters
-        public static Collection getRatingValueData(){
+        public static Collection testConvertUnit_SameUnit_Data(){
             return Arrays.asList(new Object[][]{
                 //{oldunit, newUnit, oldUnitQuantity, expectedReturn}
                 {Unit.TEASPOON, Unit.PINT, 16, 0.167},
