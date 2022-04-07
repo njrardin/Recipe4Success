@@ -1,8 +1,8 @@
 package it326.r4s;
 
 /*
-* ADD HEADER HERE
-* 
+* TODO #4 - whoever implemented this class needs to write a header description.
+* See User.java for good header examples
 * 
 */
 

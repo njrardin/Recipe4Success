@@ -2,6 +2,12 @@ package it326.r4s;
 
 import it326.r4s.UnitConverter.*;
 
+/*
+* TODO #5 - whoever implemented this class needs to write a header description.
+* See User.java for good header examples
+* 
+*/
+
 public class Ingredient {
     private FoodItem foodItem;
     private double quantity;

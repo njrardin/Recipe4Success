@@ -3,8 +3,8 @@ import java.util.Collection;
 import java.util.HashSet;
 
 /*
-* ADD HEADER HERE
-* 
+* TODO #6 - whoever implemented this class needs to write a header description.
+* See User.java for good header examples
 * 
 */
 

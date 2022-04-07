@@ -1,5 +1,11 @@
 package it326.r4s;
 
+/*
+* TODO #10 - whoever implemented this class needs to write a header description.
+* See User.java for good header examples
+* 
+*/
+
 public class UnitConverter {
     
     public static enum UnitType{

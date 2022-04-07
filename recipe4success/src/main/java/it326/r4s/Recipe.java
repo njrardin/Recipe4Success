@@ -1,6 +1,12 @@
 package it326.r4s;
 import java.util.*;
 
+/*
+* TODO #7 - whoever implemented this class needs to write a header description.
+* See User.java for good header examples
+* s
+*/
+
 public class Recipe extends Entity implements Searchable, Categorizable, Exportable {
 
     private String name;
