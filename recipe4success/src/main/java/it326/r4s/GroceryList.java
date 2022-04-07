@@ -1,5 +1,11 @@
 package it326.r4s;
 
+/**
+ * The basic GroceryList class of the Recipes4Success application.
+ * Essentially just holds an ingredientList object as the groceryList
+ * @author Zach Plattner (zmplatt@ilstu.edu)
+ * @date 4/6/22
+ */
 public class GroceryList {
     private IngredientList ingredientList;
 

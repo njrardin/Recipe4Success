@@ -1,5 +1,11 @@
 package it326.r4s;
 
+/**
+ * The basic Pantry class of the Recipes4Success application.
+ * Essentially just holds an ingredientList object as the pantry
+ * @author Zach Plattner (zmplatt@ilstu.edu)
+ * @date 4/6/22
+ */
 public class Pantry {
     private IngredientList ingredientList;
 
