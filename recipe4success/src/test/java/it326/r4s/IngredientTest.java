@@ -75,7 +75,7 @@ public class IngredientTest {
                 {Unit.TEASPOON, Unit.TABLESPOON},
                 {Unit.KILOGRAM, Unit.GRAM},
                 {Unit.GALLON, Unit.CUP},
-                {Unit.GALLON, Unit.POUND}
+                {Unit.GALLON, Unit.MILLILITER}
             });
         }
 
