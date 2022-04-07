@@ -38,7 +38,7 @@ public class IngredientList extends Entity implements Exportable {
         return false;
     }
 
-    // returns true if toAdd is already in ingredients
+    // returns true if all Ingredients in toAdd is already in ingredients
     public boolean addIngredients(Collection<Ingredient> toAdd) {
         boolean flag = true;
         for (Ingredient ingredientToAdd : toAdd) {
