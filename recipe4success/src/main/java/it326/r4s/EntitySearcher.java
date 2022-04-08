@@ -11,7 +11,7 @@ public class EntitySearcher {
         //if item has string in any slot, add it to list (ITERATION 1---Has O(N*M) time complexity)
         for (Searchable searchable: collectionToSearch){
             for (String attribute: searchable.getAttributeSearchStrings()){
-                if (attribute.contains(searchString)){
+                if (attribute.toLowerCase().contains(searchString.toLowerCase())){
                     itemsThatPassed.add(searchable);
                     break;
                 }
