@@ -144,6 +144,14 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         return name + ": " + description; 
     }
 
+    @Override
+    public ArrayList<String> getAttributeSearchStrings(){
+        ArrayList<String> attributeSearchStrings = new ArrayList<String>();
+        attributeSearchStrings.add(name);
+        attributeSearchStrings.add(description);
+        return attributeSearchStrings;
+    }
+
     //=======================================RecipeBuilder=======================================
     public static class RecipeBuilder
     {
