@@ -1,5 +1,11 @@
 package it326.r4s;
 
+/*
+* TODO #10 - whoever implemented this class needs to write a header description.
+* See User.java for good header examples
+* 
+*/
+
 public class UnitConverter {
     
     public static enum UnitType{
@@ -25,7 +31,7 @@ public class UnitConverter {
         OUNCE (28.350, UnitType.WEIGHT), 
         MILLIGRAM (0.001, UnitType.MASS), 
         GRAM (1.000, UnitType.MASS), 
-        KILOGRAM (100.000, UnitType.MASS);
+        KILOGRAM (1000.000, UnitType.MASS);
 
         public final double amountInBaseUnit;
         public final UnitType unitType;

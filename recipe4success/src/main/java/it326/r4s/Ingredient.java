@@ -2,6 +2,12 @@ package it326.r4s;
 
 import it326.r4s.UnitConverter.*;
 
+/*
+* TODO #5 - whoever implemented this class needs to write a header description.
+* See User.java for good header examples
+* 
+*/
+
 public class Ingredient {
     private FoodItem foodItem;
     private double quantity;
@@ -52,6 +58,14 @@ public class Ingredient {
 
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Ingredient other = (Ingredient) obj;
+        if (!this.getFoodItem().equals(other.getFoodItem())) return false;
+        else if (!this.getUnit().equals(other.getUnit())) return false;
+        else return this.getQuantity() == other.getQuantity();
     }
     
 }
