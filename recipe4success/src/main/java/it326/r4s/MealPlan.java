@@ -12,5 +12,11 @@ public class MealPlan extends Entity implements Searchable, Categorizable, Expor
         // TODO #11 - implement getAllIngredients (not easy)
         return null;
     }
+
+    @Override
+    public Collection<String> getAttributeSearchStrings() {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }
