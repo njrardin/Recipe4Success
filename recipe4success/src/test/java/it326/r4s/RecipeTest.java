@@ -8,6 +8,7 @@ import it326.r4s.UnitConverter.Unit;
 
 import org.junit.Before;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RecipeTest {
     
@@ -100,6 +101,13 @@ public class RecipeTest {
         setupRecipe.addReview(newReview);
 
         assertTrue(setupRecipe.getReviews().contains(newReview));
+    }
+
+    @Test
+    public void testGetAttributeSearchStrings(){
+        ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Mac and Cheese", "A yummy meal!"));
+        ArrayList<String> actual = setupRecipe.getAttributeSearchStrings();
+        assertEquals(expected, actual);
     }
 
 }
