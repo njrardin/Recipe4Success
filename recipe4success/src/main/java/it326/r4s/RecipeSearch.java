@@ -16,11 +16,13 @@ public class RecipeSearch implements CollectionSearch<Recipe> {
     @Override
     public ArrayList<Recipe> searchFor(String searchString) {
         ArrayList<Recipe> itemsThatPassed = new ArrayList<Recipe>();
+        searchString = searchString.toLowerCase();
+
         for (Recipe recipe: recipes){
-            if(recipe.getName().toLowerCase().contains(searchString.toLowerCase())){
+            if(FuzzySearch.partialRatio(recipe.getName().toLowerCase(), searchString) > 92){
                 itemsThatPassed.add(recipe);
             }
-            else if(recipe.getDescription().toLowerCase().contains(searchString.toLowerCase())){
+            else if(FuzzySearch.partialRatio(recipe.getDescription().toLowerCase(), searchString) > 92){
                 itemsThatPassed.add(recipe);
             }
         }
