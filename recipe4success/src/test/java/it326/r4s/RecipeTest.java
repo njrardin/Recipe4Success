@@ -103,11 +103,4 @@ public class RecipeTest {
         assertTrue(setupRecipe.getReviews().contains(newReview));
     }
 
-    @Test
-    public void testGetAttributeSearchStrings(){
-        ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Mac and Cheese", "A yummy meal!"));
-        ArrayList<String> actual = setupRecipe.getAttributeSearchStrings();
-        assertEquals(expected, actual);
-    }
-
 }
