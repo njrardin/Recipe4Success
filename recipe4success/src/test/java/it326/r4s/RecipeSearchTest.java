@@ -65,7 +65,7 @@ public class RecipeSearchTest {
     }
 
     @Test
-    public void testSearchFor_SingleCateogry(){
+    public void testSearchFor_SingleCategory(){
 
         //Set up
         Recipe demoRecipe;
