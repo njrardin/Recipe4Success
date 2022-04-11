@@ -30,10 +30,4 @@ public class RecipeSearch implements CollectionSearch<Recipe> {
         }
         return itemsThatPassed;
     }
-
-    @Override
-    public ArrayList<Recipe> searchFor(Collection<String> searchStrings) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }
