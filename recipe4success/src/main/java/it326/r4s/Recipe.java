@@ -152,6 +152,26 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         return attributeSearchStrings;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(obj == this){
+            return true;
+        }
+
+        if( !(obj instanceof Recipe)){
+            return false;
+        }
+
+        Recipe recObj = (Recipe) obj;
+
+        if( recObj.name.equals(this.name) && recObj.description.equals(this.description) ){
+                return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     //=======================================RecipeBuilder=======================================
     public static class RecipeBuilder
     {
