@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class RecipeSearchTest {
     
     @Test
-    public void testSearchFor_SingleParam(){
+    public void testSearchFor_SearchString(){
 
         //Set up
         Recipe demoRecipe;
