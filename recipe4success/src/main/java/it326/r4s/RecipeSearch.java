@@ -32,7 +32,7 @@ public class RecipeSearch implements CollectionSearch<Recipe> {
         return itemsThatPassed;
     }
 
-    public ArrayList<Recipe> searchForCategory(Category category){
+    public ArrayList<Recipe> searchFor(Category category){
         ArrayList<Recipe> itemsThatPassed = new ArrayList<Recipe>();
 
         for (Recipe recipe: recipes){
@@ -43,7 +43,7 @@ public class RecipeSearch implements CollectionSearch<Recipe> {
         return itemsThatPassed;
     }
 
-    public ArrayList<Recipe> searchForCategory(Collection<Category> categoryList){
+    public ArrayList<Recipe> searchFor(Collection<Category> categoryList){
         ArrayList<Recipe> itemsThatPassed = new ArrayList<Recipe>();
 
         for (Recipe recipe: recipes){
