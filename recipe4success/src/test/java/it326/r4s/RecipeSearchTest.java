@@ -60,7 +60,9 @@ public class RecipeSearchTest {
 
         returnList = recipeSearch.searchFor("yummy");
 
-        
+        assertEquals(expectedList.size(), returnList.size());
+
+        assertTrue(expectedList.containsAll(returnList));
     }
 
 }
