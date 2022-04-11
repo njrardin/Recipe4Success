@@ -8,6 +8,15 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
     private List<Meal> meals;
     private Date createdOn;
 
+    /**
+     * Gets the ingredients required for all the recipes in this meal plan.
+     * @return the collection of ingredients required.
+     */
+    public Collection<Ingredient> getAllIngredients() {
+        // TODO #11 - implement getAllIngredients (not easy)
+        return null;
+    }
+    
     public MealPlan() {
         this.meals = new ArrayList<Meal>();
     }
