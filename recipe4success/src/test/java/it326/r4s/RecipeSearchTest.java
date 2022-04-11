@@ -58,7 +58,7 @@ public class RecipeSearchTest {
 
         RecipeSearch recipeSearch = new RecipeSearch(new ArrayList<Recipe>(inputList));
 
-        returnList = recipeSearch.searchFor("yumny");
+        returnList = recipeSearch.searchFor("yummy");
 
         assertEquals(expectedList.size(), returnList.size());
 
