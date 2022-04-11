@@ -114,7 +114,7 @@ public class User {
      * @return True if all ingredients were added, false otherwise.
      */
     public boolean addMealPlanToGroceryList(MealPlan mealPlan) {
-        return groceryList.getIngredientList().addIngredients(mealPlan.getIngredients());
+        return groceryList.getIngredientList().addIngredients(mealPlan.getAllIngredients());
     }
 
     //* Getters and Setters *\\
