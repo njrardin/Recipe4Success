@@ -10,7 +10,7 @@ public class RecipeSearchTest {
     
     
     @Test
-    public void testSearchFor(){
+    public void testSearchFor_SingleParam(){
 
         //Set up
         Recipe demoRecipe;
