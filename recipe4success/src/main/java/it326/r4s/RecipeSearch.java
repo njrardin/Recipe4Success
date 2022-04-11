@@ -3,6 +3,8 @@ package it326.r4s;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import me.xdrop.fuzzywuzzy.*; 
+
 public class RecipeSearch implements CollectionSearch<Recipe> {
 
     private Collection<Recipe> recipes;
