@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class EntitySearcher {
     
-    public Collection<Searchable> searchFor(Collection<Searchable> collectionToSearch, String searchString){
+    public ArrayList<Searchable> searchFor(Collection<Searchable> collectionToSearch, String searchString){
         ArrayList<Searchable> itemsThatPassed = new ArrayList<Searchable>();
 
         //if item has string in any slot, add it to list (ITERATION 1---Has O(N*M) time complexity)
