@@ -32,7 +32,7 @@ public class IngredientTest {
 
         //The sets of parameters with which testChangeUnitQuantities is initialized. Each set is ran once when the test class is run
         @Parameters
-        public static Collection checkConversionData(){
+        public static Collection<Object[]> checkConversionData(){
             return Arrays.asList(new Object[][]{
                 {5, true},
                 {10, true},
@@ -70,7 +70,7 @@ public class IngredientTest {
 
         //The sets of parameters with which testChangeUnitQuantities is initialized. Each set is ran once when the test class is run
         @Parameters
-        public static Collection checkConversionData(){
+        public static Collection<Object[]> checkConversionData(){
             return Arrays.asList(new Object[][]{
                 {Unit.TEASPOON, Unit.TABLESPOON},
                 {Unit.KILOGRAM, Unit.GRAM},
