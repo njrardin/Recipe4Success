@@ -1,7 +1,6 @@
 package it326.r4s;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public interface CollectionSearch<Searchable> {
     
