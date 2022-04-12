@@ -7,7 +7,7 @@ import java.util.*;
 * s
 */
 
-public class Recipe extends Entity implements Searchable, Categorizable, Exportable {
+public class Recipe extends Entity implements Categorizable, Exportable {
 
     private String name;
     private String description;
@@ -143,6 +143,7 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
     public String toString(){
         return name + ": " + description; 
     }
+
 
     //=======================================RecipeBuilder=======================================
     public static class RecipeBuilder
