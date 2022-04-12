@@ -33,7 +33,7 @@ public class UnitConverterTest {
         }
         
         @Parameters
-        public static Collection testConvertUnit_SameUnit_Data(){
+        public static Collection<Object[]> testConvertUnit_SameUnit_Data(){
             return Arrays.asList(new Object[][]{
                 //{oldunit, newUnit, oldUnitQuantity, expectedReturn}
                 {Unit.TEASPOON, Unit.PINT, 16, 0.167},
@@ -72,7 +72,7 @@ public class UnitConverterTest {
         }
         
         @Parameters
-        public static Collection testConvertUnit_DifferentUnit_Data(){
+        public static Collection<Object[]> testConvertUnit_DifferentUnit_Data(){
             return Arrays.asList(new Object[][]{
                 //{oldunit, newUnit, oldUnitQuantity, unitTypeConversionFactor, expectedReturn}
                 {Unit.POUND, Unit.LITER, 2, 0.7, 1.296},

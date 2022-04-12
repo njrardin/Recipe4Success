@@ -30,7 +30,7 @@ public class ReviewTest {
 
         //The sets of parameters with which testChangeUnitQuantities is initialized. Each set is ran once when the test class is run
         @Parameters
-        public static Collection getRatingValueData(){
+        public static Collection<Object[]> getRatingValueData(){
             return Arrays.asList(new Object[][]{
                 {1, Rating.ONE},
                 {2, Rating.TWO},
