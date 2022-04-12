@@ -7,7 +7,7 @@ import java.util.*;
 * s
 */
 
-public class Recipe extends Entity implements Searchable, Categorizable, Exportable {
+public class Recipe extends Entity implements Categorizable, Exportable {
 
     private String name;
     private String description;
@@ -144,13 +144,6 @@ public class Recipe extends Entity implements Searchable, Categorizable, Exporta
         return name + ": " + description; 
     }
 
-    @Override
-    public ArrayList<String> getAttributeSearchStrings(){
-        ArrayList<String> attributeSearchStrings = new ArrayList<String>();
-        attributeSearchStrings.add(name);
-        attributeSearchStrings.add(description);
-        return attributeSearchStrings;
-    }
 
     @Override
     public boolean equals(Object obj){
