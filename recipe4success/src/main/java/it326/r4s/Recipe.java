@@ -1,14 +1,14 @@
 package it326.r4s;
 import java.util.*;
 
-/*
-* TODO #7 - whoever implemented this class needs to write a header description.
-* See User.java for good header examples
-* s
-*/
-
+/**
+ * A basic user of the Recipes4Success application.
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/13/22
+ */
 public class Recipe extends Entity implements Categorizable, Exportable {
 
+    //Instance variables
     private String name;
     private String description;
     private int servingSize;
@@ -17,6 +17,8 @@ public class Recipe extends Entity implements Categorizable, Exportable {
     private List<Review> reviews;
     private List<Category> categories;
     private List<String> instructions;
+
+    //* Constructor *\\
 
     /**
      * Constructor for Recipe using the nested class RecipeBuilder
