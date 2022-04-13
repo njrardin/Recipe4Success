@@ -175,36 +175,6 @@ public class Recipe extends Entity implements Categorizable, Exportable {
         return this.categories;
     }
 
-    /*
-     * 
-     * Getters and Setters that don't break encapsulation 
-     * 
-     * 
-     */
-    // public IngredientList getIngredientList() {
-    //     return (IngredientList) this.ingredientList.clone();
-    // }
-
-    // public void setIngredientList(IngredientList ingredientList) {
-    //     this.ingredientList = (IngredientList) ingredientList.clone();
-    // }
-
-    // public List<Review> getReviews() {
-    //     List<Review> listReturn = new ArrayList<Review>();
-    //     for (Category aReview : this.categories) {
-    //         listReturn.add((Review) aReview.clone());
-    //     }   
-    // }
-
-    // public List<Category> getCategories() {
-    //     List<Category> listReturn = new ArrayList<Category>();
-    //     for (Category aCategory : this.categories) {
-    //         listReturn.add((Category) aCategory.clone());
-    //     }
-     
-    //     return listReturn;
-    // }
-
     public List<String> getInstructions() {
         return new ArrayList<String>(this.instructions);
     }
