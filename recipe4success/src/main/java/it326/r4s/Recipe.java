@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class Recipe extends Entity implements Categorizable, Exportable {
 
-    //Instance variables
+    //* Instance variables *\\
     private String name;
     private String description;
     private int servingSize;
@@ -184,10 +184,11 @@ public class Recipe extends Entity implements Categorizable, Exportable {
         return name + ": " + description; 
     }
 
+    //* RecipeBuilder inner builder class for Recipe.java *\\
 
-    //=======================================RecipeBuilder=======================================
     public static class RecipeBuilder
     {
+        //* Instance Variables *\\
         private String name;
         private String description;
         private int servingSize;
@@ -197,12 +198,15 @@ public class Recipe extends Entity implements Categorizable, Exportable {
         private List<Category> categories;
         private List<String> instructions;
 
+        //* Constructor *\\
+
         /**
          * RecipeBuilder Constructor
          * - call this method first, then dot-chain attribute setters
          * - initializes createdOn date to the date and time this was called
          * - initializes reviews, categories, and instructions to empty ArrayLists
-         * 
+         * - initializes description to empty string
+         * - initializes serving size to 1
          * @param name - the Recipe's name. Name is required to create a Recipe.
          */
         public RecipeBuilder(String name){
@@ -215,42 +219,72 @@ public class Recipe extends Entity implements Categorizable, Exportable {
             this.instructions = new ArrayList<String>();
         }
 
+        //* RecipeBuilder methods - for constructing Recipe object *\\
+
         /**
          * Final method in the dot-chain which returns a Recipe object
-         * @return the Recipe object built using the 
+         * @return the Recipe object built using the RecipeBuilder
          */
         public Recipe build(){
             Recipe recipe = new Recipe(this);
             return recipe;
         }
 
-        //setters for each attribute (allows for dot-chaining)
-
+        /**
+         * Sets description with which to instantiate the recipe being built
+         * @param description
+         * @return RecipeBuilder
+         */
         public RecipeBuilder setDescription(String description){
             this.description = description;
             return this;
         }
 
+        /**
+         * Sets serving size with which to instantiate the recipe being built
+         * @param servingSize
+         * @return RecipeBuilder
+         */
         public RecipeBuilder setServingSize(int servingSize){
             this.servingSize = servingSize;
             return this;
         }
 
+        /**
+         * Sets list of ingredients with which to instantiate the recipe being built
+         * @param ingredientList
+         * @return RecipeBuilder
+         */
         public RecipeBuilder setIngredientList(IngredientList ingredientList){
             this.ingredientList = ingredientList;
             return this;
         }
         
+        /**
+         * Sets list of reviews with which to instantiate the recipe being built
+         * @param reviews
+         * @return RecipeBuilder
+         */
         public RecipeBuilder setReviews(List<Review> reviews){
             this.reviews = reviews;
             return this;
         }
         
+        /**
+         * Sets list of categories with which to instantiate the recipe being built
+         * @param categories
+         * @return RecipeBuilder
+         */
         public RecipeBuilder setCategories(List<Category> categories){
             this.categories = categories;
             return this;
         }
         
+        /**
+         * Sets list of instructions with which to instantiate the recipe being built
+         * @param instructions
+         * @return RecipeBuilder
+         */
         public RecipeBuilder setInstructions(List<String> instructions){
             this.instructions = instructions;
             return this;
