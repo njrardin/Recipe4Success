@@ -68,4 +68,12 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
         return allIngredient;
     }
 
+    public Collection<Recipe> getRecipes() {
+        List<Recipe> allRecipes = new ArrayList<>();
+        for (Meal meal: meals){
+            allRecipes.add(meal.getRecipe());
+        }
+        return allRecipes;
+    }
+
 }
