@@ -5,6 +5,12 @@ import java.util.Collection;
 
 import me.xdrop.fuzzywuzzy.*;
 
+/**
+ * An implementation of the CollectionSearch interface. Searches through collections of Recipe objects for various parameters
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/13/22
+ * @dependency depends on the me.xdrop.fuzzywuzzy library for fuzzy string searches
+ */
 public class MealPlanSearch implements CollectionSearch<MealPlan> {
     
     private Collection<MealPlan> mealplans;
