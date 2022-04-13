@@ -21,11 +21,9 @@ public class RecipeSearch implements CollectionSearch<Recipe> {
 
         for (Recipe recipe: recipes){
             if(FuzzySearch.partialRatio(searchString, recipe.getName().toLowerCase()) > 75){
-                System.out.println("Name Ratio = " + (FuzzySearch.partialRatio(searchString, recipe.getDescription().toLowerCase()) > 90));
                 itemsThatPassed.add(recipe);
             }
             else if(FuzzySearch.partialRatio(searchString, recipe.getDescription().toLowerCase()) > 75){
-                System.out.println("Name Ratio = " + (FuzzySearch.partialRatio(searchString, recipe.getDescription().toLowerCase()) > 90));
                 itemsThatPassed.add(recipe);
             }
         }
