@@ -75,4 +75,9 @@ public class MealPlanSearchTest {
         assertEquals(expectedList.size(), returnList.size());
         assertTrue(expectedList.containsAll(returnList));
     }
+
+    @Test
+    public void testSearchRecipesFor_SingleString(){
+        
+    }
 }
