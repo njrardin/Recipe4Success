@@ -17,8 +17,10 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
         return null;
     }
     
-    public MealPlan() {
+    public MealPlan(String name) {
         this.meals = new ArrayList<Meal>();
+        this.name = name;
+        this.description = "";
     }
 
     public String getMealPlanName() {
