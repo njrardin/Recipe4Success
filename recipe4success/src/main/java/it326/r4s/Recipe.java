@@ -87,48 +87,90 @@ public class Recipe extends Entity implements Categorizable, Exportable {
         reviews.add(theReview);
     }
 
-
-    //================================Getters and Setters=================================
+    /**
+     * Accessor for the recipe's name
+     * @return name of recipe as a String
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Mutator for the recipe's name
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Accessor for the recipe's description
+     * @return description of recipe as a String
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Mutator for the recipe's description
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Accessor for the recipe's serving size
+     * @return serving size as an positive int 
+     */
     public int getServingSize() {
         return this.servingSize;
     }
 
+    /**
+     * Mutator for the recipe's serving size
+     * @param servingSize
+     */
     public void setServingSize(int servingSize) {
         this.servingSize = servingSize;
     }
 
+    /**
+     * Accessor for the recipe's createdOn date
+     * @return the Date object representing when the recipe was created
+     */
     public Date getCreatedOn() {
         return (Date) this.createdOn.clone();
     }
 
+    /**
+     * Accessor for the recipe's ingredientlist
+     * @return the IngredientList obj which holds the recipe's list of ingredients
+     */
     public IngredientList getIngredientList() {
         return this.ingredientList;
     }
 
+    /**
+     * Mutator for the recipe's ingredientlist
+     * @param ingredientList
+     */
     public void setIngredientList(IngredientList ingredientList) {
         this.ingredientList = ingredientList;
     }
 
+    /**
+     * Accessor for the recipe's reviews
+     * @return the List<Review> of the recipe's reviews
+     */
     public List<Review> getReviews() {
         return this.reviews;
     }
 
+    /**
+     * Accessor for the recipe's list of categories
+     * @return the List<Category> of the recipe's categories
+     */
     public List<Category> getCategories() {
         return this.categories;
     }
