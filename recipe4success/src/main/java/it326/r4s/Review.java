@@ -1,10 +1,10 @@
 package it326.r4s;
 
-/*
-* TODO #8 - whoever implemented (nate) this class needs to write a header description.
-* See User.java for good header examples
-* 
-*/
+/**
+ * A basic user of the Recipes4Success application.
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/13/22
+ */
 public class Review extends Entity{
 
     private User reviewer;

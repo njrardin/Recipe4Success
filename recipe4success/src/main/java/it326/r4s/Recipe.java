@@ -2,7 +2,7 @@ package it326.r4s;
 import java.util.*;
 
 /**
- * A basic user of the Recipes4Success application.
+ * The Recipe object class for the Recipe4Success application
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/13/22
  */
@@ -187,7 +187,7 @@ public class Recipe extends Entity implements Categorizable, Exportable {
     //* RecipeBuilder inner builder class for Recipe.java *\\
 
     /**
-    * A basic user of the Recipes4Success application.
+    * The builder class used to instantiate the Recipe class through a fluent interface
     * @author Nate Rardin (njrardi@ilstu.edu)
     * @date 4/13/22
     */
