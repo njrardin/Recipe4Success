@@ -186,6 +186,11 @@ public class Recipe extends Entity implements Categorizable, Exportable {
 
     //* RecipeBuilder inner builder class for Recipe.java *\\
 
+    /**
+    * A basic user of the Recipes4Success application.
+    * @author Nate Rardin (njrardi@ilstu.edu)
+    * @date 4/13/22
+    */
     public static class RecipeBuilder
     {
         //* Instance Variables *\\
