@@ -28,4 +28,18 @@ public class MealPlanSearch implements CollectionSearch<MealPlan> {
         }
         return itemsThatPassed;
     }
+
+    public ArrayList<MealPlan> searchRecipesFor(String searchString){
+        ArrayList<MealPlan> itemsThatPassed = new ArrayList<MealPlan>();
+        searchString = searchString.toLowerCase();
+
+        for (MealPlan mealplan: mealplans){
+            RecipeSearch rs = new RecipeSearch(mealplan.getRecipes());
+
+            if ( !(rs.searchFor(searchString).isEmpty())){
+                itemsThatPassed.add(mealplan);
+            }
+        }
+        return itemsThatPassed;
+    }
 }
