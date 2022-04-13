@@ -167,6 +167,8 @@ public class Recipe extends Entity implements Categorizable, Exportable {
          */
         public RecipeBuilder(String name){
             this.name = name;
+            this.description = "";
+            this.servingSize = 1;
             this.createdOn = new Date();
             this.reviews = new ArrayList<Review>();
             this.categories = new ArrayList<Category>();

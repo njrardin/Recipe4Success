@@ -17,8 +17,10 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
         return null;
     }
     
-    public MealPlan() {
+    public MealPlan(String name) {
         this.meals = new ArrayList<Meal>();
+        this.name = name;
+        this.description = "";
     }
 
     public String getMealPlanName() {
@@ -66,6 +68,14 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
             allIngredient.addAll(theMeal.getRecipe().getIngredientList().getIngredients());
         }
         return allIngredient;
+    }
+
+    public Collection<Recipe> getRecipes() {
+        List<Recipe> allRecipes = new ArrayList<>();
+        for (Meal meal: meals){
+            allRecipes.add(meal.getRecipe());
+        }
+        return allRecipes;
     }
 
 }
