@@ -37,26 +37,52 @@ public class Recipe extends Entity implements Categorizable, Exportable {
         this.instructions = builder.instructions;
     }
 
+    //* Methods \\
+
+    /**
+     * Removes the category from the recipe
+     * @param theCategory
+     */
     public void removeCategory(Category theCategory){
         categories.remove(theCategory);
     }
     
+    /**
+     * Adds the category to the recipe
+     * @param theCategory
+     */
     public void addCategory(Category theCategory){
         categories.add(theCategory);
     }
     
+    /**
+     * Removes the ingredient from the recipe
+     * @param theIngredient
+     */
     public void removeIngredient(Ingredient theIngredient){
         ingredientList.removeIngredient(theIngredient);
     }
     
+    /**
+     * Adds the ingredient to the recipe
+     * @param theIngredient
+     */
     public void addIngredient(Ingredient theIngredient){
         ingredientList.addIngredient(theIngredient);
     }
     
+    /**
+     * Removes the review from the recipe
+     * @param theReview
+     */
     public void removeReview(Review theReview){
         reviews.remove(theReview);
     }
     
+    /**
+     * Adds the review to the recipe
+     * @param theReview
+     */
     public void addReview(Review theReview){
         reviews.add(theReview);
     }
