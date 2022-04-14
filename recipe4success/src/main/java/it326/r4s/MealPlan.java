@@ -3,9 +3,9 @@ package it326.r4s;
 import java.util.*;
 
 /*
-* TODO - whoever implemented this class needs to write a header description.
-* See User.java for good header examples
-* 
+* A collection of meal, it can return all of its recipes or ingredients
+* @author: Shu Liao (fliao@ilstu.edu)
+* @date: 4/14/2022
 */
 
 public class MealPlan extends Entity implements Categorizable, Exportable {
@@ -16,13 +16,14 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
 
     /**
      * Gets the ingredients required for all the recipes in this meal plan.
+     * 
      * @return the collection of ingredients required.
      */
     public Collection<Ingredient> getAllIngredients() {
         // TODO #11 - implement getAllIngredients (not easy)
         return null;
     }
-    
+
     public MealPlan(String name) {
         this.meals = new ArrayList<Meal>();
         this.name = name;
@@ -78,7 +79,7 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
 
     public Collection<Recipe> getRecipes() {
         List<Recipe> allRecipes = new ArrayList<>();
-        for (Meal meal: meals){
+        for (Meal meal : meals) {
             allRecipes.add(meal.getRecipe());
         }
         return allRecipes;
