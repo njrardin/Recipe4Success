@@ -2,6 +2,12 @@ package it326.r4s;
 
 import java.util.*;
 
+/*
+* TODO - whoever implemented this class needs to write a header description.
+* See User.java for good header examples
+* 
+*/
+
 public class MealPlan extends Entity implements Categorizable, Exportable {
     private String name;
     private String description;

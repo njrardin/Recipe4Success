@@ -1,5 +1,11 @@
 package it326.r4s;
 
+/*
+* TODO - whoever implemented this class needs to write a header description.
+* See User.java for good header examples
+* 
+*/
+
 public class Meal {
     
     private Recipe recipe;
