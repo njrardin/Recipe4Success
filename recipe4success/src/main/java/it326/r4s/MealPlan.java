@@ -16,12 +16,31 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
 
     /**
      * Gets the ingredients required for all the recipes in this meal plan.
-     * 
+     * TODO NOTE 4/15 - This does not yet handle combining ingredients that have the same fooditem BUT different units
      * @return the collection of ingredients required.
      */
     public Collection<Ingredient> getAllIngredients() {
-        // TODO #11 - implement getAllIngredients (not easy)
-        return null;
+        Collection<Ingredient> allIngredients = new ArrayList<Ingredient>(); //ingredients to be returned
+        for (Meal meal : this.meals) { // iterate through meals
+            for (Ingredient ingredient : meal.getRecipe().getIngredientList().getIngredients()) { // iterate through meal ingredient
+                
+                boolean alreadyAdded = false;
+                for (Ingredient existingIngredient : allIngredients) { // check if ingredient already exists
+                    if (ingredient.getFoodItem() == existingIngredient.getFoodItem()) {
+                        allIngredients.remove(existingIngredient);
+                        double newQuantity = existingIngredient.getQuantity() + ingredient.getQuantity();
+                        Ingredient updatedIngredient = new Ingredient(existingIngredient.getFoodItem(), newQuantity, existingIngredient.getUnit());
+                        allIngredients.add(updatedIngredient);
+                        alreadyAdded = true;
+                        break;
+                    }
+                }
+                if (!alreadyAdded) {
+                    allIngredients.add(ingredient);
+                }
+            }
+        }
+        return allIngredients;
     }
 
     public MealPlan(String name) {
