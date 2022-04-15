@@ -7,11 +7,11 @@ package it326.r4s;
 * @date: 4/14/2022
 */
 
-
+public class Meal {
     
     private Recipe recipe;
     private int servingSize;
- 
+
     public Meal(Recipe recipe, int servingSize){
         this.recipe = recipe;
         this.servingSize = servingSize;
