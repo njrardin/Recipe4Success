@@ -1,15 +1,13 @@
 package it326.r4s;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Collection;
 
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import it326.r4s.UnitConverter.Unit;
-
-import org.junit.Before;
 
 public class PantryTest {
     
