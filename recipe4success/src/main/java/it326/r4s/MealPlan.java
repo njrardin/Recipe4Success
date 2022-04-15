@@ -28,9 +28,13 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
                 for (Ingredient existingIngredient : allIngredients) { // check if ingredient already exists
                     if (ingredient.getFoodItem() == existingIngredient.getFoodItem()) {
                         allIngredients.remove(existingIngredient);
-                        double newQuantity = existingIngredient.getQuantity() + ingredient.getQuantity();
-                        Ingredient updatedIngredient = new Ingredient(existingIngredient.getFoodItem(), newQuantity, existingIngredient.getUnit());
-                        allIngredients.add(updatedIngredient);
+                        Ingredient copyIngredient = new Ingredient(existingIngredient.getFoodItem(), existingIngredient.getQuantity(), existingIngredient.getUnit());
+                        if (!copyIngredient.changeUnit(ingredient.getUnit())) {
+                            allIngredients.add(copyIngredient);
+                            break;
+                        }
+                        copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
+                        allIngredients.add(copyIngredient);
                         alreadyAdded = true;
                         break;
                     }

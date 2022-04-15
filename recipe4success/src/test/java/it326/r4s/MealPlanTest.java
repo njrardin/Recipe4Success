@@ -26,9 +26,9 @@ public class MealPlanTest {
         .setCategories(new ArrayList<Category>())
         .setInstructions(new ArrayList<String>())
         .build();
-        FoodItem repeatFoodItem = new FoodItem("Egg");
-        recipe1.addIngredient(new Ingredient(repeatFoodItem, 4, Unit.CUP));
-        recipe1.addIngredient(new Ingredient(new FoodItem(), 2, Unit.TEASPOON));
+        FoodItem repeatFoodItem = new FoodItem("Sugar");
+        recipe1.addIngredient(new Ingredient(repeatFoodItem, 1, Unit.TABLESPOON));
+        recipe1.addIngredient(new Ingredient(new FoodItem(), 2, Unit.CUP));
         recipe2 = new Recipe.RecipeBuilder("Mac and Cheese")
         .setDescription("A yummy meal!")
         .setServingSize(2)
@@ -37,7 +37,7 @@ public class MealPlanTest {
         .setCategories(new ArrayList<Category>())
         .setInstructions(new ArrayList<String>())
         .build();
-        recipe2.addIngredient(new Ingredient(repeatFoodItem, 1, Unit.CUP));
+        recipe2.addIngredient(new Ingredient(repeatFoodItem, 1, Unit.TEASPOON));
         recipe2.addIngredient(new Ingredient(new FoodItem(), 3, Unit.POUND));
         meal1 = new Meal(recipe1, 4);
         meal2 = new Meal(recipe2, 2);
@@ -53,7 +53,8 @@ public class MealPlanTest {
         for (Ingredient ing : mealPlanIngredients) {
             String name = ing.getFoodItem().getName();
             double qty = ing.getQuantity();
-            System.out.println(name + " - " + qty);
+            Unit unit = ing.getUnit();
+            System.out.println(name + " - " + qty + " - " + unit);
         }
     }
 }
