@@ -89,4 +89,31 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
         return allRecipes;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof MealPlan)) {
+            return false;
+        }
+        MealPlan other = (MealPlan) obj;
+        if (!this.getMealPlanName().equals(other.getMealPlanName())) {
+            return false;
+        }
+        if (!this.getMealPlanDescription().equals(other.getMealPlanDescription())) {
+            return false;
+        }
+        if (!this.getMealPlanDate().equals(other.getMealPlanDate())) {
+            return false;
+        }
+        if (!this.getRecipes().equals(other.getRecipes())) {
+            return false;
+        }
+        return true;
+    }
+
 }
