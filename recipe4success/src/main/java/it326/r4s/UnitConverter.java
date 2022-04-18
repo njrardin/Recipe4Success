@@ -12,9 +12,11 @@ public class UnitConverter {
         MASS,
         VOLUME,
         WEIGHT,
+        NULL
     }
 
     public static enum Unit{
+        NONE(0,UnitType.NULL),
         //Volume Units (Imperial units are US imperial. UK imperial is different); BASE UNIT = Milliliter
         TEASPOON (4.928, UnitType.VOLUME), 
         TABLESPOON (14.786, UnitType.VOLUME), 
