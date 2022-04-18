@@ -8,7 +8,6 @@ import java.util.Collection;
  * /@date 4/17/2022
  */
 public class RecipeBook extends Entity {
-    // recipe:<collection> recipe
     private Collection<Recipe> recipes;
 
     /**
@@ -31,31 +30,32 @@ public class RecipeBook extends Entity {
      * Add a recipe to the Recipe Book
      * 
      * @param toAdd the recipe object
-     * @return a boolean indicator if the recipe has been successfully added to the
-     *         Recipe Book
+     * @return trur if the recipe has been successfully added to the Recipe Book
      */
     public boolean addRecipe(Recipe toAdd) {
-        boolean flag = false;
-        flag = recipes.add(toAdd);
-        return flag;
+        for (Recipe recipe : recipes) {
+            if (recipe.equals(toAdd)) {
+                recipes.add(toAdd);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
      * remove a recipe from the Recipe book
      * 
      * @param toRemove the recipe object
-     * @return a boolean indicator if the recipe has been successfully remove from
-     *         the Recipe Book
+     * @return true if the recipe has been successfully remove from the Recipe Book
      */
     public boolean removeRecipe(Recipe toRemove) {
-        boolean flag = false;
         for (Recipe recipe : recipes) {
             if (recipe.equals(toRemove)) {
-                flag = recipes.remove(toRemove);
-                break;
+                recipes.remove(toRemove);
+                return true;
             }
         }
-        return flag;
+        return false;
     }
 
 }
