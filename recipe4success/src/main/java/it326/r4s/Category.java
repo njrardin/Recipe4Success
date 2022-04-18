@@ -19,4 +19,14 @@ public class Category implements Categorizable {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Category otherCategory) {
+        return this.name.equals(otherCategory.getName());
+    }
+
+    @Override
+    public String toString() {
+        return "Category " + this.name;
+    }
 }

@@ -4,7 +4,7 @@ import it326.r4s.UnitConverter.*;
 
 /**
  * The Ingredient object class for the Recipe4Success application
- * @author Nate Rardin (njrardi@ilstu.edu)
+ * @author Nate Rardin (njrardi@ilstu.edu) and Josh Nepomuceno
  * @date 4/13/22
  */
 public class Ingredient {

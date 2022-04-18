@@ -20,4 +20,14 @@ public class GroceryList {
     public void setIngredientList(IngredientList ingredientList) {
         this.ingredientList = ingredientList;
     }
+
+    @Override
+    public boolean equals(GroceryList otheGroceryList) {
+        return this.ingredientList.equals(otheGroceryList.getIngredientList());
+    }
+
+    @Override
+    public String toString() {
+        return this.ingredientList.toString();
+    }
 }

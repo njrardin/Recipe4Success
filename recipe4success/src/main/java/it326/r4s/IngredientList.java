@@ -2,10 +2,10 @@ package it326.r4s;
 import java.util.Collection;
 import java.util.HashSet;
 
-/*
-* TODO #6 - whoever implemented this class needs to write a header description.
-* See User.java for good header examples
-* 
+/**
+* Class used to manage, maintain, and access a collection of ingredients
+* @author Josh Nepomuceno
+* @date 04/06/2022
 */
 
 public class IngredientList extends Entity implements Exportable {
@@ -77,5 +77,18 @@ public class IngredientList extends Entity implements Exportable {
     // getter
     public Collection<Ingredient> getIngredients() { return this.ingredients; }
 
-    
+    @Override
+    public boolean equals(IngredientList otherIngredientList) {
+        Collection<Ingredient> otherCollection = otherIngredientList.getIngredients();
+        return this.containsIngredients(otherCollection) && this.ingredients.size() == otherCollection.size();
+    }
+
+    @Override
+    public String toString() {
+        String result = "List of Ingredients:\n";
+        for (Ingredient ingredient : this.ingredients) {
+            result += " -\t" + ingredient.toString();
+        }
+        return result;
+    }
 }
