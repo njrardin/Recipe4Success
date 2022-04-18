@@ -16,7 +16,6 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
 
     /**
      * Gets the ingredients required for all the recipes in this meal plan.
-     * TODO NOTE 4/15 - This does not yet handle combining ingredients that have the same fooditem BUT different units
      * @return the collection of ingredients required.
      */
     public Collection<Ingredient> getAllIngredients() {
@@ -26,7 +25,7 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
                 
                 boolean alreadyAdded = false;
                 for (Ingredient existingIngredient : allIngredients) { // check if ingredient already exists
-                    if (ingredient.getFoodItem() == existingIngredient.getFoodItem()) {
+                    if (ingredient.getFoodItem() == existingIngredient.getFoodItem()) { // TODO - wait for FoodItem pool to more correctly handle this comparison!
                         allIngredients.remove(existingIngredient);
                         Ingredient copyIngredient = new Ingredient(existingIngredient.getFoodItem(), existingIngredient.getQuantity(), existingIngredient.getUnit());
                         if (!copyIngredient.changeUnit(ingredient.getUnit())) {
