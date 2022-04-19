@@ -9,7 +9,7 @@ import java.util.List;
  * @author Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/6/22
  */
-public class CategoryObjPool {
+public class CategoryPool {
 
     public static enum CategoryType { RECIPE, FOODITEM }
 
@@ -20,7 +20,7 @@ public class CategoryObjPool {
      * Constructor - accessed only by the instance variables above, thus being private.
      * Only two objects to be created, one for recipe categories and one for fooditem categories.
      */
-    private CategoryObjPool(CategoryType categoryType) {
+    private CategoryPool(CategoryType categoryType) {
         if (categoryType == CategoryType.RECIPE) {
             recipeCategories = new ArrayList<Category>();
         }
