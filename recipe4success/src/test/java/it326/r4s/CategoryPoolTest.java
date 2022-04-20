@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import it326.r4s.CategoryPool.CategoryType;
 
-public class CategoryListTest {
+public class CategoryPoolTest {
 
     @BeforeClass
     public static void before() {
