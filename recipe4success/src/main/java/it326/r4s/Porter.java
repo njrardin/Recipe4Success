@@ -18,7 +18,7 @@ public interface Porter<T extends Portable> {
     public T importFrom(String filename) throws Exception;
 
     /**
-     * Imports a list of portable objects from a file
+     * Imports a list of portable objects from a file.
      * @param filename the name of the file to be read.
      * @return the imported list of portable objects.
      * @throws Exception if there was a problem importing from the file.
@@ -34,7 +34,7 @@ public interface Porter<T extends Portable> {
     public void exportFrom(String filename, T portable) throws Exception;
 
     /**
-     * Exports a list of portable objects from a file
+     * Exports a list of portable objects from a file.
      * @param filename the name of the file to be read.
      * @param portables the list of portable objects to be exported.
      * @throws Exception if there was a problem importing from the file.
