@@ -18,10 +18,14 @@ public class FoodItemPool {
      * @return the food item from the pool with that name
      */
     public static FoodItem getFoodItem(String name){
+        addFoodItem(name);
+        return foodItems.get(name);
+    }
+
+    public static  void addFoodItem(String name){
         if(!foodItems.containsKey(name)){
             foodItems.put(name, new FoodItem(name));
         }
-        return foodItems.get(name);
     }
 
     public static Collection<FoodItem> getAllFoodItems(){
