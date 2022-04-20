@@ -29,8 +29,13 @@ public class FoodItemPool {
      * @param name the food item's name
      * @return the food item removed
      */
-    public static FoodItem removeFoodItem(String name){
-        return foodItems.remove(name);
+    public static boolean removeFoodItem(String name){
+        if (foodItems.remove(name) != null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
