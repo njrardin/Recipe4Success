@@ -28,6 +28,7 @@ public class JSON_Porter<T extends Portable> implements Porter<T> {
      */
     private JSON_Porter(Class<T> type) {
         gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        //gson = new Gson();
         typeT = type;
     }
 
@@ -42,7 +43,9 @@ public class JSON_Porter<T extends Portable> implements Porter<T> {
     @Override
     public T importFrom(String filename) throws Exception {
         Reader reader = getReader(filename);
-        return gson.fromJson(reader, typeT);
+        T obj = gson.fromJson(reader, typeT);
+        reader.close();
+        return obj;
     }
 
     /**
@@ -51,7 +54,9 @@ public class JSON_Porter<T extends Portable> implements Porter<T> {
     @Override
     public List<T> importAllFrom(String filename) throws Exception {
         Reader reader = getReader(filename);
-        return Arrays.asList(gson.fromJson(reader, typeT.arrayType()));
+        List<T> objs = (List<T>) Arrays.asList(gson.fromJson(getReader(filename), typeT.arrayType()));
+        reader.close();
+        return objs;
     }
 
     /**
@@ -59,7 +64,9 @@ public class JSON_Porter<T extends Portable> implements Porter<T> {
      */
     @Override
     public void exportFrom(String filename, T portable) throws Exception {
-        // TODO Auto-generated method stub
+        Writer writer = getWriter(filename);
+        gson.toJson(portable, writer);
+        writer.close();
     }
 
     /**
@@ -67,7 +74,9 @@ public class JSON_Porter<T extends Portable> implements Porter<T> {
      */
     @Override
     public void exportAllFrom(String filename, List<T> portables) throws Exception {
-        // TODO Auto-generated method stub
+        Writer writer = getWriter(filename);
+        gson.toJson(portables, writer);
+        writer.close();
     }    
 
     //* Private Methods *\\
