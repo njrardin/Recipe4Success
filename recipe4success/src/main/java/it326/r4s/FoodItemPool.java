@@ -25,6 +25,15 @@ public class FoodItemPool {
     }
 
     /**
+     * Removes the food item of the associated name from the pool
+     * @param name the food item's name
+     * @return the food item removed
+     */
+    public static FoodItem removeFoodItem(String name){
+        return foodItems.remove(name);
+    }
+
+    /**
      * Gets the collection of all food items
      * @return the collection of all food items
      */
