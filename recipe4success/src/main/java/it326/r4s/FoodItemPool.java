@@ -24,6 +24,10 @@ public class FoodItemPool {
         return foodItems.get(name);
     }
 
+    /**
+     * Gets the collection of all food items
+     * @return the collection of all food items
+     */
     public static Collection<FoodItem> getAllFoodItems(){
         return foodItems.values();
     }
