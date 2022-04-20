@@ -1,6 +1,11 @@
 package it326.r4s;
 
 import java.util.Hashtable;
+/**
+ * The Recipe object class for the Recipe4Success application
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/19/22
+ */
 public class FoodItemPool {
 
     private static Hashtable<String, FoodItem> foodItems;
