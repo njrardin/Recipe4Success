@@ -9,7 +9,7 @@ import java.util.Hashtable;
  */
 public class FoodItemPool {
 
-    private static Hashtable<String, FoodItem> foodItems;
+    private static Hashtable<String, FoodItem> foodItems = new Hashtable<String, FoodItem>();
 
     /**
      * Gets the food item from the pool with the appropriate name. 
