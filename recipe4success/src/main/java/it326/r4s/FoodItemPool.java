@@ -1,5 +1,6 @@
 package it326.r4s;
 
+import java.util.Collection;
 import java.util.Hashtable;
 /**
  * The Recipe object class for the Recipe4Success application
@@ -21,5 +22,9 @@ public class FoodItemPool {
             foodItems.put(name, new FoodItem(name));
         }
         return foodItems.get(name);
+    }
+
+    public static Collection<FoodItem> getAllFoodItems(){
+        return foodItems.values();
     }
 }
