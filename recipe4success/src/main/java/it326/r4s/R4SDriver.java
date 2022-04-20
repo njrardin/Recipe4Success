@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class R4SDriver {
 
     public static void main(String[] args) {
+        importFileData();
+
         System.out.println();
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
@@ -35,6 +37,8 @@ public class R4SDriver {
         System.out.println("--- 23. Move Grocery List Items to Pantry  28. Finish Making a Recipe & remove    ---");
         System.out.println("--- 24. Organize Items in Grocery List         its ingredients from the Pantry    ---");
         System.out.println("---                                                                               ---");
+        System.out.println("---                                                                               ---");
+        System.out.println("--- If you would like to exit the application, type \"stop\"                        ---");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println();
@@ -130,10 +134,13 @@ public class R4SDriver {
                 case "28":
                     removeRecipeItemsFromPantry(scan);
                     break;
+                case "stop":
+                    saveAndExit();
+                    break;
                 default:
                     System.out.println("Invalid input, please try again\n");
             }
-        } while (!input.contains("stop"));
+        } while (!input.toLowerCase().equals("stop"));
         scan.close();
     }
 
@@ -268,5 +275,16 @@ public class R4SDriver {
 
     private static void removeRecipeItemsFromPantry(Scanner scan) {
         System.out.println("Marking Recipe as made to remove its ingredients from your Pantry...\n");
+    }
+
+    private static void saveAndExit() {
+       //TODO: Save data from application and then 
+
+       System.out.println("Thank you for using Recipe4Success!");
+       System.out.println("\n\tapplication exiting...\n\n");
+    }
+
+    private static void importFileData() {
+       //TODO: Save data from application and then 
     }
 }
