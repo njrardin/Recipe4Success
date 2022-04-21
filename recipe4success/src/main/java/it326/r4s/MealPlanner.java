@@ -51,4 +51,13 @@ public class MealPlanner extends Entity {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        String temp = "";
+        for (MealPlan plan : mealPlans) {
+            temp += plan.getMealPlanName() + "\n";
+        }
+        return "Meal Plans:\n" + temp;
+    }
 }

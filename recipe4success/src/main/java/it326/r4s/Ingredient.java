@@ -96,4 +96,8 @@ public class Ingredient {
         else return this.getQuantity() == other.getQuantity();
     }
     
+    @Override
+    public String toString() {
+        return this.foodItem.getName() + ": " + this.quantity + this.unit;
+    }
 }

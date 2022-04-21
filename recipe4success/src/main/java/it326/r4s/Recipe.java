@@ -180,8 +180,15 @@ public class Recipe extends Entity implements Categorizable, Exportable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name + ": " + description; 
+    }
+
+    @Override
+    public boolean equals(Recipe otherRecipe) {
+        if (this.name.equals(otherRecipe.getName())) return false;
+        if (this.ingredientList.equals(otherRecipe.getIngredientList())) return false;
+        return this.servingSize == otherRecipe.getServingSize();
     }
 
     //* RecipeBuilder inner builder class for Recipe.java *\\

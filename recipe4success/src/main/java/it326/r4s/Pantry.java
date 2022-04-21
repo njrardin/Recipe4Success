@@ -20,4 +20,9 @@ public class Pantry {
     public void setIngredientList(IngredientList ingredientList) {
         this.ingredientList = ingredientList;
     }
+
+    @Override
+    public String toString() {
+        return this.ingredientList.toString();
+    }
 }

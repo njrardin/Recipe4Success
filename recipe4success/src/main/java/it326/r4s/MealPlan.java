@@ -116,4 +116,12 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        String temp = "";
+        for (Meal meal : meals) {
+            temp += meal.getRecipe().getName() + "\n";
+        }
+        return this.name + ":\nDescription: " + this.description + "\nMeals:\n" + temp;
+    }
 }

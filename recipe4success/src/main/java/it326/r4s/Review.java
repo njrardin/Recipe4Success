@@ -77,4 +77,13 @@ public class Review extends Entity{
         this.rating = rating;
     }
 
+    @Override
+    public boolean equals(Review otherReview) {
+        return this.reviewer.equals(otherReview.getReviewer()) && this.rating == otherReview.getRating();
+    }
+
+    @Override
+    public String toString() {
+        return "Reviewer: " + this.reviewer.toString() + "\tRating: " + this.rating;
+    }
 }

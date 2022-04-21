@@ -216,4 +216,17 @@ public class User {
         
         return result;
     }
+
+    /**
+    private String name;
+    private GroceryList groceryList;
+    private Pantry pantry;
+    private Collection<MealPlan> mealPlans;
+    private Collection<Recipe> recipes;
+    private int activeMealPlanIndex;
+     */
+    @Override
+    public boolean equals(User otherUser) {
+        return this.name.equals(otherUser.getName());
+    }
 }

@@ -33,4 +33,13 @@ public class Meal {
         this.servingSize = servingSize;
     }
 
+    @Override
+    public boolean equals(Meal otherMeal) {
+        return this.recipe.equals(otherMeal.getRecipe()) && this.servingSize == otherMeal.getServingSize();
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe:\n" + this.recipe.getName() + "\nServing Size: " + this.servingSize;
+    }
 }
