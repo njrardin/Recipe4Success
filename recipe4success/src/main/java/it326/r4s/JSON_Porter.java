@@ -4,8 +4,6 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,7 +14,7 @@ import com.google.gson.GsonBuilder;
  * @date 4/19/22
  * @param <T> the type of the Portable object being ported.
  */
-public class JSON_Porter<T extends Portable> implements Porter<T> {
+public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T> {
     //* Instance variables *\\
     private Gson gson;
     private Class<T> typeT;
@@ -27,18 +25,26 @@ public class JSON_Porter<T extends Portable> implements Porter<T> {
      * @param type
      */
     private JSON_Porter(Class<T> type) {
-        gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-        //gson = new Gson();
+        gson = new GsonBuilder()
+            .serializeNulls()
+            .setPrettyPrinting()
+            .create();
         typeT = type;
     }
 
     //* Public Methods *\\
-    public static <T extends Portable> JSON_Porter<T> of(Class<T> type) {
-        return new JSON_Porter<T>(type);
+    /**
+     * Factory method to get an instance of JSON Porter.
+     * @param <S> the type of the Portable object being ported.
+     * @param type the concrete class type (e.g. Recipe.class).
+     * @return an instance of JSON_Porter<T>.
+     */
+    public static <S extends Portable> JSON_Porter<S> of(Class<S> type) {
+        return new JSON_Porter<S>(type);
     }
 
     /**
-     * Imports a single portable object from a JSON file.
+     * Imports a portable object from a JSON file.
      */
     @Override
     public T importFrom(String filename) throws Exception {
@@ -49,35 +55,14 @@ public class JSON_Porter<T extends Portable> implements Porter<T> {
     }
 
     /**
-     * Imports a list of portable objects from a JSON file.
+     * Exports a portable object to a JSON file.
      */
     @Override
-    public List<T> importAllFrom(String filename) throws Exception {
-        Reader reader = getReader(filename);
-        List<T> objs = (List<T>) Arrays.asList(gson.fromJson(getReader(filename), typeT.arrayType()));
-        reader.close();
-        return objs;
-    }
-
-    /**
-     * Exports a single portable object to a JSON file.
-     */
-    @Override
-    public void exportFrom(String filename, T portable) throws Exception {
+    public void exportFrom(T portable, String filename) throws Exception {
         Writer writer = getWriter(filename);
         gson.toJson(portable, writer);
         writer.close();
-    }
-
-    /**
-     * Exports a list of portable objects from a JSON file.
-     */
-    @Override
-    public void exportAllFrom(String filename, List<T> portables) throws Exception {
-        Writer writer = getWriter(filename);
-        gson.toJson(portables, writer);
-        writer.close();
-    }    
+    } 
 
     //* Private Methods *\\
     /**
