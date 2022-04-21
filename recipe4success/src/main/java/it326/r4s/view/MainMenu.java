@@ -45,7 +45,7 @@ public class MainMenu {
     }
 
     private static void saveAndExit() {
-        //TODO: Save data from application and then 
+        //TODO: Save data from application before exit
  
         System.out.println("Thank you for using Recipe4Success!");
         System.out.println("\n\tapplication exiting...\n\n");
