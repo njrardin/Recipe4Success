@@ -22,7 +22,7 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
     //* Constructor *\\
     /**
      * Constructs a default JSON porter object.
-     * @param type
+     * @param type the concrete class type (e.g. Recipe.class).
      */
     private JSON_Porter(Class<T> type) {
         gson = new GsonBuilder()
