@@ -1,5 +1,7 @@
 package it326.r4s.view;
 
+import java.util.Scanner;
+
 public class MainMenu {
     
     public static void executeMainMenu(){
@@ -12,5 +14,30 @@ public class MainMenu {
         System.out.println("");
         System.out.println("(If you would like to exit the application, type \"stop\")");
         System.out.println();
+
+        Scanner scan = new Scanner(System.in);
+        String input = "";
+        do {
+            System.out.print("Enter the number of any app function you want to run: ");
+            input = scan.nextLine();
+            System.out.println();
+            switch (input) {
+                case "1":
+                    RecipeBookView.ExecuteRecipeBookView();
+                    break;
+                case "2":
+                    MealPlannerView.ExecuteMealPlannerView();
+                    break;
+                case "3":
+                    PantryView.ExecutePantryView();
+                    break;
+                case "4":
+                    GroceryListView.ExecuteGroceryListView();
+                    break;
+                default:
+                    System.out.println("Invalid input, please try again\n");
+            }
+        } while (!input.toLowerCase().equals("stop"));
+        scan.close();
     }
 }
