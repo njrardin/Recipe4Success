@@ -34,10 +34,20 @@ public class MainMenu {
                 case "4":
                     GroceryListView.ExecuteGroceryListView();
                     break;
+                case "stop":
+                    saveAndExit();
+                    break;
                 default:
                     System.out.println("Invalid input, please try again\n");
             }
         } while (!input.toLowerCase().equals("stop"));
         scan.close();
     }
+
+    private static void saveAndExit() {
+        //TODO: Save data from application and then 
+ 
+        System.out.println("Thank you for using Recipe4Success!");
+        System.out.println("\n\tapplication exiting...\n\n");
+     }
 }
