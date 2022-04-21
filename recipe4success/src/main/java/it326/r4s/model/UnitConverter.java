@@ -1,4 +1,4 @@
-package it326.r4s;
+package it326.r4s.model;
 
 /*
 * TODO #10 - whoever implemented this class needs to write a header description.

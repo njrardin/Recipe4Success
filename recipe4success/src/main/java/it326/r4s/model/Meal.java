@@ -1,4 +1,4 @@
-package it326.r4s;
+package it326.r4s.model;
 
 /*
 * The Meal object class for Recipe4Success application

@@ -1,4 +1,4 @@
-package it326.r4s;
+package it326.r4s.model;
 
 /**
  * The basic GroceryList class of the Recipes4Success application.

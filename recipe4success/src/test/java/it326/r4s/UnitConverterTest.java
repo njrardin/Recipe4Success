@@ -9,8 +9,11 @@ import org.junit.Test;
 import org.junit.runners.Parameterized;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runners.Parameterized.*;
+
+import it326.r4s.model.UnitConverter;
+import it326.r4s.model.UnitConverter.Unit;
+
 import org.junit.runner.RunWith;
-import it326.r4s.UnitConverter.Unit;
 
 @RunWith(Enclosed.class)
 public class UnitConverterTest {

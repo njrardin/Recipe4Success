@@ -1,4 +1,4 @@
-package it326.r4s;
+package it326.r4s.model;
 
 import java.util.ArrayList;
 import java.util.Collection;

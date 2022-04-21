@@ -6,7 +6,9 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import it326.r4s.CategoryList.CategoryType;
+import it326.r4s.model.Category;
+import it326.r4s.model.CategoryList;
+import it326.r4s.model.CategoryList.CategoryType;
 
 public class CategoryListTest {
 

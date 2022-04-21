@@ -3,8 +3,15 @@ package it326.r4s;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import it326.r4s.Review.Rating;
-import it326.r4s.UnitConverter.Unit;
+import it326.r4s.model.Category;
+import it326.r4s.model.FoodItem;
+import it326.r4s.model.Ingredient;
+import it326.r4s.model.IngredientList;
+import it326.r4s.model.Recipe;
+import it326.r4s.model.Review;
+import it326.r4s.model.User;
+import it326.r4s.model.Review.Rating;
+import it326.r4s.model.UnitConverter.Unit;
 
 import org.junit.Before;
 import java.util.ArrayList;

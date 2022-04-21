@@ -1,4 +1,4 @@
-package it326.r4s;
+package it326.r4s.model;
 
 /**
  * A review which confers a rating and a reviewer

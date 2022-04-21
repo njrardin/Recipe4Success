@@ -1,6 +1,6 @@
-package it326.r4s;
+package it326.r4s.model;
 
-import it326.r4s.UnitConverter.*;
+import it326.r4s.model.UnitConverter.*;
 
 /**
  * The Ingredient object class for the Recipe4Success application
