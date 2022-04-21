@@ -5,46 +5,48 @@ import java.util.Scanner;
 public class MainMenu {
     
     public static void executeMainMenu(){
-        
-        System.out.println("");
-        System.out.println("                                   -- MAIN MENU --                                    ");
-        System.out.println("");
-        System.out.println("1) Open my RecipeBook:\t\t\tsearch, edit, or create new tasty recipes!");
-        System.out.println("2) Open my MealPlanner:\t\t\torganize your recipes into comprehensive meal plans.");
-        System.out.println("3) Open my Pantry:\t\t\torganize your recipes into comprehensive meal plans.");
-        System.out.println("4) Access my grocery list:\t\tview and edit your current grocery list.");
-        System.out.println("");
-        System.out.println("(If you would like to exit the application, type \"stop\")");
-        System.out.println();
-
-        Scanner scan = new Scanner(System.in);
-        String input = "";
-        do {
-            System.out.print("Please type the number corresponding to ythe option you wish to select: ");
-
-            input = scan.nextLine().toLowerCase();
+        while(true){
+            System.out.println("");
+            System.out.println("                                   -- MAIN MENU --                                    ");
+            System.out.println("");
+            System.out.println("1) Open my RecipeBook:\t\t\tsearch, edit, or create new tasty recipes!");
+            System.out.println("2) Open my MealPlanner:\t\t\torganize your recipes into comprehensive meal plans.");
+            System.out.println("3) Open my Pantry:\t\t\torganize your recipes into comprehensive meal plans.");
+            System.out.println("4) Access my grocery list:\t\tview and edit your current grocery list.");
+            System.out.println("");
+            System.out.println("(If you would like to exit the application, type \"stop\")");
             System.out.println();
-            switch (input) {
-                case "1":
-                    RecipeBookView.ExecuteRecipeBookView();
-                    break;
-                case "2":
-                    MealPlannerView.ExecuteMealPlannerView();
-                    break;
-                case "3":
-                    PantryView.ExecutePantryView();
-                    break;
-                case "4":
-                    GroceryListView.ExecuteGroceryListView();
-                    break;
-                case "stop":
-                    saveAndExit();
-                    break;
-                default:
-                    System.out.println("Invalid input, please try again\n");
+
+            Scanner scan = new Scanner(System.in);
+            String input = "";
+            while (true) {
+                System.out.print("Please type the number corresponding to ythe option you wish to select: ");
+
+                input = scan.nextLine().toLowerCase();
+                System.out.println();
+                switch (input) {
+                    case "1":
+                        RecipeBookView.ExecuteRecipeBookView();
+                        break;
+                    case "2":
+                        MealPlannerView.ExecuteMealPlannerView();
+                        break;
+                    case "3":
+                        PantryView.ExecutePantryView();
+                        break;
+                    case "4":
+                        GroceryListView.ExecuteGroceryListView();
+                        break;
+                    case "stop":
+                        saveAndExit();
+                        break;
+                    default:
+                        System.out.println("Invalid input, please try again\n");
+                }
+                break;
             }
-        } while (!input.equals("stop"));
-        scan.close();
+            scan.close();
+        }
     }
 
     private static void saveAndExit() {
