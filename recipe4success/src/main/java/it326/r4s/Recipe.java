@@ -6,7 +6,7 @@ import java.util.*;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/13/22
  */
-public class Recipe extends Entity implements Categorizable, Portable {
+public class Recipe extends Entity implements Categorizable {
 
     //* Instance variables *\\
     private String name;

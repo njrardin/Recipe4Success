@@ -6,14 +6,14 @@ package it326.r4s;
 * 
 */
 
-public class FoodItem extends Entity implements Portable {
+public class FoodItem extends Entity {
     private String name;
     private static int ID = 0;
 
     // constructors
     public FoodItem() {
         super();
-        //this.name = "FoodItem_" + ++ID;
+        this.name = "FoodItem_" + ++ID;
     }
 
     public FoodItem(String name) {

@@ -8,7 +8,7 @@ import java.util.HashSet;
 * 
 */
 
-public class IngredientList extends Entity implements Portable {
+public class IngredientList extends Entity {
     private Collection<Ingredient> ingredients;
 
     // constructors
