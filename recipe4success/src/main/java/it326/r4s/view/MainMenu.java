@@ -26,7 +26,9 @@ public class MainMenu {
             System.out.println("4) Access my grocery list:\t\tview and edit your current grocery list.");
             System.out.println("");
             System.out.println("(If you would like to exit the application, type \"stop\")");
-            System.out.println();
+            System.out.println("");
+            System.out.println("Selection: ");
+
             input = scan.nextLine();
             System.out.println();
             switch (input) {
