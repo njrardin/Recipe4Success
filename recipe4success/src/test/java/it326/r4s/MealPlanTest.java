@@ -1,7 +1,5 @@
 package it326.r4s;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
