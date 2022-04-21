@@ -5,20 +5,28 @@ import java.util.Scanner;
 public class MainMenu {
     
     public static void executeMainMenu(){
-        System.out.println("");
-        System.out.println("Please type the number corresponding to the option you wish to select:");
-        System.out.println("1) Open my RecipeBook:\t\t\tsearch, edit, or create new tasty recipes!");
-        System.out.println("2) Open my MealPlanner:\t\t\torganize your recipes into comprehensive meal plans.");
-        System.out.println("3) Open my Pantry:\t\t\torganize your recipes into comprehensive meal plans.");
-        System.out.println("4) Access my grocery list:\t\tview and edit your current grocery list.");
-        System.out.println("");
-        System.out.println("(If you would like to exit the application, type \"stop\")");
-        System.out.println();
+        
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("---                                                                               ---");
+        System.out.println("---                                -- MAIN MENU --                                ---");
+        System.out.println("---                                                                               ---");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");
+
 
         Scanner scan = new Scanner(System.in);
         String input = "";
         do {
-            System.out.print("Enter the number of any app function you want to run: ");
+            System.out.println("");
+            System.out.println("Please type the number corresponding to the option you wish to select:");
+            System.out.println("1) Open my RecipeBook:\t\t\tsearch, edit, or create new tasty recipes!");
+            System.out.println("2) Open my MealPlanner:\t\t\torganize your recipes into comprehensive meal plans.");
+            System.out.println("3) Open my Pantry:\t\t\torganize your recipes into comprehensive meal plans.");
+            System.out.println("4) Access my grocery list:\t\tview and edit your current grocery list.");
+            System.out.println("");
+            System.out.println("(If you would like to exit the application, type \"stop\")");
+            System.out.println();
             input = scan.nextLine();
             System.out.println();
             switch (input) {
