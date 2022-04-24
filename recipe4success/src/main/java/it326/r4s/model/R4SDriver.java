@@ -14,7 +14,7 @@ public class R4SDriver {
         
         theUser.setName("Example Name");; //TODO: Some way to get the user's name and other info the first time they use the app and remember it
         
-        WelcomeScreen.executeWelcomeScreen();
+        WelcomeScreen.executeWelcomeScreen(theUser);
     }
     //     System.out.println();
     //     System.out.println("-------------------------------------------------------------------------------------");
