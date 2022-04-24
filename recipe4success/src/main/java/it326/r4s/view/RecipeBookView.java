@@ -78,7 +78,7 @@ public class RecipeBookView {
     private static void createRecipe(){
 
     }
-    
+
     private static void displayOneline(Recipe recipe){
     
     }
