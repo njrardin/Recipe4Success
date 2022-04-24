@@ -7,8 +7,13 @@ import it326.r4s.view.WelcomeScreen;
 
 public class R4SDriver {
 
+    public static User theUser = new User("");
+
     public static void main(String[] args) {
         importFileData();
+        
+        theUser.setName("Example Name");; //TODO: Some way to get the user's name and other info the first time they use the app and remember it
+        
         WelcomeScreen.executeWelcomeScreen();
     }
     //     System.out.println();
