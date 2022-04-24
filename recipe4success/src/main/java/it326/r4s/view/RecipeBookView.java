@@ -60,7 +60,6 @@ public class RecipeBookView {
         System.out.println("");
         System.out.println("(If you would like to go back to the main menu, type \"back\")");
         System.out.println();
-
     }
 
     
@@ -71,7 +70,7 @@ public class RecipeBookView {
     private static void displayOneline(Recipe recipe){
     
     }
-    
+
     private static void exportRecipe(){
         
     }
