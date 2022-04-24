@@ -66,10 +66,6 @@ public class RecipeBookView {
 
     }
     
-    private static void createRecipe(){
-
-    }
-    
     private static void searchRecipes(){
         
     }
@@ -80,5 +76,9 @@ public class RecipeBookView {
     
     private static void importRecipe(){
         
+    }
+
+    private static void createRecipe(){
+
     }
 }
