@@ -21,7 +21,7 @@ public class RecipeBookView {
         String input = "";
         while (true) {
             displayOptions();
-            
+
             System.out.print("Please type the number corresponding to ythe option you wish to select: ");
     
             input = scan.nextLine().toLowerCase();
@@ -65,7 +65,11 @@ public class RecipeBookView {
 
     
     private static void searchRecipes(){
-        
+        //use displayOneline method
+    }
+    
+    private static void displayOneline(Recipe recipe){
+    
     }
     
     private static void exportRecipe(){
@@ -80,7 +84,4 @@ public class RecipeBookView {
 
     }
 
-    private static void displayOneline(Recipe recipe){
-    
-    }
 }
