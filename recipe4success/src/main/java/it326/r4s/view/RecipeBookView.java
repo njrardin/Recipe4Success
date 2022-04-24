@@ -7,7 +7,7 @@ import it326.r4s.model.*;
 public class RecipeBookView {
     
     public static void ExecuteRecipeBookView(){
-
+        
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("---                                                                               ---");
@@ -17,26 +17,13 @@ public class RecipeBookView {
         System.out.println("-------------------------------------------------------------------------------------");
         
 
-        
-    }
-
-    private static void displayOptions(){
-        System.out.println("");
-        System.out.println("                               -- Recipe Book Options --                              ");
-        System.out.println("");
-        System.out.println("1) Search and filter recipes");
-        System.out.println("2) Import a recipe");
-        System.out.println("3) Export a recipe");
-        System.out.println("4) Create a new recipe");
-        System.out.println("");
-        System.out.println("(If you would like to go back to the main menu, type \"back\")");
-        System.out.println();
-
         Scanner scan = new Scanner(System.in);
         String input = "";
         while (true) {
+            displayOptions();
+            
             System.out.print("Please type the number corresponding to ythe option you wish to select: ");
-
+    
             input = scan.nextLine().toLowerCase();
             System.out.println();
             switch (input) {
@@ -60,6 +47,20 @@ public class RecipeBookView {
             break;
         }
         scan.close();
+    }
+
+    private static void displayOptions(){
+        System.out.println("");
+        System.out.println("                               -- Recipe Book Options --                              ");
+        System.out.println("");
+        System.out.println("1) Search and filter recipes");
+        System.out.println("2) Import a recipe");
+        System.out.println("3) Export a recipe");
+        System.out.println("4) Create a new recipe");
+        System.out.println("");
+        System.out.println("(If you would like to go back to the main menu, type \"back\")");
+        System.out.println();
+
     }
 
     
