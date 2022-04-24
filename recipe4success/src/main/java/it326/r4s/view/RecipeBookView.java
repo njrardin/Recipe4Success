@@ -53,7 +53,7 @@ public class RecipeBookView {
                     RecipeBookView.createRecipe();
                     break;
                 case "back":
-                    break;
+                    return;
                 default:
                     System.out.println("Invalid input, please try again\n");
             }
