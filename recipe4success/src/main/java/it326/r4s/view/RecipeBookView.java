@@ -41,16 +41,16 @@ public class RecipeBookView {
             System.out.println();
             switch (input) {
                 case "1":
-                    RecipeBookView.ExecuteRecipeBookView();
+                    RecipeBookView.searchRecipes();
                     break;
                 case "2":
-                    MealPlannerView.ExecuteMealPlannerView();
+                    RecipeBookView.importRecipe();
                     break;
                 case "3":
-                    PantryView.ExecutePantryView();
+                    RecipeBookView.exportRecipe();
                     break;
                 case "4":
-                    GroceryListView.ExecuteGroceryListView();
+                    RecipeBookView.createRecipe();
                     break;
                 case "back":
                     break;
