@@ -53,7 +53,7 @@ public class MealPlannerView {
         System.out.println("");
         System.out.println("                               -- Meal Planner Options --                              ");
         System.out.println("");
-        System.out.println("1) Search and filter MealPlans");
+        System.out.println("1) Search MealPlans");
         System.out.println("2) Import a MealPlan");
         System.out.println("3) Export a MealPlan");
         System.out.println("4) Create a new MealPlan");
