@@ -62,9 +62,6 @@ public class RecipeBookView {
         scan.close();
     }
 
-    private static void displayOneline(Recipe recipe){
-
-    }
     
     private static void searchRecipes(){
         
@@ -80,5 +77,9 @@ public class RecipeBookView {
 
     private static void createRecipe(){
 
+    }
+    
+    private static void displayOneline(Recipe recipe){
+    
     }
 }
