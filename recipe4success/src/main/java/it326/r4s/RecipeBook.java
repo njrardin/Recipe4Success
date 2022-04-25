@@ -63,6 +63,10 @@ public class RecipeBook extends Entity {
         return this.recipes;
     }
 
+    public void setRecipes(Collection<Recipe> recipes){
+        this.recipes = recipes;
+    }
+
     @Override
     public String toString() {
         String temp = "";
