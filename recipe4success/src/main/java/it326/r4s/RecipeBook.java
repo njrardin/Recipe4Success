@@ -1,5 +1,6 @@
 package it326.r4s;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -14,7 +15,7 @@ public class RecipeBook extends Entity {
      * default constructor
      */
     public RecipeBook() {
-        this.recipes = new Collection<Recipe>();
+        this.recipes = new ArrayList<Recipe>();
     }
 
     /**
