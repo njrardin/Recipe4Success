@@ -33,4 +33,23 @@ public class Meal {
         this.servingSize = servingSize;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        // Check if the compared object is of correct type
+        if (!(obj instanceof Meal)) {
+            return false;
+        }
+
+        Meal otherMeal = (Meal) obj;
+        return this.recipe.equals(otherMeal.getRecipe()) && this.servingSize == otherMeal.getServingSize();
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe:\n" + this.recipe.getName() + "\nServing Size: " + this.servingSize;
+    }
 }

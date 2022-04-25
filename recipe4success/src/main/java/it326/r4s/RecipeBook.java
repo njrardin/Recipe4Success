@@ -2,7 +2,6 @@ package it326.r4s;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
 /**
  * /Recipe book stores all the recipes of the system
@@ -60,4 +59,12 @@ public class RecipeBook extends Entity {
         return false;
     }
 
+    @Override
+    public String toString() {
+        String temp = "";
+        for (Recipe recipe : recipes) {
+            temp += recipe.toString() + "\n";
+        }
+        return "Recipes:\n" + temp;
+    }
 }

@@ -1,9 +1,6 @@
 package it326.r4s;
 
 import java.util.*;
-
-import it326.r4s.MealPlan;
-
 /**
  * Meal Planner stores all the meal plans of the system
  * 
@@ -50,5 +47,14 @@ public class MealPlanner extends Entity {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        String temp = "";
+        for (MealPlan plan : mealPlans) {
+            temp += plan.getMealPlanName() + "\n";
+        }
+        return "Meal Plans:\n" + temp;
     }
 }
