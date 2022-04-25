@@ -1,8 +1,6 @@
-package it326.r4s;
+package it326.r4s.model;
 
 import java.util.*;
-
-import it326.r4s.MealPlan;
 
 /**
  * Meal Planner stores all the meal plans of the system
