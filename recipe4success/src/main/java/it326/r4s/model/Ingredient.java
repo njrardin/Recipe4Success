@@ -90,6 +90,15 @@ public class Ingredient {
      */
     @Override
     public boolean equals(Object obj) {
+        // Check if the compared object is of correct type
+        if (!(obj instanceof Ingredient) || obj == null) {
+            return false;
+        }
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        
         Ingredient other = (Ingredient) obj;
         if (!this.getFoodItem().equals(other.getFoodItem())) return false;
         else if (!this.getUnit().equals(other.getUnit())) return false;
