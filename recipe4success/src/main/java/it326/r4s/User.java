@@ -64,7 +64,7 @@ public class User {
      * @return True if the recipe was added, false otherwise.
      */
     public boolean addRecipe(Recipe recipe) {
-        return recipes.add(recipe);
+        return recipeBook.addRecipe(recipe);
     }
 
     /**
@@ -73,7 +73,7 @@ public class User {
      * @return True if the recipe was removed, false otherwise.
      */
     public boolean removeRecipe(Recipe recipe) {
-        return recipes.add(recipe);        
+        return recipeBook.removeRecipe(recipe);        
     }
 
     /**
@@ -97,7 +97,7 @@ public class User {
      */
     public Collection<Recipe> getMakeableRecipes() {
         Collection<Recipe> makeable = new ArrayList<Recipe>();
-
+        Collection<Recipe> recipes = recipeBook.getRecipes();
         // Add each recipe in the user's collection that can be made with ingredients in the pantry.
         for (Recipe recipe : recipes) {
             if (pantry.getIngredientList().containsIngredients(recipe.getIngredientList().getIngredients())) {
@@ -182,7 +182,7 @@ public class User {
      * Gets the user's collection of recipes.
      */
     public Collection<Recipe> getRecipes() {
-        return this.recipes;
+        return this.recipeBook.getRecipes();
     }
 
     /**
@@ -190,7 +190,7 @@ public class User {
      * @param recipes the new collection of recipes.
      */
     public void setRecipes(Collection<Recipe> recipes) {
-        this.recipes = recipes;
+        this.recipeBook.setRecipes(recipes);
     }
 
     /**
