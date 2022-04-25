@@ -8,7 +8,7 @@ import java.util.Collection;
  * @author Alex Smith (alsmi14@ilstu.edu)
  * @date 4/5/22
  */
-public class User {
+public class User implements Portable {
     //* Instance Variables *\\
     private String name;
     private GroceryList groceryList;
@@ -81,7 +81,6 @@ public class User {
      * @return True if all ingredients were moved, false otherwise.
      */
     public boolean moveGroceryListToPantry() {
-        // TODO #11 - decide if pantry and grocery list should extend ingredient list.
         // Add all of the ingredients from the grocery list to the pantry.
         boolean result = pantry.getIngredientList().addIngredients(groceryList.getIngredientList().getIngredients());
 

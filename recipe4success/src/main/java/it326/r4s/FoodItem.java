@@ -26,6 +26,13 @@ public class FoodItem extends Entity {
     public String getName() { return this.name; }
 
     public int getID() { return ID; }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " name='" + getName() + "'" +
+            "}";
+    }
     
     @Override
     public boolean equals(Object obj) {
@@ -40,10 +47,5 @@ public class FoodItem extends Entity {
 
         FoodItem otherFoodItem = (FoodItem) obj;
         return this.name.equals(otherFoodItem.getName()) && ID == otherFoodItem.getID();
-    }
-
-    @Override
-    public String toString() {
-        return "FoodItem number " + ID + ": " + this.name;
     }
 }
