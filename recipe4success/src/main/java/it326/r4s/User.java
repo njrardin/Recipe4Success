@@ -206,15 +206,7 @@ public class User {
      * @return True if within bounds, false otherwise.
      */
     public boolean setActiveMealPlanIndex(int index) {
-        boolean result = false;
-
-        // Check that the new index is within bounds.
-        if (index < mealPlans.size() && index > -1) {
-            this.activeMealPlanIndex = index;
-            result = true;
-        }
-        
-        return result;
+        return mealPlanner.setActiveMealPlanIndex(index);
     }
 
     /**
