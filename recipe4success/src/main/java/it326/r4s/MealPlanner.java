@@ -21,6 +21,14 @@ public class MealPlanner extends Entity {
         this.activeMealPlanIndex = 0;
     }
 
+    public Collection<MealPlan> getMealPlans(){
+        return mealPlans;
+    }
+
+    public void setMealPlans(Collection<MealPlan> mealPlans){
+        this.mealPlans = mealPlans;
+    }
+
     public void setActiveMealPlanIndex(int index) {
         this.activeMealPlanIndex = index; //TODO: Implement the logic to ensure this is within bounds
     }
