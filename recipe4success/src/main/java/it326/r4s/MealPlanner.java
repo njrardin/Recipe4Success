@@ -29,8 +29,9 @@ public class MealPlanner extends Entity {
         this.mealPlans = mealPlans;
     }
 
-    public void setActiveMealPlanIndex(int index) {
+    public boolean setActiveMealPlanIndex(int index) {
         this.activeMealPlanIndex = index; //TODO: Implement the logic to ensure this is within bounds
+        return true;
     }
 
     public int getActiveMealPlanIndex() {
