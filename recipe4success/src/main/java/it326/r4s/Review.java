@@ -77,4 +77,23 @@ public class Review extends Entity{
         this.rating = rating;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        // Check if the compared object is of correct type
+        if (!(obj instanceof Review)) {
+            return false;
+        }
+
+        Review otherReview = (Review) obj;
+        return this.reviewer.equals(otherReview.getReviewer()) && this.rating == otherReview.getRating();
+    }
+
+    @Override
+    public String toString() {
+        return "Reviewer: " + this.reviewer.toString() + "\tRating: " + this.rating;
+    }
 }

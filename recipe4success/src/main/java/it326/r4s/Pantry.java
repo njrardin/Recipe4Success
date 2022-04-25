@@ -23,6 +23,11 @@ public class Pantry {
         this.ingredientList = ingredientList;
     }
 
+    @Override
+    public String toString() {
+        return this.ingredientList.toString();
+    }
+    
     //method to remove a recipes ingredients from the pantry. returns false only if recipes ingredients DNE in pantry
     public boolean removeRecipeIngredients(Recipe recipe) {
         Collection<Ingredient> recipeIngredients = recipe.getIngredientList().getIngredients();

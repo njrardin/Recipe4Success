@@ -215,4 +215,28 @@ public class User implements Portable {
         
         return result;
     }
+
+    /**
+    private String name;
+    private GroceryList groceryList;
+    private Pantry pantry;
+    private Collection<MealPlan> mealPlans;
+    private Collection<Recipe> recipes;
+    private int activeMealPlanIndex;
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        // Check if the compared object is of correct type
+        if (!(obj instanceof User)) {
+            return false;
+        }
+
+        User otherUser = (User) obj;
+        return this.name.equals(otherUser.getName());
+    }
 }

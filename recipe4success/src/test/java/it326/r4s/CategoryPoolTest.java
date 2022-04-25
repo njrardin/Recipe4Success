@@ -6,26 +6,26 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import it326.r4s.CategoryList.CategoryType;
+import it326.r4s.CategoryPool.CategoryType;
 
-public class CategoryListTest {
+public class CategoryPoolTest {
 
     @BeforeClass
     public static void before() {
-        CategoryList.getCategory(CategoryType.FOODITEM, "Vegetable");
-        CategoryList.getCategory(CategoryType.FOODITEM, "Fruit");
-        CategoryList.getCategory(CategoryType.FOODITEM, "Meat");
+        CategoryPool.getCategory(CategoryType.FOODITEM, "Vegetable");
+        CategoryPool.getCategory(CategoryType.FOODITEM, "Fruit");
+        CategoryPool.getCategory(CategoryType.FOODITEM, "Meat");
     }
 
     @Test
     public void testGetCategory() {
-        Category category = CategoryList.getCategory(CategoryType.FOODITEM, "Fruit");
+        Category category = CategoryPool.getCategory(CategoryType.FOODITEM, "Fruit");
         assertEquals("Fruit", category.getName());
     }
 
     @Test
     public void testGetCategories() {
-        List<Category> categories = CategoryList.getCategories(CategoryType.FOODITEM);
+        List<Category> categories = CategoryPool.getCategories(CategoryType.FOODITEM);
         assertEquals(categories.get(0).getName(), "Vegetable");
         assertEquals(categories.get(1).getName(), "Fruit");
         assertEquals(categories.get(2).getName(), "Meat");
