@@ -1,13 +1,18 @@
 package it326.r4s.model;
 
+import java.util.Scanner;
+
 import it326.r4s.view.MainMenu;
 public class R4SDriver {
     public static void main(String[] args) {     
         
         displayWelcome();
         importFileData(); //TODO: Some way to get the user's name and other info the first time they use the app and remember it
-        
-        MainMenu.executeMainMenu();
+        Scanner scan = new Scanner(System.in);
+
+        MainMenu.executeMainMenu(scan);
+
+        scan.close();
 
         saveAndExit();
     }

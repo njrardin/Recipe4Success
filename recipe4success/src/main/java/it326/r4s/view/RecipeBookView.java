@@ -8,7 +8,7 @@ import it326.r4s.model.Recipe.RecipeBuilder;
 
 public class RecipeBookView {
     
-    public static void ExecuteRecipeBookView(){
+    public static void ExecuteRecipeBookView(Scanner scan){
         
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
@@ -18,13 +18,11 @@ public class RecipeBookView {
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         
-
-        Scanner scan = new Scanner(System.in);
         String input = "";
         while (true) {
             displayOptions();
 
-            System.out.print("Please type the number corresponding to ythe option you wish to select: ");
+            System.out.print("Please type the number corresponding to the option you wish to select: ");
             System.out.println("(to see the options again, type \"options\"");
     
             input = scan.nextLine().toLowerCase();
@@ -32,20 +30,16 @@ public class RecipeBookView {
             switch (input) {
                 case "1":
                     RecipeBookView.searchRecipes(scan);
-                    displayOptions();
                     break;
                 case "2":
                     RecipeBookView.importRecipe(scan);
-                    displayOptions();
                     break;
                 case "3":
                     RecipeBookView.exportRecipe(scan);
-                    displayOptions();
                     break;
                 case "4":
                     Recipe newRecipe = RecipeBookView.createRecipe(scan);
                     RecipeView.executeRecipeView(newRecipe);
-                    displayOptions();
                     break;
                 case "options":
                     displayOptions();
@@ -54,9 +48,7 @@ public class RecipeBookView {
                 default:
                     System.out.println("Invalid input, please try again\n");
             }
-            break;
         }
-        scan.close();
     }
 
     private static void displayOptions(){
@@ -103,7 +95,7 @@ public class RecipeBookView {
             name = scan.nextLine();
             if(name != ""){
                 System.out.println("You provided the name \"" + name + ",\" is this correct? (Y/N)");
-                if(scan.nextLine().toLowerCase() == "y"){
+                if(scan.nextLine().toLowerCase().equals("y")){
                     break;
                 }
             }
@@ -121,7 +113,7 @@ public class RecipeBookView {
 
             "\"\n\n is this correct? (Y/N)");
 
-            if(scan.nextLine().toLowerCase() == "y"){
+            if(scan.nextLine().toLowerCase().equals("y")){
                 rpBuild.setDescription(description);
                 break;
             }
@@ -136,7 +128,7 @@ public class RecipeBookView {
             }
         
             System.out.println("You provided a serving-size of \"" + servingSize + "\" is this correct? (Y/N)");
-            if(scan.nextLine().toLowerCase() == "y"){
+            if(scan.nextLine().toLowerCase().equals("y")){
                 rpBuild.setServingSize(servingSize);
                 break;
             }
@@ -155,25 +147,26 @@ public class RecipeBookView {
 
             instructionString = scan.nextLine();
             
-            while(true){
-                System.out.println("You provided step #" + stepNum + " as\n\n \"" 
+            System.out.println("You provided step #" + stepNum + " as\n\n \"" 
 
-                + instructionString + 
+            + instructionString + 
 
-                "\"\n\n is this correct? (Y/N)");
-                resp = scan.nextLine().toLowerCase();
-                if(resp == "y"){
-                    instructions.add(instructionString);
-                    break;
-                }
+            "\"\n\n is this correct? (Y/N)");
+            resp = scan.nextLine().toLowerCase();
+            if(resp.equals("y")){
+                instructions.add(instructionString);
+                stepNum++;
+            }
+            else{
+                continue;
             }
 
             do {
                 System.out.println("Would you like to add another step? (Y/N)");
                 resp = scan.nextLine().toLowerCase();
-            } while (resp != "y" || resp != "n");
-
-            if(resp == "n"){
+            } while (!(resp.equals("y") || resp.equals("n")));
+            
+            if(resp.equals("n")){
                 rpBuild.setInstructions(instructions);
                 break;
             }
@@ -181,6 +174,7 @@ public class RecipeBookView {
         }
 
         //TODO: Implement adding cateogries
+        //TODO: Implement adding ingredients
 
         Recipe newRecipe = rpBuild.build();
 

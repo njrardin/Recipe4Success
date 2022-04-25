@@ -6,7 +6,7 @@ import it326.r4s.model.MealPlan;
 
 public class MealPlannerView {
     
-    public static void ExecuteMealPlannerView(){
+    public static void ExecuteMealPlannerView(Scanner scan2){
         
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
