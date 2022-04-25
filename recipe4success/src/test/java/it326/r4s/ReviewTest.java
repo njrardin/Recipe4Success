@@ -45,7 +45,8 @@ public class ReviewTest {
 
         @Test
         public void testGetRatingValue(){
-            Review newReview = new Review(new User("Testman"), ratingEnum);
+            User theUser = User.getUser();
+            Review newReview = new Review(theUser, ratingEnum);
 
             int actualValue = newReview.getRatingValue();        
             assertEquals(expectedValue, actualValue);
