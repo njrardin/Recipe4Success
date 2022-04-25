@@ -28,7 +28,17 @@ public class FoodItem extends Entity {
     public int getID() { return ID; }
     
     @Override
-    public boolean equals(FoodItem otherFoodItem) {
+    public boolean equals(Object obj) {
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        // Check if the compared object is of correct type
+        if (!(obj instanceof User)) {
+            return false;
+        }
+
+        FoodItem otherFoodItem = (FoodItem) obj;
         return this.name.equals(otherFoodItem.getName()) && ID == otherFoodItem.getID();
     }
 

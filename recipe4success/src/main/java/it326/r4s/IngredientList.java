@@ -78,7 +78,17 @@ public class IngredientList extends Entity implements Exportable {
     public Collection<Ingredient> getIngredients() { return this.ingredients; }
 
     @Override
-    public boolean equals(IngredientList otherIngredientList) {
+    public boolean equals(Object obj) {
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        // Check if the compared object is of correct type
+        if (!(obj instanceof IngredientList)){
+            return false;
+        }
+
+        IngredientList otherIngredientList = (IngredientList) obj;
         Collection<Ingredient> otherCollection = otherIngredientList.getIngredients();
         return this.containsIngredients(otherCollection) && this.ingredients.size() == otherCollection.size();
     }

@@ -226,7 +226,18 @@ public class User {
     private int activeMealPlanIndex;
      */
     @Override
-    public boolean equals(User otherUser) {
+    public boolean equals(Object obj) {
+
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        // Check if the compared object is of correct type
+        if (!(obj instanceof User)) {
+            return false;
+        }
+
+        User otherUser = (User) obj;
         return this.name.equals(otherUser.getName());
     }
 }

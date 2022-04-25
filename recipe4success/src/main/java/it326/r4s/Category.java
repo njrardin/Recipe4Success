@@ -21,7 +21,15 @@ public class Category implements Categorizable {
     }
 
     @Override
-    public boolean equals(Category otherCategory) {
+    public boolean equals(Object obj) {
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        // Check if the compared object is of correct type
+        if (!(obj instanceof User)) {
+            return false;
+        }Category otherCategory = (Category) obj;
         return this.name.equals(otherCategory.getName());
     }
 

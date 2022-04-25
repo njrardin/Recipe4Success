@@ -185,7 +185,17 @@ public class Recipe extends Entity implements Categorizable, Exportable {
     }
 
     @Override
-    public boolean equals(Recipe otherRecipe) {
+    public boolean equals(Object obj) {
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        // Check if the compared object is of correct type
+        if (!(obj instanceof Recipe)) {
+            return false;
+        }
+
+        Recipe otherRecipe = (Recipe) obj;
         if (this.name.equals(otherRecipe.getName())) return false;
         if (this.ingredientList.equals(otherRecipe.getIngredientList())) return false;
         return this.servingSize == otherRecipe.getServingSize();
