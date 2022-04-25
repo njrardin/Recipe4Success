@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import it326.r4s.model.Recipe;
-import it326.r4s.model.RecipeBook;
 import it326.r4s.model.Review;
 import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;

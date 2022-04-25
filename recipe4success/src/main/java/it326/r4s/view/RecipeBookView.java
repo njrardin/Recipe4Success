@@ -1,7 +1,6 @@
 package it326.r4s.view;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import it326.r4s.model.*;
