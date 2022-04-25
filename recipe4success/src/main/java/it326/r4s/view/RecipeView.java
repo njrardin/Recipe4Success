@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import it326.r4s.model.Recipe;
+import it326.r4s.model.RecipeBook;
 import it326.r4s.model.Review;
 import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
@@ -46,7 +47,9 @@ public class RecipeView {
             default:
                 rating = Rating.ONE;
         }
-        theRecipe.addReview(new Review(theUser, rating)); //TODO: NEED TO ACTUALLY AFFECT THE RECIPE IN USER
+        theRecipe.addReview(new Review(theUser, rating)); //TODO: make sure this updates in user properly
+        theUser.getRecipeBook().getRecipe(theRecipe).addReview(new Review(theUser, rating));
+
         System.out.println("You have successfully rated " + theRecipe.getName() + " with a total of " + ratingNum + "/5 stars.");
     }
 
