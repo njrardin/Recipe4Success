@@ -43,6 +43,14 @@ public class RecipeBook extends Entity {
         return false;
     }
 
+    public void updateRecipe(Recipe newRecipe, Recipe oldRecipe){
+        //TODO: implement this such that a recipe can be passed in which has new parameters
+    }
+
+    public Recipe getRecipe(Recipe theRecipe){
+        return theRecipe; //TODO: Implement this method such that it returns the actual recipe from recipebook which is equivelant to the recipe passed in
+    }
+
     /**
      * remove a recipe from the Recipe book
      * 
