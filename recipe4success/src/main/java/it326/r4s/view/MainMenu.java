@@ -6,21 +6,14 @@ public class MainMenu {
     
     public static void executeMainMenu(){
         while(true){
-            System.out.println("");
-            System.out.println("                                   -- MAIN MENU --                                    ");
-            System.out.println("");
-            System.out.println("1) Open my RecipeBook:\t\t\tsearch, edit, or create new tasty recipes!");
-            System.out.println("2) Open my MealPlanner:\t\t\torganize your recipes into comprehensive meal plans.");
-            System.out.println("3) Open my Pantry:\t\t\torganize your recipes into comprehensive meal plans.");
-            System.out.println("4) Access my grocery list:\t\tview and edit your current grocery list.");
-            System.out.println("");
-            System.out.println("(If you would like to exit the application, type \"stop\")");
-            System.out.println();
+
+            displayOptions();
 
             Scanner scan = new Scanner(System.in);
             String input = "";
             while (true) {
-                System.out.print("Please type the number corresponding to ythe option you wish to select: ");
+                System.out.print("Please type the number corresponding to the option you wish to select: ");
+                System.out.println("(to see the options again, type \"options\"");
 
                 input = scan.nextLine().toLowerCase();
                 System.out.println();
@@ -37,9 +30,11 @@ public class MainMenu {
                     case "4":
                         GroceryListView.ExecuteGroceryListView();
                         break;
-                    case "stop":
-                        saveAndExit();
+                    case "options":
+                        displayOptions();
                         break;
+                    case "stop":
+                        return;
                     default:
                         System.out.println("Invalid input, please try again\n");
                 }
@@ -49,12 +44,16 @@ public class MainMenu {
         }
     }
 
-    private static void saveAndExit() {
-        //TODO: Save data from application before exit
- 
-        System.out.println("Thank you for using Recipe4Success!");
-        System.out.println("\n\tapplication exiting...\n\n");
-
-        System.exit(0);
-     }
+    public static void displayOptions(){
+        System.out.println("");
+        System.out.println("                                   -- MAIN MENU --                                    ");
+        System.out.println("");
+        System.out.println("1) Open my RecipeBook:\t\t\tsearch, edit, or create new tasty recipes!");
+        System.out.println("2) Open my MealPlanner:\t\t\torganize your recipes into comprehensive meal plans.");
+        System.out.println("3) Open my Pantry:\t\t\torganize your recipes into comprehensive meal plans.");
+        System.out.println("4) Access my grocery list:\t\tview and edit your current grocery list.");
+        System.out.println("");
+        System.out.println("(If you would like to exit the application, type \"stop\")");
+        System.out.println();
+    }
 }
