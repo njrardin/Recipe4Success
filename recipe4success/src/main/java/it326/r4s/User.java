@@ -167,7 +167,7 @@ public class User {
      * Gets the user's collection of meal plans.
      */
     public Collection<MealPlan> getMealPlans() {
-        return this.mealPlans;
+        return mealPlanner.getMealPlans();
     }
 
     /**
@@ -175,7 +175,7 @@ public class User {
      * @param mealPlans the new collection of meals.
      */
     public void setMealPlans(Collection<MealPlan> mealPlans) {
-        this.mealPlans = mealPlans;
+        this.mealPlanner.setMealPlans(mealPlans);
     }
 
     /**
