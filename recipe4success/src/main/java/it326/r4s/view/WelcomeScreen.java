@@ -1,8 +1,7 @@
 package it326.r4s.view;
-
 public class WelcomeScreen {
     
-    public static void executeWelcomeScreen(){
+    public static void displayWelcome(){
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("---                                                                               ---");
@@ -10,13 +9,5 @@ public class WelcomeScreen {
         System.out.println("---                                                                               ---");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
-
-        welcomeSetup();
-
-        MainMenu.executeMainMenu();
-    }
-
-    private static void welcomeSetup(){
-        //TODO: Implement the logic for importing all the items and stuff 
     }
 }
