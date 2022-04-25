@@ -23,6 +23,7 @@ public class MealPlannerView {
             displayOptions();
 
             System.out.print("Please type the number corresponding to ythe option you wish to select: ");
+            System.out.println("(to see the options again, type \"options\"");
     
             input = scan.nextLine().toLowerCase();
             System.out.println();
@@ -39,6 +40,8 @@ public class MealPlannerView {
                 case "4":
                     MealPlannerView.createMealPlan();
                     break;
+                case "options":
+                    displayOptions();
                 case "back":
                     return;
                 default:
