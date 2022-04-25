@@ -15,7 +15,7 @@ public class MealPlanner extends Entity {
     private int activeMealPlanIndex;
 
     public MealPlanner() {
-        this.mealPlans = new Collection<MealPlan>();
+        this.mealPlans = new ArrayList<MealPlan>();
         this.activeMealPlanIndex = 0;
     }
 
