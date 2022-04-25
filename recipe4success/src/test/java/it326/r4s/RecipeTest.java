@@ -19,10 +19,12 @@ import java.util.ArrayList;
 public class RecipeTest {
     
     static Recipe setupRecipe;
+    static User theUser;
 
     @Before
     public void setUp(){
-        
+        theUser = User.getUser();
+
         setupRecipe = new Recipe.RecipeBuilder("Mac and Cheese")
         .setDescription("A yummy meal!")
         .setServingSize(2)
@@ -89,7 +91,7 @@ public class RecipeTest {
 
     @Test 
     public void testRemoveReview(){
-        Review newReview = new Review(new User("Testman"), Rating.FOUR);
+        Review newReview = new Review(theUser, Rating.FOUR);
         ArrayList<Review> reviewList = new ArrayList<Review>();
         reviewList.add(newReview);
 
@@ -102,7 +104,7 @@ public class RecipeTest {
 
     @Test
     public void testAddReview(){
-        Review newReview = new Review(new User("Testman"), Rating.FOUR);
+        Review newReview = new Review(theUser, Rating.FOUR);
 
         setupRecipe.addReview(newReview);
 
