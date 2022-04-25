@@ -19,4 +19,22 @@ public class Category implements Categorizable {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
+        }
+        // Check if the compared object is of correct type
+        if (!(obj instanceof User)) {
+            return false;
+        }Category otherCategory = (Category) obj;
+        return this.name.equals(otherCategory.getName());
+    }
+
+    @Override
+    public String toString() {
+        return "Category " + this.name;
+    }
 }
