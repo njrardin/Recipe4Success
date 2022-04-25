@@ -46,7 +46,7 @@ public class User {
      * @return True if the meal plan was added, false otherwise.
      */
     public boolean addMealPlan(MealPlan mealPlan) {
-        return mealPlans.add(mealPlan);
+        return mealPlanner.addMealPlan(mealPlan);
     }
 
     /**
@@ -55,7 +55,7 @@ public class User {
      * @return True if the meal plan was removed, false otherwise.
      */
     public boolean removeMealPlan(MealPlan mealPlan) {
-        return mealPlans.remove(mealPlan);
+        return mealPlanner.removeMealPlan(mealPlan);
     }
 
     /**
