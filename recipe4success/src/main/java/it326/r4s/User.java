@@ -13,8 +13,8 @@ public class User {
     private String name;
     private GroceryList groceryList;
     private Pantry pantry;
-    private Collection<MealPlan> mealPlans;
-    private Collection<Recipe> recipes;
+    private MealPlanner mealPlanner;
+    private RecipeBook recipeBook;
     private int activeMealPlanIndex;
 
     //* Constructors *\\
@@ -25,8 +25,8 @@ public class User {
         name = "";
         groceryList = new GroceryList();
         pantry = new Pantry();
-        mealPlans = new ArrayList<MealPlan>();
-        recipes = new ArrayList<Recipe>();
+        mealPlanner = new MealPlanner();
+        recipeBook = new RecipeBook();
         activeMealPlanIndex = -1;
     }
 
