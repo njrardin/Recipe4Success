@@ -1,7 +1,6 @@
 package it326.r4s.model;
 
 import java.util.*;
-
 /**
  * Meal Planner stores all the meal plans of the system
  * 
@@ -22,8 +21,17 @@ public class MealPlanner extends Entity {
         this.activeMealPlanIndex = 0;
     }
 
-    public void setActiveMealPlanIndex(int index) {
-        this.activeMealPlanIndex = index;
+    public Collection<MealPlan> getMealPlans(){
+        return mealPlans;
+    }
+
+    public void setMealPlans(Collection<MealPlan> mealPlans){
+        this.mealPlans = mealPlans;
+    }
+
+    public boolean setActiveMealPlanIndex(int index) {
+        this.activeMealPlanIndex = index; //TODO: Implement the logic to ensure this is within bounds
+        return true;
     }
 
     public int getActiveMealPlanIndex() {
@@ -48,5 +56,14 @@ public class MealPlanner extends Entity {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        String temp = "";
+        for (MealPlan plan : mealPlans) {
+            temp += plan.getMealPlanName() + "\n";
+        }
+        return "Meal Plans:\n" + temp;
     }
 }

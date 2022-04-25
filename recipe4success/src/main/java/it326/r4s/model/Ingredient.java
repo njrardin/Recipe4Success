@@ -4,7 +4,7 @@ import it326.r4s.model.UnitConverter.*;
 
 /**
  * The Ingredient object class for the Recipe4Success application
- * @author Nate Rardin (njrardi@ilstu.edu)
+ * @author Nate Rardin (njrardi@ilstu.edu) and Josh Nepomuceno
  * @date 4/13/22
  */
 public class Ingredient {
@@ -96,4 +96,8 @@ public class Ingredient {
         else return this.getQuantity() == other.getQuantity();
     }
     
+    @Override
+    public String toString() {
+        return this.foodItem.getName() + ": " + this.quantity + this.unit;
+    }
 }

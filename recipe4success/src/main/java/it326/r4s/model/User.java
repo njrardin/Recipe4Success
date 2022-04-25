@@ -16,8 +16,8 @@ public class User {
     private String name;
     private GroceryList groceryList;
     private Pantry pantry;
-    private Collection<MealPlan> mealPlans;
-    private Collection<Recipe> recipes;
+    private MealPlanner mealPlanner;
+    private RecipeBook recipeBook;
     private int activeMealPlanIndex;
 
     //* Constructors *\\
@@ -28,8 +28,8 @@ public class User {
         this.name = name;
         groceryList = new GroceryList();
         pantry = new Pantry();
-        mealPlans = new ArrayList<MealPlan>();
-        recipes = new ArrayList<Recipe>();
+        mealPlanner = new MealPlanner();
+        recipeBook = new RecipeBook();
         activeMealPlanIndex = -1;
     }
 
@@ -51,7 +51,7 @@ public class User {
      * @return True if the meal plan was added, false otherwise.
      */
     public boolean addMealPlan(MealPlan mealPlan) {
-        return mealPlans.add(mealPlan);
+        return mealPlanner.addMealPlan(mealPlan);
     }
 
     /**
@@ -60,7 +60,7 @@ public class User {
      * @return True if the meal plan was removed, false otherwise.
      */
     public boolean removeMealPlan(MealPlan mealPlan) {
-        return mealPlans.remove(mealPlan);
+        return mealPlanner.removeMealPlan(mealPlan);
     }
 
     /**
@@ -69,7 +69,7 @@ public class User {
      * @return True if the recipe was added, false otherwise.
      */
     public boolean addRecipe(Recipe recipe) {
-        return recipes.add(recipe);
+        return recipeBook.addRecipe(recipe);
     }
 
     /**
@@ -78,7 +78,7 @@ public class User {
      * @return True if the recipe was removed, false otherwise.
      */
     public boolean removeRecipe(Recipe recipe) {
-        return recipes.add(recipe);        
+        return recipeBook.removeRecipe(recipe);        
     }
 
     /**
@@ -102,7 +102,7 @@ public class User {
      */
     public Collection<Recipe> getMakeableRecipes() {
         Collection<Recipe> makeable = new ArrayList<Recipe>();
-
+        Collection<Recipe> recipes = recipeBook.getRecipes();
         // Add each recipe in the user's collection that can be made with ingredients in the pantry.
         for (Recipe recipe : recipes) {
             if (pantry.getIngredientList().containsIngredients(recipe.getIngredientList().getIngredients())) {
@@ -172,7 +172,7 @@ public class User {
      * Gets the user's collection of meal plans.
      */
     public Collection<MealPlan> getMealPlans() {
-        return this.mealPlans;
+        return mealPlanner.getMealPlans();
     }
 
     /**
@@ -180,14 +180,14 @@ public class User {
      * @param mealPlans the new collection of meals.
      */
     public void setMealPlans(Collection<MealPlan> mealPlans) {
-        this.mealPlans = mealPlans;
+        this.mealPlanner.setMealPlans(mealPlans);
     }
 
     /**
      * Gets the user's collection of recipes.
      */
     public Collection<Recipe> getRecipes() {
-        return this.recipes;
+        return this.recipeBook.getRecipes();
     }
 
     /**
@@ -195,7 +195,7 @@ public class User {
      * @param recipes the new collection of recipes.
      */
     public void setRecipes(Collection<Recipe> recipes) {
-        this.recipes = recipes;
+        this.recipeBook.setRecipes(recipes);
     }
 
     /**
@@ -211,14 +211,30 @@ public class User {
      * @return True if within bounds, false otherwise.
      */
     public boolean setActiveMealPlanIndex(int index) {
-        boolean result = false;
+        return mealPlanner.setActiveMealPlanIndex(index);
+    }
 
-        // Check that the new index is within bounds.
-        if (index < mealPlans.size() && index > -1) {
-            this.activeMealPlanIndex = index;
-            result = true;
+    /**
+    private String name;
+    private GroceryList groceryList;
+    private Pantry pantry;
+    private Collection<MealPlan> mealPlans;
+    private Collection<Recipe> recipes;
+    private int activeMealPlanIndex;
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        // If the object is compared with itself then return true 
+        if (obj == this) {
+            return true;
         }
-        
-        return result;
+        // Check if the compared object is of correct type
+        if (!(obj instanceof User)) {
+            return false;
+        }
+
+        User otherUser = (User) obj;
+        return this.name.equals(otherUser.getName());
     }
 }

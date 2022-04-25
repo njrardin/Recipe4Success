@@ -16,12 +16,34 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
 
     /**
      * Gets the ingredients required for all the recipes in this meal plan.
-     * 
      * @return the collection of ingredients required.
      */
     public Collection<Ingredient> getAllIngredients() {
-        // TODO #11 - implement getAllIngredients (not easy)
-        return null;
+        Collection<Ingredient> allIngredients = new ArrayList<Ingredient>(); //ingredients to be returned
+        for (Meal meal : this.meals) { // iterate through meals
+            for (Ingredient ingredient : meal.getRecipe().getIngredientList().getIngredients()) { // iterate through meal ingredient
+                
+                boolean alreadyAdded = false;
+                for (Ingredient existingIngredient : allIngredients) { // check if ingredient already exists
+                    if (ingredient.getFoodItem() == existingIngredient.getFoodItem()) { // TODO - wait for FoodItem pool to more correctly handle this comparison!
+                        allIngredients.remove(existingIngredient);
+                        Ingredient copyIngredient = new Ingredient(existingIngredient.getFoodItem(), existingIngredient.getQuantity(), existingIngredient.getUnit());
+                        if (!copyIngredient.changeUnit(ingredient.getUnit())) {
+                            allIngredients.add(copyIngredient);
+                            break;
+                        }
+                        copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
+                        allIngredients.add(copyIngredient);
+                        alreadyAdded = true;
+                        break;
+                    }
+                }
+                if (!alreadyAdded) {
+                    allIngredients.add(ingredient);
+                }
+            }
+        }
+        return allIngredients;
     }
 
     public MealPlan(String name) {
@@ -116,4 +138,12 @@ public class MealPlan extends Entity implements Categorizable, Exportable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        String temp = "";
+        for (Meal meal : meals) {
+            temp += meal.getRecipe().getName() + "\n";
+        }
+        return this.name + ":\nDescription: " + this.description + "\nMeals:\n" + temp;
+    }
 }
