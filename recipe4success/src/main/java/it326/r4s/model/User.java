@@ -168,6 +168,20 @@ public class User {
         this.pantry = pantry;
     }
 
+    public MealPlanner getMealPlanner(){
+        return this.mealPlanner;
+    }
+
+    public void setMealPlanner(MealPlanner mealPlanner){
+        this.mealPlanner = mealPlanner;
+    }
+    public RecipeBook getRecipeBook(){
+        return this.recipeBook;
+    }
+    public void setRecipeBook(RecipeBook recipeBook){
+        this.recipeBook = recipeBook;
+    }
+
     /**
      * Gets the user's collection of meal plans.
      */
