@@ -37,10 +37,9 @@ public class User {
      * Creates a user object with a specified name. 
      * @param name the name of the user.
      */
-    public User getUser(String name) {
-        
+    public static User getUser() {
         if(theUser == null){
-            theUser = new User(name);
+            theUser = new User("");
         }
         return theUser;
     }
