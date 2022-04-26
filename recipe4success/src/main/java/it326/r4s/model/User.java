@@ -9,9 +9,6 @@ import java.util.Collection;
  * @date 4/5/22
  */
 public class User {
-    //* Singleton Variable \\
-    private static User theUser;
-
     //* Instance Variables *\\
     private String name;
     private GroceryList groceryList;
@@ -24,8 +21,8 @@ public class User {
     /**
      * Creates a default user object.
      */
-    private User(String name) {
-        this.name = name;
+    private User() {
+        this.name = "";
         groceryList = new GroceryList();
         pantry = new Pantry();
         mealPlanner = new MealPlanner();
@@ -37,11 +34,9 @@ public class User {
      * Creates a user object with a specified name. 
      * @param name the name of the user.
      */
-    public static User getUser() {
-        if(theUser == null){
-            theUser = new User("");
-        }
-        return theUser;
+    public User(String name) {
+        this();
+        this.name = name;
     }
 
     //* Methods *\\
