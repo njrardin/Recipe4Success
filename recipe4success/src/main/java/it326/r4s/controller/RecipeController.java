@@ -10,14 +10,17 @@ import it326.r4s.view.RecipeView;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeController {
+public class RecipeController implements CLI_Controller{
     
     public Recipe theRecipe;
     public RecipeView recipeView;
-
+    
     public RecipeController(Recipe recipe){
         this.theRecipe = recipe;
         this.recipeView = new RecipeView(this);
+    }
+
+    public void executeView() {
     }
 
     public void addReview(User theUser){
@@ -52,4 +55,5 @@ public class RecipeController {
     public String getRecipeName() {
         return null;
     }
+
 }

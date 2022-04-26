@@ -7,7 +7,7 @@ import it326.r4s.view.PantryView;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class PantryController {
+public class PantryController implements CLI_Controller {
 
     private Pantry pantry;
     private PantryView pantryView;

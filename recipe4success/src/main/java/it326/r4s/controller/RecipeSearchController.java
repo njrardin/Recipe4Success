@@ -11,7 +11,7 @@ import it326.r4s.view.RecipeSearchView;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeSearchController implements Controller{
+public class RecipeSearchController implements CLI_Controller{
 
     private RecipeSearch recipeSearch;
     private RecipeSearchView recipeSearchView;
@@ -25,9 +25,7 @@ public class RecipeSearchController implements Controller{
 
     }
 
-    public Collection<Recipe> searchFor(String searchQuery){
-        ArrayList<Recipe> returnRecipes;
-        returnRecipes = recipeSearch.searchFor(searchQuery);
-        return returnRecipes;
+    public ArrayList<Recipe> searchFor(String searchQuery) {
+        return null; //TODO: implement
     }
 }
