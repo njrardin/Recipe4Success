@@ -16,7 +16,7 @@ import it326.r4s.view.ViewUtilities;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeBookController implements Controller {
+public class RecipeBookController implements CLI_Controller {
     
     public RecipeBook recipeBook;
     public RecipeBookView recipeBookView;
@@ -24,6 +24,10 @@ public class RecipeBookController implements Controller {
     public RecipeBookController(RecipeBook recipeBook){
         this.recipeBook = recipeBook;
         this.recipeBookView = new RecipeBookView(this);
+    }
+
+    public RecipeBook getRecipeBook(){
+        return this.recipeBook;
     }
 
     public void executeView(){
@@ -35,7 +39,16 @@ public class RecipeBookController implements Controller {
     }
     
     public void searchRecipes() {
-
+        RecipeSearchController rsController = new RecipeSearchController(recipeBook.getRecipes());
+        String searchQuery = recipeBookView.getSearchQuery();
+        ArrayList<Recipe> returnRecipes = rsController.searchFor(searchQuery);
+        
+        for(Recipe recipe: returnRecipes){
+            recipeBookView.displayRecipeBook(recipeBook);
+        }
+        Recipe selectedRecipe = recipeBookView.getSelectedRecipe();
+        RecipeController rController = new RecipeController(selectedRecipe);
+        rController.executeView();
     }
     
     public void importRecipe() {
