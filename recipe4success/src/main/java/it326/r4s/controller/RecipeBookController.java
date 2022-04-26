@@ -43,12 +43,14 @@ public class RecipeBookController implements CLI_Controller {
         String searchQuery = recipeBookView.getSearchQuery();
         ArrayList<Recipe> returnRecipes = rsController.searchFor(searchQuery);
         
+        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
         for(Recipe recipe: returnRecipes){
-            recipeBookView.displayRecipeBook(recipeBook);
+            recipeControllers.add(new RecipeController(recipe));
         }
-        Recipe selectedRecipe = recipeBookView.getSelectedRecipe();
-        RecipeController rController = new RecipeController(selectedRecipe);
-        rController.executeView();
+        try{
+            RecipeController selectedRecipe = recipeBookView.getSelectedRecipe(recipeControllers);
+            selectedRecipe.executeView();
+        } catch (RuntimeException e) { /*do nothing*/ }
     }
     
     public void importRecipe() {
