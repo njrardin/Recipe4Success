@@ -42,9 +42,10 @@ public class MealPlannerView implements CLI_View{
                 case "4":
                     mprController.createMealPlan();
                     break;
-                case "options":
-                    displayOptions();
-                case "back":
+                case "5":
+                    mprController.viewMealPlans();
+                    break;
+                case "6":
                     return;
                 default:
                     System.out.println("Invalid input, please try again\n");
@@ -71,8 +72,8 @@ public class MealPlannerView implements CLI_View{
         System.out.println("2) Import a MealPlan");
         System.out.println("3) Export a MealPlan");
         System.out.println("4) Create a new MealPlan");
-        System.out.println("");
-        System.out.println("(If you would like to go back to the main menu, type \"back\")");
+        System.out.println("5) View all MealPlans");
+        System.out.println("6) Go back");
         System.out.println();
     }
 }

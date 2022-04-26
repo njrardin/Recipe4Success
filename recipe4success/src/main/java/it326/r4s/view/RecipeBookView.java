@@ -46,8 +46,6 @@ public class RecipeBookView implements CLI_View{
                     break;
                 case "6":
                     return;
-                case "options":
-                    displayOptions();
                 case "back":
                     return;
                 default:

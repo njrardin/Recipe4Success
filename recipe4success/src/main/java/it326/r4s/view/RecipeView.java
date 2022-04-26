@@ -41,14 +41,6 @@ public class RecipeView implements CLI_View{
         return ratingNum;
     }
 
-    public static void deleteRecipe(Recipe theRecipe, Scanner scan){
-
-    }
-
-    public static void editRecipe(Recipe theRecipe, Scanner scan){
-
-    }
-
     public void displayOneline() {
         System.out.println(rController.getRecipe().toString());
     }
