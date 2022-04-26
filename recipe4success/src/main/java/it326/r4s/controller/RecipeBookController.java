@@ -31,20 +31,25 @@ public class RecipeBookController implements Controller {
     }
     
     public void exportRecipe() {
-        
+        //TODO - req 7
     }
     
     public void searchRecipes() {
-
+        //TODO - is this req 6? Delete this todo if not.
     }
     
     public void importRecipe() {
-
+        //TODO - req 8
     }
 
     public void searchForRecipe(Collection<Recipe> recipes){
+        //TODO - is this req 6? Is it done? Delete this todo if so.
         RecipeSearchController rsController = new RecipeSearchController(recipes);
         rsController.executeView();
+    }
+
+    public void filterRecipeByCategory() {
+        //TODO - req 9
     }
 
     public void selectRecipe(){
@@ -63,6 +68,7 @@ public class RecipeBookController implements Controller {
     }
 
     public void createRecipe(){ //TODO: Offset user input gatherint to view class
+        //TODO - this is req 1. Is it done? Delete this todo if so.
         Scanner scan = ViewUtilities.scan;
 
         
