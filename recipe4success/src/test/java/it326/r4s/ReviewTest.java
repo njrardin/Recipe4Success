@@ -45,7 +45,8 @@ public class ReviewTest {
 
         @Test
         public void testGetRatingValue(){
-            User theUser = User.getUser();
+            User theUser = new User("Testman");
+            
             Review newReview = new Review(theUser, ratingEnum);
 
             int actualValue = newReview.getRatingValue();        

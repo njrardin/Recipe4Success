@@ -23,7 +23,7 @@ public class RecipeTest {
 
     @Before
     public void setUp(){
-        theUser = User.getUser();
+        theUser = new User("Testman");
 
         setupRecipe = new Recipe.RecipeBuilder("Mac and Cheese")
         .setDescription("A yummy meal!")
