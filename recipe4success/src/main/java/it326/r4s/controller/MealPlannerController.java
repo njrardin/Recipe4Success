@@ -22,17 +22,30 @@ public class MealPlannerController implements Controller {
     }
 
     public void searchMealPlans() {
+        //TODO - req 16?
+    }
+
+    public void searchForMealPlan() {
+        //TODO - req 16?
+    }
+
+    public void selectMealPlan() {
         
     }
 
-    public void importMealPlan() {
+    public void viewMealPlans() {
 
+    }
+
+    public void importMealPlan() {
+        //TODO - req 18
     }
 
     public void createMealPlan() {
-
+        //TODO - req 10
     }
 
     public void exportMealPlan() {
+        //TODO - req 17
     }
 }
