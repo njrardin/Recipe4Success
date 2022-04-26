@@ -1,12 +1,17 @@
 package it326.r4s.view;
 
-import java.util.Scanner;
+import it326.r4s.controller.PantryController;
 
 public class PantryView {
     
-    public static void ExecutePantryView(Scanner scan){
+    private PantryController pantryController;
+
+    public PantryView(PantryController pantryController){
+        this.pantryController = pantryController;
+    }
+
+    public void execute(){
 
 
-        System.out.println("");
     }
 }
