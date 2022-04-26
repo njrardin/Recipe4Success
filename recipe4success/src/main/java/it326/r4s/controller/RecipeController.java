@@ -20,7 +20,20 @@ public class RecipeController {
         this.recipeView = new RecipeView(this);
     }
 
-    public void addReview(User theUser){
+    public void adjustServingSize() {
+        //TODO - req 5
+    }
+
+    public static void deleteRecipe(){
+        //TODO - req 3
+    }
+
+    public static void editRecipe(){
+        //TODO - req 2
+    }
+
+
+    public void addReview(User theUser){ //TODO - is this req 4? Is it done? Delete this todo if so.
         int ratingNum = recipeView.getReviewRating();
         Rating rating = null;
 
