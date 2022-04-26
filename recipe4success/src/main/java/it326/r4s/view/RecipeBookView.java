@@ -2,6 +2,8 @@ package it326.r4s.view;
 
 import java.util.Scanner;
 import it326.r4s.controller.RecipeBookController;
+import it326.r4s.model.Recipe;
+import it326.r4s.model.RecipeBook;
 /**
  * View for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -41,7 +43,7 @@ public class RecipeBookView implements CLI_View{
                     rbController.createRecipe();
                     break;
                 case "5":
-                    rbController.viewRecipes();
+                    displayRecipeBook(rbController.getRecipeBook());
                     rbController.selectRecipe();
                     break;
                 case "6":
@@ -78,6 +80,19 @@ public class RecipeBookView implements CLI_View{
         System.out.println("5) View all recipes");
         System.out.println("6) Go back");
         System.out.println();
+    }
+
+    public String getSearchQuery() {
+        //TODO: get user input to search for recipe
+        return null;
+    }
+
+    public void displayRecipeBook(RecipeBook recipeBook) {
+        //TODO: Logic to display the recipebook to the screen
+    }
+
+    public Recipe getSelectedRecipe() {
+        return null; //TODO: implement
     }
 
 }
