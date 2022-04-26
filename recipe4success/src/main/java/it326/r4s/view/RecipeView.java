@@ -3,14 +3,18 @@ package it326.r4s.view;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import it326.r4s.controller.RecipeController;
 import it326.r4s.model.Recipe;
-import it326.r4s.model.Review;
-import it326.r4s.model.User;
-import it326.r4s.model.Review.Rating;
 
-public class RecipeView {
+public class RecipeView implements CLI_View{
 
-    public static void executeRecipeView(Recipe theRecipe) {
+    private RecipeController rController;
+
+    public RecipeView(RecipeController rController){
+        this.rController = rController;
+    }
+
+    public void execute(){
         Scanner scan = new Scanner(System.in);
         //Display things and at some point utilize the following methods
         // rateRecipe(theRecipe, Scanner scan);
@@ -18,38 +22,19 @@ public class RecipeView {
         // editRecipe(theRecipe);
     }
 
-    public static void rateRecipe(Recipe theRecipe, Scanner scan){
-        User theUser = User.getUser();
+    public int getReviewRating(){
+        Scanner scan = new Scanner(System.in);
         int acceptableRatings[] = {1,2,3,4,5};
         int ratingNum;
-        Review.Rating rating;
+
         do{
             System.out.println("How many stars would you like to rate this recipe? (1, 2, 3, 4, or 5)");
             ratingNum = Integer.parseInt(scan.nextLine());
         } while (Arrays.asList(acceptableRatings).contains(ratingNum));
-        switch (ratingNum){
-            case 1:
-                rating = Rating.ONE;
-                break;
-            case 2:
-                rating = Rating.TWO;
-                break;
-            case 3:
-                rating = Rating.THREE;
-                break;
-            case 4:
-                rating = Rating.FOUR;
-                break;
-            case 5:
-                rating = Rating.FIVE;
-                break;
-            default:
-                rating = Rating.ONE;
-        }
-        theRecipe.addReview(new Review(theUser, rating)); //TODO: make sure this updates in user properly
-        theUser.getRecipeBook().getRecipe(theRecipe).addReview(new Review(theUser, rating));
 
-        System.out.println("You have successfully rated " + theRecipe.getName() + " with a total of " + ratingNum + "/5 stars.");
+        System.out.println("You have successfully rated " + rController.getRecipeName() + " with a total of " + ratingNum + "/5 stars.");
+        scan.close();
+        return ratingNum;
     }
 
     public static void deleteRecipe(Recipe theRecipe, Scanner scan){
@@ -58,6 +43,10 @@ public class RecipeView {
 
     public static void editRecipe(Recipe theRecipe, Scanner scan){
 
+    }
+
+    public void displayOneline() {
+        System.out.println(rController.getRecipe().toString());
     }
 
 }
