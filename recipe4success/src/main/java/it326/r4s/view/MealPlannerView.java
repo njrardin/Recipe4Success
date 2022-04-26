@@ -2,43 +2,41 @@ package it326.r4s.view;
 
 import java.util.Scanner;
 
-import it326.r4s.model.MealPlan;
+import it326.r4s.controller.MealPlannerController;
 
-public class MealPlannerView {
+public class MealPlannerView implements CLI_View{
+
+    private MealPlannerController mprController;
+
+    public MealPlannerView(MealPlannerController mprController){
+        this.mprController = mprController;
+    }
     
-    public static void ExecuteMealPlannerView(Scanner scan2){
-        
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Meal Planner --                              ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        
+    public void execute(){
 
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = ViewUtilities.scan;
         String input = "";
+        displayHeader();
+        displayOptions();
         while (true) {
-            displayOptions();
 
-            System.out.print("Please type the number corresponding to ythe option you wish to select: ");
-            System.out.println("(to see the options again, type \"options\"");
+            System.out.println();
+            System.out.println("(to see the options again, type \"options\")");
     
             input = scan.nextLine().toLowerCase();
             System.out.println();
             switch (input) {
                 case "1":
-                    MealPlannerView.searchMealPlans();
+                    mprController.searchMealPlans();
                     break;
                 case "2":
-                    MealPlannerView.importMealPlan();
+                    mprController.importMealPlan();
                     break;
                 case "3":
-                    MealPlannerView.exportMealPlan();
+                    mprController.exportMealPlan();
                     break;
                 case "4":
-                    MealPlannerView.createMealPlan();
+                    mprController.createMealPlan();
                     break;
                 case "options":
                     displayOptions();
@@ -49,10 +47,19 @@ public class MealPlannerView {
             }
             break;
         }
-        scan.close();
     }
 
-    private static void displayOptions(){
+    private void displayHeader(){
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("---                                                                               ---");
+        System.out.println("---                               -- Meal Planner --                              ---");
+        System.out.println("---                                                                               ---");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");
+    }
+
+    private void displayOptions(){
         System.out.println("");
         System.out.println("                               -- Meal Planner Options --                              ");
         System.out.println("");
@@ -63,25 +70,5 @@ public class MealPlannerView {
         System.out.println("");
         System.out.println("(If you would like to go back to the main menu, type \"back\")");
         System.out.println();
-    }
-
-    private static void searchMealPlans(){
-        //use displayOneline method
-    }
-    
-    private static void displayOneline(MealPlan mealplan){
-    
-    }
-
-    private static void exportMealPlan(){
-        
-    }
-    
-    private static void importMealPlan(){
-        
-    }
-
-    private static void createMealPlan(){
-
     }
 }
