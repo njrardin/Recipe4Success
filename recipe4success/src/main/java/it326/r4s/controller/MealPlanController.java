@@ -1,5 +1,10 @@
 package it326.r4s.controller;
 
+/**
+ * Controller for R4S MealPlan
+ * @author Zach Plattner (zmplatt@ilstu.edu)
+ * @date 4/26/22
+ */
 public class MealPlanController {
     
     public void addRecipeToMP() {
