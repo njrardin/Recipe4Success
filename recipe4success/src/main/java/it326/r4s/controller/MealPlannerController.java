@@ -2,7 +2,11 @@ package it326.r4s.controller;
 
 import it326.r4s.model.MealPlanner;
 import it326.r4s.view.MealPlannerView;
-
+/**
+ * Controller for R4S MealPlanner
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class MealPlannerController implements Controller {
     
     private MealPlanner mealPlanner;

@@ -3,7 +3,11 @@ package it326.r4s.view;
 import java.util.Scanner;
 
 import it326.r4s.controller.MainMenuController;
-
+/**
+ * View for R4S MainMenu
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class MainMenuView implements CLI_View{
     
     public MainMenuController mmController;

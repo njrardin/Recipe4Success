@@ -2,6 +2,11 @@ package it326.r4s.view;
 
 import java.util.Scanner;
 import it326.r4s.controller.RecipeBookController;
+/**
+ * View for R4S RecipeBook
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class RecipeBookView implements CLI_View{
     
     private RecipeBookController rbController;

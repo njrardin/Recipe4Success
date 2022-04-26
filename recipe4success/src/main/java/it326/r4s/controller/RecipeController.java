@@ -5,7 +5,11 @@ import it326.r4s.model.Review;
 import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
 import it326.r4s.view.RecipeView;
-
+/**
+ * Controller for R4S Recipe
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class RecipeController {
     
     public Recipe theRecipe;

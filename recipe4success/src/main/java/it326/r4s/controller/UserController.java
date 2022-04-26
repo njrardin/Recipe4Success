@@ -2,7 +2,11 @@ package it326.r4s.controller;
 
 import it326.r4s.model.User;
 import it326.r4s.view.UserView;
-
+/**
+ * Controller for R4S User
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class UserController {
     
     private static UserController globalUC = null;

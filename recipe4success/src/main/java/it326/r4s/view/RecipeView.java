@@ -5,7 +5,11 @@ import java.util.Scanner;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.model.Recipe;
-
+/**
+ * View for R4S Recipe
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class RecipeView implements CLI_View{
 
     private RecipeController rController;

@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.RecipeSearchController;
-
+/**
+ * View for R4S RecipeSearch
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class RecipeSearchView implements CLI_View{
     
     private RecipeSearchController recipeSearchController;

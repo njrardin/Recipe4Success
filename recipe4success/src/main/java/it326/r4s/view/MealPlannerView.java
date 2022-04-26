@@ -3,7 +3,11 @@ package it326.r4s.view;
 import java.util.Scanner;
 
 import it326.r4s.controller.MealPlannerController;
-
+/**
+ * View for R4S MealPlanner
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class MealPlannerView implements CLI_View{
 
     private MealPlannerController mprController;

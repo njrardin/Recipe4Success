@@ -11,7 +11,11 @@ import it326.r4s.model.Recipe.RecipeBuilder;
 import it326.r4s.view.RecipeBookView;
 import it326.r4s.view.RecipeView;
 import it326.r4s.view.ViewUtilities;
-
+/**
+ * Controller for R4S RecipeBook
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class RecipeBookController implements Controller {
     
     public RecipeBook recipeBook;
