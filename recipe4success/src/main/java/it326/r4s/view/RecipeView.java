@@ -74,6 +74,40 @@ public class RecipeView implements CLI_View{
         }
     }
 
+    public void displayRecipe(){
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("Name: " + recipeController.getRecipe().getName());
+        System.out.println("Description: " + recipeController.getRecipe().getDescription());
+        System.out.println("Serving Size: " + recipeController.getRecipe().getServingSize());
+        System.out.println("Created on: " + recipeController.getRecipe().getCreatedOn());
+        System.out.println("Your rating: " + getUserRating() + " /5 stars");
+        System.out.println();
+        System.out.println("Ingredients: ");
+        displayIngredients();
+        System.out.println();
+        System.out.println("Instructions: ");
+        displayInstructions();
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");   
+    } 
+    //TODO: behaviour to handle null values and format date better
+    //TODO: also add a rating display
+
+    public void displayRecipeOptions(){
+        System.out.println("");
+        System.out.println("                               -- Recipe Options --                                  ");
+        System.out.println("");
+        System.out.println("1) Edit recipe");
+        System.out.println("2) Rate this recipe");
+        System.out.println("3) Adjust serving size");
+        System.out.println("4) Export this recipe");
+        System.out.println("5) Delete this recipe");
+        System.out.println("6) Re-Display Recipe");
+        System.out.println("7) Go back");
+        System.out.println();
+    }
+
     private int getNewServingSize() {
         Scanner scan = ViewUtilities.scan;
         int servingSize = -1;
@@ -93,27 +127,6 @@ public class RecipeView implements CLI_View{
         return servingSize;
     }
 
-    public void displayRecipe(){
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("Name: " + recipeController.getRecipe().getName());
-        System.out.println("Description: " + recipeController.getRecipe().getDescription());
-        System.out.println("Serving Size: " + recipeController.getRecipe().getServingSize());
-        System.out.println("Created on: " + recipeController.getRecipe().getCreatedOn());
-        System.out.println("Your rating: " + retUserRating() + " /5 stars");
-        System.out.println();
-        System.out.println("Ingredients: ");
-        displayIngredients();
-        System.out.println();
-        System.out.println("Instructions: ");
-        displayInstructions();
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");   
-    } 
-    //TODO: behaviour to handle null values and format date better
-    //TODO: also add a rating display
-     
-    
     private void displayIngredients() {
         recipeController.getIngredientListController().getIngredientListView().displayIngredients();
     }
@@ -128,26 +141,12 @@ public class RecipeView implements CLI_View{
         }
     }
 
-    private String retUserRating(){
+    private String getUserRating(){
         try{
             return String.valueOf(recipeController.getRecipe().getReviews().get(0).getRatingValue());
         } catch (Exception e) {
             return "none";
         }
-    }
-
-    public void displayRecipeOptions(){
-        System.out.println("");
-        System.out.println("                               -- Recipe Options --                                  ");
-        System.out.println("");
-        System.out.println("1) Edit recipe");
-        System.out.println("2) Rate this recipe");
-        System.out.println("3) Adjust serving size");
-        System.out.println("4) Export this recipe");
-        System.out.println("5) Delete this recipe");
-        System.out.println("6) Re-Display Recipe");
-        System.out.println("7) Go back");
-        System.out.println();
     }
 
     public void editRecipe(Recipe recipe) {
