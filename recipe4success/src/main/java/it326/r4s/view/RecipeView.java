@@ -8,6 +8,7 @@ import javax.lang.model.util.ElementScanner14;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UserController;
+import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Recipe;
 
 /**
@@ -178,6 +179,18 @@ public class RecipeView implements CLI_View{
             System.out.println("...deleting " + recipeController.getRecipeName());
             return true;
         }
+
+    }
+
+    public static class RecipeBuilderView{
+
+        private RecipeBuilderController rBuildController;
+
+        public RecipeBuilderView(RecipeBuilderController rBuildController){
+            this.rBuildController = rBuildController;
+        }
+        
+
 
     }
 

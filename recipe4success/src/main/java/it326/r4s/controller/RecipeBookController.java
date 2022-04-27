@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
+import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Recipe;
 import it326.r4s.model.RecipeBook;
 import it326.r4s.model.Recipe.RecipeBuilder;
@@ -92,6 +93,19 @@ public class RecipeBookController implements CLI_Controller {
         //TODO - this is req 1. Is it done? Delete this todo if so.
         Scanner scan = ViewUtilities.scan;
 
+        RecipeBuilderController rBuildController = new RecipeBuilderController();
+
+        //Name
+
+        //Desc
+
+        //Serving size
+
+        //instructions
+
+        //categories (if any)
+
+        //ingredients
         
         String name = "";
         String description;

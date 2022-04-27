@@ -7,6 +7,7 @@ import it326.r4s.model.Review;
 import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
 import it326.r4s.view.RecipeView;
+import it326.r4s.view.RecipeView.RecipeBuilderView;
 /**
  * Controller for R4S Recipe
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -93,5 +94,20 @@ public class RecipeController implements CLI_Controller{
         recipe.setServingSize(newServingSize);
     }
 
+    public static class RecipeBuilderController {
+
+        private RecipeBuilderView rBuildView;
+
+        public RecipeBuilderController(){
+            this.rBuildView = new RecipeBuilderView(this);
+        }
+
+        public Recipe buildUserRecipe(){
+
+            
+
+            return null; //TODO: implement
+        }
+    }
 
 }
