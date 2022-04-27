@@ -45,8 +45,10 @@ public class RecipeBookView implements CLI_View {
                     rbController.createRecipe();
                     break;
                 case "5":
-                    displayRecipeBook(rbController.getRecipeBook());
-                    rbController.selectRecipe();
+                    displayRecipeBook();
+                    if (askSelectRecipe()){
+                        rbController.selectRecipe(rbController.getRecipeBook().getRecipes());
+                    }
                     break;
                 case "6":
                     return;
@@ -57,6 +59,19 @@ public class RecipeBookView implements CLI_View {
             }
             displayOptions();
         }
+    }
+
+    private boolean askSelectRecipe() {
+        Scanner scan = ViewUtilities.scan;
+        String input = "";
+        do{
+        System.out.println("Would you like to select a recipe? (Y/N)");
+        input = scan.nextLine().toLowerCase();
+        } while ( !(input.equals("y") || input.equals("n")) );
+        if(input.equals("n")){
+            return false;
+        }
+        return true;
     }
 
     public void displayHeader(){
@@ -87,16 +102,21 @@ public class RecipeBookView implements CLI_View {
         return null;
     }
 
-    public void displayRecipeBook(RecipeBook recipeBook) {
-        //TODO: Logic to display the recipebook to the screen
+    public void displayRecipeBook() {
+        int i = 1;
+        for(RecipeController recipeController: rbController.getRecipeControllers()){
+            System.out.print(i + ") ");
+            recipeController.getRecipeView().displayOneline();
+            i++;
+        }
     }
 
-    public RecipeController getSelectedRecipe(ArrayList<RecipeController> recipeControllers) throws RuntimeException{
-        displayRecipes(recipeControllers);
-
+    public RecipeController getSelectedRecipe(ArrayList<RecipeController> recipeControllers) throws RuntimeException{        
         String input;
         int inputNum = -1;
+
         Scanner scan = ViewUtilities.scan;
+
         do{
             System.out.println("\n Which recipe would you like to select?");
             System.out.println("(please type the selection number or type \"exit\" to go back)");
@@ -107,23 +127,19 @@ public class RecipeBookView implements CLI_View {
             }
 
             try{
-                inputNum = Integer.parseInt(scan.nextLine());
+                inputNum = Integer.parseInt(input);
             } catch (Exception e){
                 System.out.println("Invalid selection, selection must be a number.");
+                continue;
             }
             
             if (inputNum <= 0 || recipeControllers.size() < inputNum){
                 System.out.println("Invalid selection, selection out of range.");
             }
+
         } while(inputNum <= 0 || recipeControllers.size() < inputNum);
 
         return recipeControllers.get(inputNum);
-    }
-
-    public void displayRecipes(ArrayList<RecipeController> recipeControllers) {
-        for(int i = 0; i < recipeControllers.size(); i++){
-            System.out.println(i + ") " + recipeControllers.get(i));
-        }
     }
 
 }

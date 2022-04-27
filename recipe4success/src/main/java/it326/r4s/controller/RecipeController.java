@@ -20,6 +20,10 @@ public class RecipeController implements CLI_Controller{
         this.recipeView = new RecipeView(this);
     }
 
+    public RecipeView getRecipeView(){
+        return recipeView;
+    }
+
     public void executeView() {
         recipeView.execute();
     }
@@ -29,7 +33,11 @@ public class RecipeController implements CLI_Controller{
     }
     
     public String getRecipeName() {
-        return null; //TODO: is this used anywhere? delete if not
+        return theRecipe.getName();
+    }
+
+    public String getRecipeDescription() {
+        return theRecipe.getDescription();
     }
 
     public void addReview(User theUser){

@@ -196,15 +196,24 @@ public class Recipe extends Entity implements Categorizable, Portable {
         }
 
         Recipe otherRecipe = (Recipe) obj;
-        if (this.name.equals(otherRecipe.getName())) return false;
+        if ( !(this.name.equals(otherRecipe.getName())) ){
+            return false;
+        }
+
         if(this.ingredientList != null){
-            if (this.ingredientList.equals(otherRecipe.getIngredientList())) return false;
+            if ( !(this.ingredientList.equals(otherRecipe.getIngredientList())) )
+                return false;
         }
         else{
             if(otherRecipe.getIngredientList() != null)
                 return false;
         }
-        return this.servingSize == otherRecipe.getServingSize();
+
+        if(this.servingSize != otherRecipe.getServingSize()){
+            return false;
+        }
+
+        return true;
     }
 
     //* RecipeBuilder inner builder class for Recipe.java *\\

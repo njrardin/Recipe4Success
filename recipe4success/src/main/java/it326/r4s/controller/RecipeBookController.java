@@ -29,6 +29,14 @@ public class RecipeBookController implements CLI_Controller {
         return this.recipeBook;
     }
 
+    public ArrayList<RecipeController> getRecipeControllers(){
+        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
+        for(Recipe recipe: recipeBook.getRecipes()){
+            recipeControllers.add(new RecipeController(recipe));
+        }
+        return recipeControllers;
+    }
+
     public void executeView(){
         recipeBookView.execute();
     }
@@ -66,8 +74,15 @@ public class RecipeBookController implements CLI_Controller {
         //TODO - req 9
     }
 
-    public void selectRecipe(){
-
+    public void selectRecipe(Collection<Recipe> recipes){
+        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
+        for(Recipe recipe: recipes){
+            recipeControllers.add(new RecipeController(recipe));
+        }
+        try{
+            RecipeController selectedRecipe = recipeBookView.getSelectedRecipe(recipeControllers);
+            selectedRecipe.executeView();
+        } catch (RuntimeException e) { /*do nothing*/ }
     }
 
     public void viewRecipes(){
@@ -183,6 +198,5 @@ public class RecipeBookController implements CLI_Controller {
 
         System.out.println("Perfect! Your recipe is complete.");
         recipeBook.addRecipe(newRecipe);
-
     }
 }
