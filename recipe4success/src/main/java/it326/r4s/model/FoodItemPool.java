@@ -3,7 +3,7 @@ package it326.r4s.model;
 import java.util.HashSet;
 public class FoodItemPool {
 
-    private static HashSet<FoodItem> foodItems;
+    private static HashSet<FoodItem> foodItems = new HashSet<FoodItem>();
 
     public static boolean addFoodItem(FoodItem foodItem){
         for(FoodItem poolItem: foodItems){
