@@ -26,6 +26,6 @@ public class RecipeSearchController implements CLI_Controller{
     }
 
     public ArrayList<Recipe> searchFor(String searchQuery) {
-        return null; //TODO: implement
+        return recipeSearch.searchFor(searchQuery);
     }
 }
