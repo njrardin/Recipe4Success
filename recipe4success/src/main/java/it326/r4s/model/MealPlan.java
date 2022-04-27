@@ -8,7 +8,7 @@ import java.util.*;
 * @date: 4/14/2022
 */
 
-public class MealPlan extends Entity implements Categorizable, Portable {
+public class MealPlan extends Entity implements Portable {
     private String name;
     private String description;
     private List<Meal> meals;

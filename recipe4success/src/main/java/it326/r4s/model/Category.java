@@ -5,7 +5,7 @@ package it326.r4s.model;
  * @author Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/6/22
  */
-public class Category implements Categorizable {
+public class Category {
     private String name;
 
     public Category(String name) {
