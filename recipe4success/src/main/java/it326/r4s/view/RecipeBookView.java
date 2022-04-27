@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
-import it326.r4s.model.Recipe;
-import it326.r4s.model.RecipeBook;
 /**
  * View for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -24,6 +22,7 @@ public class RecipeBookView implements CLI_View {
         Scanner scan = ViewUtilities.scan;
 
         displayHeader();
+        displayRecipeBook();
         displayOptions();
         while (true) {
             System.out.print("Please type the number corresponding to the option you wish to select: ");
@@ -45,8 +44,7 @@ public class RecipeBookView implements CLI_View {
                     rbController.createRecipe();
                     break;
                 case "5":
-                    displayRecipeBook(rbController.getRecipeBook());
-                    rbController.selectRecipe();
+                    rbController.selectRecipe(rbController.getRecipeBook().getRecipes());
                     break;
                 case "6":
                     return;
@@ -57,6 +55,19 @@ public class RecipeBookView implements CLI_View {
             }
             displayOptions();
         }
+    }
+
+    private boolean askSelectRecipe() {
+        Scanner scan = ViewUtilities.scan;
+        String input = "";
+        do{
+        System.out.println("Would you like to select a recipe? (Y/N)");
+        input = scan.nextLine().toLowerCase();
+        } while ( !(input.equals("y") || input.equals("n")) );
+        if(input.equals("n")){
+            return false;
+        }
+        return true;
     }
 
     public void displayHeader(){
@@ -77,25 +88,44 @@ public class RecipeBookView implements CLI_View {
         System.out.println("2) Import a recipe");
         System.out.println("3) Export a recipe");
         System.out.println("4) Create a new recipe");
-        System.out.println("5) View all recipes");
+        System.out.println("5) View/Select recipes");
         System.out.println("6) Go back");
         System.out.println();
     }
 
     public String getSearchQuery() {
-        //TODO: get user input to search for recipe
-        return null;
+        Scanner scan = ViewUtilities.scan;
+        String input = "";
+        do{
+            System.out.println("Please enter the term to search the recipes for:");
+            input = scan.nextLine().toLowerCase();
+        } while (input == "");
+
+        return input;
     }
 
-    public void displayRecipeBook(RecipeBook recipeBook) {
-        //TODO: Logic to display the recipebook to the screen
+    public void displayRecipeBook() {
+        displayRecipes(rbController.getRecipeControllers());
     }
 
-    public RecipeController getSelectedRecipe(ArrayList<RecipeController> recipeControllers) throws RuntimeException{
+    public void displayRecipes(ArrayList<RecipeController> recipeControllers){
+        int i = 1;
+        for(RecipeController recipeController: recipeControllers){
+            System.out.print(i + ") ");
+            recipeController.getRecipeView().displayOneline();
+            i++;
+        }
+    }
+
+    public RecipeController displayAndSelect(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
         displayRecipes(recipeControllers);
+        if (askSelectRecipe() == false){
+            throw new RuntimeException();
+        }    
 
         String input;
         int inputNum = -1;
+
         Scanner scan = ViewUtilities.scan;
         do{
             System.out.println("\n Which recipe would you like to select?");
@@ -107,23 +137,19 @@ public class RecipeBookView implements CLI_View {
             }
 
             try{
-                inputNum = Integer.parseInt(scan.nextLine());
+                inputNum = Integer.parseInt(input);
             } catch (Exception e){
                 System.out.println("Invalid selection, selection must be a number.");
+                continue;
             }
             
             if (inputNum <= 0 || recipeControllers.size() < inputNum){
                 System.out.println("Invalid selection, selection out of range.");
             }
+
         } while(inputNum <= 0 || recipeControllers.size() < inputNum);
 
-        return recipeControllers.get(inputNum);
-    }
-
-    public void displayRecipes(ArrayList<RecipeController> recipeControllers) {
-        for(int i = 0; i < recipeControllers.size(); i++){
-            System.out.println(i + ") " + recipeControllers.get(i));
-        }
+        return recipeControllers.get(inputNum - 1);
     }
 
 }

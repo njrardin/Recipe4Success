@@ -14,9 +14,9 @@ public class Recipe extends Entity implements Portable {
     private int servingSize;
     private Date createdOn;
     private IngredientList ingredientList;
-    private List<Review> reviews;
-    private List<Category> categories;
-    private List<String> instructions;
+    private ArrayList<Review> reviews;
+    private ArrayList<Category> categories;
+    private ArrayList<String> instructions;
 
     //* Constructor *\\
 
@@ -163,7 +163,7 @@ public class Recipe extends Entity implements Portable {
      * Accessor for the recipe's reviews
      * @return the List<Review> of the recipe's reviews
      */
-    public List<Review> getReviews() {
+    public ArrayList<Review> getReviews() {
         return this.reviews;
     }
 
@@ -171,11 +171,11 @@ public class Recipe extends Entity implements Portable {
      * Accessor for the recipe's list of categories
      * @return the List<Category> of the recipe's categories
      */
-    public List<Category> getCategories() {
+    public ArrayList<Category> getCategories() {
         return this.categories;
     }
 
-    public List<String> getInstructions() {
+    public ArrayList<String> getInstructions() {
         return new ArrayList<String>(this.instructions);
     }
 
@@ -196,15 +196,24 @@ public class Recipe extends Entity implements Portable {
         }
 
         Recipe otherRecipe = (Recipe) obj;
-        if (this.name.equals(otherRecipe.getName())) return false;
+        if ( !(this.name.equals(otherRecipe.getName())) ){
+            return false;
+        }
+
         if(this.ingredientList != null){
-            if (this.ingredientList.equals(otherRecipe.getIngredientList())) return false;
+            if ( !(this.ingredientList.equals(otherRecipe.getIngredientList())) )
+                return false;
         }
         else{
             if(otherRecipe.getIngredientList() != null)
                 return false;
         }
-        return this.servingSize == otherRecipe.getServingSize();
+
+        if(this.servingSize != otherRecipe.getServingSize()){
+            return false;
+        }
+
+        return true;
     }
 
     //* RecipeBuilder inner builder class for Recipe.java *\\
@@ -222,9 +231,9 @@ public class Recipe extends Entity implements Portable {
         private int servingSize;
         private Date createdOn;
         private IngredientList ingredientList;
-        private List<Review> reviews;
-        private List<Category> categories;
-        private List<String> instructions;
+        private ArrayList<Review> reviews;
+        private ArrayList<Category> categories;
+        private ArrayList<String> instructions;
 
         //* Constructor *\\
 
@@ -293,7 +302,7 @@ public class Recipe extends Entity implements Portable {
          * @param reviews
          * @return RecipeBuilder
          */
-        public RecipeBuilder setReviews(List<Review> reviews){
+        public RecipeBuilder setReviews(ArrayList<Review> reviews){
             this.reviews = reviews;
             return this;
         }
@@ -303,7 +312,7 @@ public class Recipe extends Entity implements Portable {
          * @param categories
          * @return RecipeBuilder
          */
-        public RecipeBuilder setCategories(List<Category> categories){
+        public RecipeBuilder setCategories(ArrayList<Category> categories){
             this.categories = categories;
             return this;
         }
@@ -313,7 +322,7 @@ public class Recipe extends Entity implements Portable {
          * @param instructions
          * @return RecipeBuilder
          */
-        public RecipeBuilder setInstructions(List<String> instructions){
+        public RecipeBuilder setInstructions(ArrayList<String> instructions){
             this.instructions = instructions;
             return this;
         }

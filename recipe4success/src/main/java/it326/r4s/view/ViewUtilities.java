@@ -8,5 +8,5 @@ import java.util.Scanner;
  */
 public class ViewUtilities {
     
-    public static Scanner scan = new Scanner(System.in);
+    public static Scanner scan = new Scanner(System.in); //TODO: better version of this mess
 }

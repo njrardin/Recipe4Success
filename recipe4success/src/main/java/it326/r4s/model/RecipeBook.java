@@ -36,11 +36,11 @@ public class RecipeBook extends Entity {
     public boolean addRecipe(Recipe toAdd) {
         for (Recipe recipe : recipes) {
             if (recipe.equals(toAdd)) {
-                recipes.add(toAdd);
-                return true;
+                return false;
             }
         }
-        return false;
+        recipes.add(toAdd);
+        return true;
     }
 
     public void updateRecipe(Recipe newRecipe, Recipe oldRecipe){

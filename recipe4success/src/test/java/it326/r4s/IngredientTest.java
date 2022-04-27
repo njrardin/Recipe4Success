@@ -48,7 +48,7 @@ public class IngredientTest {
         public void quantityConverted(){
 
             final Unit INIT_UNIT = Unit.TEASPOON; //this should be irrelevant but is changable here just in case
-            Ingredient theIngredient = new Ingredient(new FoodItem(), initialQuantity, INIT_UNIT);
+            Ingredient theIngredient = new Ingredient(new FoodItem("ITEM"), initialQuantity, INIT_UNIT);
 
             boolean returnedValidity = theIngredient.changeUnit(INIT_UNIT);
             
@@ -87,7 +87,7 @@ public class IngredientTest {
         public void unitConverted(){
 
             final double TEST_QUANTITY = 10; //should be irrelevant but is changable here
-            Ingredient theIngredient = new Ingredient(new FoodItem(), TEST_QUANTITY, initialUnit);
+            Ingredient theIngredient = new Ingredient(new FoodItem("ITEM"), TEST_QUANTITY, initialUnit);
 
             theIngredient.changeUnit(newUnit);
 

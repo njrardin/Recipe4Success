@@ -67,7 +67,7 @@ public class RecipeTest {
     @Test
     public void testRemoveIngredient(){
         IngredientList ingredientList = new IngredientList();
-        Ingredient testIngredient = new Ingredient(new FoodItem(), 1, Unit.CUP);
+        Ingredient testIngredient = new Ingredient(new FoodItem("ITEM"), 1, Unit.CUP);
         ingredientList.addIngredient(testIngredient);
         
         Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Ingredientlist").setIngredientList(ingredientList).build();
@@ -80,7 +80,7 @@ public class RecipeTest {
     @Test
     public void testAddIngredient(){
         IngredientList ingredientList = new IngredientList();
-        Ingredient testIngredient = new Ingredient(new FoodItem(), 1, Unit.CUP);
+        Ingredient testIngredient = new Ingredient(new FoodItem("ITEM"), 1, Unit.CUP);
         
         Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Ingredientlist").setIngredientList(ingredientList).build();
         
