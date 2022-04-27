@@ -1,5 +1,6 @@
 package it326.r4s.controller;
 
+import it326.r4s.model.FoodItem;
 import it326.r4s.model.GroceryList;
 import it326.r4s.view.GroceryListView;
 
@@ -21,5 +22,32 @@ public class GroceryListController {
     public void executeView() {
         glView.execute();
     }
-    
+
+    public void printGroceryList() {
+        //TODO: req 20
+    }
+
+    public void exportGroceryList() {
+        //TODO: req 20
+    }
+
+    public void addItem() {
+        //TODO: req 21
+    }
+
+    public void removeItem() {
+        //TODO: req 22
+    }
+
+    public void moveToPantry() {
+        //TODO: req 23
+    }
+
+    public void organizeGroceryList() {
+        //TODO: req 24
+    }
+
+    public void viewGroceryList() {
+
+    }
 }
