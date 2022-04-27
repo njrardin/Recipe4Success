@@ -14,9 +14,9 @@ public class Recipe extends Entity implements Categorizable, Portable {
     private int servingSize;
     private Date createdOn;
     private IngredientList ingredientList;
-    private List<Review> reviews;
-    private List<Category> categories;
-    private List<String> instructions;
+    private ArrayList<Review> reviews;
+    private ArrayList<Category> categories;
+    private ArrayList<String> instructions;
 
     //* Constructor *\\
 
@@ -231,9 +231,9 @@ public class Recipe extends Entity implements Categorizable, Portable {
         private int servingSize;
         private Date createdOn;
         private IngredientList ingredientList;
-        private List<Review> reviews;
-        private List<Category> categories;
-        private List<String> instructions;
+        private ArrayList<Review> reviews;
+        private ArrayList<Category> categories;
+        private ArrayList<String> instructions;
 
         //* Constructor *\\
 
@@ -302,7 +302,7 @@ public class Recipe extends Entity implements Categorizable, Portable {
          * @param reviews
          * @return RecipeBuilder
          */
-        public RecipeBuilder setReviews(List<Review> reviews){
+        public RecipeBuilder setReviews(ArrayList<Review> reviews){
             this.reviews = reviews;
             return this;
         }
@@ -312,7 +312,7 @@ public class Recipe extends Entity implements Categorizable, Portable {
          * @param categories
          * @return RecipeBuilder
          */
-        public RecipeBuilder setCategories(List<Category> categories){
+        public RecipeBuilder setCategories(ArrayList<Category> categories){
             this.categories = categories;
             return this;
         }
@@ -322,7 +322,7 @@ public class Recipe extends Entity implements Categorizable, Portable {
          * @param instructions
          * @return RecipeBuilder
          */
-        public RecipeBuilder setInstructions(List<String> instructions){
+        public RecipeBuilder setInstructions(ArrayList<String> instructions){
             this.instructions = instructions;
             return this;
         }
