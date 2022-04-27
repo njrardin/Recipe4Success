@@ -5,7 +5,7 @@ package it326.r4s.controller;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public interface Controller {
+public interface CLI_Controller {
     
     public void executeView();
 }

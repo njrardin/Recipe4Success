@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import it326.r4s.model.Recipe;
 import it326.r4s.model.RecipeBook;
-import it326.r4s.model.RecipeSearch;
 import it326.r4s.model.Recipe.RecipeBuilder;
 import it326.r4s.view.RecipeBookView;
 import it326.r4s.view.RecipeView;
@@ -16,7 +15,7 @@ import it326.r4s.view.ViewUtilities;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeBookController implements Controller {
+public class RecipeBookController implements CLI_Controller {
     
     public RecipeBook recipeBook;
     public RecipeBookView recipeBookView;
@@ -24,6 +23,10 @@ public class RecipeBookController implements Controller {
     public RecipeBookController(RecipeBook recipeBook){
         this.recipeBook = recipeBook;
         this.recipeBookView = new RecipeBookView(this);
+    }
+
+    public RecipeBook getRecipeBook(){
+        return this.recipeBook;
     }
 
     public void executeView(){
@@ -35,7 +38,18 @@ public class RecipeBookController implements Controller {
     }
     
     public void searchRecipes() {
-        //TODO - is this req 6? Delete this todo if not.
+        RecipeSearchController rsController = new RecipeSearchController(recipeBook.getRecipes());
+        String searchQuery = recipeBookView.getSearchQuery(); //TODO: fix this for when the SQ is null
+        ArrayList<Recipe> returnRecipes = rsController.searchFor(searchQuery);
+        
+        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
+        for(Recipe recipe: returnRecipes){
+            recipeControllers.add(new RecipeController(recipe));
+        }
+        try{
+            RecipeController selectedRecipe = recipeBookView.getSelectedRecipe(recipeControllers);
+            selectedRecipe.executeView();
+        } catch (RuntimeException e) { /*do nothing*/ }
     }
     
     public void importRecipe() {

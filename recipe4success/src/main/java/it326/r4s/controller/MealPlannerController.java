@@ -7,7 +7,7 @@ import it326.r4s.view.MealPlannerView;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlannerController implements Controller {
+public class MealPlannerController implements CLI_Controller {
     
     private MealPlanner mealPlanner;
     private MealPlannerView mealPlannerView;

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import it326.r4s.controller.RecipeController;
+import it326.r4s.controller.UserController;
 import it326.r4s.model.Recipe;
 /**
  * View for R4S Recipe
@@ -12,18 +13,80 @@ import it326.r4s.model.Recipe;
  */
 public class RecipeView implements CLI_View{
 
-    private RecipeController rController;
+    private RecipeController recipeController;
 
-    public RecipeView(RecipeController rController){
-        this.rController = rController;
+    public RecipeView(RecipeController recipeController){
+        this.recipeController = recipeController;
     }
-
+    
     public void execute(){
-        Scanner scan = new Scanner(System.in);
+        String input = "";
+        Scanner scan = ViewUtilities.scan;
+        displayRecipe();
+        displayRecipeOptions();
+
+        input = scan.nextLine().toLowerCase();
+        System.out.println();
+        while(true){
+            switch (input) {
+                case "1":
+                    recipeController.editRecipe();
+                    break;
+                case "2":
+                    recipeController.addReview(UserController.getGlobalUser());
+                    break;
+                case "3":
+                    recipeController.exportRecipe();
+                    break;
+                case "4":
+                    recipeController.deleteRecipe();
+                    break;
+                case "5":
+                    displayRecipe();
+                    break;
+                case "6":
+                    return;
+                case "options":
+                    break;
+                case "back":
+                    return;
+                default:
+                    System.out.println("Invalid input, please try again\n");
+            }
+            displayRecipeOptions();
+        }
         //Display things and at some point utilize the following methods
         // rateRecipe(theRecipe, Scanner scan);
         // deleteRecipe(theRecipe);
         // editRecipe(theRecipe);
+    }
+
+    public void displayRecipe(){
+        System.out.println("  ,----------------------------------------------------------------------------------");
+        System.out.println("/------------------------------------------------------------------------------------");
+        System.out.println("--- Recipe Name:                                                                  ---");
+        System.out.println("---                                                                               ---");
+        System.out.println("---               Recipe DescriptionRecipe DescriptionRecipe DescriptionRecipe De ---");
+        System.out.println("--- scriptionRecipe DescriptionRecipe DescriptionRecipe DescriptionRecipe Descript---");
+        System.out.println("---                                                                               ---");
+        System.out.println("---                                                                               ---");
+        System.out.println("--- Serving size: X            Created on: dd/mm/yy               Rating: 4/5     ---");
+        System.out.println("---                                                                               ---");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");   
+    }
+     
+    public void displayRecipeOptions(){
+        System.out.println("");
+        System.out.println("                               -- Recipe Options --                                  ");
+        System.out.println("");
+        System.out.println("1) Edit recipe");
+        System.out.println("2) Rate this recipe");
+        System.out.println("3) Export this recipe");
+        System.out.println("4) Delete this recipe");
+        System.out.println("5) Re-Display Recipe");
+        System.out.println("6) Go back");
+        System.out.println();
     }
 
     public int getReviewRating(){
@@ -36,13 +99,13 @@ public class RecipeView implements CLI_View{
             ratingNum = Integer.parseInt(scan.nextLine());
         } while (Arrays.asList(acceptableRatings).contains(ratingNum));
 
-        System.out.println("You have successfully rated " + rController.getRecipeName() + " with a total of " + ratingNum + "/5 stars.");
+        System.out.println("You have successfully rated " + recipeController.getRecipeName() + " with a total of " + ratingNum + "/5 stars.");
         scan.close();
         return ratingNum;
     }
 
     public void displayOneline() {
-        System.out.println(rController.getRecipe().toString());
+        System.out.println(recipeController.getRecipe().toString());
     }
 
 }

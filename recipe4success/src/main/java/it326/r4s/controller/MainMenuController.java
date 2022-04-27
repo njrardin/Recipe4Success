@@ -7,7 +7,7 @@ import it326.r4s.view.MainMenuView;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class MainMenuController {
+public class MainMenuController implements CLI_Controller{
     
     private User user;
     private MainMenuView mainMenuView;

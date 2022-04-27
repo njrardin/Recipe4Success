@@ -1,11 +1,14 @@
 package it326.r4s.controller;
-
 /**
  * Controller for R4S MealPlan
  * @author Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlanController {
+public class MealPlanController implements CLI_Controller {
+    
+    public void executeView(){
+    
+    }
     
     public void addRecipeToMP() {
         //TODO - req 12

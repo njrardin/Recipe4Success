@@ -10,30 +10,29 @@ import it326.r4s.view.RecipeView;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeController {
+public class RecipeController implements CLI_Controller{
     
     public Recipe theRecipe;
     public RecipeView recipeView;
-
+    
     public RecipeController(Recipe recipe){
         this.theRecipe = recipe;
         this.recipeView = new RecipeView(this);
     }
 
-    public void adjustServingSize() {
-        //TODO - req 5
+    public void executeView() {
+        recipeView.execute();
     }
 
-    public static void deleteRecipe(){
-        //TODO - req 3
+    public Recipe getRecipe(){
+        return this.theRecipe;
+    }
+    
+    public String getRecipeName() {
+        return null; //TODO: is this used anywhere? delete if not
     }
 
-    public static void editRecipe(){
-        //TODO - req 2
-    }
-
-
-    public void addReview(User theUser){ //TODO - is this req 4? Is it done? Delete this todo if so.
+    public void addReview(User theUser){
         int ratingNum = recipeView.getReviewRating();
         Rating rating = null;
 
@@ -58,11 +57,17 @@ public class RecipeController {
         theRecipe.addReview(newReview);
     }
 
-    public Recipe getRecipe(){
-        return this.theRecipe;
+    public void editRecipe(){
+        //TODO: implement
     }
 
-    public String getRecipeName() {
-        return null;
-    }
+	public void exportRecipe() {
+        //TODO: This is Alex's problem lmao
+	}
+
+	public void deleteRecipe() {
+        //TODO: implement
+	}
+
+
 }
