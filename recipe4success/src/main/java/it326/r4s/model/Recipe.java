@@ -163,7 +163,7 @@ public class Recipe extends Entity implements Categorizable, Portable {
      * Accessor for the recipe's reviews
      * @return the List<Review> of the recipe's reviews
      */
-    public List<Review> getReviews() {
+    public ArrayList<Review> getReviews() {
         return this.reviews;
     }
 
@@ -171,11 +171,11 @@ public class Recipe extends Entity implements Categorizable, Portable {
      * Accessor for the recipe's list of categories
      * @return the List<Category> of the recipe's categories
      */
-    public List<Category> getCategories() {
+    public ArrayList<Category> getCategories() {
         return this.categories;
     }
 
-    public List<String> getInstructions() {
+    public ArrayList<String> getInstructions() {
         return new ArrayList<String>(this.instructions);
     }
 
