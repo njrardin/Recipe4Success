@@ -146,8 +146,4 @@ public class MealPlan extends Entity implements Portable {
         }
         return this.name + ":\nDescription: " + this.description + "\nMeals:\n" + temp;
     }
-
-    public Date getCreatedOn() {
-        return (Date) this.createdOn.clone();
-    }
 }
