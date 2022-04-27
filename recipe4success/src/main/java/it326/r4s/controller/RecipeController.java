@@ -94,6 +94,11 @@ public class RecipeController implements CLI_Controller{
         recipe.setServingSize(newServingSize);
     }
 
+    /**
+ * Controller for R4S RecipeBuilder
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/27/22
+ */
     public static class RecipeBuilderController {
 
         private RecipeBuilderView rBuildView;
@@ -102,11 +107,31 @@ public class RecipeController implements CLI_Controller{
             this.rBuildView = new RecipeBuilderView(this);
         }
 
-        public Recipe buildUserRecipe(){
+        public Recipe buildUserRecipe() throws RuntimeException{
 
+            Recipe newRecipe;
+
+            //build name
+            Recipe.RecipeBuilder rBuild = new Recipe.RecipeBuilder(rBuildView.getRecipeNameFromUser());
             
+            rBuild.setDescription(rBuildView.getDescriptionFromUser());
 
-            return null; //TODO: implement
+            rBuild.setServingSize(rBuildView.getServingSizeFromUser());
+
+            rBuild.setInstructions(rBuildView.getInstructionsFromUser());
+
+            rBuild.setIngredientList(rBuildView.getIngredientsFromUser());
+
+            rBuild.setCategories(rBuildView.getCategoriesFromUser());
+
+            if (rBuildView.confirmBuild()){
+                newRecipe = rBuild.build();
+            }
+            else{
+                throw new RuntimeException();
+            } //TODO: patch in edit system here
+
+            return newRecipe;
         }
     }
 
