@@ -35,10 +35,6 @@ public class RecipeController implements CLI_Controller{
         return this.recipe;
     }
 
-    public String getRecipeDescription() {
-        return recipe.getDescription();
-    }
-
     public void addReview(User theUser){
         int ratingNum = recipeView.getReviewRating();
         Rating rating = null;
