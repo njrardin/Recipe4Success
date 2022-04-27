@@ -1,5 +1,6 @@
 package it326.r4s.view;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -77,17 +78,21 @@ public class RecipeView implements CLI_View{
         displayInstructions();
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");   
-    }
+    } //TODO behaviour to handle null values and format date better.
      
     
     private void displayIngredients() {
-        recipeController.getIngredientListController().displayIngredients();
-        //TODO: this
+        recipeController.getIngredientListController().getIngredientListView().displayIngredients();
     }
     
     private void displayInstructions() {
-        recipeController.getInstructions();
-        //TODO: This 
+        ArrayList<String > instructions = recipeController.getInstructions();
+
+        int instNum = 1;
+        for(String instruction: instructions){
+            System.out.println(instNum + ") " + instruction);
+            instNum++;
+        }
     }
 
     public void displayRecipeOptions(){

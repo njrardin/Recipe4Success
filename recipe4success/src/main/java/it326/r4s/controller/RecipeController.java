@@ -1,5 +1,7 @@
 package it326.r4s.controller;
 
+import java.util.ArrayList;
+
 import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
 import it326.r4s.model.User;
@@ -12,11 +14,11 @@ import it326.r4s.view.RecipeView;
  */
 public class RecipeController implements CLI_Controller{
     
-    public Recipe theRecipe;
+    public Recipe recipe;
     public RecipeView recipeView;
     
     public RecipeController(Recipe recipe){
-        this.theRecipe = recipe;
+        this.recipe = recipe;
         this.recipeView = new RecipeView(this);
     }
 
@@ -29,15 +31,15 @@ public class RecipeController implements CLI_Controller{
     }
 
     public Recipe getRecipe(){
-        return this.theRecipe;
+        return this.recipe;
     }
     
     public String getRecipeName() {
-        return theRecipe.getName();
+        return recipe.getName();
     }
 
     public String getRecipeDescription() {
-        return theRecipe.getDescription();
+        return recipe.getDescription();
     }
 
     public void addReview(User theUser){
@@ -62,7 +64,7 @@ public class RecipeController implements CLI_Controller{
                 break;
         }
         Review newReview = new Review(UserController.getGlobalUser(), rating);
-        theRecipe.addReview(newReview);
+        recipe.addReview(newReview);
     }
 
     public void editRecipe(){
@@ -77,11 +79,12 @@ public class RecipeController implements CLI_Controller{
         //TODO: implement
 	}
 
-    public void getInstructions() {
+    public ArrayList<String> getInstructions() {
+        return recipe.getInstructions();
     }
 
-    public RecipeView getIngredientListController() {
-        return null;
+    public IngredientListController getIngredientListController() {
+        return new IngredientListController(recipe.getIngredientList());
     }
 
 

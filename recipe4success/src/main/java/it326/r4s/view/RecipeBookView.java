@@ -149,7 +149,7 @@ public class RecipeBookView implements CLI_View {
 
         } while(inputNum <= 0 || recipeControllers.size() < inputNum);
 
-        return recipeControllers.get(inputNum);
+        return recipeControllers.get(inputNum - 1);
     }
 
 }
