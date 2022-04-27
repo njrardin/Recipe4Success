@@ -47,7 +47,7 @@ public class RecipeBookController implements CLI_Controller {
     
     public void searchRecipes() {
         RecipeSearchController rsController = new RecipeSearchController(recipeBook.getRecipes());
-        String searchQuery = recipeBookView.getSearchQuery(); //TODO: fix this for when the SQ is null
+        String searchQuery = recipeBookView.getSearchQuery();
         ArrayList<Recipe> returnRecipes = rsController.searchFor(searchQuery);
         
         selectRecipe(returnRecipes);
