@@ -77,5 +77,12 @@ public class RecipeController implements CLI_Controller{
         //TODO: implement
 	}
 
+    public void getInstructions() {
+    }
+
+    public RecipeView getIngredientListController() {
+        return null;
+    }
+
 
 }
