@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import javax.lang.model.util.ElementScanner14;
+
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UserController;
 import it326.r4s.model.Recipe;
@@ -42,7 +44,7 @@ public class RecipeView implements CLI_View{
                     break;
                 case "4":
                     recipeController.deleteRecipe();
-                    break;
+                    return;
                 case "5":
                     displayRecipe();
                     break;
@@ -67,6 +69,7 @@ public class RecipeView implements CLI_View{
         System.out.println("Description: " + recipeController.getRecipe().getDescription());
         System.out.println("Serving Size: " + recipeController.getRecipe().getServingSize());
         System.out.println("Created on: " + recipeController.getRecipe().getCreatedOn());
+        System.out.println("Your rating: " + retUserRating() + " /5 stars");
         System.out.println();
         System.out.println("Ingredients: ");
         displayIngredients();
@@ -94,6 +97,14 @@ public class RecipeView implements CLI_View{
         }
     }
 
+    private String retUserRating(){
+        try{
+            return String.valueOf(recipeController.getRecipe().getReviews().get(0).getRatingValue());
+        } catch (Exception e) {
+            return "none";
+        }
+    }
+
     public void displayRecipeOptions(){
         System.out.println("");
         System.out.println("                               -- Recipe Options --                                  ");
@@ -108,7 +119,7 @@ public class RecipeView implements CLI_View{
     }
 
     public int getReviewRating(){
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = ViewUtilities.scan;
         int acceptableRatings[] = {1,2,3,4,5};
         int ratingNum;
 
@@ -118,12 +129,29 @@ public class RecipeView implements CLI_View{
         } while (Arrays.asList(acceptableRatings).contains(ratingNum));
 
         System.out.println("You have successfully rated " + recipeController.getRecipeName() + " with a total of " + ratingNum + "/5 stars.");
-        scan.close();
         return ratingNum;
     }
 
     public void displayOneline() {
         System.out.println(recipeController.getRecipe().toString());
+    }
+
+    public boolean deletionConfirmation() {
+        Scanner scan = ViewUtilities.scan;
+        String input = "";
+        do{
+            System.out.println("Are you sure you want to delete " + recipeController.getRecipeName() + " from your recipe book? (Y/N)");
+            input = scan.nextLine().toLowerCase();
+        }  while ( !(input.equals("y") || input.equals("n") ));
+
+        if(input.equals("n")){
+            return false;
+        }
+        else{
+            System.out.println("...deleting " + recipeController.getRecipeName());
+            return true;
+        }
+
     }
 
 }

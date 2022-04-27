@@ -72,11 +72,13 @@ public class RecipeController implements CLI_Controller{
     }
 
 	public void exportRecipe() {
-        //TODO: This is Alex's problem lmao
+        //TODO: This is Alex's problem
 	}
 
 	public void deleteRecipe() {
-        //TODO: implement
+        if(recipeView.deletionConfirmation()){
+            UserController.getGlobalUser().getRecipeBook().removeRecipe(recipe);
+        }
 	}
 
     public ArrayList<String> getInstructions() {
