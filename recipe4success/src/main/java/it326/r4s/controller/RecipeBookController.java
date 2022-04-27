@@ -73,7 +73,7 @@ public class RecipeBookController implements CLI_Controller {
             recipeControllers.add(new RecipeController(recipe));
         }
         try{
-            RecipeController selectedRecipe = recipeBookView.getSelectedRecipe(recipeControllers);
+            RecipeController selectedRecipe = recipeBookView.displayAndSelect(recipeControllers);
             selectedRecipe.executeView();
         } catch (RuntimeException e) { /*do nothing*/ }
     }

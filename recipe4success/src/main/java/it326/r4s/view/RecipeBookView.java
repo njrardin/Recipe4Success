@@ -22,6 +22,7 @@ public class RecipeBookView implements CLI_View {
         Scanner scan = ViewUtilities.scan;
 
         displayHeader();
+        displayRecipeBook();
         displayOptions();
         while (true) {
             System.out.print("Please type the number corresponding to the option you wish to select: ");
@@ -43,10 +44,7 @@ public class RecipeBookView implements CLI_View {
                     rbController.createRecipe();
                     break;
                 case "5":
-                    displayRecipeBook();
-                    if (askSelectRecipe()){
-                        rbController.selectRecipe(rbController.getRecipeBook().getRecipes());
-                    }
+                    rbController.selectRecipe(rbController.getRecipeBook().getRecipes());
                     break;
                 case "6":
                     return;
@@ -90,7 +88,7 @@ public class RecipeBookView implements CLI_View {
         System.out.println("2) Import a recipe");
         System.out.println("3) Export a recipe");
         System.out.println("4) Create a new recipe");
-        System.out.println("5) View all recipes");
+        System.out.println("5) View/Select recipes");
         System.out.println("6) Go back");
         System.out.println();
     }
@@ -107,20 +105,28 @@ public class RecipeBookView implements CLI_View {
     }
 
     public void displayRecipeBook() {
+        displayRecipes(rbController.getRecipeControllers());
+    }
+
+    public void displayRecipes(ArrayList<RecipeController> recipeControllers){
         int i = 1;
-        for(RecipeController recipeController: rbController.getRecipeControllers()){
+        for(RecipeController recipeController: recipeControllers){
             System.out.print(i + ") ");
             recipeController.getRecipeView().displayOneline();
             i++;
         }
     }
 
-    public RecipeController getSelectedRecipe(ArrayList<RecipeController> recipeControllers) throws RuntimeException{        
+    public RecipeController displayAndSelect(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
+        displayRecipes(recipeControllers);
+        if (askSelectRecipe() == false){
+            throw new RuntimeException();
+        }    
+
         String input;
         int inputNum = -1;
 
         Scanner scan = ViewUtilities.scan;
-
         do{
             System.out.println("\n Which recipe would you like to select?");
             System.out.println("(please type the selection number or type \"exit\" to go back)");
