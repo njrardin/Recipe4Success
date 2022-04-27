@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
-import it326.r4s.model.Recipe;
-import it326.r4s.model.RecipeBook;
 /**
  * View for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -98,8 +96,14 @@ public class RecipeBookView implements CLI_View {
     }
 
     public String getSearchQuery() {
-        //TODO: get user input to search for recipe
-        return null;
+        Scanner scan = ViewUtilities.scan;
+        String input = "";
+        do{
+            System.out.println("Please enter the term to search the recipes for:");
+            input = scan.nextLine().toLowerCase();
+        } while (input != "");
+
+        return input;
     }
 
     public void displayRecipeBook() {
