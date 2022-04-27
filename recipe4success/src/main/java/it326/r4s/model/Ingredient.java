@@ -18,6 +18,13 @@ public class Ingredient {
         this.unit = unit;
     }
 
+    public Ingredient(String name, double quantity, Unit unit){
+
+        this.foodItem = new FoodItem(name);
+        this.quantity = quantity;
+        this.unit = unit;
+    }
+
     /**
      * Changes the unit of the Ingredient object and converts the quantity between units
      * @param newUnit - Unit enumeration representing the new unit

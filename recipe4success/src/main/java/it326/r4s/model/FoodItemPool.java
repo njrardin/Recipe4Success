@@ -6,6 +6,10 @@ public class FoodItemPool {
     private static HashSet<FoodItem> foodItems;
 
     public static boolean addFoodItem(FoodItem foodItem){
+        for(FoodItem poolItem: foodItems){
+            if(foodItem.equals(poolItem))
+                return false;
+        }
         return foodItems.add(foodItem);
     }
 

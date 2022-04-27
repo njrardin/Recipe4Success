@@ -1,31 +1,21 @@
 package it326.r4s.model;
 
-/*
-* TODO #4 - whoever implemented this class needs to write a header description.
-* See User.java for good header examples
-* 
-*/
-
+/**
+ * The Recipe object class for the Recipe4Success application
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/27/22
+ */
 public class FoodItem extends Entity {
     private String name;
-    private static int ID = 0;
 
-    // constructors
-    public FoodItem() {
-        super();
-        this.name = "FoodItem_" + ++ID;
-    }
-
-    public FoodItem(String name) {
-        super();
+    public FoodItem(String name){
         this.name = name;
-        ID++;
+        FoodItemPool.addFoodItem(this);
     }
 
-    // getters
-    public String getName() { return this.name; }
-
-    public int getID() { return ID; }
+    public String getName(){
+        return this.name;
+    }
 
     @Override
     public String toString() {
@@ -46,6 +36,6 @@ public class FoodItem extends Entity {
         }
 
         FoodItem otherFoodItem = (FoodItem) obj;
-        return this.name.equals(otherFoodItem.getName()) && ID == otherFoodItem.getID();
+        return this.name.equals(otherFoodItem.getName());
     }
 }
