@@ -16,31 +16,37 @@ public class UnitConverter {
     }
 
     public static enum Unit{
-        NONE(0,UnitType.NULL),
+        NONE(0, "Unit", UnitType.NULL),
         //Volume Units (Imperial units are US imperial. UK imperial is different); BASE UNIT = Milliliter
-        TEASPOON (4.928, UnitType.VOLUME), 
-        TABLESPOON (14.786, UnitType.VOLUME), 
-        FLUID_OUNCE (29.573, UnitType.VOLUME), 
-        CUP (240.000, UnitType.VOLUME), 
-        PINT (473.176, UnitType.VOLUME), 
-        QUART (946.353, UnitType.VOLUME), 
-        GALLON (3785.410, UnitType.VOLUME), 
-        MILLILITER (1.000, UnitType.VOLUME), 
-        LITER (1000.000, UnitType.VOLUME), 
+        TEASPOON (4.928, "Teaspoon", UnitType.VOLUME), 
+        TABLESPOON (14.786, "Tablespoon", UnitType.VOLUME), 
+        FLUID_OUNCE (29.573, "Fluid ounce", UnitType.VOLUME), 
+        CUP (240.000, "Cup", UnitType.VOLUME), 
+        PINT (473.176, "Pint", UnitType.VOLUME), 
+        QUART (946.353, "Quart", UnitType.VOLUME), 
+        GALLON (3785.410, "Gallon", UnitType.VOLUME), 
+        MILLILITER (1.000, "Milliliter", UnitType.VOLUME), 
+        LITER (1000.000, "Liter", UnitType.VOLUME), 
         
         //Mass/Weight Units; BASE UNIT = gram
-        POUND (453.592, UnitType.WEIGHT), 
-        OUNCE (28.350, UnitType.WEIGHT), 
-        MILLIGRAM (0.001, UnitType.MASS), 
-        GRAM (1.000, UnitType.MASS), 
-        KILOGRAM (1000.000, UnitType.MASS);
+        POUND (453.592, "Pound", UnitType.WEIGHT), 
+        OUNCE (28.350, "Ounce", UnitType.WEIGHT), 
+        MILLIGRAM (0.001, "Milligram", UnitType.MASS), 
+        GRAM (1.000, "Gram", UnitType.MASS), 
+        KILOGRAM (1000.000, "Killogram", UnitType.MASS);
 
         public final double amountInBaseUnit;
+        public final String stringRep;
         public final UnitType unitType;
 
-        Unit(double amountInBaseUnit, UnitType unitType){
+        Unit(double amountInBaseUnit, String stringRep, UnitType unitType){
             this.amountInBaseUnit = amountInBaseUnit;
+            this.stringRep = stringRep;
             this.unitType = unitType;
+        }
+
+        public String toString(){
+            return stringRep;
         }
         
     }
