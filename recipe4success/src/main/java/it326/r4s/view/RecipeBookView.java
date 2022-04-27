@@ -101,7 +101,7 @@ public class RecipeBookView implements CLI_View {
         do{
             System.out.println("Please enter the term to search the recipes for:");
             input = scan.nextLine().toLowerCase();
-        } while (input != "");
+        } while (input == "");
 
         return input;
     }
