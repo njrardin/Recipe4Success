@@ -10,6 +10,14 @@ import java.nio.file.Path;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import it326.r4s.model.Exporter;
+import it326.r4s.model.Importer;
+import it326.r4s.model.JSON_Porter;
+import it326.r4s.model.Meal;
+import it326.r4s.model.MealPlan;
+import it326.r4s.model.Recipe;
+import it326.r4s.model.User;
+
 /**
  * A testing file for the JSON_Porter class.
  * @author Alex Smith (alsmi14@ilstu.edu)

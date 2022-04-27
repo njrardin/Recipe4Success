@@ -9,9 +9,12 @@ import org.junit.Test;
 import org.junit.runners.Parameterized;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runners.Parameterized.*;
-import org.junit.runner.RunWith;
 
-import it326.r4s.UnitConverter.*;
+import it326.r4s.model.FoodItem;
+import it326.r4s.model.Ingredient;
+import it326.r4s.model.UnitConverter.*;
+
+import org.junit.runner.RunWith;
 
 @RunWith(Enclosed.class)
 public class IngredientTest {

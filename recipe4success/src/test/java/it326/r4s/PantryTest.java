@@ -7,7 +7,8 @@ import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
 
-import it326.r4s.UnitConverter.Unit;
+import it326.r4s.model.*;
+import it326.r4s.model.UnitConverter.Unit;
 
 public class PantryTest {
     

@@ -3,7 +3,8 @@ package it326.r4s;
 import org.junit.Before;
 import org.junit.Test;
 
-import it326.r4s.UnitConverter.Unit;
+import it326.r4s.model.*;
+import it326.r4s.model.UnitConverter.Unit;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -3,8 +3,15 @@ package it326.r4s;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import it326.r4s.Review.Rating;
-import it326.r4s.UnitConverter.Unit;
+import it326.r4s.model.Category;
+import it326.r4s.model.FoodItem;
+import it326.r4s.model.Ingredient;
+import it326.r4s.model.IngredientList;
+import it326.r4s.model.Recipe;
+import it326.r4s.model.Review;
+import it326.r4s.model.User;
+import it326.r4s.model.Review.Rating;
+import it326.r4s.model.UnitConverter.Unit;
 
 import org.junit.Before;
 import java.util.ArrayList;
@@ -12,10 +19,12 @@ import java.util.ArrayList;
 public class RecipeTest {
     
     static Recipe setupRecipe;
+    static User theUser;
 
     @Before
     public void setUp(){
-        
+        theUser = new User("Testman");
+
         setupRecipe = new Recipe.RecipeBuilder("Mac and Cheese")
         .setDescription("A yummy meal!")
         .setServingSize(2)
@@ -82,7 +91,7 @@ public class RecipeTest {
 
     @Test 
     public void testRemoveReview(){
-        Review newReview = new Review(new User("Testman"), Rating.FOUR);
+        Review newReview = new Review(theUser, Rating.FOUR);
         ArrayList<Review> reviewList = new ArrayList<Review>();
         reviewList.add(newReview);
 
@@ -95,7 +104,7 @@ public class RecipeTest {
 
     @Test
     public void testAddReview(){
-        Review newReview = new Review(new User("Testman"), Rating.FOUR);
+        Review newReview = new Review(theUser, Rating.FOUR);
 
         setupRecipe.addReview(newReview);
 

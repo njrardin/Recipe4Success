@@ -3,6 +3,10 @@ package it326.r4s;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import it326.r4s.model.Category;
+import it326.r4s.model.Recipe;
+import it326.r4s.model.RecipeSearch;
+
 import java.util.ArrayList;
 
 public class RecipeSearchTest {
