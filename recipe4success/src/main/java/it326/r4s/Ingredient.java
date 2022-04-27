@@ -4,26 +4,39 @@ import it326.r4s.UnitConverter.*;
 
 /**
  * The Ingredient object class for the Recipe4Success application
+ * 
  * @author Nate Rardin (njrardi@ilstu.edu) and Josh Nepomuceno
  * @date 4/13/22
  */
 public class Ingredient {
+    // *Instance Variables*\\
     private FoodItem foodItem;
     private double quantity;
     private Unit unit;
 
-    public Ingredient(FoodItem foodItem, double quantity, Unit unit){
+    // *Constructor*\\
+    /**
+     * Creates a Ingredient object with specified foodItem, quantity, and unit.
+     * 
+     * @param foodItem the foodItem of the Ingredient.
+     * @param quantity the quantity of the Ingredient.
+     * @param unit     the unit of the Ingredient.
+     */
+    public Ingredient(FoodItem foodItem, double quantity, Unit unit) {
         this.foodItem = foodItem;
         this.quantity = quantity;
         this.unit = unit;
     }
 
+    // *Methods*\\
     /**
-     * Changes the unit of the Ingredient object and converts the quantity between units
+     * Changes the unit of the Ingredient object and converts the quantity between
+     * units
+     * 
      * @param newUnit - Unit enumeration representing the new unit
-     * @return a boolean representing the validity of the value. 
+     * @return a boolean representing the validity of the value.
      */
-    public boolean changeUnit(Unit newUnit){
+    public boolean changeUnit(Unit newUnit) {
 
         try {
             double convertedValue = UnitConverter.convertUnit(this.unit, this.quantity, newUnit);
@@ -37,6 +50,7 @@ public class Ingredient {
 
     /**
      * Accessor for the food item associated with the ingredient
+     * 
      * @return the FoodItem object
      */
     public FoodItem getFoodItem() {
@@ -45,6 +59,7 @@ public class Ingredient {
 
     /**
      * Mutator for the food item associated with the ingredient
+     * 
      * @param foodItem - the FoodItem object
      */
     public void setFoodItem(FoodItem foodItem) {
@@ -53,6 +68,7 @@ public class Ingredient {
 
     /**
      * The quantity of the ingredient (as measured in terms of the Unit)
+     * 
      * @return the quantity as a double
      */
     public double getQuantity() {
@@ -61,6 +77,7 @@ public class Ingredient {
 
     /**
      * Mutator for the quantity of the ingredient (as measured in terms of the Unit)
+     * 
      * @param quantity
      */
     public void setQuantity(double quantity) {
@@ -69,6 +86,7 @@ public class Ingredient {
 
     /**
      * Accessor for the Unit enumeration of the Ingredient which describes the unit
+     * 
      * @return the Unit enumeration object
      */
     public Unit getUnit() {
@@ -77,6 +95,7 @@ public class Ingredient {
 
     /**
      * Mutator for the Unit enumeration of the Ingredient which describes the unit
+     * 
      * @param unit - a Unit enumeration object
      */
     public void setUnit(Unit unit) {
@@ -85,17 +104,26 @@ public class Ingredient {
 
     /**
      * An override for the .equals method of java.Object
-     * @param Object - an object
+     * 
+     * @param Object an Ingredient object
      * @return a bool indicating if the two ingredients are equal
      */
     @Override
     public boolean equals(Object obj) {
         Ingredient other = (Ingredient) obj;
-        if (!this.getFoodItem().equals(other.getFoodItem())) return false;
-        else if (!this.getUnit().equals(other.getUnit())) return false;
-        else return this.getQuantity() == other.getQuantity();
+        if (!this.getFoodItem().equals(other.getFoodItem()))
+            return false;
+        else if (!this.getUnit().equals(other.getUnit()))
+            return false;
+        else
+            return this.getQuantity() == other.getQuantity();
     }
-    
+
+    /**
+     * An override for the .toString method of java.obj
+     * 
+     * @return a string representation of the Ingredient object
+     */
     @Override
     public String toString() {
         return this.foodItem.getName() + ": " + this.quantity + this.unit;
