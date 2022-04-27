@@ -21,6 +21,15 @@ public class RecipeController implements CLI_Controller{
     }
 
     public void executeView() {
+        recipeView.execute();
+    }
+
+    public Recipe getRecipe(){
+        return this.theRecipe;
+    }
+    
+    public String getRecipeName() {
+        return null; //TODO: is this used anywhere? delete if not
     }
 
     public void addReview(User theUser){
@@ -48,12 +57,17 @@ public class RecipeController implements CLI_Controller{
         theRecipe.addReview(newReview);
     }
 
-    public Recipe getRecipe(){
-        return this.theRecipe;
+    public void editRecipe(){
+        //TODO: implement
     }
 
-    public String getRecipeName() {
-        return null;
-    }
+	public void exportRecipe() {
+        //TODO: This is Alex's problem lmao
+	}
+
+	public void deleteRecipe() {
+        //TODO: implement
+	}
+
 
 }
