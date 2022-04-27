@@ -58,10 +58,6 @@ public class RecipeView implements CLI_View{
             displayRecipe();
             displayRecipeOptions();
         }
-        //Display things and at some point utilize the following methods
-        // rateRecipe(theRecipe, Scanner scan);
-        // deleteRecipe(theRecipe);
-        // editRecipe(theRecipe);
     }
 
     public void displayRecipe(){
@@ -79,7 +75,9 @@ public class RecipeView implements CLI_View{
         displayInstructions();
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");   
-    } //TODO behaviour to handle null values and format date better.
+    } 
+    //TODO: behaviour to handle null values and format date better
+    //TODO: also add a rating display
      
     
     private void displayIngredients() {
