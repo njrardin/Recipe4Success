@@ -53,6 +53,7 @@ public class RecipeView implements CLI_View{
                 default:
                     System.out.println("Invalid input, please try again\n");
             }
+            displayRecipe();
             displayRecipeOptions();
         }
         //Display things and at some point utilize the following methods
@@ -62,20 +63,33 @@ public class RecipeView implements CLI_View{
     }
 
     public void displayRecipe(){
-        System.out.println("  ,----------------------------------------------------------------------------------");
-        System.out.println("/------------------------------------------------------------------------------------");
-        System.out.println("--- Recipe Name:                                                                  ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("---               Recipe DescriptionRecipe DescriptionRecipe DescriptionRecipe De ---");
-        System.out.println("--- scriptionRecipe DescriptionRecipe DescriptionRecipe DescriptionRecipe Descript---");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("--- Serving size: X            Created on: dd/mm/yy               Rating: 4/5     ---");
-        System.out.println("---                                                                               ---");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("Name: " + recipeController.getRecipe().getName());
+        System.out.println("Description: " + recipeController.getRecipe().getDescription());
+        System.out.println("Serving Size: " + recipeController.getRecipe().getServingSize());
+        System.out.println("Created on: " + recipeController.getRecipe().getCreatedOn());
+        System.out.println();
+        System.out.println("Ingredients: ");
+        displayIngredients();
+        System.out.println();
+        System.out.println("Instructions: ");
+        displayInstructions();
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");   
     }
      
+    
+    private void displayIngredients() {
+        recipeController.getIngredientListController().displayIngredients();
+        //TODO: this
+    }
+    
+    private void displayInstructions() {
+        recipeController.getInstructions();
+        //TODO: This 
+    }
+
     public void displayRecipeOptions(){
         System.out.println("");
         System.out.println("                               -- Recipe Options --                                  ");
