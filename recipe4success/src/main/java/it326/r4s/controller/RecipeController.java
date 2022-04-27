@@ -34,10 +34,6 @@ public class RecipeController implements CLI_Controller{
     public Recipe getRecipe(){
         return this.recipe;
     }
-    
-    public String getRecipeName() {
-        return recipe.getName();
-    }
 
     public String getRecipeDescription() {
         return recipe.getDescription();

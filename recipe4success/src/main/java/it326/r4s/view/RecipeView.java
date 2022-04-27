@@ -164,7 +164,7 @@ public class RecipeView implements CLI_View{
             ratingNum = Integer.parseInt(scan.nextLine());
         } while (Arrays.asList(acceptableRatings).contains(ratingNum));
 
-        System.out.println("You have successfully rated " + recipeController.getRecipeName() + " with a total of " + ratingNum + "/5 stars.");
+        System.out.println("You have successfully rated " + recipeController.getRecipe().getName() + " with a total of " + ratingNum + "/5 stars.");
         return ratingNum;
     }
 
@@ -176,7 +176,7 @@ public class RecipeView implements CLI_View{
         Scanner scan = ViewUtilities.scan;
         String input = "";
         do{
-            System.out.println("Are you sure you want to delete " + recipeController.getRecipeName() + " from your recipe book? (Y/N)");
+            System.out.println("Are you sure you want to delete " + recipeController.getRecipe().getName() + " from your recipe book? (Y/N)");
             input = scan.nextLine().toLowerCase();
         }  while ( !(input.equals("y") || input.equals("n") ));
 
@@ -184,7 +184,7 @@ public class RecipeView implements CLI_View{
             return false;
         }
         else{
-            System.out.println("...deleting " + recipeController.getRecipeName());
+            System.out.println("...deleting " + recipeController.getRecipe().getName());
             return true;
         }
 
