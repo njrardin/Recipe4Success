@@ -69,7 +69,7 @@ public class RecipeController implements CLI_Controller{
     }
 
     public void editRecipe(){
-        //TODO: implement
+       recipeView.editRecipe(recipe);
     }
 
 	public void exportRecipe() {

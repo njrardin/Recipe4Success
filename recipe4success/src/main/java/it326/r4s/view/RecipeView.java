@@ -150,6 +150,10 @@ public class RecipeView implements CLI_View{
         System.out.println();
     }
 
+    public void editRecipe(Recipe recipe) {
+        
+	}
+
     public int getReviewRating(){
         Scanner scan = ViewUtilities.scan;
         int acceptableRatings[] = {1,2,3,4,5};
@@ -283,7 +287,7 @@ public class RecipeView implements CLI_View{
     
                 + instructionString + 
     
-                "\"\n\n is this correct? (Y/N)");
+                "\"\n\nis this correct? (Y/N)");
                 resp = scan.nextLine().toLowerCase();
                 if(resp.equals("y")){
                     instructions.add(instructionString);
