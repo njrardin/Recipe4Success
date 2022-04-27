@@ -11,7 +11,7 @@ import it326.r4s.model.RecipeBook;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeBookView implements CLI_View{
+public class RecipeBookView implements CLI_View {
     
     private RecipeBookController rbController;
 

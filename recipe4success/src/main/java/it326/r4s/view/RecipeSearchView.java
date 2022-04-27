@@ -2,7 +2,6 @@ package it326.r4s.view;
 
 import java.util.Scanner;
 
-import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.RecipeSearchController;
 /**
  * View for R4S RecipeSearch
