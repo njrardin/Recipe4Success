@@ -89,5 +89,9 @@ public class RecipeController implements CLI_Controller{
         return new IngredientListController(recipe.getIngredientList());
     }
 
+    public void adjustServingSize(int newServingSize) {
+        recipe.setServingSize(newServingSize);
+    }
+
 
 }

@@ -29,9 +29,12 @@ public class RecipeView implements CLI_View{
         displayRecipe();
         displayRecipeOptions();
 
-        input = scan.nextLine().toLowerCase();
-        System.out.println();
         while(true){
+            System.out.println("Please type the number corresponding to the option you wish to select: ");
+            System.out.println("(to see the options again, type \"options\")");
+    
+            input = scan.nextLine().toLowerCase();
+            System.out.println();
             switch (input) {
                 case "1":
                     recipeController.editRecipe();
@@ -40,17 +43,21 @@ public class RecipeView implements CLI_View{
                     recipeController.addReview(UserController.getGlobalUser());
                     break;
                 case "3":
-                    recipeController.exportRecipe();
+                    recipeController.adjustServingSize(this.getNewServingSize());
                     break;
                 case "4":
+                    recipeController.exportRecipe();
+                    break;
+                case "5":
                     recipeController.deleteRecipe();
                     return;
-                case "5":
+                case "6":
                     displayRecipe();
                     break;
-                case "6":
+                case "7":
                     return;
                 case "options":
+                displayRecipeOptions();
                     break;
                 case "back":
                     return;
@@ -60,6 +67,25 @@ public class RecipeView implements CLI_View{
             displayRecipe();
             displayRecipeOptions();
         }
+    }
+
+    private int getNewServingSize() {
+        Scanner scan = ViewUtilities.scan;
+        int servingSize = -1;
+
+        do{
+            System.out.println("What is the new serving size?");
+            try{
+                servingSize = Integer.parseInt(scan.nextLine());
+            } catch (NumberFormatException e) {
+                continue;
+            }
+            if(servingSize < 0){
+                System.out.println("Serving size must be above 0");
+            }
+        } while (servingSize < 0);
+
+        return servingSize;
     }
 
     public void displayRecipe(){
@@ -111,10 +137,11 @@ public class RecipeView implements CLI_View{
         System.out.println("");
         System.out.println("1) Edit recipe");
         System.out.println("2) Rate this recipe");
-        System.out.println("3) Export this recipe");
-        System.out.println("4) Delete this recipe");
-        System.out.println("5) Re-Display Recipe");
-        System.out.println("6) Go back");
+        System.out.println("3) Adjust serving size");
+        System.out.println("4) Export this recipe");
+        System.out.println("5) Delete this recipe");
+        System.out.println("6) Re-Display Recipe");
+        System.out.println("7) Go back");
         System.out.println();
     }
 
