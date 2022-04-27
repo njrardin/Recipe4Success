@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it326.r4s.controller.MainMenuController;
 import it326.r4s.controller.UserController;
+import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.MealPlanner;
@@ -126,6 +127,10 @@ public class PresentationDriver {
         ingredientList.addIngredient(new Ingredient("Butter", 1, UnitConverter.Unit.TEASPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
+
+        ArrayList<Category> categories = new ArrayList<Category>();
+        categories.add(new Category("vegan"));
+        recipeBuilder.setCategories(categories);
 
         recipeBook.addRecipe(recipeBuilder.build());
 

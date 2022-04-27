@@ -3,6 +3,9 @@ package it326.r4s.controller;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.apache.commons.collections4.CollectionUtils;
+
+import it326.r4s.model.Category;
 import it326.r4s.model.Recipe;
 import it326.r4s.model.RecipeSearch;
 import it326.r4s.view.RecipeSearchView;
@@ -26,6 +29,7 @@ public class RecipeSearchController implements CLI_Controller{
     }
 
     public ArrayList<Recipe> searchFor(String searchQuery) {
-        return recipeSearch.searchFor(searchQuery);
+        return new ArrayList<Recipe>( CollectionUtils.union(recipeSearch.searchFor(searchQuery), recipeSearch.searchFor(new Category(searchQuery))) );
+
     }
 }

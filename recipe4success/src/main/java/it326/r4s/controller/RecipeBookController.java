@@ -53,19 +53,18 @@ public class RecipeBookController implements CLI_Controller {
         selectRecipe(returnRecipes);
     }
     
+    public void filterRecipeByCategory() {
+        RecipeSearchController rsController = new RecipeSearchController(recipeBook.getRecipes());
+        String searchQuery = recipeBookView.getSearchQuery();
+        ArrayList<Recipe> returnRecipes = rsController.searchFor(searchQuery);
+        
+        selectRecipe(returnRecipes);
+    }
+
     public void importRecipe() {
         //TODO - req 8
     }
 
-    public void searchForRecipe(Collection<Recipe> recipes){
-        //TODO - is this req 6? Is it done? Delete this todo if so.
-        RecipeSearchController rsController = new RecipeSearchController(recipes);
-        rsController.executeView();
-    }
-
-    public void filterRecipeByCategory() {
-        //TODO - req 9
-    }
 
     public void selectRecipe(Collection<Recipe> recipes){
         ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
