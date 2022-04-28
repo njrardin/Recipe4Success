@@ -179,6 +179,14 @@ public class Recipe extends Entity implements Portable {
         return new ArrayList<String>(this.instructions);
     }
 
+    /**
+     * Setter for the recipe's instructions
+     * @param instructions - arraylist of string instructions
+     */
+    public void setInstructions(ArrayList<String> instructions){
+        this.instructions = instructions;
+    }
+
     @Override
     public String toString() {
         return name + ": " + description; 
