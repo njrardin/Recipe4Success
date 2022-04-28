@@ -12,14 +12,25 @@ import it326.r4s.view.ViewUtilities;
  */
 public class MainMenuController {
     
+    //*Instance Variables*\\
     private UserController userController;
     private MainMenuView mainMenuView;
 
+    //*Constructor*\\
+    /**
+     * Constructor for R4S's Main Menu controller
+     * @param userController - a userController object associated with the application user
+     */
     public MainMenuController(UserController userController){
         this.userController = userController;
         this.mainMenuView = new MainMenuView(this);
     }
 
+    //*Methods*\\
+    /**
+     * Launches the main menu view to get a user option selection
+     * and takes the appropriate action
+     */
     public void launchMainMenu(){        
         while(true){
             int option = mainMenuView.getMenuOptionSelection();
