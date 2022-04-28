@@ -19,20 +19,46 @@ public class UserController {
         this.userView = new UserView();
     }
 
-    public static boolean initUserController(User theUser){
+    public static UserController initUserController(User theUser){
         if (globalUC == null){
             globalUC = new UserController(theUser);
-            return true;
         }
-        return false;
+        return globalUC;
     }
 
-    public static User getGlobalUser(){
-        return globalUC.getUserInternal();
+    public static UserController getUserController() throws IllegalStateException{
+        if (globalUC == null){
+            throw new IllegalStateException();
+        }
+        return globalUC;
     }
 
-    private User getUserInternal(){
+    public User getGlobalUser(){
         return theUser;
+    }
+
+    public UserView getUserView(){
+        return userView;
+    }
+
+    public void openRecipeBook(){
+        RecipeBookController rbController = new RecipeBookController(theUser.getRecipeBook());
+        rbController.openRecipeBook();
+    }
+
+    public void openMealPlanner(){
+        MealPlannerController mpController = new MealPlannerController(theUser.getMealPlanner());
+        mpController.openMealPlanner();
+    }
+
+    public void openPantry(){
+        PantryController pantryController = new PantryController(theUser.getPantry());
+        pantryController.openPantry();
+    }
+
+    public void accessGroceryList(){
+        GroceryListController glController = new GroceryListController(theUser.getGroceryList());
+        glController.openGroceryList();
     }
     
 }

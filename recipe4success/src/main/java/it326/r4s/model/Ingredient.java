@@ -118,7 +118,7 @@ public class Ingredient {
             return this.foodItem.getName() + ": " + this.quantity + " " + this.unit.toString().toLowerCase() + "s";
         }
         else{
-            return this.foodItem.getName() + ": " + this.quantity + " " + this.unit;
+            return this.foodItem.getName() + ": " + String.format("%.2",this.quantity) + " " + this.unit;
         }
     }
 }

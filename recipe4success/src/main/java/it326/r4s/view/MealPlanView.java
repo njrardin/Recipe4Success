@@ -5,11 +5,11 @@ package it326.r4s.view;
  * @author Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlanView implements CLI_View{
+public class MealPlanView implements CLI_Menu {
 
-    public void execute() {
+    public int getMenuOptionSelection() {
         // TODO Auto-generated method stub
-        
+        return -1;
     }
     
 }

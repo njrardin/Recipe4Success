@@ -9,6 +9,7 @@ import javax.lang.model.util.ElementScanner14;
 import com.google.gson.internal.sql.SqlTypesSupport;
 
 import it326.r4s.controller.RecipeController;
+import it326.r4s.controller.UnitController;
 import it326.r4s.controller.UserController;
 import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Category;
@@ -22,61 +23,15 @@ import it326.r4s.model.UnitConverter.Unit;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeView implements CLI_View{
+public class RecipeView implements CLI_Menu{
 
     private RecipeController recipeController;
 
     public RecipeView(RecipeController recipeController){
         this.recipeController = recipeController;
     }
-    
-    public void execute(){
-        String input = "";
-        Scanner scan = ViewUtilities.scan;
-        displayRecipe();
-        displayRecipeOptions();
 
-        while(true){
-            System.out.println("Please type the number corresponding to the option you wish to select: ");
-            System.out.println("(to see the options again, type \"options\")");
-    
-            input = scan.nextLine().toLowerCase();
-            System.out.println();
-            switch (input) {
-                case "1":
-                    recipeController.editRecipe();
-                    break;
-                case "2":
-                    recipeController.addReview(UserController.getGlobalUser());
-                    break;
-                case "3":
-                    recipeController.adjustServingSize(this.getNewServingSize());
-                    break;
-                case "4":
-                    recipeController.exportRecipe();
-                    break;
-                case "5":
-                    recipeController.deleteRecipe();
-                    return;
-                case "6":
-                    displayRecipe();
-                    break;
-                case "7":
-                    return;
-                case "options":
-                displayRecipeOptions();
-                    break;
-                case "back":
-                    return;
-                default:
-                    System.out.println("Invalid input, please try again\n");
-            }
-            displayRecipe();
-            displayRecipeOptions();
-        }
-    }
-
-    private int getNewServingSize() {
+    public int getNewServingSize() {
         Scanner scan = ViewUtilities.scan;
         int servingSize = -1;
 
@@ -102,7 +57,7 @@ public class RecipeView implements CLI_View{
         System.out.println("Description: " + recipeController.getRecipe().getDescription());
         System.out.println("Serving Size: " + recipeController.getRecipe().getServingSize());
         System.out.println("Created on: " + recipeController.getRecipe().getCreatedOn());
-        System.out.println("Your rating: " + retUserRating() + " /5 stars");
+        System.out.println("Your rating: " + retUserRating() + "/5 stars");
         System.out.println();
         System.out.println("Ingredients: ");
         displayIngredients();
@@ -114,8 +69,36 @@ public class RecipeView implements CLI_View{
     } 
     //TODO: behaviour to handle null values and format date better
     //TODO: also add a rating display
-     
     
+    public int getMenuOptionSelection(){
+        String title = "Recipe: " + recipeController.getRecipe().getName();
+        String prompt = "What would you like to do?";
+        String[] options = {
+            "Edit recipe",
+            "Rate this recipe",
+            "Adjust serving size",
+            "Export this recipe",
+            "Delete this recipe",
+            "Re-Display Recipe",
+            "Go back"
+        };
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+    }
+    
+    public int getEditOptionSelection(String recipeName){
+        String title = "Recipe: " + recipeName + " (edit options)";
+        String prompt = "What would you like to edit?";
+        String[] options = {
+            "Name",
+            "Description",
+            "Serving Size",
+            "Ingredients",
+            "Instructions",
+            "Go back",
+        };
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+    }
+
     private void displayIngredients() {
         recipeController.getIngredientListController().getIngredientListView().displayIngredients();
     }
@@ -138,51 +121,8 @@ public class RecipeView implements CLI_View{
         }
     }
 
-    public void displayRecipeOptions(){
-        System.out.println("");
-        System.out.println("                               -- Recipe Options --                                  ");
-        System.out.println("");
-        System.out.println("1) Edit recipe");
-        System.out.println("2) Rate this recipe");
-        System.out.println("3) Adjust serving size");
-        System.out.println("4) Export this recipe");
-        System.out.println("5) Delete this recipe");
-        System.out.println("6) Re-Display Recipe");
-        System.out.println("7) Go back");
-        System.out.println();
-    }
-
-    public void displayEditOptions(){
-        System.out.println("                             -- Recipe Edit Options --                                ");
-        System.out.println();
-        System.out.println("What would you like to edit?");
-        System.out.println("1) Name");
-        System.out.println("2) Description");
-        System.out.println("3) Serving Size");
-        System.out.println("4) Ingredients");
-        System.out.println("5) Instructions");
-        System.out.println("6) exit");
-    }
-
-    public int getEditOption() {
-        Scanner scan = ViewUtilities.scan;
-        int selection = -1;
-        do{
-            System.out.println("What would you like to edit?");
-            try{
-                selection = Integer.parseInt(scan.nextLine());
-                System.out.println("Selection: " + selection);
-            } catch (Exception e) {
-                System.out.println("Please select an option by typing the corresponding number");
-                continue;
-            }
-        } while(selection >= 7 && selection <=1);
-        
-        return selection;
-	}
-
     public void displayUpdateSuccess() {
-        System.out.println("You successfully updated " + recipeController.getRecipeName());
+        System.out.println("You successfully updated " + recipeController.getRecipe().getName());
     }
 
     public int getReviewRating(){
@@ -195,7 +135,7 @@ public class RecipeView implements CLI_View{
             ratingNum = Integer.parseInt(scan.nextLine());
         } while (Arrays.asList(acceptableRatings).contains(ratingNum));
 
-        System.out.println("You have successfully rated " + recipeController.getRecipeName() + " with a total of " + ratingNum + "/5 stars.");
+        System.out.println("You have successfully rated " + recipeController.getRecipe().getName() + " with a total of " + ratingNum + "/5 stars.");
         return ratingNum;
     }
 
@@ -207,7 +147,7 @@ public class RecipeView implements CLI_View{
         Scanner scan = ViewUtilities.scan;
         String input = "";
         do{
-            System.out.println("Are you sure you want to delete " + recipeController.getRecipeName() + " from your recipe book? (Y/N)");
+            System.out.println("Are you sure you want to delete " + recipeController.getRecipe().getName() + " from your recipe book? (Y/N)");
             input = scan.nextLine().toLowerCase();
         }  while ( !(input.equals("y") || input.equals("n") ));
 
@@ -215,7 +155,7 @@ public class RecipeView implements CLI_View{
             return false;
         }
         else{
-            System.out.println("...deleting " + recipeController.getRecipeName());
+            System.out.println("...deleting " + recipeController.getRecipe().getName());
             return true;
         }
 
@@ -235,7 +175,7 @@ public class RecipeView implements CLI_View{
         }
         
         public static void displayRecipeBuildInit(){
-            System.out.println("Alright "  + UserController.getGlobalUser() + "!");
+            System.out.println("Alright "  + UserController.getUserController().getGlobalUser().getName() + "!");
             System.out.println("Let's create a recipe!");
         }
 
@@ -364,7 +304,7 @@ public class RecipeView implements CLI_View{
 
                 //get the unit
                 System.out.println("What is the unit of measure for " + ingredientName + "?");
-                unit = UnitView.getUnitFromUser();
+                unit = UnitController.getUnit();
 
                 //get the quantity
                 System.out.println("How many " + unit.stringRep + "s are used?");

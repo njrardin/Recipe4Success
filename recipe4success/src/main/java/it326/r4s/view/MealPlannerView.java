@@ -8,7 +8,7 @@ import it326.r4s.controller.MealPlannerController;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlannerView implements CLI_View{
+public class MealPlannerView implements CLI_Menu{
 
     private MealPlannerController mprController;
 
@@ -16,42 +16,43 @@ public class MealPlannerView implements CLI_View{
         this.mprController = mprController;
     }
     
-    public void execute(){
+    public int getMenuOptionSelection(){
+    return -1; //TODO implement; del depreciated
+        // Scanner scan = ViewUtilities.scan;
+        // String input = "";
+        // displayHeader();
+        // displayOptions();
+        // while (true) {
 
-        Scanner scan = ViewUtilities.scan;
-        String input = "";
-        displayHeader();
-        displayOptions();
-        while (true) {
-
-            System.out.println();
-            System.out.println("(to see the options again, type \"options\")");
+        //     System.out.println();
+        //     System.out.println("(to see the options again, type \"options\")");
     
-            input = scan.nextLine().toLowerCase();
-            System.out.println();
-            switch (input) {
-                case "1":
-                    mprController.searchMealPlans();
-                    break;
-                case "2":
-                    mprController.importMealPlan();
-                    break;
-                case "3":
-                    mprController.exportMealPlan();
-                    break;
-                case "4":
-                    mprController.createMealPlan();
-                    break;
-                case "5":
-                    mprController.viewMealPlans();
-                    break;
-                case "6":
-                    return;
-                default:
-                    System.out.println("Invalid input, please try again\n");
-            }
-            break;
-        }
+        //     input = scan.nextLine().toLowerCase();
+        //     System.out.println();
+        //     switch (input) {
+        //         case "1":
+        //             mprController.searchMealPlans();
+        //             break;
+        //         case "2":
+        //             mprController.importMealPlan();
+        //             break;
+        //         case "3":
+        //             mprController.exportMealPlan();
+        //             break;
+        //         case "4":
+        //             mprController.createMealPlan();
+        //             break;
+        //         case "5":
+        //             mprController.viewMealPlans();
+        //             break;
+        //         case "6":
+        //             return -1;
+        //         default:
+        //             System.out.println("Invalid input, please try again\n");
+        //     }
+        //     break;
+        // }
+        // retu
     }
 
     private void displayHeader(){

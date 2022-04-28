@@ -4,9 +4,9 @@ package it326.r4s.controller;
  * @author Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlanController implements CLI_Controller {
+public class MealPlanController {
     
-    public void executeView(){
+    public void launchMealPlanMenu(){
     
     }
     
