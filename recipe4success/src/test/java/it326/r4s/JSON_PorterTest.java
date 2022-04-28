@@ -45,13 +45,13 @@ public class JSON_PorterTest {
             .setDescription("That one good looking omelette.")
             .setServingSize(1)
             .build();
-        user.addRecipe(friedRice);
-        user.addRecipe(omelette);
+        user.getRecipeBook().addRecipe(friedRice);
+        user.getRecipeBook().addRecipe(omelette);
 
         MealPlan breakfast = new MealPlan("Breakfast");
         breakfast.addMeal(new Meal(friedRice, 4));
         breakfast.addMeal(new Meal(omelette, 2));
-        user.addMealPlan(breakfast);
+        user.getMealPlanner().addMealPlan(breakfast);
     }
 
     /**
