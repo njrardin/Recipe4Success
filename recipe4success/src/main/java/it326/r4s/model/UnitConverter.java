@@ -1,14 +1,19 @@
 package it326.r4s.model;
 
-/*
-* TODO #10 - whoever implemented this class needs to write a header description.
-* See User.java for good header examples
-* 
-*/
+/**
+ * A UnitConverter for the Recipes4Success application.
+ * 
+ * @author PLEASE ADD YOUR NAME HERE
+ * @date 4/26/2022
+ */
 
 public class UnitConverter {
-    
-    public static enum UnitType{
+
+    // *Enumerations*\\
+    /**
+     * Enumeration for different unit types.
+     */
+    public static enum UnitType {
         MASS,
         VOLUME,
         WEIGHT,
@@ -45,47 +50,62 @@ public class UnitConverter {
             this.unitType = unitType;
         }
 
+        @Override
         public String toString(){
             return stringRep;
         }
         
     }
 
+    // * Methods *\\
     /**
+     * Attempts to convert old unit to new unit.
      * 
-     * @param oldUnit - The original unit which is being converted
-     * @param oldUnitQuantity - The quantity of substance as measured in the oldUnit, must be valid quantity > 0
-     * @param newUnit - The desired new unit
-     * @return - The quantity of substance as measured in the newUnit; throws IllegalArgumentException if units are unconvertable or quantities not valid
-     * @throws IllegalArgumentException if units are unconvertable or quantity is not valid
+     * @param oldUnit         The original unit which is being converted.
+     * @param oldUnitQuantity The quantity of substance as measured in the
+     *                        oldUnit, must be valid quantity > 0.
+     * @param newUnit         The desired new unit.
+     * @return The quantity of substance as measured in the newUnit; throws
+     *         IllegalArgumentException if units are unconvertable or quantities not
+     *         valid.
+     * @throws IllegalArgumentException if units are unconvertable or quantity is
+     *                                  not valid.
      */
-    public static double convertUnit(Unit oldUnit, double oldUnitQuantity, Unit newUnit) throws IllegalArgumentException{
-        if(oldUnitQuantity <= 0){
+    public static double convertUnit(Unit oldUnit, double oldUnitQuantity, Unit newUnit)
+            throws IllegalArgumentException {
+        if (oldUnitQuantity <= 0) {
             throw new IllegalArgumentException();
         }
-        if(oldUnit.unitType != newUnit.unitType){
+        if (oldUnit.unitType != newUnit.unitType) {
             throw new IllegalArgumentException();
-        }
-        else{ 
+        } else {
             return convertUnit(oldUnit, oldUnitQuantity, newUnit, 1);
         }
     }
 
     /**
+     * Attempts to convert old unit to new unit when two units has different unit
+     * type.
      * 
-     * @param oldUnit - The original unit which is being converted
-     * @param oldUnitQuantity - The quantity of substance as measured in the oldUnit, must be valid quantity > 0
-     * @param newUnit - The desired new unit
-     * @param unitTypeConversionFactor - The conversion factor between units types in terms of (old base unit type)/(new base unit type). (i.e, if oldUnit is a mass and newUnit is a volume, this should be the conversion factor of grams/milliliter)
+     * @param oldUnit                  The original unit which is being converted.
+     * @param oldUnitQuantity          The quantity of substance as measured in
+     *                                 the oldUnit, must be valid quantity > 0.
+     * @param newUnit                  The desired new unit.
+     * @param unitTypeConversionFactor The conversion factor between units types
+     *                                 in terms of (old base unit type)/(new base
+     *                                 unit type). (i.e, if oldUnit is a mass and
+     *                                 newUnit is a volume, this should be the
+     *                                 conversion factor of grams/milliliter).
      * @return
      * @throws IllegalArgumentException
      */
-    public static double convertUnit(Unit oldUnit, double oldUnitQuantity, Unit newUnit, double unitTypeConversionFactor) throws IllegalArgumentException{
-        if(oldUnitQuantity <= 0){
+    public static double convertUnit(Unit oldUnit, double oldUnitQuantity, Unit newUnit,
+            double unitTypeConversionFactor) throws IllegalArgumentException {
+        if (oldUnitQuantity <= 0) {
             throw new IllegalArgumentException();
-        }
-        else{ 
-            return (double) (oldUnitQuantity * oldUnit.amountInBaseUnit * (1 / unitTypeConversionFactor)  * (1 / newUnit.amountInBaseUnit));
+        } else {
+            return (double) (oldUnitQuantity * oldUnit.amountInBaseUnit * (1 / unitTypeConversionFactor)
+                    * (1 / newUnit.amountInBaseUnit));
         }
     }
 }
