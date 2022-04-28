@@ -62,7 +62,7 @@ public class RecipeView implements CLI_View{
                 case "7":
                     return;
                 case "options":
-                displayRecipeOptions();
+                    displayRecipeOptions();
                     break;
                 case "back":
                     return;
