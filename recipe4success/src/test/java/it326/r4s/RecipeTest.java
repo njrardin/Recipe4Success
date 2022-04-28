@@ -20,6 +20,7 @@ public class RecipeTest {
     
     static Recipe setupRecipe;
     static User theUser;
+    static FoodItem.Pool fiPool = FoodItem.Pool.getInstance();
 
     @Before
     public void setUp(){
@@ -67,7 +68,7 @@ public class RecipeTest {
     @Test
     public void testRemoveIngredient(){
         IngredientList ingredientList = new IngredientList();
-        Ingredient testIngredient = new Ingredient(new FoodItem(), 1, Unit.CUP);
+        Ingredient testIngredient = new Ingredient(fiPool.getFoodItem("Flour"), 1, Unit.CUP);
         ingredientList.addIngredient(testIngredient);
         
         Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Ingredientlist").setIngredientList(ingredientList).build();
@@ -80,7 +81,7 @@ public class RecipeTest {
     @Test
     public void testAddIngredient(){
         IngredientList ingredientList = new IngredientList();
-        Ingredient testIngredient = new Ingredient(new FoodItem(), 1, Unit.CUP);
+        Ingredient testIngredient = new Ingredient(fiPool.getFoodItem("Flour"), 1, Unit.CUP);
         
         Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with Ingredientlist").setIngredientList(ingredientList).build();
         

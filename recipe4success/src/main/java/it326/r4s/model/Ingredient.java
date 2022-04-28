@@ -20,7 +20,7 @@ public class Ingredient {
 
     public Ingredient(String name, double quantity, Unit unit){
 
-        this.foodItem = new FoodItem(name);
+        this.foodItem = FoodItem.Pool.getInstance().getFoodItem(name);
         this.quantity = quantity;
         this.unit = unit;
     }
