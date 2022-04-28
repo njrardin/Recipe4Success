@@ -85,6 +85,11 @@ public class FoodItem extends Entity {
             return Collections.unmodifiableCollection(foodItems);
         }
 
+        public boolean contains(String name) {
+            FoodItem fi = new FoodItem(name);
+            return foodItems.contains(fi);
+        }
+
         private FoodItem addFoodItem(String name) {
             FoodItem fi = new FoodItem(name);
             foodItems.add(fi);
