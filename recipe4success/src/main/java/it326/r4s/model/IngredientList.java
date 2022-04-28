@@ -42,7 +42,8 @@ public class IngredientList extends Entity {
     public boolean addIngredients(Collection<Ingredient> toAdd) {
         boolean flag = true;
         for (Ingredient ingredientToAdd : toAdd) {
-            if (!this.addIngredient(ingredientToAdd)) flag = false;
+            if (!this.addIngredient(ingredientToAdd))
+                flag = false;
         }
         return flag;
     }
