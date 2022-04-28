@@ -69,7 +69,28 @@ public class RecipeController implements CLI_Controller{
     }
 
     public void editRecipe(){
-       recipeView.editRecipe(recipe);
+        recipeView.displayEditOptions();
+        int editOption = recipeView.getEditOption();
+
+        switch(editOption){
+            case 1:
+                recipe.setName(RecipeBuilderView.getRecipeNameFromUser());
+                break;
+            case 2:
+                recipe.setDescription(RecipeBuilderView.getDescriptionFromUser());
+                break;
+            case 3:
+                recipe.setServingSize(RecipeBuilderView.getServingSizeFromUser());
+                break;
+            case 4:
+                recipe.setIngredientList(RecipeBuilderView.getIngredientsFromUser());
+                break;
+            case 5:
+                recipe.setInstructions(RecipeBuilderView.getInstructionsFromUser());
+            case 6:
+                return;
+        }
+        recipeView.displayUpdateSuccess();
     }
 
 	public void exportRecipe() {

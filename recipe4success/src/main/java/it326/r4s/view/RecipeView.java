@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import javax.lang.model.util.ElementScanner14;
 
+import com.google.gson.internal.sql.SqlTypesSupport;
+
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UserController;
 import it326.r4s.controller.RecipeController.RecipeBuilderController;
@@ -150,9 +152,38 @@ public class RecipeView implements CLI_View{
         System.out.println();
     }
 
-    public void editRecipe(Recipe recipe) {
+    public void displayEditOptions(){
+        System.out.println("                             -- Recipe Edit Options --                                ");
+        System.out.println();
+        System.out.println("What would you like to edit?");
+        System.out.println("1) Name");
+        System.out.println("2) Description");
+        System.out.println("3) Serving Size");
+        System.out.println("4) Ingredients");
+        System.out.println("5) Instructions");
+        System.out.println("6) exit");
+    }
+
+    public int getEditOption() {
+        Scanner scan = ViewUtilities.scan;
+        int selection = -1;
+        do{
+            System.out.println("What would you like to edit?");
+            try{
+                selection = Integer.parseInt(scan.nextLine());
+                System.out.println("Selection: " + selection);
+            } catch (Exception e) {
+                System.out.println("Please select an option by typing the corresponding number");
+                continue;
+            }
+        } while(selection >= 7 && selection <=1);
         
+        return selection;
 	}
+
+    public void displayUpdateSuccess() {
+        System.out.println("You successfully updated " + recipeController.getRecipeName());
+    }
 
     public int getReviewRating(){
         Scanner scan = ViewUtilities.scan;
@@ -203,12 +234,12 @@ public class RecipeView implements CLI_View{
             this.rBuildController = rBuildController;
         }
         
-        public void displayRecipeBuildInit(){
+        public static void displayRecipeBuildInit(){
             System.out.println("Alright "  + UserController.getGlobalUser() + "!");
             System.out.println("Let's create a recipe!");
         }
 
-        public String getRecipeNameFromUser(){
+        public static String getRecipeNameFromUser(){
             Scanner scan = ViewUtilities.scan;
             String name = "";
 
@@ -224,7 +255,7 @@ public class RecipeView implements CLI_View{
             }
         }
 
-		public String getDescriptionFromUser() {
+		public static String getDescriptionFromUser() {
             Scanner scan = ViewUtilities.scan;
             String description = "";
             while(true){
@@ -243,7 +274,7 @@ public class RecipeView implements CLI_View{
             }
 		}
 
-		public int getServingSizeFromUser() {
+		public static int getServingSizeFromUser() {
             Scanner scan = ViewUtilities.scan;
             int servingSize;
             while(true){
@@ -265,7 +296,7 @@ public class RecipeView implements CLI_View{
             }
 		}
 
-		public ArrayList<String> getInstructionsFromUser() {
+		public static ArrayList<String> getInstructionsFromUser() {
             Scanner scan = ViewUtilities.scan;
             String resp = "";
             String instructionString;
@@ -309,7 +340,7 @@ public class RecipeView implements CLI_View{
             }
 		}
 
-		public IngredientList getIngredientsFromUser() {
+		public static IngredientList getIngredientsFromUser() {
             Scanner scan = ViewUtilities.scan;
             String resp = "";
 
@@ -367,7 +398,7 @@ public class RecipeView implements CLI_View{
             }
 		}
 
-		public ArrayList<Category> getCategoriesFromUser() {
+		public static ArrayList<Category> getCategoriesFromUser() {
             Scanner scan = ViewUtilities.scan;
             String resp = "";
             String categoryString;
@@ -419,7 +450,7 @@ public class RecipeView implements CLI_View{
             }
 		}
 
-		public boolean confirmBuild() {
+		public static boolean confirmBuild() {
             Scanner scan = ViewUtilities.scan;
             String resp = "";
             //TODO: implement or delete this
