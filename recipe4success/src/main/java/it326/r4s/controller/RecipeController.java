@@ -1,10 +1,13 @@
 package it326.r4s.controller;
 
+import java.util.ArrayList;
+
 import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
 import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
 import it326.r4s.view.RecipeView;
+import it326.r4s.view.RecipeView.RecipeBuilderView;
 /**
  * Controller for R4S Recipe
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -12,12 +15,16 @@ import it326.r4s.view.RecipeView;
  */
 public class RecipeController implements CLI_Controller{
     
-    public Recipe theRecipe;
+    public Recipe recipe;
     public RecipeView recipeView;
     
     public RecipeController(Recipe recipe){
-        this.theRecipe = recipe;
+        this.recipe = recipe;
         this.recipeView = new RecipeView(this);
+    }
+
+    public RecipeView getRecipeView(){
+        return recipeView;
     }
 
     public void executeView() {
@@ -25,11 +32,15 @@ public class RecipeController implements CLI_Controller{
     }
 
     public Recipe getRecipe(){
-        return this.theRecipe;
+        return this.recipe;
     }
     
     public String getRecipeName() {
-        return null; //TODO: is this used anywhere? delete if not
+        return recipe.getName();
+    }
+
+    public String getRecipeDescription() {
+        return recipe.getDescription();
     }
 
     public void addReview(User theUser){
@@ -54,20 +65,74 @@ public class RecipeController implements CLI_Controller{
                 break;
         }
         Review newReview = new Review(UserController.getGlobalUser(), rating);
-        theRecipe.addReview(newReview);
+        recipe.addReview(newReview);
     }
 
     public void editRecipe(){
-        //TODO: implement
+       recipeView.editRecipe(recipe);
     }
 
 	public void exportRecipe() {
-        //TODO: This is Alex's problem lmao
+        //TODO: This is Alex's problem
 	}
 
 	public void deleteRecipe() {
-        //TODO: implement
+        if(recipeView.deletionConfirmation()){
+            UserController.getGlobalUser().getRecipeBook().removeRecipe(recipe);
+        }
 	}
 
+    public ArrayList<String> getInstructions() {
+        return recipe.getInstructions();
+    }
+
+    public IngredientListController getIngredientListController() {
+        return new IngredientListController(recipe.getIngredientList());
+    }
+
+    public void adjustServingSize(int newServingSize) {
+        recipe.setServingSize(newServingSize);
+    }
+
+    /**
+ * Controller for R4S RecipeBuilder
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/27/22
+ */
+    public static class RecipeBuilderController {
+
+        private RecipeBuilderView rBuildView;
+
+        public RecipeBuilderController(){
+            this.rBuildView = new RecipeBuilderView(this);
+        }
+
+        public Recipe buildUserRecipe() throws RuntimeException{
+
+            Recipe newRecipe;
+
+            //build name
+            Recipe.RecipeBuilder rBuild = new Recipe.RecipeBuilder(rBuildView.getRecipeNameFromUser());
+            
+            rBuild.setDescription(rBuildView.getDescriptionFromUser());
+
+            rBuild.setServingSize(rBuildView.getServingSizeFromUser());
+
+            rBuild.setInstructions(rBuildView.getInstructionsFromUser());
+
+            rBuild.setIngredientList(rBuildView.getIngredientsFromUser());
+
+            rBuild.setCategories(rBuildView.getCategoriesFromUser());
+
+            if (rBuildView.confirmBuild()){
+                newRecipe = rBuild.build();
+            }
+            else{
+                throw new RuntimeException();
+            } //TODO: patch in edit system here
+
+            return newRecipe;
+        }
+    }
 
 }

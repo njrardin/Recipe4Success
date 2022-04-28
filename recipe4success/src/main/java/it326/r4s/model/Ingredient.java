@@ -114,6 +114,11 @@ public class Ingredient {
     
     @Override
     public String toString() {
-        return this.foodItem.getName() + ": " + this.quantity + this.unit;
+        if(this.quantity > 1){
+            return this.foodItem.getName() + ": " + this.quantity + " " + this.unit.toString().toLowerCase() + "s";
+        }
+        else{
+            return this.foodItem.getName() + ": " + this.quantity + " " + this.unit;
+        }
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it326.r4s.controller.MainMenuController;
 import it326.r4s.controller.UserController;
+import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.MealPlanner;
@@ -13,6 +14,11 @@ import it326.r4s.model.User;
 import it326.r4s.model.Recipe.RecipeBuilder;
 import it326.r4s.view.ViewUtilities;
 
+/**
+ * Controller for R4S RecipeBook
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/26/22
+ */
 public class PresentationDriver {
     public static void main(String[] args) {     
         
@@ -126,6 +132,10 @@ public class PresentationDriver {
         ingredientList.addIngredient(new Ingredient("Butter", 1, UnitConverter.Unit.TEASPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
+
+        ArrayList<Category> categories = new ArrayList<Category>();
+        categories.add(new Category("vegan"));
+        recipeBuilder.setCategories(categories);
 
         recipeBook.addRecipe(recipeBuilder.build());
 
