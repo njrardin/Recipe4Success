@@ -13,6 +13,7 @@ public class MealPlanTest {
     static MealPlan mainMealPlan;
     static Recipe recipe1, recipe2;
     static Meal meal1, meal2;
+    static FoodItem.Pool fiPool = FoodItem.Pool.getInstance();
 
     @Before
     public void before() {
@@ -25,9 +26,9 @@ public class MealPlanTest {
         .setCategories(new ArrayList<Category>())
         .setInstructions(new ArrayList<String>())
         .build();
-        FoodItem repeatFoodItem = new FoodItem("Sugar");
+        FoodItem repeatFoodItem = fiPool.getFoodItem("Sugar");
         recipe1.addIngredient(new Ingredient(repeatFoodItem, 1, Unit.TABLESPOON));
-        recipe1.addIngredient(new Ingredient(new FoodItem(), 2, Unit.CUP));
+        recipe1.addIngredient(new Ingredient(repeatFoodItem, 2, Unit.CUP));
         recipe2 = new Recipe.RecipeBuilder("Mac and Cheese")
         .setDescription("A yummy meal!")
         .setServingSize(2)
@@ -37,7 +38,7 @@ public class MealPlanTest {
         .setInstructions(new ArrayList<String>())
         .build();
         recipe2.addIngredient(new Ingredient(repeatFoodItem, 1, Unit.TEASPOON));
-        recipe2.addIngredient(new Ingredient(new FoodItem(), 3, Unit.POUND));
+        recipe2.addIngredient(new Ingredient(repeatFoodItem, 3, Unit.POUND));
         meal1 = new Meal(recipe1, 4);
         meal2 = new Meal(recipe2, 2);
 
