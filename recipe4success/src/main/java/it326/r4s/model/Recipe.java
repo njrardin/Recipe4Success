@@ -3,12 +3,13 @@ import java.util.*;
 
 /**
  * The Recipe object class for the Recipe4Success application
+ * 
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/13/22
  */
 public class Recipe extends Entity implements Portable {
 
-    //* Instance variables *\\
+    // * Instance variables *\\
     private String name;
     private String description;
     private int servingSize;
@@ -18,15 +19,16 @@ public class Recipe extends Entity implements Portable {
     private ArrayList<Category> categories;
     private ArrayList<String> instructions;
 
-    //* Constructor *\\
+    // * Constructor *\\
 
     /**
      * Constructor for Recipe using the nested class RecipeBuilder
-     * - only used inside the RecipeBuilder constructor. RecipeBuilder must be used to create Recipe objects.
+     * - only used inside the RecipeBuilder constructor. RecipeBuilder must be used
+     * to create Recipe objects.
      * 
      * @param builder - the RecipeBuilder object from which to create the class
      */
-    private Recipe(RecipeBuilder builder){
+    private Recipe(RecipeBuilder builder) {
         this.name = builder.name;
         this.description = builder.description;
         this.servingSize = builder.servingSize;
@@ -37,7 +39,7 @@ public class Recipe extends Entity implements Portable {
         this.instructions = builder.instructions;
     }
 
-    //* Methods \\
+    // * Methods \\
 
     /**
      * adjusts the quantities of all ingredients in the list to reflect the new serving size of this recipe
@@ -54,54 +56,61 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Removes the category from the recipe
+     * 
      * @param theCategory
      */
-    public void removeCategory(Category theCategory){
+    public void removeCategory(Category theCategory) {
         categories.remove(theCategory);
     }
-    
+
     /**
      * Adds the category to the recipe
+     * 
      * @param theCategory
      */
-    public void addCategory(Category theCategory){
+    public void addCategory(Category theCategory) {
         categories.add(theCategory);
     }
-    
+
     /**
      * Removes the ingredient from the recipe
+     * 
      * @param theIngredient
      */
-    public void removeIngredient(Ingredient theIngredient){
+    public void removeIngredient(Ingredient theIngredient) {
         ingredientList.removeIngredient(theIngredient);
     }
-    
+
     /**
      * Adds the ingredient to the recipe
+     * 
      * @param theIngredient
      */
-    public void addIngredient(Ingredient theIngredient){
+    public void addIngredient(Ingredient theIngredient) {
         ingredientList.addIngredient(theIngredient);
     }
-    
+
     /**
      * Removes the review from the recipe
+     * 
      * @param theReview
      */
-    public void removeReview(Review theReview){
+    public void removeReview(Review theReview) {
         reviews.remove(theReview);
     }
-    
+
     /**
      * Adds the review to the recipe
+     * 
      * @param theReview
      */
-    public void addReview(Review theReview){
+    public void addReview(Review theReview) {
         reviews.add(theReview);
     }
 
     /**
      * Accessor for the recipe's name
+     * 
      * @return name of recipe as a String
      */
     public String getName() {
@@ -110,6 +119,7 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Mutator for the recipe's name
+     * 
      * @param name
      */
     public void setName(String name) {
@@ -118,6 +128,7 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Accessor for the recipe's description
+     * 
      * @return description of recipe as a String
      */
     public String getDescription() {
@@ -126,6 +137,7 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Mutator for the recipe's description
+     * 
      * @param description
      */
     public void setDescription(String description) {
@@ -134,7 +146,8 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Accessor for the recipe's serving size
-     * @return serving size as an positive int 
+     * 
+     * @return serving size as an positive int
      */
     public int getServingSize() {
         return this.servingSize;
@@ -142,6 +155,7 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Accessor for the recipe's createdOn date
+     * 
      * @return the Date object representing when the recipe was created
      */
     public Date getCreatedOn() {
@@ -150,6 +164,7 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Accessor for the recipe's ingredientlist
+     * 
      * @return the IngredientList obj which holds the recipe's list of ingredients
      */
     public IngredientList getIngredientList() {
@@ -158,6 +173,7 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Mutator for the recipe's ingredientlist
+     * 
      * @param ingredientList
      */
     public void setIngredientList(IngredientList ingredientList) {
@@ -166,6 +182,7 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Accessor for the recipe's reviews
+     * 
      * @return the List<Review> of the recipe's reviews
      */
     public ArrayList<Review> getReviews() {
@@ -174,12 +191,18 @@ public class Recipe extends Entity implements Portable {
 
     /**
      * Accessor for the recipe's list of categories
+     * 
      * @return the List<Category> of the recipe's categories
      */
     public ArrayList<Category> getCategories() {
         return this.categories;
     }
 
+    /**
+     * Gets the Recipe's instructions.
+     * 
+     * @return an ArrayList of instructions.
+     */
     public ArrayList<String> getInstructions() {
         return new ArrayList<String>(this.instructions);
     }
@@ -191,12 +214,31 @@ public class Recipe extends Entity implements Portable {
     public void setInstructions(ArrayList<String> instructions){
         this.instructions = instructions;
     }
-
+    
+    /** 
+     * An override for the .toString method of java.obj.
+     * 
+     * @return a string representation of the Recipe Object.
+     */
     @Override
     public String toString() {
-        return name + ": " + description; 
+        return name + ": " + description;
     }
 
+    /**
+     * An override for the .equals method of java.obj.
+     * 
+     * @param obj a Recipe object.
+     *            private String name;
+     *            private String description;
+     *            private int servingSize;
+     *            private Date createdOn;
+     *            private IngredientList ingredientList;
+     *            private List<Review> reviews;
+     *            private List<Category> categories;
+     *            private List<String> instructions;
+     * @return true if two Recipe objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         // Check if the compared object is of correct type
@@ -229,16 +271,16 @@ public class Recipe extends Entity implements Portable {
         return true;
     }
 
-    //* RecipeBuilder inner builder class for Recipe.java *\\
-
+    // * RecipeBuilder inner builder class for Recipe.java *\\
     /**
-    * The builder class used to instantiate the Recipe class through a fluent interface
-    * @author Nate Rardin (njrardi@ilstu.edu)
-    * @date 4/13/22
-    */
-    public static class RecipeBuilder
-    {
-        //* Instance Variables *\\
+     * The builder class used to instantiate the Recipe class through a fluent
+     * interface
+     * 
+     * @author Nate Rardin (njrardi@ilstu.edu)
+     * @date 4/13/22
+     */
+    public static class RecipeBuilder {
+        // * Instance Variables *\\
         private String name;
         private String description;
         private int servingSize;
@@ -248,7 +290,7 @@ public class Recipe extends Entity implements Portable {
         private ArrayList<Category> categories;
         private ArrayList<String> instructions;
 
-        //* Constructor *\\
+        // * Constructor *\\
 
         /**
          * RecipeBuilder Constructor
@@ -257,9 +299,10 @@ public class Recipe extends Entity implements Portable {
          * - initializes reviews, categories, and instructions to empty ArrayLists
          * - initializes description to empty string
          * - initializes serving size to 1
+         * 
          * @param name - the Recipe's name. Name is required to create a Recipe.
          */
-        public RecipeBuilder(String name){
+        public RecipeBuilder(String name) {
             this.name = name;
             this.description = "";
             this.servingSize = 1;
@@ -269,49 +312,54 @@ public class Recipe extends Entity implements Portable {
             this.instructions = new ArrayList<String>();
         }
 
-        //* RecipeBuilder methods - for constructing Recipe object *\\
+        // * RecipeBuilder methods - for constructing Recipe object *\\
 
         /**
          * Final method in the dot-chain which returns a Recipe object
+         * 
          * @return the Recipe object built using the RecipeBuilder
          */
-        public Recipe build(){
+        public Recipe build() {
             Recipe recipe = new Recipe(this);
             return recipe;
         }
 
         /**
          * Sets description with which to instantiate the recipe being built
+         * 
          * @param description
          * @return RecipeBuilder
          */
-        public RecipeBuilder setDescription(String description){
+        public RecipeBuilder setDescription(String description) {
             this.description = description;
             return this;
         }
 
         /**
          * Sets serving size with which to instantiate the recipe being built
+         * 
          * @param servingSize
          * @return RecipeBuilder
          */
-        public RecipeBuilder setServingSize(int servingSize){
+        public RecipeBuilder setServingSize(int servingSize) {
             this.servingSize = servingSize;
             return this;
         }
 
         /**
          * Sets list of ingredients with which to instantiate the recipe being built
+         * 
          * @param ingredientList
          * @return RecipeBuilder
          */
-        public RecipeBuilder setIngredientList(IngredientList ingredientList){
+        public RecipeBuilder setIngredientList(IngredientList ingredientList) {
             this.ingredientList = ingredientList;
             return this;//TODO: Enforce at least one ingredient
         }
-        
+
         /**
          * Sets list of reviews with which to instantiate the recipe being built
+         * 
          * @param reviews
          * @return RecipeBuilder
          */
@@ -319,9 +367,10 @@ public class Recipe extends Entity implements Portable {
             this.reviews = reviews;
             return this;
         }
-        
+
         /**
          * Sets list of categories with which to instantiate the recipe being built
+         * 
          * @param categories
          * @return RecipeBuilder
          */
@@ -329,9 +378,10 @@ public class Recipe extends Entity implements Portable {
             this.categories = categories;
             return this;
         }
-        
+
         /**
          * Sets list of instructions with which to instantiate the recipe being built
+         * 
          * @param instructions
          * @return RecipeBuilder
          */
@@ -339,5 +389,5 @@ public class Recipe extends Entity implements Portable {
             this.instructions = instructions;
             return this;//TODO: Enforce at least one instruction
         }
-    } 
+    }
 }

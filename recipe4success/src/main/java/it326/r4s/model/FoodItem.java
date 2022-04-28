@@ -5,23 +5,45 @@ import java.util.Collection;
 import java.util.Collections;
 
 /**
- * The Recipe object class for the Recipe4Success application
+ * The FoodItem class of the Recipes4Success application
+ * 
  * @author Nate Rardin (njrardi@ilstu.edu)
- * @date 4/27/22
+ * @date 4/26/2022
  */
 public class FoodItem extends Entity {
+    // * Instance Variables *\\
     private String name;
 
+    // *Constructors*\\
+    /**
+     * Creates a default FoodItem object.
+     */
     private FoodItem() {}
 
+    /**
+     * Creates a FoodItem object with a specified name.
+     * 
+     * @param name the name of the FoodItem
+     */
     private FoodItem(String name){
         this.name = name;
     }
 
+    // * Methods *\\
+    /**
+     * Gets the FoodItem's name.
+     * 
+     * @return the name of the FoodItem
+     */
     public String getName(){
         return this.name;
     }
 
+    /**
+     * An override for the .toString method of java.obj
+     * 
+     * @return a string representation of
+     */
     @Override
     public String toString() {
         return "{" +
@@ -29,6 +51,13 @@ public class FoodItem extends Entity {
             "}";
     }
     
+    /**
+     * An override for the .equals method of java.obj.
+     * private String name;
+     * private static int ID;
+     * 
+     * @return a bool indicating if the two FoodItems are equal.
+     */
     @Override
     public boolean equals(Object obj) {
         // Check if the compared object is of correct type

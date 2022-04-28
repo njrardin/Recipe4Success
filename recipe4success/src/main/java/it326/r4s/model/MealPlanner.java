@@ -8,36 +8,68 @@ import java.util.*;
  * @date 4/17/2022
  */
 public class MealPlanner extends Entity {
+    // *Instance Variables*\\
     private Collection<MealPlan> mealPlans;
     private int activeMealPlanIndex;
 
+    // *Constructor*\\
+    /**
+     * Creates a default MealPlanner object.
+     */
     public MealPlanner() {
         this.mealPlans = new ArrayList<MealPlan>();
         this.activeMealPlanIndex = 0;
     }
 
+    /**
+     * Creates a MealPlanner object with a specific collection of MealPlan.
+     * 
+     * @param mealPlans a collection of MealPlan for the MealPlanner.
+     */
     public MealPlanner(Collection<MealPlan> mealPlans) {
         this.mealPlans = mealPlans;
         this.activeMealPlanIndex = 0;
     }
 
+    // *Methods*\\
     public Collection<MealPlan> getMealPlans(){
         return mealPlans;
     }
 
+    /**
+     * Sets the MealPlans for the MealPlanner
+     * @param mealPlans - a Collection of MealPlans
+     */
     public void setMealPlans(Collection<MealPlan> mealPlans){
         this.mealPlans = mealPlans;
     }
 
+    /**
+     * Sets the MealPlanner's active meal plan index.
+     * 
+     * @param index the new active meal plan index.
+     */
     public boolean setActiveMealPlanIndex(int index) {
         this.activeMealPlanIndex = index; //TODO: Implement the logic to ensure this is within bounds
         return true;
     }
 
+    /**
+     * Gets the MealPlanner's active meal plan index.
+     * 
+     * @return the active meal plan index of the MealPlanner.
+     */
     public int getActiveMealPlanIndex() {
         return this.activeMealPlanIndex;
     }
 
+    /**
+     * Attempts to add a MealPlan object to the MealPlanner.
+     * 
+     * @param toAdd the new MealPlan to be added.
+     * @return true when the MealPlan is successfuly add to the MealPlanner, false
+     *         otherwise.
+     */
     public boolean addMealPlan(MealPlan toAdd) {
         for (MealPlan meal : mealPlans) {
             if (meal.equals(toAdd)) {
@@ -48,6 +80,13 @@ public class MealPlanner extends Entity {
         return true;
     }
 
+    /**
+     * Attempts to remove a MealPlan object from the MealPlanner.
+     * 
+     * @param toRemove the MealPlan to be removed.
+     * @return true when the MealPlan is successfully remove from the MealPlanner,
+     *         false otherwise.
+     */
     public boolean removeMealPlan(MealPlan toRemove) {
         for (MealPlan meal : mealPlans) {
             if (meal.equals(toRemove)) {
@@ -58,6 +97,11 @@ public class MealPlanner extends Entity {
         return false;
     }
 
+    /**
+     * An override for the .toString method of java.objre
+     * 
+     * @return a string representation of the MealPlanner object.
+     */
     @Override
     public String toString() {
         String temp = "";
