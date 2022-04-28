@@ -19,16 +19,24 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
     private Gson gson;
     private Class<T> typeT;
 
-    //* Constructor *\\
+    //* Constructors *\\
     /**
      * Constructs a default JSON porter object.
-     * @param type the concrete class type (e.g. Recipe.class).
      */
-    private JSON_Porter(Class<T> type) {
+    private JSON_Porter() {
         gson = new GsonBuilder()
             .serializeNulls()
             .setPrettyPrinting()
             .create();
+        typeT = null;
+    }
+
+    /**
+     * Constructs a JSON porter object of the specified type.
+     * @param type the concrete class type (e.g. Recipe.class).
+     */
+    private JSON_Porter(Class<T> type) {
+        this();
         typeT = type;
     }
 
@@ -58,7 +66,7 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
      * Exports a portable object to a JSON file.
      */
     @Override
-    public void exportFrom(T portable, String filename) throws Exception {
+    public void exportTo(T portable, String filename) throws Exception {
         Writer writer = getWriter(filename);
         gson.toJson(portable, writer);
         writer.close();

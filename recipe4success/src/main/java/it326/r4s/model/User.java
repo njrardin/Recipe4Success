@@ -15,7 +15,6 @@ public class User implements Portable {
     private Pantry pantry;
     private MealPlanner mealPlanner;
     private RecipeBook recipeBook;
-    private int activeMealPlanIndex;
 
     //* Constructors *\\
     /**
@@ -27,7 +26,6 @@ public class User implements Portable {
         pantry = new Pantry();
         mealPlanner = new MealPlanner();
         recipeBook = new RecipeBook();
-        activeMealPlanIndex = -1;
     }
 
     /**
@@ -40,42 +38,6 @@ public class User implements Portable {
     }
 
     //* Methods *\\
-    /**
-     * Attempts to add a meal plan to the user's collection.
-     * @param mealPlan the meal plan to be added.
-     * @return True if the meal plan was added, false otherwise.
-     */
-    public boolean addMealPlan(MealPlan mealPlan) {
-        return mealPlanner.addMealPlan(mealPlan);
-    }
-
-    /**
-     * Attempts to remove a meal plan from the user's collection.
-     * @param mealPlan the meal plan to be removed.
-     * @return True if the meal plan was removed, false otherwise.
-     */
-    public boolean removeMealPlan(MealPlan mealPlan) {
-        return mealPlanner.removeMealPlan(mealPlan);
-    }
-
-    /**
-     * Attempts to add a recipe to the user's collection.
-     * @param recipe the recipe to be added.
-     * @return True if the recipe was added, false otherwise.
-     */
-    public boolean addRecipe(Recipe recipe) {
-        return recipeBook.addRecipe(recipe);
-    }
-
-    /**
-     * Attempts to remove a recipe from the user's collection.
-     * @param recipe the recipe to be removed.
-     * @return True if the recipe was removed, false otherwise.
-     */
-    public boolean removeRecipe(Recipe recipe) {
-        return recipeBook.removeRecipe(recipe);        
-    }
-
     /**
      * Attempts to move the ingredients from the user's grocery list to the pantry.
      * @return True if all ingredients were moved, false otherwise.
@@ -175,61 +137,7 @@ public class User implements Portable {
     public void setRecipeBook(RecipeBook recipeBook){
         this.recipeBook = recipeBook;
     }
-
-    /**
-     * Gets the user's collection of meal plans.
-     */
-    public Collection<MealPlan> getMealPlans() {
-        return mealPlanner.getMealPlans();
-    }
-
-    /**
-     * Sets the user's collection of meal plans.
-     * @param mealPlans the new collection of meals.
-     */
-    public void setMealPlans(Collection<MealPlan> mealPlans) {
-        this.mealPlanner.setMealPlans(mealPlans);
-    }
-
-    /**
-     * Gets the user's collection of recipes.
-     */
-    public Collection<Recipe> getRecipes() {
-        return this.recipeBook.getRecipes();
-    }
-
-    /**
-     * Sets the user's collection of recipes.
-     * @param recipes the new collection of recipes.
-     */
-    public void setRecipes(Collection<Recipe> recipes) {
-        this.recipeBook.setRecipes(recipes);
-    }
-
-    /**
-     * Gets the user's active meal plan index.
-     */
-    public int getActiveMealPlanIndex() {
-        return this.activeMealPlanIndex;
-    }
-
-    /**
-     * Sets the user's active meal plan index.
-     * @param index the new active meal plan index.
-     * @return True if within bounds, false otherwise.
-     */
-    public boolean setActiveMealPlanIndex(int index) {
-        return mealPlanner.setActiveMealPlanIndex(index);
-    }
-
-    /**
-    private String name;
-    private GroceryList groceryList;
-    private Pantry pantry;
-    private Collection<MealPlan> mealPlans;
-    private Collection<Recipe> recipes;
-    private int activeMealPlanIndex;
-     */
+    
     @Override
     public boolean equals(Object obj) {
         // Check if the compared object is of correct type
