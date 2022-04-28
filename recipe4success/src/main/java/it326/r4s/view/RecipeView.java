@@ -9,6 +9,7 @@ import javax.lang.model.util.ElementScanner14;
 import com.google.gson.internal.sql.SqlTypesSupport;
 
 import it326.r4s.controller.RecipeController;
+import it326.r4s.controller.UnitController;
 import it326.r4s.controller.UserController;
 import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Category;
@@ -171,7 +172,6 @@ public class RecipeView implements CLI_View{
             System.out.println("What would you like to edit?");
             try{
                 selection = Integer.parseInt(scan.nextLine());
-                System.out.println("Selection: " + selection);
             } catch (Exception e) {
                 System.out.println("Please select an option by typing the corresponding number");
                 continue;
@@ -363,8 +363,7 @@ public class RecipeView implements CLI_View{
                 ingredientName = scan.nextLine().toLowerCase();
 
                 //get the unit
-                System.out.println("What is the unit of measure for " + ingredientName + "?");
-                unit = UnitView.getUnitFromUser();
+                unit = UnitController.getUnit();
 
                 //get the quantity
                 System.out.println("How many " + unit.stringRep + "s are used?");
