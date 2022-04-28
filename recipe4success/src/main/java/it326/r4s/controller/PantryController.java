@@ -7,7 +7,7 @@ import it326.r4s.view.PantryView;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class PantryController implements CLI_Controller {
+public class PantryController {
 
     private Pantry pantry;
     private PantryView pantryView;
@@ -17,7 +17,7 @@ public class PantryController implements CLI_Controller {
         this.pantryView = new PantryView(this);
     }
 
-    public void executeView(){
-        pantryView.execute();
+    public void openPantry(){
+        pantryView.getMenuOptionSelection();
     }
 }

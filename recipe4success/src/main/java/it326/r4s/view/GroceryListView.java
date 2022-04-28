@@ -8,7 +8,7 @@ import it326.r4s.controller.GroceryListController;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class GroceryListView implements CLI_View{
+public class GroceryListView implements CLI_Menu{
     
     private GroceryListController glController;
 
@@ -16,7 +16,7 @@ public class GroceryListView implements CLI_View{
         this.glController = glController;
     }
 
-    public void execute(){
-        
+    public int getMenuOptionSelection(){
+        return -1; //TODO: implement
     }
 }

@@ -101,4 +101,5 @@ public class IngredientList extends Entity {
         }
         return result;
     }
+
 }

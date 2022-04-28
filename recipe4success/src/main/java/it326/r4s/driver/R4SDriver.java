@@ -34,10 +34,10 @@ public class R4SDriver {
 
         User user = new User("Name"); //TODO: implement way to get this from user only on first pass through
         UserController.initUserController(user);
-
-        MainMenuController mmController = new MainMenuController(UserController.getGlobalUser());
+        UserController userController = UserController.getUserController();
+        MainMenuController mmController = new MainMenuController(userController);
         
-        mmController.executeView();
+        mmController.launchMainMenu();
     }
 
     private static void saveAndExit() {

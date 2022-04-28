@@ -18,8 +18,8 @@ public class GroceryListController {
         this.glView = new GroceryListView(this);
     }
 
-    public void executeView() {
-        glView.execute();
+    public void openGroceryList() {
+        glView.getMenuOptionSelection();
     }
     
 }

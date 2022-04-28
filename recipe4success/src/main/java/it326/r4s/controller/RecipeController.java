@@ -13,7 +13,7 @@ import it326.r4s.view.RecipeView.RecipeBuilderView;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeController implements CLI_Controller{
+public class RecipeController {
     
     public Recipe recipe;
     public RecipeView recipeView;
@@ -27,20 +27,65 @@ public class RecipeController implements CLI_Controller{
         return recipeView;
     }
 
-    public void executeView() {
-        recipeView.execute();
-    }
-
     public Recipe getRecipe(){
         return this.recipe;
     }
-    
-    public String getRecipeName() {
-        return recipe.getName();
+
+    public void openRecipe(){
+        recipeView.displayRecipe();
+        int option;
+        while(true){
+            option = recipeView.getMenuOptionSelection();
+
+            switch (option) {
+                case 1:
+                    editRecipe();
+                    break;
+                case 2:
+                    addReview(UserController.getUserController().getGlobalUser());
+                    break;
+                case 3:
+                    adjustServingSize(recipeView.getNewServingSize());
+                    break;
+                case 4:
+                    exportRecipe();
+                    break;
+                case 5:
+                    deleteRecipe();
+                    return;
+                case 6:
+                    break;
+                case 7:
+                    return;
+                default:
+                    System.out.println("Invalid input, please try again\n");
+            }
+            recipeView.displayRecipe();
+        }
     }
 
-    public String getRecipeDescription() {
-        return recipe.getDescription();
+    public void editRecipe(){
+        int editOption = recipeView.getEditOptionSelection(recipe.getName());
+
+        switch(editOption){
+            case 1:
+                recipe.setName(RecipeBuilderView.getRecipeNameFromUser());
+                break;
+            case 2:
+                recipe.setDescription(RecipeBuilderView.getDescriptionFromUser());
+                break;
+            case 3:
+                recipe.adjustServingSize(RecipeBuilderView.getServingSizeFromUser());
+                break;
+            case 4:
+                recipe.setIngredientList(RecipeBuilderView.getIngredientsFromUser());
+                break;
+            case 5:
+                recipe.setInstructions(RecipeBuilderView.getInstructionsFromUser());
+            case 6:
+                return;
+        }
+        recipeView.displayUpdateSuccess();
     }
 
     public void addReview(User theUser){
@@ -64,33 +109,12 @@ public class RecipeController implements CLI_Controller{
                 rating = Rating.FIVE;
                 break;
         }
-        Review newReview = new Review(UserController.getGlobalUser(), rating);
+        Review newReview = new Review(UserController.getUserController().getGlobalUser(), rating);
         recipe.addReview(newReview);
     }
 
-    public void editRecipe(){
-        recipeView.displayEditOptions();
-        int editOption = recipeView.getEditOption();
-
-        switch(editOption){
-            case 1:
-                recipe.setName(RecipeBuilderView.getRecipeNameFromUser());
-                break;
-            case 2:
-                recipe.setDescription(RecipeBuilderView.getDescriptionFromUser());
-                break;
-            case 3:
-                recipe.setServingSize(RecipeBuilderView.getServingSizeFromUser());
-                break;
-            case 4:
-                recipe.setIngredientList(RecipeBuilderView.getIngredientsFromUser());
-                break;
-            case 5:
-                recipe.setInstructions(RecipeBuilderView.getInstructionsFromUser());
-            case 6:
-                return;
-        }
-        recipeView.displayUpdateSuccess();
+    public void adjustServingSize(int newServingSize) {
+        recipe.adjustServingSize(newServingSize);
     }
 
 	public void exportRecipe() {
@@ -99,7 +123,7 @@ public class RecipeController implements CLI_Controller{
 
 	public void deleteRecipe() {
         if(recipeView.deletionConfirmation()){
-            UserController.getGlobalUser().getRecipeBook().removeRecipe(recipe);
+            UserController.getUserController().getGlobalUser().getRecipeBook().removeRecipe(recipe);
         }
 	}
 
@@ -111,15 +135,13 @@ public class RecipeController implements CLI_Controller{
         return new IngredientListController(recipe.getIngredientList());
     }
 
-    public void adjustServingSize(int newServingSize) {
-        recipe.setServingSize(newServingSize);
-    }
+
 
     /**
- * Controller for R4S RecipeBuilder
- * @author Nate Rardin (njrardi@ilstu.edu)
- * @date 4/27/22
- */
+     * Controller for R4S RecipeBuilder
+     * @author Nate Rardin (njrardi@ilstu.edu)
+     * @date 4/27/22
+     */
     public static class RecipeBuilderController {
 
         private RecipeBuilderView rBuildView;
@@ -131,6 +153,7 @@ public class RecipeController implements CLI_Controller{
         public Recipe buildUserRecipe() throws RuntimeException{
 
             Recipe newRecipe;
+            rBuildView.displayRecipeBuildInit();
 
             //build name
             Recipe.RecipeBuilder rBuild = new Recipe.RecipeBuilder(rBuildView.getRecipeNameFromUser());

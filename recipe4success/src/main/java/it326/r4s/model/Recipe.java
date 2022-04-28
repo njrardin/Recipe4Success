@@ -40,6 +40,19 @@ public class Recipe extends Entity implements Portable {
     //* Methods \\
 
     /**
+     * adjusts the quantities of all ingredients in the list to reflect the new serving size of this recipe
+     * @param newServingSize
+     */
+    public void adjustServingSize(int newServingSize) {
+        int oldServingSize = this.servingSize;
+        for(Ingredient ingredient: ingredientList.getIngredients()){
+            double newQuantity = ((double) newServingSize / (double) oldServingSize) * ingredient.getQuantity();
+            ingredient.setQuantity(newQuantity);
+        }
+        this.servingSize = newServingSize;
+    }
+
+    /**
      * Removes the category from the recipe
      * @param theCategory
      */
@@ -125,14 +138,6 @@ public class Recipe extends Entity implements Portable {
      */
     public int getServingSize() {
         return this.servingSize;
-    }
-
-    /**
-     * Mutator for the recipe's serving size
-     * @param servingSize
-     */
-    public void setServingSize(int servingSize) {
-        this.servingSize = servingSize;
     }
 
     /**
@@ -302,7 +307,7 @@ public class Recipe extends Entity implements Portable {
          */
         public RecipeBuilder setIngredientList(IngredientList ingredientList){
             this.ingredientList = ingredientList;
-            return this;
+            return this;//TODO: Enforce at least one ingredient
         }
         
         /**
@@ -332,7 +337,7 @@ public class Recipe extends Entity implements Portable {
          */
         public RecipeBuilder setInstructions(ArrayList<String> instructions){
             this.instructions = instructions;
-            return this;
+            return this;//TODO: Enforce at least one instruction
         }
     } 
 }
