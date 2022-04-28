@@ -63,7 +63,7 @@ public class JSON_PorterTest {
             Path path = Path.of(EXPORT_FILENAME);
             
             // Export the User object.
-            exporter.exportFrom(user, EXPORT_FILENAME);
+            exporter.exportTo(user, EXPORT_FILENAME);
             assertTrue(Files.exists(path));
 
             // Import the User object back from the JSON file and delete the file.

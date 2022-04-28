@@ -66,7 +66,7 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
      * Exports a portable object to a JSON file.
      */
     @Override
-    public void exportFrom(T portable, String filename) throws Exception {
+    public void exportTo(T portable, String filename) throws Exception {
         Writer writer = getWriter(filename);
         gson.toJson(portable, writer);
         writer.close();
