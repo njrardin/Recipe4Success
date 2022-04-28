@@ -53,7 +53,7 @@ public class Category {
      * @author Alex Smith (alsmi14@ilstu.edu)
      * @date 4/27/22
      */
-    public static class Pool {
+    public static class Pool implements Portable {
         private static Pool pool = null;
         private Map<Type, Collection<Category>> allCategories;
 

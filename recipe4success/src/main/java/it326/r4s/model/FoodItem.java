@@ -50,7 +50,7 @@ public class FoodItem extends Entity {
      * @author Alex Smith (alsmi14@ilstu.edu)
      * @date 4/27/22
      */
-    public static class Pool {
+    public static class Pool implements Portable {
         private static Pool pool = null;
         private Collection<FoodItem> foodItems;
 
