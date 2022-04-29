@@ -3,8 +3,6 @@ package it326.r4s.view;
 import java.util.Scanner;
 
 import it326.r4s.controller.MealPlanController;
-import it326.r4s.controller.RecipeBookController;
-
 /**
  * View for R4S MealPlanner
  * @author Zach Plattner (zmplatt@ilstu.edu) and Nate Rardin (njrardi@ilstu.edu)

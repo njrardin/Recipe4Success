@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.MealPlanner;
+import it326.r4s.view.MealPlanView;
 import it326.r4s.view.MealPlannerView;
 /**
  * Controller for R4S MealPlanner
@@ -136,7 +137,15 @@ public class MealPlannerController {
      * selecting one of the MealPlans in the mealPlanner
      */
     public void selectMealPlan(Collection<MealPlan> mealPlans) {
-        
+        ArrayList<MealPlanController> mealPlanControllers = new ArrayList<MealPlanController>();
+        for(MealPlan mealplan: mealPlans){
+            mealPlanControllers.add(new MealPlanController(mealplan));
+        }
+        try{
+            MealPlanController selectedMealplanController = mealPlannerView.getMealPlanSelection(mealPlanControllers);
+            selectedMealplanController.openMealPlan();
+        } catch (RuntimeException e) { /*do nothing*/ }
+
     }
 
 }

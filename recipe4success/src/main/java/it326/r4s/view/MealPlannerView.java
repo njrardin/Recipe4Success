@@ -83,7 +83,7 @@ public class MealPlannerView implements CLI_Menu{
      * @return the MealPlanController who's mealplan was selected
      * @throws RuntimeException - if the user aborts the selection process
      */
-    public MealPlanController displayAndSelect(ArrayList<MealPlanController> mealPlanControllers) throws RuntimeException{    
+    public MealPlanController getMealPlanSelection(ArrayList<MealPlanController> mealPlanControllers) throws RuntimeException{    
         displayMealPlans(mealPlanControllers);
         if (askSelectMealPlan() == false){
             throw new RuntimeException();
