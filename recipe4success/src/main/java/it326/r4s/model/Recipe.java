@@ -15,7 +15,7 @@ public class Recipe extends Entity implements Portable {
     private int servingSize;
     private Date createdOn;
     private IngredientList ingredientList;
-    private ArrayList<Review> reviews;
+    private ArrayList<Review> reviews; //TODO: should have an overall rating attribute that uses this
     private ArrayList<Category> categories;
     private ArrayList<String> instructions;
 

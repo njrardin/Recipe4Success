@@ -6,5 +6,6 @@ package it326.r4s.view;
  */
 public interface CLI_Menu {
     
+    //displays the menu options for the class and returns a user selection
     public int getMenuOptionSelection();
 }

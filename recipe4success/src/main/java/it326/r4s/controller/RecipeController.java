@@ -1,11 +1,10 @@
 package it326.r4s.controller;
 
-import java.util.ArrayList;
-
 import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
 import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
+import it326.r4s.view.RecipeBookView;
 import it326.r4s.view.RecipeView;
 import it326.r4s.view.RecipeView.RecipeBuilderView;
 /**
@@ -15,22 +14,41 @@ import it326.r4s.view.RecipeView.RecipeBuilderView;
  */
 public class RecipeController {
     
+    //*Instance Variables*\\
     public Recipe recipe;
     public RecipeView recipeView;
     
+    //*Constructor*\\
+    /**
+     * Constructs a recipe controller from a given recipe
+     * @param recipe
+     */
     public RecipeController(Recipe recipe){
         this.recipe = recipe;
         this.recipeView = new RecipeView(this);
     }
 
+    //*Methods*\\
+    /**
+     * Getter for the controller's recipeView
+     * @return
+     */
     public RecipeView getRecipeView(){
         return recipeView;
     }
 
+    /**
+     * Getter for the controller's recipe
+     * @return
+     */
     public Recipe getRecipe(){
         return this.recipe;
     }
 
+    /**
+     * Launches the recipeBookView to get a user option selection
+     * and then takes the appropriate action
+     */
     public void openRecipe(){
         recipeView.displayRecipe();
         int option;
@@ -45,7 +63,7 @@ public class RecipeController {
                     addReview(UserController.getUserController().getGlobalUser());
                     break;
                 case 3:
-                    adjustServingSize(recipeView.getNewServingSize());
+                    adjustServingSize(RecipeBuilderView.getServingSizeFromUser());
                     break;
                 case 4:
                     exportRecipe();
@@ -64,8 +82,12 @@ public class RecipeController {
         }
     }
 
+    /**
+     * Faciliates the process of the user
+     * editing the recipe
+     */
     public void editRecipe(){
-        int editOption = recipeView.getEditOptionSelection(recipe.getName());
+        int editOption = recipeView.getEditOptionSelection();
 
         switch(editOption){
             case 1:
@@ -88,6 +110,11 @@ public class RecipeController {
         recipeView.displayUpdateSuccess();
     }
 
+    /**
+     * Facilitates the process of the user
+     * writing a review on a recipe
+     * @param theUser - takes in the user object to associate the review with an author
+     */
     public void addReview(User theUser){
         int ratingNum = recipeView.getReviewRating();
         Rating rating = null;
@@ -113,23 +140,32 @@ public class RecipeController {
         recipe.addReview(newReview);
     }
 
+    /**
+     * Facilitates the process of the user
+     * adjusting the recipe's serving size
+     * @param newServingSize
+     */
     public void adjustServingSize(int newServingSize) {
         recipe.adjustServingSize(newServingSize);
     }
 
+    /**
+     * Facilitates the process of the user
+     * exporting the recipe
+     */
 	public void exportRecipe() {
         //TODO: This is Alex's problem
 	}
 
+    /**
+     * Facilitates the process of the user
+     * deleting the recipe
+     */
 	public void deleteRecipe() {
         if(recipeView.deletionConfirmation()){
             UserController.getUserController().getGlobalUser().getRecipeBook().removeRecipe(recipe);
         }
 	}
-
-    public ArrayList<String> getInstructions() {
-        return recipe.getInstructions();
-    }
 
     public IngredientListController getIngredientListController() {
         return new IngredientListController(recipe.getIngredientList());
@@ -155,26 +191,31 @@ public class RecipeController {
             Recipe newRecipe;
             rBuildView.displayRecipeBuildInit();
 
-            //build name
+            //set name & create builder
             Recipe.RecipeBuilder rBuild = new Recipe.RecipeBuilder(rBuildView.getRecipeNameFromUser());
             
+            //set description
             rBuild.setDescription(rBuildView.getDescriptionFromUser());
 
+            //set serving size
             rBuild.setServingSize(rBuildView.getServingSizeFromUser());
 
+            //set instructions
             rBuild.setInstructions(rBuildView.getInstructionsFromUser());
 
+            //set ingredient list
             rBuild.setIngredientList(rBuildView.getIngredientsFromUser());
 
+            //set categories
             rBuild.setCategories(rBuildView.getCategoriesFromUser());
 
-            if (rBuildView.confirmBuild()){
-                newRecipe = rBuild.build();
+            //confirm the build
+            while(!(rBuildView.confirmBuild())){
+                //TODO: What to do if they don't confirm
             }
-            else{
-                throw new RuntimeException();
-            } //TODO: patch in edit system here
 
+            //finalizes build and returns recipe
+            newRecipe = rBuild.build();
             return newRecipe;
         }
     }
