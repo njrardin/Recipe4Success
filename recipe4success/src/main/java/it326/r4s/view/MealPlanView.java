@@ -6,7 +6,7 @@ import it326.r4s.controller.MealPlanController;
 
 /**
  * View for R4S MealPlanner
- * @author Zach Plattner (zmplatt@ilstu.edu)
+ * @author Zach Plattner (zmplatt@ilstu.edu) and Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
 public class MealPlanView implements CLI_Menu {
@@ -17,52 +17,7 @@ public class MealPlanView implements CLI_Menu {
         this.mealPlanController = mealPlanController;
     }
 
-    public void execute() {
-        String input = "";
-        Scanner scan = ViewUtilities.scan;
-        displayMealPlan();
-        displayMealPlanOptions();
-
-        input = scan.nextLine().toLowerCase();
-        System.out.println();
-        while(true){
-            switch(input) {
-            case "1":
-                mealPlanController.addRecipeToMP();
-                break;
-            case "2":
-                mealPlanController.removeRecipeFromMP();
-                break;
-            case "3":
-                mealPlanController.setMealPlanSS(this.getNewServingSize());;
-                break;
-            case "4":
-                mealPlanController.addAllIngredientsToGroceryList();;
-                break;
-            case "5":
-                mealPlanController.exportMealPlan();
-                break;
-            case "6":
-                mealPlanController.deleteMealPlan();
-                break;
-            case "7":
-                displayMealPlan();
-                break;
-            case "8":
-                return;
-            case "options":
-                displayMealPlanOptions();
-                break;
-            case "back":
-                return;
-            default:
-                System.out.println("Invalid input, please try again\n");
-            }
-            displayMealPlanOptions();
-        }
-    }
-
-    private void displayMealPlan() {
+    public void displayMealPlan() {
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("Name: " + mealPlanController.getMealPlan().getMealPlanName());
