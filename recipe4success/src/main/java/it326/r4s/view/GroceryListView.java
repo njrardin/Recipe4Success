@@ -65,7 +65,7 @@ public class GroceryListView implements CLI_Menu{
 	public void displayGroceryList() {
         System.out.printf("%52s%n%n", "-- My Grocery List --");
         if(glController.getIngredientListController().getIngredientList().getIngredients().isEmpty()){
-            System.out.println("The grovery list is currently empty\n");
+            System.out.println("The grocery list is currently empty\n");
         }
         else{
             glController.getIngredientListController().getIngredientListView().displayIngredients();

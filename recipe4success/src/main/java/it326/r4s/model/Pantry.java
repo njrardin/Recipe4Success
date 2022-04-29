@@ -74,5 +74,14 @@ public class Pantry {
         return this.ingredientList.removeIngredients(recipeIngredients);
     }
 
+    /**
+     * Removes an ingredient from the pantry
+     * @param ingredient
+     * @return
+     */
+    public boolean removeIngredient(Ingredient ingredient){
+        return ingredientList.removeIngredient(ingredient);
+    }
+
 
 }
