@@ -39,6 +39,20 @@ public class GroceryList {
     }
 
     /**
+     * Adds the new ingredient list to the grocery list
+     * @param toAdd - the ingredientlist to add
+     */
+    public void addIngredientList(IngredientList toAdd){
+        for(Ingredient ingredient: toAdd.getIngredients()){
+            ingredientList.addIngredient(ingredient);
+        }
+    }
+
+    public boolean removeIngredient(Ingredient ingredient){
+        return ingredientList.removeIngredient(ingredient);
+    }
+
+    /**
      * An override for the .equals method of java.obj.
      * 
      * @param obj a GroceryList object.

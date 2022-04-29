@@ -1,4 +1,5 @@
 package it326.r4s.model;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -11,7 +12,7 @@ import java.util.HashSet;
 
 public class IngredientList extends Entity {
     // *Instance Variable*\\
-    private Collection<Ingredient> ingredients;
+    private ArrayList<Ingredient> ingredients;
 
     // *Constructors*\\
     /**
@@ -19,7 +20,7 @@ public class IngredientList extends Entity {
      */
     public IngredientList() {
         super();
-        this.ingredients = new HashSet<Ingredient>();
+        this.ingredients = new ArrayList<Ingredient>();
     }
 
     /**
@@ -29,7 +30,7 @@ public class IngredientList extends Entity {
      */
     public IngredientList(Collection<Ingredient> ingredients) {
         super();
-        this.ingredients = new HashSet<Ingredient>(ingredients);
+        this.ingredients = new ArrayList<Ingredient>(ingredients);
     }
 
     // *methods*\\
@@ -129,7 +130,7 @@ public class IngredientList extends Entity {
      * 
      * @return a collection of ingredients.
      */
-    public Collection<Ingredient> getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return this.ingredients;
     }
 
