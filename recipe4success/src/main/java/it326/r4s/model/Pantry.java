@@ -41,6 +41,16 @@ public class Pantry {
     }
 
     /**
+     * Adds the new ingredient list to the pantry
+     * @param toAdd - the ingredientlist to add
+     */
+    public void addIngredientList(IngredientList toAdd){
+        for(Ingredient ingredient: toAdd.getIngredients()){
+            ingredientList.addIngredient(ingredient);
+        }
+    }
+
+    /**
      * An override for the .toString method of java.obj.
      * 
      * @return a string representation of the Pantry object.
@@ -63,4 +73,6 @@ public class Pantry {
         Collection<Ingredient> recipeIngredients = recipe.getIngredientList().getIngredients();
         return this.ingredientList.removeIngredients(recipeIngredients);
     }
+
+
 }

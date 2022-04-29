@@ -53,7 +53,7 @@ public class GroceryListView implements CLI_Menu{
             "Remove an Item from My Grocery List",
             "Transfer Ingredients to My Pantry",
             "Organize the Grocery List order",
-            "Export this Mealplan",
+            "Export this Grocery List",
             "Go back"
         };
         return ViewUtilities.getOptionFromCLI(title, prompt, options);
@@ -139,7 +139,42 @@ public class GroceryListView implements CLI_Menu{
        }
     }
 
+    /**
+     * Gets an ingredient from the user to remove
+     * @return the ingredient
+     */
 	public Ingredient getIngredientRemovalFromUser() {
 		return glController.getIngredientListController().getIngredientListView().selectIngredient();
 	}
+
+    public boolean confirmTransfer() {
+        Scanner scan = ViewUtilities.scan;
+        String input = "";
+        do{
+            System.out.println("Are you sure you want to transfer all the ingredients to your pantry? (Y/N)");
+            input = scan.nextLine().toLowerCase();
+        }  while ( !(input.equals("y") || input.equals("n") ));
+
+        if(input.equals("n")){
+            return false;
+        }
+        else{
+            System.out.println("...transferring to pantry\n");
+            return true;
+        }
+    }
+
+    /**
+     * Displays a success message for the transfer
+     */
+    public void displayTransferSuccess() {
+        System.out.println("Ingredients have been successfully transferred!");
+    }
+
+    /**
+     * Displays a cancelation message for the transfer
+     */
+    public void displayTransferCancel(){
+        System.out.println("Transfer cancelled.\n");
+    }
 }

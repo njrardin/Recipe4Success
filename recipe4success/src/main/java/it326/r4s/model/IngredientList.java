@@ -171,4 +171,11 @@ public class IngredientList extends Entity {
         return result;
     }
 
+    /**
+     * Empties the ingredient list
+     */
+    public void makeEmpty() {
+        ingredients = new ArrayList<Ingredient>();
+    }
+
 }

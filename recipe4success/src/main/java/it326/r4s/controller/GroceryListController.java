@@ -1,6 +1,7 @@
 package it326.r4s.controller;
 
 import it326.r4s.model.GroceryList;
+import it326.r4s.model.Pantry;
 import it326.r4s.view.GroceryListView;
 
 /**
@@ -66,21 +67,52 @@ public class GroceryListController {
         }
     }
 
+    /**
+     * Facilitats the process of the user
+     * adding an ingredient to the grocerylist
+     */
     public void addIngredient() {
         groceryList.addIngredientList(glView.getNewIngredientsFromUser());
     }
     
+    /**
+     * Facilitats the process of the user
+     * removing an ingredient from the grocerylist
+     */
     public void removeIngredient() {
         groceryList.removeIngredient(glView.getIngredientRemovalFromUser());
     }
-    
+
+    /**
+     * Facilitats the process of the user
+     * transferring items to pantry
+     */
     public void transferToPantry() {
+        if(glView.confirmTransfer()){
+            //move ingredients to the pantry
+            Pantry thePantry = UserController.getUserController().getGlobalUser().getPantry();
+            thePantry.addIngredientList(groceryList.getIngredientList());
+            //remove all of the ingredients in the grocery list
+            groceryList.getIngredientList().makeEmpty();
+            glView.displayTransferSuccess();
+        }
+        else{
+            glView.displayTransferCancel();
+        }
     }
 
+    /**
+     * Facilitates the process of the user
+     * organizing the items on their grocery list
+     */
     public void organizeGroceryList() {
-
+        
     }
 
+    /**
+     * Facilitates the process of the user
+     * exporting their grocery list
+     */
     public void exportGroceryList(){
 
     }
