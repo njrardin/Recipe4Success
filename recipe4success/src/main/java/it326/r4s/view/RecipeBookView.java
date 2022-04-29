@@ -57,6 +57,13 @@ public class RecipeBookView implements CLI_Menu {
     }
 
     /**
+     * Displays the full recipeBook to the user
+     */
+    public void displayRecipeBook() {
+        displayRecipes(rbController.getRecipeControllers());
+    }
+
+    /**
      * Displays to the user all recipes in a given
      * list of recipeControllers
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
@@ -68,13 +75,6 @@ public class RecipeBookView implements CLI_Menu {
             recipeController.getRecipeView().displayOneline();
             i++;
         }
-    }
-
-    /**
-     * Displays the full recipeBook to the user
-     */
-    public void displayRecipeBook() {
-        displayRecipes(rbController.getRecipeControllers());
     }
 
     /**
