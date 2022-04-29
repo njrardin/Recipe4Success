@@ -22,8 +22,8 @@ public class RecipeBookController {
 
     //*Constructor*\\
     /**
-     * Constructs a RecipeBookController
-     * @param recipeBook - the recipeBook instance to associate with the controller
+     * Constructor for R4S's RecipeBookController
+     * @param recipeBook - the controller's RecipeBook
      */
     public RecipeBookController(RecipeBook recipeBook){
         this.recipeBook = recipeBook;
