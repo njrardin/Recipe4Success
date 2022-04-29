@@ -39,6 +39,13 @@ public class MealPlannerView implements CLI_Menu{
     }
 
     /**
+     * Displays the full meal planner to the user
+     */
+    public void displayMealPlanner() {
+        displayMealPlans(mprController.getMealPlanControllers());
+    }
+
+    /**
      * Allows the user to select one of a series of options
      * @return an int representing the selected option
      */
@@ -54,13 +61,6 @@ public class MealPlannerView implements CLI_Menu{
             "Go back"
         };
         return ViewUtilities.getOptionFromCLI(title, prompt, options);
-    }
-
-    /**
-     * Displays the full meal planner to the user
-     */
-    public void displayMealPlanner() {
-        displayMealPlans(mprController.getMealPlanControllers());
     }
 
     /**
