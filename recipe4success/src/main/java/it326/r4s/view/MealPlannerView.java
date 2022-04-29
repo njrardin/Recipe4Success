@@ -118,6 +118,10 @@ public class MealPlannerView implements CLI_Menu{
         return mealPlanControllers.get(inputNum - 1);
     }
 
+    /**
+     * A confirmation option for selecting a mealplan
+     * @return true if confirmed, false if denied
+     */
     private boolean askSelectMealPlan() {
         Scanner scan = ViewUtilities.scan;
         String input = "";
