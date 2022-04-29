@@ -81,7 +81,7 @@ public class MealPlanView implements CLI_Menu {
         }
     }
 
-    private int getNewServingSize() {
+    public int getNewServingSize() {
         Scanner scan = ViewUtilities.scan;
         int servingSize = -1;
 

@@ -85,6 +85,9 @@ public class MealPlannerController {
                     selectMealPlan(mealPlanner.getMealPlans());
                     break;
                 case 6:
+                    setActiveMealPlan();
+                    break;
+                case 7:
                     return;
                 default:
                     System.out.println("Invalid input, please try again\n");
@@ -97,7 +100,8 @@ public class MealPlannerController {
      * setting their active MealPlan
      */
     public void setActiveMealPlan() {
-        //TODO - req 15
+        int selection = mealPlannerView.getActivationSelection();
+        mealPlanner.setActiveMealPlanIndex(selection - 1);
     }
     
     /**
@@ -129,7 +133,7 @@ public class MealPlannerController {
      * creating a new MealPlan for the mealPlanner
      */
     public void createMealPlan() {
-        //TODO - req 10
+        MealPlan newMealPlan = new MealPlan("temp");
     }
 
     /**

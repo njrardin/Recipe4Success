@@ -42,7 +42,10 @@ public class MealPlannerView implements CLI_Menu{
      * Displays the full meal planner to the user
      */
     public void displayMealPlanner() {
+        System.out.println("\nCurrent active Mealplan: " + mprController.getMealPlanner().getMealPlans().get(mprController.getMealPlanner().getActiveMealPlanIndex()));
+        System.out.println();
         displayMealPlans(mprController.getMealPlanControllers());
+        System.out.println();
     }
 
     /**
@@ -58,6 +61,7 @@ public class MealPlannerView implements CLI_Menu{
             "Export a mealplan",
             "Create a new mealplan",
             "Select a mealplan",
+            "Set mealplan as 'Active'",
             "Go back"
         };
         return ViewUtilities.getOptionFromCLI(title, prompt, options);
@@ -135,4 +139,24 @@ public class MealPlannerView implements CLI_Menu{
         return true;
     }
 
+    public int getActivationSelection(){
+        System.out.println("Please select one of the following meal plans: ");
+        displayMealPlanner();
+
+        Scanner scan = ViewUtilities.scan;
+        int selection = -1;
+        do{
+            System.out.println("Please select an option by entering the corresponding number:");
+            try{
+                selection = Integer.parseInt(scan.nextLine());
+            } catch (Exception e) {
+                System.out.println("Invalid input, selection must be a number:");
+                continue;
+            }
+        } while( !(0 < selection && selection <= mprController.getMealPlanControllers().size()));
+        System.out.println("Selection returned as: " + selection);
+        return selection;
+    }
+
+    
 }

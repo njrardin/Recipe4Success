@@ -100,6 +100,22 @@ public class MealPlan extends Entity implements Portable {
     }
 
     /**
+     * Attempts to remove a meal from the MealPlan.
+     * 
+     * @param theRecipe the recipe whose meal is to be removed.
+     * @return true if theMeal is successfully removed from the MealPlan, false
+     *         otherwise.
+     */
+    public boolean removeMeal(Recipe theRecipe) {
+        for(Meal meal : meals){
+            if (meal.getRecipe().equals(theRecipe)){
+                return removeMeal(meal);
+            }
+        }
+        return false;
+    }
+
+    /**
      * Sets the meals' serving size.
      * 
      * @param servingSize the new serving size of the meals.

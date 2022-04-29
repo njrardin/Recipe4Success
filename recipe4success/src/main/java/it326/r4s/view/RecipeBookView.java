@@ -84,7 +84,7 @@ public class RecipeBookView implements CLI_Menu {
      * @return the RecipeController who's recipe was selected
      * @throws RuntimeException - if the user aborts the selection process
      */
-    public RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
+    public static RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
         displayRecipes(recipeControllers);
         if (askSelectRecipe() == false){ //TODO: use menu system to do this
             throw new RuntimeException();
@@ -124,7 +124,7 @@ public class RecipeBookView implements CLI_Menu {
      * A confirmation option for selecting a recipe
      * @return true if confirmed, false if denied
      */
-    private boolean askSelectRecipe() {
+    private static boolean askSelectRecipe() {
         Scanner scan = ViewUtilities.scan;
         String input = "";
         do{

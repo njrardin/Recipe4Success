@@ -3,13 +3,16 @@ package it326.r4s.controller;
 
 import java.util.ArrayList;
 
+import it326.r4s.model.Meal;
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.Recipe;
+import it326.r4s.model.RecipeBook;
 import it326.r4s.view.MealPlanView;
+import it326.r4s.view.RecipeBookView;
 
 /**
  * Controller for R4S MealPlan
- * @author Zach Plattner (zmplatt@ilstu.edu) and Nate Rardin (njrardi@ilstu.edu)
+ * @author Nate Rardin (njrardi@ilstu.edu) and Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/26/22
  */
 public class MealPlanController  {
@@ -93,15 +96,32 @@ public class MealPlanController  {
     }
 
     public void addRecipeToMealPlan() {
-        //TODO - req 12
+        RecipeBook recipeBook = UserController.getUserController().getGlobalUser().getRecipeBook();
+        
+        System.out.println("Which recipe would you like to add?");
+
+        RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(new RecipeBookController(recipeBook).getRecipeControllers());
+
+        mealPlan.addMeal(new Meal(selectedRecipeController.getRecipe(), selectedRecipeController.getRecipe().getServingSize()));
+
+        System.out.println("Recipe added successfully");
     }
 
     public void removeRecipeFromMealPlan() {
-        //TODO - req 13
+        RecipeBook recipeBook = UserController.getUserController().getGlobalUser().getRecipeBook();
+        
+        System.out.println("Which recipe would you like to remove?");
+
+        RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(getRecipeControllers());
+
+        mealPlan.removeMeal(selectedRecipeController.getRecipe());
+
+        System.out.println("Recipe removed successfully");
     }
 
     public void adjustMealPlanServingSize() {
-        //TODO - req 14
+        int servingSize = mealPlanView.getNewServingSize();
+        mealPlan.setMealServingSize(servingSize);
     }
 
     public void exportMealPlan() {
@@ -110,7 +130,8 @@ public class MealPlanController  {
     }
 
     public void addToGroceryList() {
-        //TODO - req 19
+        UserController.getUserController().getGlobalUser().addMealPlanToGroceryList(mealPlan);
+        System.out.println("Ingredients added successfully");
     }
 
     public void deleteMealPlan() {//req 11
