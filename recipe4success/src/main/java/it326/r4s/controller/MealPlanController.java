@@ -11,7 +11,7 @@ import it326.r4s.view.MealPlanView;
  * @author Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlanController implements CLI_Controller {
+public class MealPlanController  {
     public MealPlan mealPlan;
     public MealPlanView mealPlanView;
 
@@ -26,6 +26,10 @@ public class MealPlanController implements CLI_Controller {
 
     public void executeView(){
         mealPlanView.execute();
+    }
+
+    public void launchMealPlanMenu(){
+    
     }
     
     public MealPlan getMealPlan() {
@@ -54,7 +58,7 @@ public class MealPlanController implements CLI_Controller {
 
     public void deleteMealPlan() {//req 11
         if(mealPlanView.deletionConfirmation()){
-            UserController.getGlobalUser().getMealPlanner().removeMealPlan(mealPlan);
+            UserController.getUserController().getGlobalUser().getMealPlanner().removeMealPlan(mealPlan);
         }
     }
 }

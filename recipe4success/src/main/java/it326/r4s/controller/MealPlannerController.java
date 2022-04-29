@@ -10,7 +10,8 @@ import it326.r4s.view.MealPlannerView;
  * @author Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlannerController implements CLI_Controller {
+public class MealPlannerController {
+    
     private MealPlanner mealPlanner;
     private MealPlannerView mealPlannerView;
 
@@ -33,6 +34,11 @@ public class MealPlannerController implements CLI_Controller {
 
     public void executeView(){
         mealPlannerView.execute();
+    }
+    
+    public void openMealPlanner(){
+        mealPlannerView.getMenuOptionSelection();
+        //TODO finish
     }
 
     public void markIndMealPlanAsActive() {

@@ -13,5 +13,5 @@ public interface Exporter<T extends Portable> {
      * @param filename the name of the file to be read.
      * @throws Exception if there was a problem importing from the file.
      */
-    public void exportFrom(T portable, String filename) throws Exception;
+    public void exportTo(T portable, String filename) throws Exception;
 }

@@ -6,13 +6,15 @@ import java.util.Scanner;
 
 import javax.lang.model.util.ElementScanner14;
 
+import com.google.gson.internal.sql.SqlTypesSupport;
+
 import it326.r4s.controller.RecipeController;
+import it326.r4s.controller.UnitController;
 import it326.r4s.controller.UserController;
 import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
-import it326.r4s.model.Recipe;
 import it326.r4s.model.UnitConverter.Unit;
 
 /**
@@ -20,60 +22,24 @@ import it326.r4s.model.UnitConverter.Unit;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeView implements CLI_View{
+public class RecipeView implements CLI_Menu{
 
+    //*Instance Variables*\\
     private RecipeController recipeController;
 
+    //*Constructor*\\
+    /**
+     * Constructs a recipeView from its controller
+     * @param recipeController - the RecipeView's controller
+     */
     public RecipeView(RecipeController recipeController){
         this.recipeController = recipeController;
     }
-    
-    public void execute(){
-        String input = "";
-        Scanner scan = ViewUtilities.scan;
-        displayRecipe();
-        displayRecipeOptions();
 
-        while(true){
-            System.out.println("Please type the number corresponding to the option you wish to select: ");
-            System.out.println("(to see the options again, type \"options\")");
-    
-            input = scan.nextLine().toLowerCase();
-            System.out.println();
-            switch (input) {
-                case "1":
-                    recipeController.editRecipe();
-                    break;
-                case "2":
-                    recipeController.addReview(UserController.getGlobalUser());
-                    break;
-                case "3":
-                    recipeController.adjustServingSize(this.getNewServingSize());
-                    break;
-                case "4":
-                    recipeController.exportRecipe();
-                    break;
-                case "5":
-                    recipeController.deleteRecipe();
-                    return;
-                case "6":
-                    displayRecipe();
-                    break;
-                case "7":
-                    return;
-                case "options":
-                    displayRecipeOptions();
-                    break;
-                case "back":
-                    return;
-                default:
-                    System.out.println("Invalid input, please try again\n");
-            }
-            displayRecipe();
-            displayRecipeOptions();
-        }
-    }
-
+    //*Methods*\\
+    /**
+     * Displays the recipe to the screen
+     */
     public void displayRecipe(){
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
@@ -81,7 +47,7 @@ public class RecipeView implements CLI_View{
         System.out.println("Description: " + recipeController.getRecipe().getDescription());
         System.out.println("Serving Size: " + recipeController.getRecipe().getServingSize());
         System.out.println("Created on: " + recipeController.getRecipe().getCreatedOn());
-        System.out.println("Your rating: " + getUserRating() + " /5 stars");
+        System.out.println("Your rating: " + getRecipeRating() + "/5 stars");
         System.out.println();
         System.out.println("Ingredients: ");
         displayIngredients();
@@ -92,47 +58,63 @@ public class RecipeView implements CLI_View{
         System.out.println("-------------------------------------------------------------------------------------");   
     } 
     //TODO: behaviour to handle null values and format date better
-    //TODO: also add a rating display
-
-    public void displayRecipeOptions(){
-        System.out.println("");
-        System.out.println("                               -- Recipe Options --                                  ");
-        System.out.println("");
-        System.out.println("1) Edit recipe");
-        System.out.println("2) Rate this recipe");
-        System.out.println("3) Adjust serving size");
-        System.out.println("4) Export this recipe");
-        System.out.println("5) Delete this recipe");
-        System.out.println("6) Re-Display Recipe");
-        System.out.println("7) Go back");
-        System.out.println();
+    
+    /**
+     * Allows the user to select one of a series of options
+     * @return an int representing the selected option
+     */
+    public int getMenuOptionSelection(){
+        String title = "Recipe: " + recipeController.getRecipe().getName();
+        String prompt = "What would you like to do?";
+        String[] options = {
+            "Edit recipe",
+            "Rate this recipe",
+            "Adjust serving size",
+            "Export this recipe",
+            "Delete this recipe",
+            "Re-Display Recipe",
+            "Go back"
+        };
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+    }
+    
+    /**
+     * Allows the user to select one of a series of edit options
+     * @return an int representing the selected option
+     */
+    public int getEditOptionSelection(){
+        String title = "Recipe: " + recipeController.getRecipe().getName() + " (edit options)";
+        String prompt = "What would you like to edit?";
+        String[] options = {
+            "Name",
+            "Description",
+            "Serving Size",
+            "Ingredients",
+            "Instructions",
+            "Go back",
+        };
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
     }
 
-    private int getNewServingSize() {
-        Scanner scan = ViewUtilities.scan;
-        int servingSize = -1;
-
-        do{
-            System.out.println("What is the new serving size?");
-            try{
-                servingSize = Integer.parseInt(scan.nextLine());
-            } catch (NumberFormatException e) {
-                continue;
-            }
-            if(servingSize < 0){
-                System.out.println("Serving size must be above 0");
-            }
-        } while (servingSize < 0);
-
-        return servingSize;
+    /**
+     * Displays a message declaring the update to be a success
+     */
+    public void displayUpdateSuccess() {
+        System.out.println("You successfully updated " + recipeController.getRecipe().getName());
     }
 
+    /**
+     * Displays the ingredients of the recipe
+     */
     private void displayIngredients() {
         recipeController.getIngredientListController().getIngredientListView().displayIngredients();
     }
     
+    /**
+     * Displays the recipe's instructions
+     */
     private void displayInstructions() {
-        ArrayList<String > instructions = recipeController.getInstructions();
+        ArrayList<String > instructions = recipeController.getRecipe().getInstructions();
 
         int instNum = 1;
         for(String instruction: instructions){
@@ -141,7 +123,11 @@ public class RecipeView implements CLI_View{
         }
     }
 
-    private String getUserRating(){
+    /**
+     * Gets the recipe's overall rating
+     * @return
+     */
+    private String getRecipeRating(){
         try{
             return String.valueOf(recipeController.getRecipe().getReviews().get(0).getRatingValue());
         } catch (Exception e) {
@@ -149,11 +135,11 @@ public class RecipeView implements CLI_View{
         }
     }
 
-    public void editRecipe(Recipe recipe) {
-        
-	}
-
-    public int getReviewRating(){
+    /**
+     * Gets from the user a 1-5 star rating for the recipe
+     * @return an int representing the rating
+     */
+    public int getRatingFromUser(){
         Scanner scan = ViewUtilities.scan;
         int acceptableRatings[] = {1,2,3,4,5};
         int ratingNum;
@@ -167,10 +153,17 @@ public class RecipeView implements CLI_View{
         return ratingNum;
     }
 
+    /**
+     * Displays the recipe in a one line format
+     */
     public void displayOneline() {
         System.out.println(recipeController.getRecipe().toString());
     }
 
+    /**
+     * Asks of the user a confirmation of deletion
+     * @return true if confirmed to delete, false if deletion denied
+     */
     public boolean deletionConfirmation() {
         Scanner scan = ViewUtilities.scan;
         String input = "";
@@ -190,24 +183,38 @@ public class RecipeView implements CLI_View{
     }
 
     /**
- * View for R4S RecipeBuilder
- * @author Nate Rardin (njrardi@ilstu.edu)
- * @date 4/27/22
- */
+     * View for R4S RecipeBuilder
+     * @author Nate Rardin (njrardi@ilstu.edu)
+     * @date 4/27/22
+     */
     public static class RecipeBuilderView{
 
+        //*Instance Variables*\\
         private RecipeBuilderController rBuildController;
 
+        //*Constructor*\\
+        /**
+         * Constructs a RecipeBuilderView from its controller
+         * @param rBuildController - the RecipeBuilderView's controller
+         */
         public RecipeBuilderView(RecipeBuilderController rBuildController){
             this.rBuildController = rBuildController;
         }
         
-        public void displayRecipeBuildInit(){
-            System.out.println("Alright "  + UserController.getGlobalUser() + "!");
+        //*Methods*\\
+        /**
+         * Displays a message at the initialization of a recipe build process
+         */
+        public static void displayRecipeBuildInit(){
+            System.out.println("Alright "  + UserController.getUserController().getGlobalUser().getName() + "!");
             System.out.println("Let's create a recipe!");
         }
 
-        public String getRecipeNameFromUser(){
+        /**
+         * Prompts the user for the recipe's name
+         * @return the recipes name
+         */
+        public static String getRecipeNameFromUser(){
             Scanner scan = ViewUtilities.scan;
             String name = "";
 
@@ -223,7 +230,11 @@ public class RecipeView implements CLI_View{
             }
         }
 
-		public String getDescriptionFromUser() {
+        /**
+         * Prompts the user for the recipe's description
+         * @return the recipes description
+         */
+		public static String getDescriptionFromUser() {
             Scanner scan = ViewUtilities.scan;
             String description = "";
             while(true){
@@ -242,7 +253,11 @@ public class RecipeView implements CLI_View{
             }
 		}
 
-		public int getServingSizeFromUser() {
+        /**
+         * Prompts the user for the recipe's serving size
+         * @return the recipes serving size
+         */
+		public static int getServingSizeFromUser() {
             Scanner scan = ViewUtilities.scan;
             int servingSize;
             while(true){
@@ -264,12 +279,17 @@ public class RecipeView implements CLI_View{
             }
 		}
 
-		public ArrayList<String> getInstructionsFromUser() {
+        /**
+         * Prompts the user for the recipe's instructions
+         * @return the recipes name
+         */
+		public static ArrayList<String> getInstructionsFromUser() {
             Scanner scan = ViewUtilities.scan;
             String resp = "";
             String instructionString;
             ArrayList<String> instructions = new ArrayList<String>();
 
+            //loop to allow multiple instructions to be added
             int stepNum = 1;
             System.out.println("Now let's write the instruction steps for the recipe.");
             while(true){
@@ -282,6 +302,7 @@ public class RecipeView implements CLI_View{
     
                 instructionString = scan.nextLine();
                 
+                //confirming each step's correctness
                 System.out.println("You provided step #" + stepNum + " as\n\n \"" 
     
                 + instructionString + 
@@ -296,19 +317,23 @@ public class RecipeView implements CLI_View{
                     continue;
                 }
     
+                //check to see if the user wishes to add another step
                 do {
                     System.out.println("Would you like to add another step? (Y/N)");
                     resp = scan.nextLine().toLowerCase();
                 } while (!(resp.equals("y") || resp.equals("n")));
                 
                 if(resp.equals("n")){
-                    return instructions;
+                    return instructions; //returns the instructions after confirming there are no more to be added
                 }
-    
             }
 		}
 
-		public IngredientList getIngredientsFromUser() {
+        /**
+         * Prompts the user for the recipe's ingredients
+         * @return the recipes name
+         */
+		public static IngredientList getIngredientsFromUser() {
             Scanner scan = ViewUtilities.scan;
             String resp = "";
 
@@ -318,6 +343,7 @@ public class RecipeView implements CLI_View{
 
             IngredientList ingredientList = new IngredientList();
 
+            //loop to allow multiple instructions to be added
             int ingredientNum = 1;
             System.out.println("Now let's add the recipe's ingredients.");
             while(true){
@@ -332,7 +358,7 @@ public class RecipeView implements CLI_View{
 
                 //get the unit
                 System.out.println("What is the unit of measure for " + ingredientName + "?");
-                unit = UnitView.getUnitFromUser();
+                unit = UnitController.getUnit();
 
                 //get the quantity
                 System.out.println("How many " + unit.stringRep + "s are used?");
@@ -353,7 +379,8 @@ public class RecipeView implements CLI_View{
                 else{
                     continue;
                 }
-    
+                
+                //check to see if the user wishes to add another step
                 do {
                     System.out.println("Would you like to add another ingredient? (Y/N)");
                     resp = scan.nextLine().toLowerCase();
@@ -366,11 +393,16 @@ public class RecipeView implements CLI_View{
             }
 		}
 
-		public ArrayList<Category> getCategoriesFromUser() {
+        /**
+         * Prompts the user for the recipe's ingredients
+         * @return the recipes name
+         */
+		public static ArrayList<Category> getCategoriesFromUser() {
             Scanner scan = ViewUtilities.scan;
             String resp = "";
             String categoryString;
             ArrayList<Category> categories = new ArrayList<Category>();
+
 
             do{
                 System.out.println("Would you like to add any categories? (Y/N)");
@@ -380,6 +412,7 @@ public class RecipeView implements CLI_View{
                 return categories;
             }
 
+            //loop to allow multiple instructions to be added
             int categoryNum = 1;
             System.out.println("Alright, let's add some categories for the recipe.");
             while(true){
@@ -392,6 +425,7 @@ public class RecipeView implements CLI_View{
     
                 categoryString = scan.nextLine();
                 
+                //confirm accuracy
                 System.out.println("You provided the category " 
     
                 + categoryString + 
@@ -405,20 +439,25 @@ public class RecipeView implements CLI_View{
                 else{
                     continue;
                 }
-    
+                
+                //check if adding another category
                 do {
                     System.out.println("Would you like to add another category? (Y/N)");
                     resp = scan.nextLine().toLowerCase();
                 } while (!(resp.equals("y") || resp.equals("n")));
                 
                 if(resp.equals("n")){
-                    return categories;
+                    return categories; //return categories upon confirmation
                 }
     
             }
 		}
 
-		public boolean confirmBuild() {
+        /**
+         * Confirms build with user
+         * @return true if confirmed, false if not
+         */
+		public static boolean confirmBuild() {
             Scanner scan = ViewUtilities.scan;
             String resp = "";
             //TODO: implement or delete this

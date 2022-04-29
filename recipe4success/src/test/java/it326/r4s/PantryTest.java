@@ -16,19 +16,19 @@ public class PantryTest {
     static Ingredient ingredient, ingredient2, ingredient3, ingredient4;
     static IngredientList ingredientList;
     static Pantry pantry;
+    static FoodItem.Pool fiPool = FoodItem.Pool.getInstance();
 
     @Before
     public void before(){
-
         theRecipe = new Recipe.RecipeBuilder("Red Velvet Cupcakes")
         .setDescription("Believe it or not it's actually just red chocolate.")
         .setIngredientList(new IngredientList())
         .build();
 
-        ingredient = new Ingredient(new FoodItem("Flour"), 2, Unit.CUP);
-        ingredient2 = new Ingredient(new FoodItem("Egg"), 6, Unit.NONE);
-        ingredient3 = new Ingredient(new FoodItem("Sugar"), 4, Unit.OUNCE);
-        ingredient4 = new Ingredient(new FoodItem("Apple"), 4, Unit.NONE);
+        ingredient = new Ingredient(fiPool.getFoodItem("Flour"), 2, Unit.CUP);
+        ingredient2 = new Ingredient(fiPool.getFoodItem("Egg"), 6, Unit.NONE);
+        ingredient3 = new Ingredient(fiPool.getFoodItem("Sugar"), 4, Unit.OUNCE);
+        ingredient4 = new Ingredient(fiPool.getFoodItem("Apple"), 4, Unit.NONE);
 
         theRecipe.addIngredient(ingredient);
         theRecipe.addIngredient(ingredient2);

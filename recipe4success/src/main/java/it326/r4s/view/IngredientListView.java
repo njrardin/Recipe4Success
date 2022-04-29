@@ -10,12 +10,21 @@ import it326.r4s.model.Ingredient;
  */
 public class IngredientListView {   
     
+    //*Instance Variables\\
     private IngredientListController igController;
 
+    //*Constructor*\\
+    /**
+     * Constructor for R4S's IngredientListView
+     * @param igController - the IngredientListView's controller
+     */
     public IngredientListView(IngredientListController igController){
         this.igController = igController;
     }
 
+    /**
+     * Displays the ingredients in the list
+     */
     public void displayIngredients(){
         for(Ingredient ingredient: igController.getIngredientList().getIngredients()){
             System.out.println(ingredient.toString());

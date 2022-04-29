@@ -24,7 +24,7 @@ public class PresentationDriver {
         
         displayWelcome();
 
-        launchMainWindow();
+        launchProgram();
 
         saveAndExit();
     }
@@ -39,14 +39,16 @@ public class PresentationDriver {
         System.out.println("-------------------------------------------------------------------------------------");
     }
 
-    private static void launchMainWindow(){
+    private static void launchProgram(){
         
         User user = prepopulateUser();
+        
         UserController.initUserController(user);
+        UserController userController = UserController.getUserController();
+
+        MainMenuController mmController = new MainMenuController(userController);
         
-        MainMenuController mmController = new MainMenuController(UserController.getGlobalUser());
-        
-        mmController.executeView();
+        mmController.launchMainMenu();
     }
 
     
@@ -61,7 +63,7 @@ public class PresentationDriver {
     }
     
     private static User prepopulateUser() {
-        User user = new User("A person");
+        User user = new User("Rishi Saripalle");
 
         user.setRecipeBook(prepopulateRecipeBook());
         user.setMealPlanner(prepopulateMealPlanner());

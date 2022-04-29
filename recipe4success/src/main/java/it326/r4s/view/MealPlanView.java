@@ -9,7 +9,7 @@ import it326.r4s.controller.MealPlanController;
  * @author Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlanView implements CLI_View{
+public class MealPlanView implements CLI_Menu {
 
     private MealPlanController mealPlanController;
 
@@ -129,5 +129,11 @@ public class MealPlanView implements CLI_View{
     }
 
     public void displayOneline() {
+        
+    }
+
+    public int getMenuOptionSelection() {
+        // TODO Auto-generated method stub
+        return -1;
     }
 }
