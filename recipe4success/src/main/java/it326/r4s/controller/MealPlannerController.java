@@ -6,7 +6,6 @@ import java.util.Collection;
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.MealPlanner;
 import it326.r4s.view.MealPlanSearchView;
-import it326.r4s.view.MealPlanView;
 import it326.r4s.view.MealPlannerView;
 /**
  * Controller for R4S MealPlanner

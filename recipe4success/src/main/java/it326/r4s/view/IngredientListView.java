@@ -1,5 +1,7 @@
 package it326.r4s.view;
 
+import java.util.Scanner;
+
 import it326.r4s.controller.IngredientListController;
 import it326.r4s.model.Ingredient;
 
@@ -26,8 +28,33 @@ public class IngredientListView {
      * Displays the ingredients in the list
      */
     public void displayIngredients(){
+        int i = 1;
         for(Ingredient ingredient: igController.getIngredientList().getIngredients()){
-            System.out.println(ingredient.toString());
+            System.out.println(i + ") " + ingredient.toString());
+            i++;
         }
+    }
+
+    /**
+     * Allows the user to select an ingredient in the ingredientlist
+     * @return the ingredient
+     */
+    public Ingredient selectIngredient(){
+        System.out.println();
+        displayIngredients();
+
+        Scanner scan = ViewUtilities.scan;
+        int selection = -1;
+        do{
+            System.out.println("Please select an option by entering the corresponding number:");
+            try{
+                selection = Integer.parseInt(scan.nextLine());
+            } catch (Exception e) {
+                System.out.println("Invalid input, selection must be a number:");
+                continue;
+            }
+        } while( !(0 < selection && selection <= igController.getIngredientList().getIngredients().size()));
+
+        return igController.getIngredientList().getIngredients().get(selection - 1);
     }
 }

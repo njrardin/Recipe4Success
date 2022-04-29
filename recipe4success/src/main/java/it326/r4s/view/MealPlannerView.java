@@ -139,6 +139,10 @@ public class MealPlannerView implements CLI_Menu{
         return true;
     }
 
+    /**
+     * Gets from the user the index of in the mealplanner which contains
+     * the meal plan which they wish to set as "active"
+     */
     public int getActivationSelection(){
         System.out.println("Please select one of the following meal plans: ");
         displayMealPlanner();
@@ -158,10 +162,17 @@ public class MealPlannerView implements CLI_Menu{
         return selection;
     }
 
+    /**
+     * Displays the message at the start of a meal plan creation process 
+     */
     public void initCreateMealplan() {
         System.out.println("Let's create a meal plan!");
     }
 
+    /**
+     * Gets from the user the name of a mealplan
+     * @return
+     */
     public String getMealPlanNameFromUser() {
         Scanner scan = ViewUtilities.scan;
         String name = "";
@@ -178,6 +189,11 @@ public class MealPlannerView implements CLI_Menu{
         }
     }
 
+    /**
+     * Gets from the user a confirmation as to whether or not they
+     * wish to add anothe recipe to a meal plan
+     * @return boolean repesentation of response
+     */
     public boolean wantToAddAnotherRecipe() {
         Scanner scan = ViewUtilities.scan;
         String input = "";
@@ -191,6 +207,10 @@ public class MealPlannerView implements CLI_Menu{
         return true;
     }
 
+    /**
+     * Gets from the user a description for a meal plan
+     * @return
+     */
     public String getMealPlanDescriptionFromUser() {
         Scanner scan = ViewUtilities.scan;
         String description = "";
