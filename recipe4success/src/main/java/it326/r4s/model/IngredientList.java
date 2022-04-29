@@ -178,4 +178,27 @@ public class IngredientList extends Entity {
         ingredients = new ArrayList<Ingredient>();
     }
 
+    /**
+     * Re-organizes the ingredient list by placing 
+     * the "toMove" ingredient after the "moveAfter" ingredient
+     * @param toMove
+     * @param moveAfter
+     */
+    public boolean reoganizeIngredients(Ingredient toMove, Ingredient moveAfter) {
+        if( ! ingredients.contains(moveAfter)){
+            return false;
+        }
+        ArrayList<Ingredient> newList = new ArrayList<Ingredient>();
+        for(Ingredient ingredient : ingredients){
+            if(ingredient.equals(toMove)){
+                continue;
+            }
+            newList.add(ingredient);
+            if(ingredient.equals(moveAfter)){
+                newList.add(toMove);
+            }
+        }
+        ingredients = newList;
+        return true;
+    }
 }

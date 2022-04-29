@@ -171,10 +171,30 @@ public class GroceryListView implements CLI_Menu{
         System.out.println("Ingredients have been successfully transferred!");
     }
 
-    /**
-     * Displays a cancelation message for the transfer
-     */
+    //Display methods associated with the re-organize grocery list use case
     public void displayTransferCancel(){
         System.out.println("Transfer cancelled.\n");
     }
+    
+    public void displayOrganizeInit() {
+        System.out.println("Let's make sure your grocery list is ordered exactly how you want it!");
+    }
+
+    public void askForToMove() {
+        System.out.println("\nWhich ingredient would you like to move?");
+    }
+
+    public void askForMoveAfter() {
+        System.out.println("\nAfter which ingredient would you like to move your selected ingredient?");
+    }
+
+    public void displayReorganizeSuccess() {
+        System.out.println("Grocery List successfully re-organized!");
+    }
+
+    public void displaReorganizeError() {
+        System.out.println("Oops, looks like there was an error re-organizing the list.");
+    }
+
+
 }
