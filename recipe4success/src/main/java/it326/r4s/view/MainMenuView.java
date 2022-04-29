@@ -10,12 +10,23 @@ import it326.r4s.controller.MainMenuController;
  */
 public class MainMenuView implements CLI_Menu{
     
+    //*Instance Variables\\
     public MainMenuController mmController;
 
+    //*Constructor\\
+    /**
+     * Constructor for R4S's Main Menu View
+     * @param mmController - the view's controller
+     */
     public MainMenuView(MainMenuController mmController){
         this.mmController = mmController;
     }
 
+    //*Methods*\\
+    /**
+     * Allows the user to select one of a series of options
+     * @return an int representing the selected option
+     */
     public int getMenuOptionSelection(){
         String title = "Main Menu";
         String prompt = "What would you like to do?";

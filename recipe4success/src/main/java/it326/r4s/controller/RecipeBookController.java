@@ -7,10 +7,8 @@ import java.util.Scanner;
 import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Recipe;
 import it326.r4s.model.RecipeBook;
-import it326.r4s.model.Recipe.RecipeBuilder;
 import it326.r4s.view.RecipeBookView;
-import it326.r4s.view.RecipeView;
-import it326.r4s.view.ViewUtilities;
+
 /**
  * Controller for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -18,22 +16,41 @@ import it326.r4s.view.ViewUtilities;
  */
 public class RecipeBookController {
     
+    //*Instance Variables*\\
     public RecipeBook recipeBook;
     public RecipeBookView recipeBookView;
 
+    //*Constructor*\\
+    /**
+     * Constructs a RecipeBookController
+     * @param recipeBook - the recipeBook instance to associate with the controller
+     */
     public RecipeBookController(RecipeBook recipeBook){
         this.recipeBook = recipeBook;
         this.recipeBookView = new RecipeBookView(this);
     }
 
+    //*Methods*\\
+    /**
+     * Getter for the controller's RecipeBookview
+     * @return the RecipeBookView object
+     */
     public RecipeBookView getRecipeBookView(){
         return recipeBookView;
     }
 
+    /**
+     * Getter for the controller's ReciepBook
+     * @return the RecipeBook object
+     */
     public RecipeBook getRecipeBook(){
         return this.recipeBook;
     }
 
+    /**
+     * Gets an ArrayList of RecipeControllers associated with all recipes in the recipeBook
+     * @return the ArrayList of RecipeControllers
+     */
     public ArrayList<RecipeController> getRecipeControllers(){
         ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
         for(Recipe recipe: recipeBook.getRecipes()){
@@ -42,6 +59,10 @@ public class RecipeBookController {
         return recipeControllers;
     }
 
+    /**
+     * Launches the recipeBookView to get a user option selection
+     * and then takes the appropriate action
+     */
     public void openRecipeBook(){
         recipeBookView.displayHeader();
         recipeBookView.displayRecipeBook();
@@ -72,6 +93,10 @@ public class RecipeBookController {
         }
     }
     
+    /**
+     * Facilitates the process of the user 
+     * searching through the recipes in the recipebook
+     */
     public void searchRecipes() {
         RecipeSearchController rsController = new RecipeSearchController(recipeBook.getRecipes());
         String searchQuery = rsController.getRecipeSearchView().getSearchQuery();
@@ -80,14 +105,28 @@ public class RecipeBookController {
         selectRecipe(returnRecipes);
     }
 
+    /**
+     * Facilitates the process of the user
+     * importing a recipe into the application
+     */
     public void importRecipe() {
         //TODO - req 8
     }
 
+    /**
+     * Facilitates the process of the user
+     * exporting a recipe out of the application
+     */
     public void exportRecipe() {
         //TODO - req 7
+        //note for alex: use the selectRecipe method first then 
+        //export the selected recipe
     }
 
+    /**
+     * Facilitates the process of the user
+     * creating a new recipe for the recipeBook
+     */
     public void createRecipe(){
         RecipeBuilderController rBuildController = new RecipeBuilderController();
 
@@ -96,6 +135,10 @@ public class RecipeBookController {
         recipeBook.addRecipe(newRecipe);
     }
 
+    /**
+     * Facilitates the process of the user
+     * selecting one of the recipes in the recipeNook
+     */
     public void selectRecipe(Collection<Recipe> recipes){
         ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
         for(Recipe recipe: recipes){

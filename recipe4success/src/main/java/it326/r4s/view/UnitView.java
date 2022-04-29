@@ -2,10 +2,17 @@ package it326.r4s.view;
 
 import java.util.Scanner;
 
-
+/**
+ * View for R4S Recipe
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 4/28/22
+ */
 public class UnitView {
     
-
+    /**
+     * Prompts the user with all possible unit options and asks for a selection
+     * @return - an int representing the unit chosen
+     */
     public static int getUnitSelection() {
         System.out.println("Please select a unit of measure from the list:");
         System.out.println("");
