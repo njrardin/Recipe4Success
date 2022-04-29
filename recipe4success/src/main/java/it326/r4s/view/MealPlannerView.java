@@ -7,19 +7,27 @@ import it326.r4s.controller.MealPlanController;
 import it326.r4s.controller.MealPlannerController;
 /**
  * View for R4S MealPlanner
- * @author Zach Plattner (zmplatt@ilstu.edu)
+ * @author Zach Plattner (zmplatt@ilstu.edu) and Nate Rardin(njradi@ilstu.edu)
  * @date 4/26/22
  */
 public class MealPlannerView implements CLI_Menu{
 
+    //*Instance Variables*\\
     private MealPlannerController mprController;
 
+    //*Constructor*\\
+    /**
+     * Constructor for R4S's MealPlannerView
+     * @param mprController - the MealPlannerView's controller
+     */
     public MealPlannerView(MealPlannerController mprController){
         this.mprController = mprController;
     }
     
-
-
+    //*Methods*\\
+    /**
+     * Displays the Meal Planner header 
+     */
     public void displayHeader(){
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
@@ -30,21 +38,12 @@ public class MealPlannerView implements CLI_Menu{
         System.out.println("-------------------------------------------------------------------------------------");
     }
 
-    private static void displayOptions(){
-        System.out.println("");
-        System.out.println("                               -- Meal Planner Options --                              ");
-        System.out.println("");
-        System.out.println("1) Search Meal Plans");
-        System.out.println("2) Import a Meal Plan");
-        System.out.println("3) Export a Meal Plan");
-        System.out.println("4) Create a new Meal Plan");
-        System.out.println("5) View/Select Meal Plans");
-        System.out.println("6) Go back");
-        System.out.println();
-    }
-
+    /**
+     * Allows the user to select one of a series of options
+     * @return an int representing the selected option
+     */
     public int getMenuOptionSelection(){
-        String title = "Meal-Planner";
+        String title = "Meal Planner";
         String prompt = "What would you like to do?";
         String[] options = {
             "Search mealplans",
@@ -57,21 +56,18 @@ public class MealPlannerView implements CLI_Menu{
         return ViewUtilities.getOptionFromCLI(title, prompt, options);
     }
 
-    public String getSearchQuery() {
-        Scanner scan = ViewUtilities.scan;
-        String input = "";
-        do{
-            System.out.println("Please enter the term to search the meal plans for:");
-            input = scan.nextLine().toLowerCase();
-        } while (input == "");
-
-        return input;
-    }
-
+    /**
+     * Displays the full meal planner to the user
+     */
     public void displayMealPlanner() {
         displayMealPlans(mprController.getMealPlanControllers());
     }
 
+    /**
+     * Displays to the user all the meal plans
+     * in a given list of mealplan controllers
+     * @param mealPlanControllers
+     */
     public void displayMealPlans(ArrayList<MealPlanController> mealPlanControllers){
         int i = 1;
         for(MealPlanController mealPlanController: mealPlanControllers){
@@ -81,6 +77,12 @@ public class MealPlannerView implements CLI_Menu{
         }
     }
 
+    /**
+     * Displays a series of mealplans and allows the user to select one
+     * @param mealPlanControllers - an ArrayList of MealPlanControllers to present as selection options to the user
+     * @return the MealPlanController who's mealplan was selected
+     * @throws RuntimeException - if the user aborts the selection process
+     */
     public MealPlanController displayAndSelect(ArrayList<MealPlanController> mealPlanControllers) throws RuntimeException{    
         displayMealPlans(mealPlanControllers);
         if (askSelectMealPlan() == false){
