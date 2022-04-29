@@ -68,7 +68,7 @@ public class MealPlanView implements CLI_Menu {
         Scanner scan = ViewUtilities.scan;
         String input = "";
         do{
-            System.out.println("Are you sure you want to delete " + mealPlanController.getMealPlan().getMealPlanName() + " from your recipe book? (Y/N)");
+            System.out.println("Are you sure you want to delete " + mealPlanController.getMealPlan().getMealPlanName() + " from your meal planner? (Y/N)");
             input = scan.nextLine().toLowerCase();
         }  while ( !(input.equals("y") || input.equals("n") ));
 

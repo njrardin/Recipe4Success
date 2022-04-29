@@ -77,7 +77,8 @@ public class MealPlanController  {
                     return;
                 case 6:
                     deleteMealPlan();
-                    break;
+                    mealPlanView.displayMealPlan();
+                    return;
                 case 7:
                     return;
                 default:
