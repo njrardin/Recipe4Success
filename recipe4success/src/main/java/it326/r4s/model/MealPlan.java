@@ -11,6 +11,7 @@ import java.util.*;
 public class MealPlan extends Entity implements Portable {
     private String name;
     private String description;
+    private int servingSize;
     private List<Meal> meals;
     private Date createdOn;
 
@@ -74,6 +75,22 @@ public class MealPlan extends Entity implements Portable {
      */
     public void setMealPlanDescription(String inputDes) {
         this.description = inputDes;
+    }
+
+    /**
+     * Accessor for the mealplan's serving size
+     * @return the int serving size
+     */
+    public int getServingSize(){
+        return this.servingSize;
+    }
+
+    /**
+     * Mutator for the mealplan's serving size
+     * @param servingSize - the int serving size
+     */
+    public void setServingSize(int servingSize){
+        this.servingSize = servingSize;
     }
 
     /**
