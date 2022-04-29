@@ -1,6 +1,7 @@
 package it326.r4s.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.MealPlanner;
@@ -61,8 +62,33 @@ public class MealPlannerController {
      * and then takes the appropriate action
      */
     public void openMealPlanner(){
-        mealPlannerView.getMenuOptionSelection();
-        //TODO finish
+        mealPlannerView.displayHeader();
+        mealPlannerView.displayMealPlanner();
+        int option;
+        while (true) {
+            option = mealPlannerView.getMenuOptionSelection();
+            switch (option) {
+                case 1:
+                    searchMealPlans();
+                    break;
+                case 2:
+                    importMealPlan();
+                    break;
+                case 3:
+                    exportMealPlan();
+                    break;
+                case 4:
+                    createMealPlan();
+                    break;
+                case 5:
+                    selectMealPlan(mealPlanner.getMealPlans());
+                    break;
+                case 6:
+                    return;
+                default:
+                    System.out.println("Invalid input, please try again\n");
+            }
+        }
     }
 
     /**
@@ -109,7 +135,7 @@ public class MealPlannerController {
      * Facilitates the process of the user
      * selecting one of the MealPlans in the mealPlanner
      */
-    public void selectMealPlan() {
+    public void selectMealPlan(Collection<MealPlan> mealPlans) {
         
     }
 
