@@ -90,7 +90,19 @@ public class PantryController {
     }
 
     private void listMakableRecipes() {
-
+        User theUser = UserController.getUserController().getGlobalUser();
+        
+        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
+        for(Recipe recipe: theUser.getMakeableRecipes()){
+            recipeControllers.add(new RecipeController(recipe));
+        }
+        try{
+            RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(recipeControllers);
+            Recipe selectedRecipe = selectedRecipeController.getRecipe();
+            pantry.removeRecipeIngredients(selectedRecipe);
+        } catch (RuntimeException e) { 
+            System.out.println("Oops, looks like there was an error with removing the ingredients.");
+        }
     }
     
 }
