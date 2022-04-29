@@ -20,7 +20,7 @@ public class ViewUtilities {
     public static int getOptionFromCLI(String title, String prompt, String[] options) {
         Scanner newScan = scan;
 
-        System.out.printf("%50s%n", "-- " + title + " --");
+        System.out.printf("%52s%n", "-- " + title + " --");
         System.out.println();
         System.out.println(prompt);
         for(int i = 0; i < options.length; i++){

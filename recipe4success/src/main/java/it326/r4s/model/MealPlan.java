@@ -28,6 +28,7 @@ public class MealPlan extends Entity implements Portable {
             this.name = name;
         }
         this.description = "";
+        this.createdOn = new Date();
     }
 
     // *Methods*\\
@@ -83,8 +84,8 @@ public class MealPlan extends Entity implements Portable {
      * @return true if theMeal is sucessfully add to the MealPlan, false otherwise.
      */
     public boolean addMeal(Meal theMeal) {
-        boolean added = meals.add(theMeal);
-        return added;
+        return meals.add(theMeal);
+        //TODO: logic to compare with the serving size and make internal adjustments
     }
 
     /**
@@ -95,8 +96,23 @@ public class MealPlan extends Entity implements Portable {
      *         otherwise.
      */
     public boolean removeMeal(Meal theMeal) {
-        boolean removed = meals.remove(theMeal);
-        return removed;
+        return meals.remove(theMeal);
+    }
+
+    /**
+     * Attempts to remove a meal from the MealPlan.
+     * 
+     * @param theRecipe the recipe whose meal is to be removed.
+     * @return true if theMeal is successfully removed from the MealPlan, false
+     *         otherwise.
+     */
+    public boolean removeMeal(Recipe theRecipe) {
+        for(Meal meal : meals){
+            if (meal.getRecipe().equals(theRecipe)){
+                return removeMeal(meal);
+            }
+        }
+        return false;
     }
 
     /**
@@ -132,8 +148,8 @@ public class MealPlan extends Entity implements Portable {
      * 
      * @return a collection of recipes.
      */
-    public Collection<Recipe> getRecipes() {
-        List<Recipe> allRecipes = new ArrayList<>();
+    public ArrayList<Recipe> getRecipes() {
+        ArrayList<Recipe> allRecipes = new ArrayList<>();
         for (Meal meal : meals) {
             allRecipes.add(meal.getRecipe());
         }
@@ -222,10 +238,6 @@ public class MealPlan extends Entity implements Portable {
      */
     @Override
     public String toString() {
-        String temp = "";
-        for (Meal meal : meals) {
-            temp += meal.getRecipe().getName() + "\n";
-        }
-        return this.name + ":\nDescription: " + this.description + "\nMeals:\n" + temp;
+        return this.name + ": " + this.description;
     }
 }

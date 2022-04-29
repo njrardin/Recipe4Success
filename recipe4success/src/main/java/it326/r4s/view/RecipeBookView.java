@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
+import it326.r4s.model.Recipe;
 /**
  * View for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -50,24 +51,10 @@ public class RecipeBookView implements CLI_Menu {
             "Import a recipe",
             "Export a recipe",
             "Create a new recipe",
-            "View/Select recipes",
+            "Select a recipe",
             "Go back"
         };
         return ViewUtilities.getOptionFromCLI(title, prompt, options);
-    }
-
-    /**
-     * Displays to the user all recipes in a given
-     * list of recipeControllers
-     * @param recipeControllers - recipeControllers which are associated with the recipes to display
-     */
-    public void displayRecipes(ArrayList<RecipeController> recipeControllers){
-        int i = 1;
-        for(RecipeController recipeController: recipeControllers){
-            System.out.print(i + ") ");
-            recipeController.getRecipeView().displayOneline();
-            i++;
-        }
     }
 
     /**
@@ -78,12 +65,26 @@ public class RecipeBookView implements CLI_Menu {
     }
 
     /**
+     * Displays to the user all recipes in a given
+     * list of recipeControllers
+     * @param recipeControllers - recipeControllers which are associated with the recipes to display
+     */
+    public static void displayRecipes(ArrayList<RecipeController> recipeControllers){
+        int i = 1;
+        for(RecipeController recipeController: recipeControllers){
+            System.out.print(i + ") ");
+            recipeController.getRecipeView().displayOneline();
+            i++;
+        }
+    }
+
+    /**
      * Displays a series of recipes and allows the user to select one
      * @param recipeControllers - an ArrayList of RecipeControllers to present as selection options to the user
      * @return the RecipeController who's recipe was selected
      * @throws RuntimeException - if the user aborts the selection process
      */
-    public RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
+    public static RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
         displayRecipes(recipeControllers);
         if (askSelectRecipe() == false){ //TODO: use menu system to do this
             throw new RuntimeException();
@@ -123,7 +124,7 @@ public class RecipeBookView implements CLI_Menu {
      * A confirmation option for selecting a recipe
      * @return true if confirmed, false if denied
      */
-    private boolean askSelectRecipe() {
+    private static boolean askSelectRecipe() {
         Scanner scan = ViewUtilities.scan;
         String input = "";
         do{

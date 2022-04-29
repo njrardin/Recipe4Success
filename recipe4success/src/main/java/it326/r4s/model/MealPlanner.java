@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class MealPlanner extends Entity {
     // *Instance Variables*\\
-    private Collection<MealPlan> mealPlans;
+    private ArrayList<MealPlan> mealPlans;
     private int activeMealPlanIndex;
 
     // *Constructor*\\
@@ -26,13 +26,13 @@ public class MealPlanner extends Entity {
      * 
      * @param mealPlans a collection of MealPlan for the MealPlanner.
      */
-    public MealPlanner(Collection<MealPlan> mealPlans) {
+    public MealPlanner(ArrayList<MealPlan> mealPlans) {
         this.mealPlans = mealPlans;
         this.activeMealPlanIndex = 0;
     }
 
     // *Methods*\\
-    public Collection<MealPlan> getMealPlans(){
+    public ArrayList<MealPlan> getMealPlans(){
         return mealPlans;
     }
 
@@ -40,7 +40,7 @@ public class MealPlanner extends Entity {
      * Sets the MealPlans for the MealPlanner
      * @param mealPlans - a Collection of MealPlans
      */
-    public void setMealPlans(Collection<MealPlan> mealPlans){
+    public void setMealPlans(ArrayList<MealPlan> mealPlans){
         this.mealPlans = mealPlans;
     }
 

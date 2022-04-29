@@ -4,7 +4,6 @@ import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
 import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
-import it326.r4s.view.RecipeBookView;
 import it326.r4s.view.RecipeView;
 import it326.r4s.view.RecipeView.RecipeBuilderView;
 /**
@@ -116,7 +115,7 @@ public class RecipeController {
      * @param theUser - takes in the user object to associate the review with an author
      */
     public void addReview(User theUser){
-        int ratingNum = recipeView.getReviewRating();
+        int ratingNum = recipeView.getRatingFromUser();
         Rating rating = null;
 
         switch (ratingNum){

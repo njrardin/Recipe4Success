@@ -47,7 +47,7 @@ public class RecipeView implements CLI_Menu{
         System.out.println("Description: " + recipeController.getRecipe().getDescription());
         System.out.println("Serving Size: " + recipeController.getRecipe().getServingSize());
         System.out.println("Created on: " + recipeController.getRecipe().getCreatedOn());
-        System.out.println("Your rating: " + retUserRating() + "/5 stars");
+        System.out.println("Your rating: " + getRecipeRating() + "/5 stars");
         System.out.println();
         System.out.println("Ingredients: ");
         displayIngredients();
@@ -127,7 +127,7 @@ public class RecipeView implements CLI_Menu{
      * Gets the recipe's overall rating
      * @return
      */
-    private String retUserRating(){
+    private String getRecipeRating(){
         try{
             return String.valueOf(recipeController.getRecipe().getReviews().get(0).getRatingValue());
         } catch (Exception e) {
@@ -139,7 +139,7 @@ public class RecipeView implements CLI_Menu{
      * Gets from the user a 1-5 star rating for the recipe
      * @return an int representing the rating
      */
-    public int getReviewRating(){
+    public int getRatingFromUser(){
         Scanner scan = ViewUtilities.scan;
         int acceptableRatings[] = {1,2,3,4,5};
         int ratingNum;
