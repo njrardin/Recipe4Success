@@ -289,6 +289,7 @@ public class PresentationDriver {
         mp.addMealPlan(demoMP1);
         mp.addMealPlan(demoMP2);
 
+        user.setMealPlanner(mp);
         return user;
     }
 }
