@@ -4,7 +4,6 @@ import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
 import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
-import it326.r4s.view.RecipeBookView;
 import it326.r4s.view.RecipeView;
 import it326.r4s.view.RecipeView.RecipeBuilderView;
 /**
