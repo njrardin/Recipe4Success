@@ -1,6 +1,7 @@
 package it326.r4s.controller;
 
 import it326.r4s.model.GroceryList;
+import it326.r4s.model.Ingredient;
 import it326.r4s.model.Pantry;
 import it326.r4s.view.GroceryListView;
 
@@ -106,7 +107,23 @@ public class GroceryListController {
      * organizing the items on their grocery list
      */
     public void organizeGroceryList() {
-        
+        //display use case initilization message
+        glView.displayOrganizeInit();
+        //print out grocery list and get the
+        //selected ingredient toMove
+        glView.askForToMove();
+        Ingredient toMove = getIngredientListController().getIngredientListView().selectIngredient();
+        //get a selected ingerdient after which to place toMove 
+        glView.askForMoveAfter();
+        Ingredient moveAfter = getIngredientListController().getIngredientListView().selectIngredient();
+        //re-order the ingredients
+        if(getIngredientListController().getIngredientList().reoganizeIngredients(toMove, moveAfter)){
+            glView.displayReorganizeSuccess();
+        }
+        else{
+            glView.displaReorganizeError();
+        }
+        //display a use case success message
     }
 
     /**
