@@ -7,7 +7,10 @@ import it326.r4s.controller.UserController;
 import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
+import it326.r4s.model.Meal;
+import it326.r4s.model.MealPlan;
 import it326.r4s.model.MealPlanner;
+import it326.r4s.model.Recipe;
 import it326.r4s.model.RecipeBook;
 import it326.r4s.model.UnitConverter;
 import it326.r4s.model.User;
@@ -63,19 +66,15 @@ public class PresentationDriver {
     }
     
     private static User prepopulateUser() {
+        //Instantiate the user object
         User user = new User("Rishi Saripalle");
 
-        user.setRecipeBook(prepopulateRecipeBook());
-        user.setMealPlanner(prepopulateMealPlanner());
-
-        return user;
-    }
-
-    private static RecipeBook prepopulateRecipeBook() {
-
-        //Demo recipe 1
+        //======================================================================================================
+        //Populate the recipeBook with a series of recipes
         RecipeBook recipeBook = new RecipeBook();
 
+        //Demo recipe 1
+        Recipe demoRecipe1;
         RecipeBuilder recipeBuilder = new RecipeBuilder("Mac and Cheese")
         .setDescription("A cheesy meal!")
         .setServingSize(1);
@@ -96,9 +95,13 @@ public class PresentationDriver {
 
         recipeBuilder.setIngredientList(ingredientList);
 
-        recipeBook.addRecipe(recipeBuilder.build());
+        demoRecipe1 = recipeBuilder.build();
+
+        recipeBook.addRecipe(demoRecipe1);
 
         //Demo recipe 2
+        Recipe demoRecipe2;
+
         recipeBuilder = new RecipeBuilder("Cupcakes")
         .setDescription("A great desert")
         .setServingSize(2);
@@ -115,9 +118,12 @@ public class PresentationDriver {
 
         recipeBuilder.setIngredientList(ingredientList);
 
-        recipeBook.addRecipe(recipeBuilder.build());
+        demoRecipe2 = recipeBuilder.build();
+        recipeBook.addRecipe(demoRecipe2);
 
         //Demo recipe 3
+        Recipe demoRecipe3;
+
         recipeBuilder = new RecipeBuilder("Grammy's mashed potatoes")
         .setDescription("The yummy taters my grandma used to make.")
         .setServingSize(4);
@@ -139,14 +145,150 @@ public class PresentationDriver {
         categories.add(new Category("vegan"));
         recipeBuilder.setCategories(categories);
 
-        recipeBook.addRecipe(recipeBuilder.build());
+        demoRecipe3 = recipeBuilder.build();
+        recipeBook.addRecipe(demoRecipe3);
 
-        return recipeBook;
+        //Demo recipe 4
+        Recipe demoRecipe4;
+
+        recipeBuilder = new RecipeBuilder("Mega-mini-locos-tacos platter")
+        .setDescription("A whole lotta really wacky tiny tacos.")
+        .setServingSize(7);
+
+        instructions = new ArrayList<String>();
+        instructions.add("Put the taco meat in the tacos");
+        instructions.add("...(pretend more instructions here)...");
+        instructions.add("...serve on your party tray!");
+
+        recipeBuilder.setInstructions(instructions);
+
+        ingredientList = new IngredientList();
+        ingredientList.addIngredient(new Ingredient("Taco shell",20, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("Taco meat filling", 2, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("Shredded triple cheddar cheese", 2, UnitConverter.Unit.CUP));
+
+        recipeBuilder.setIngredientList(ingredientList);
+
+        categories = new ArrayList<Category>();
+        categories.add(new Category("mexican"));
+        categories.add(new Category("party"));
+        recipeBuilder.setCategories(categories);
+
+        demoRecipe4 = recipeBuilder.build();
+        recipeBook.addRecipe(demoRecipe4);
+
+        //Demo recipe 5
+        Recipe demoRecipe5;
+
+        recipeBuilder = new RecipeBuilder("Simple spaghetti")
+        .setDescription("A quick and easy dinner.")
+        .setServingSize(2);
+
+        instructions = new ArrayList<String>();
+        instructions.add("Pour water in a bowl");
+        instructions.add("...(pretend more instructions here)...");
+        instructions.add("...enjoy!");
+
+        recipeBuilder.setInstructions(instructions);
+
+        ingredientList = new IngredientList();
+        ingredientList.addIngredient(new Ingredient("Spaghetti", 5, UnitConverter.Unit.OUNCE));
+        ingredientList.addIngredient(new Ingredient("Spaghetti sauce", 3, UnitConverter.Unit.TABLESPOON));
+
+        recipeBuilder.setIngredientList(ingredientList);
+
+        categories = new ArrayList<Category>();
+        categories.add(new Category("italian"));
+        categories.add(new Category("simple"));
+        recipeBuilder.setCategories(categories);
+
+        demoRecipe5 = recipeBuilder.build();
+        recipeBook.addRecipe(demoRecipe5);
+
+        //Demo recipe 6
+        Recipe demoRecipe6;
+
+        recipeBuilder = new RecipeBuilder("Big breakfast")
+        .setDescription("A hearty start to a great day.")
+        .setServingSize(2);
+
+        instructions = new ArrayList<String>();
+        instructions.add("Get out a nonstick pan...");
+        instructions.add("...(pretend more instructions here)...");
+        instructions.add("...enjoy!");
+
+        recipeBuilder.setInstructions(instructions);
+
+        ingredientList = new IngredientList();
+        ingredientList.addIngredient(new Ingredient("Bacon", 4, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("Egg", 6, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("Whole wheat bread", 2, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("Grape Jelly", 2, UnitConverter.Unit.TEASPOON));
+
+        recipeBuilder.setIngredientList(ingredientList);
+
+        categories = new ArrayList<Category>();
+        categories.add(new Category("breakfast"));
+        recipeBuilder.setCategories(categories);
+
+        demoRecipe6 = recipeBuilder.build();
+        recipeBook.addRecipe(demoRecipe6);
+
+        user.setRecipeBook(recipeBook);
+
+        //Demo recipe 7
+        Recipe demoRecipe7;
+
+        recipeBuilder = new RecipeBuilder("Homemade pizza")
+        .setDescription("Literally the best dish ever created.")
+        .setServingSize(2);
+
+        instructions = new ArrayList<String>();
+        instructions.add("Get out a pizza pan...");
+        instructions.add("...(pretend more instructions here)...");
+        instructions.add("...enjoy!");
+
+        recipeBuilder.setInstructions(instructions);
+
+        ingredientList = new IngredientList();
+        ingredientList.addIngredient(new Ingredient("Pizza Dough", 200, UnitConverter.Unit.GRAM));
+        ingredientList.addIngredient(new Ingredient("Marinara Sauce", 3, UnitConverter.Unit.TABLESPOON));
+        ingredientList.addIngredient(new Ingredient("Shredded Mozzerella", 0.5, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("Pepperonni", 12, UnitConverter.Unit.NONE));
+
+        recipeBuilder.setIngredientList(ingredientList);
+
+        categories = new ArrayList<Category>();
+        categories.add(new Category("italian"));
+        recipeBuilder.setCategories(categories);
+
+        demoRecipe7 = recipeBuilder.build();
+        recipeBook.addRecipe(demoRecipe7);
+
+        user.setRecipeBook(recipeBook);
+
+        //======================================================================================================
+        //Populate the mealplanner with a series of mealplans
+
+        //Mealplan 1
+        MealPlan demoMP1 = new MealPlan("Saturday Meals");
+        demoMP1.setMealPlanDescription("Just some meals for my day off");
+        demoMP1.addMeal(new Meal(demoRecipe6, 2));
+        demoMP1.addMeal(new Meal(demoRecipe1, 2));
+        demoMP1.addMeal(new Meal(demoRecipe7, 2));
+
+        //Mealplan 2
+        MealPlan demoMP2 = new MealPlan("Some meals");
+        demoMP2.setMealPlanDescription("These don't go together at all but I need more for the demo");
+        demoMP2.addMeal(new Meal(demoRecipe6, 2));
+        demoMP2.addMeal(new Meal(demoRecipe5, 2));
+        demoMP2.addMeal(new Meal(demoRecipe4, 5));
+        demoMP2.addMeal(new Meal(demoRecipe2, 5));
+
+        MealPlanner mp = new MealPlanner();
+        mp.addMealPlan(demoMP1);
+        mp.addMealPlan(demoMP2);
+
+        return user;
     }
-
-    private static MealPlanner prepopulateMealPlanner(){
-        //TODO: This
-        return new MealPlanner();
-    }
-
 }
