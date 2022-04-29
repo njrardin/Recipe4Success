@@ -38,7 +38,7 @@ public class MealPlanController  {
     }
 
     /**
-     * Gets an ArrayList of RecipeControllers associated with all recipes in the recipeBook
+     * Gets an ArrayList of RecipeControllers associated with all recipes in the mealplan
      * @return the ArrayList of RecipeControllers
      */
     public ArrayList<RecipeController> getRecipeControllers(){

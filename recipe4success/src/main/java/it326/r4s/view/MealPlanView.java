@@ -34,7 +34,7 @@ public class MealPlanView implements CLI_Menu {
         System.out.println("Created on: " + mealPlanController.getMealPlan().getMealPlanDate());
         System.out.println();
         System.out.println("Recipes: ");
-        RecipeBookView.displayRecipes(mealPlanController.getRecipeControllers());
+        RecipeBookView.displayRecipes(mealPlanController.getRecipeControllers()); 
         System.out.println();
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");   
@@ -55,7 +55,6 @@ public class MealPlanView implements CLI_Menu {
             "Move this Mealplan's Ingredients to My Grocery List",
             "Export this Mealplan",
             "Delete this Mealplan",
-            "Re-Display Recipe",
             "Go back"
         };
         return ViewUtilities.getOptionFromCLI(title, prompt, options);

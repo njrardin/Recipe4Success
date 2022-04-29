@@ -39,7 +39,7 @@ public class IngredientList extends Entity {
      * @param toAdd an ingredient to be added to the IngredientList.
      * @return true if toAdd is already in ingredients, false otherwise.
      */
-    public boolean addIngredient(Ingredient toAdd) {
+    public boolean addIngredient(Ingredient toAdd) { //TODO: this is just straight up bad. Rework the model if needed but seriously
         for (Ingredient ingredient : this.ingredients) {
             if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
                 if (!ingredient.getUnit().equals(toAdd.getUnit()))

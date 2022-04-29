@@ -28,6 +28,7 @@ public class MealPlan extends Entity implements Portable {
             this.name = name;
         }
         this.description = "";
+        this.createdOn = new Date();
     }
 
     // *Methods*\\
@@ -83,8 +84,8 @@ public class MealPlan extends Entity implements Portable {
      * @return true if theMeal is sucessfully add to the MealPlan, false otherwise.
      */
     public boolean addMeal(Meal theMeal) {
-        boolean added = meals.add(theMeal);
-        return added; //TODO: logic to compare with the serving size and make internal adjustments
+        return meals.add(theMeal);
+        //TODO: logic to compare with the serving size and make internal adjustments
     }
 
     /**
@@ -95,8 +96,7 @@ public class MealPlan extends Entity implements Portable {
      *         otherwise.
      */
     public boolean removeMeal(Meal theMeal) {
-        boolean removed = meals.remove(theMeal);
-        return removed;
+        return meals.remove(theMeal);
     }
 
     /**
@@ -132,8 +132,8 @@ public class MealPlan extends Entity implements Portable {
      * 
      * @return a collection of recipes.
      */
-    public Collection<Recipe> getRecipes() {
-        List<Recipe> allRecipes = new ArrayList<>();
+    public ArrayList<Recipe> getRecipes() {
+        ArrayList<Recipe> allRecipes = new ArrayList<>();
         for (Meal meal : meals) {
             allRecipes.add(meal.getRecipe());
         }
