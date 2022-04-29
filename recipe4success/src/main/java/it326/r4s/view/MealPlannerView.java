@@ -158,5 +158,57 @@ public class MealPlannerView implements CLI_Menu{
         return selection;
     }
 
-    
+    public void initCreateMealplan() {
+        System.out.println("Let's create a meal plan!");
+    }
+
+    public String getMealPlanNameFromUser() {
+        Scanner scan = ViewUtilities.scan;
+        String name = "";
+
+        while(true){
+            System.out.println("\nPlease provide the mealplan's name:");
+            name = scan.nextLine();
+            if(name != ""){
+                System.out.println("You provided the name \"" + name + ",\" is this correct? (Y/N)");
+                if(scan.nextLine().toLowerCase().equals("y")){
+                    return name;
+                }
+            }
+        }
+    }
+
+    public boolean wantToAddAnotherRecipe() {
+        Scanner scan = ViewUtilities.scan;
+        String input = "";
+        do{
+        System.out.println("Would you like to add another recipe? (Y/N)");
+        input = scan.nextLine().toLowerCase();
+        } while ( !(input.equals("y") || input.equals("n")) );
+        if(input.equals("n")){
+            return false;
+        }
+        return true;
+    }
+
+    public String getMealPlanDescriptionFromUser() {
+        Scanner scan = ViewUtilities.scan;
+        String description = "";
+        while(true){
+            System.out.println("Please provide a description for the meal plan");
+            description = scan.nextLine();
+
+            System.out.println("You provided the description\n\n \"" 
+
+            + description + 
+
+            "\"\n\n is this correct? (Y/N)");
+
+            if(scan.nextLine().toLowerCase().equals("y")){
+                return description;
+            }
+        }
+    }
+
+
 }

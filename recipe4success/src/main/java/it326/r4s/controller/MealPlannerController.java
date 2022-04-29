@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.MealPlanner;
+import it326.r4s.view.MealPlanSearchView;
 import it326.r4s.view.MealPlanView;
 import it326.r4s.view.MealPlannerView;
 /**
@@ -109,7 +110,11 @@ public class MealPlannerController {
      * searching through MealPlans in the mealPlanner
      */
     public void searchMealPlans() {
-        //TODO - req 16?
+        MealPlanSearchController mpsController = new MealPlanSearchController(mealPlanner.getMealPlans());
+        String searchQuery = new MealPlanSearchView(mpsController).getSearchQuery();
+        ArrayList<MealPlan> returnMealPlans = mpsController.searchFor(searchQuery);
+        
+        selectMealPlan(returnMealPlans);    
     }
     
     /**
@@ -133,7 +138,21 @@ public class MealPlannerController {
      * creating a new MealPlan for the mealPlanner
      */
     public void createMealPlan() {
-        MealPlan newMealPlan = new MealPlan("temp");
+        mealPlannerView.initCreateMealplan();
+        MealPlan newMealPlan = new MealPlan(mealPlannerView.getMealPlanNameFromUser());
+        newMealPlan.setMealPlanDescription(mealPlannerView.getMealPlanDescriptionFromUser());
+
+        MealPlanController mpc = new MealPlanController(newMealPlan);
+
+        do{
+            mpc.addRecipeToMealPlan();
+        } while (mealPlannerView.wantToAddAnotherRecipe());
+
+        mealPlanner.addMealPlan(mpc.getMealPlan());
+
+        System.out.println("You have successfully created the meal plan: \n");
+        mpc.getMealPlanView().displayOneline();
+        System.out.println();
     }
 
     /**
