@@ -12,6 +12,8 @@ import it326.r4s.view.MealPlanView;
  * @date 4/26/22
  */
 public class MealPlanController  {
+
+    //*Instance Variables\\
     public MealPlan mealPlan;
     public MealPlanView mealPlanView;
 
