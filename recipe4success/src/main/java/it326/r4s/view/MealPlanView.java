@@ -48,21 +48,6 @@ public class MealPlanView implements CLI_Menu {
     }
     //TODO: behaviour to handle null values and format date better
 
-    public void displayMealPlanOptions(){
-        System.out.println();
-        System.out.println("                             -- Mealplan Options --                                ");
-        System.out.println("");
-        System.out.println("1) Add Recipe to Meal Plan");
-        System.out.println("2) Remove Recipe from Meal Plan");
-        System.out.println("3) Set Meal Plan Serving Size");
-        System.out.println("4) Move this Meal Plan's Ingredients to Your Grocery List");
-        System.out.println("5) Export this Meal Plan");
-        System.out.println("6) Delete this Meal Plan");
-        System.out.println("7) Re-Display Meal Plan");
-        System.out.println("8) Go back");
-        System.out.println();
-    }
-
     /**
      * Allows the user to select one of a series of options
      * @return an int representing the selected option
