@@ -31,8 +31,16 @@ public class MealPlannerController {
      * Getter for the controller's MealPlanner
      * @return the Mealplanner object
      */
-    public MealPlanner getMealPlanner() {
+    public MealPlanner getMealPlanner(){
         return this.mealPlanner;
+    }
+
+    /**
+     * Getter for the controller's MealPlannerView
+     * @return the MealPlannerView object
+     */
+    public MealPlannerView getMealPlannerView(){
+        return this.mealPlannerView;
     }
     
     /**
