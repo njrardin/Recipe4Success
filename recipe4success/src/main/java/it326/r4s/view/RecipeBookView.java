@@ -50,7 +50,7 @@ public class RecipeBookView implements CLI_Menu {
             "Import a recipe",
             "Export a recipe",
             "Create a new recipe",
-            "View/Select recipes",
+            "Select a recipe",
             "Go back"
         };
         return ViewUtilities.getOptionFromCLI(title, prompt, options);
