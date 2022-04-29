@@ -32,6 +32,11 @@ public class MealPlanView implements CLI_Menu {
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("Name: " + mealPlanController.getMealPlan().getMealPlanName());
         System.out.println("Description: " + mealPlanController.getMealPlan().getMealPlanDescription());
+        if(mealPlanController.getMealPlan().getServingSize() == 1){
+            System.out.println("Serving size: " + mealPlanController.getMealPlan().getServingSize() + " person");
+        } else {
+            System.out.println("Serving size: " + mealPlanController.getMealPlan().getServingSize() + " people");
+        }
         System.out.println("Created on: " + mealPlanController.getMealPlan().getMealPlanDate());
         System.out.println();
         System.out.println("Recipes: ");
@@ -117,6 +122,9 @@ public class MealPlanView implements CLI_Menu {
         return servingSize;
     }
 
+    /**
+     * Displays the mealplan in a one line format
+     */
     public void displayOneline() {
         System.out.println(mealPlanController.getMealPlan().getMealPlanName() + ": " + mealPlanController.getMealPlan().getMealPlanDescription());
     }
