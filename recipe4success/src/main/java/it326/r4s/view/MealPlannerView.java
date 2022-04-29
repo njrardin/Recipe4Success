@@ -18,44 +18,7 @@ public class MealPlannerView implements CLI_Menu{
         this.mprController = mprController;
     }
     
-    public int getMenuOptionSelection(){
-    return -1; //TODO implement; del depreciated
-        // Scanner scan = ViewUtilities.scan;
-        // String input = "";
-        // displayHeader();
-        // displayOptions();
-        // while (true) {
 
-        //     System.out.println();
-        //     System.out.println("(to see the options again, type \"options\")");
-    
-        //     input = scan.nextLine().toLowerCase();
-        //     System.out.println();
-        //     switch (input) {
-        //         case "1":
-        //             mprController.searchMealPlans();
-        //             break;
-        //         case "2":
-        //             mprController.importMealPlan();
-        //             break;
-        //         case "3":
-        //             mprController.exportMealPlan();
-        //             break;
-        //         case "4":
-        //             mprController.createMealPlan();
-        //             break;
-        //         case "5":
-        //             mprController.viewMealPlans();
-        //             break;
-        //         case "6":
-        //             return -1;
-        //         default:
-        //             System.out.println("Invalid input, please try again\n");
-        //     }
-        //     break;
-        // }
-        // retu
-    }
 
     public void displayHeader(){
         System.out.println("-------------------------------------------------------------------------------------");
@@ -78,6 +41,20 @@ public class MealPlannerView implements CLI_Menu{
         System.out.println("5) View/Select Meal Plans");
         System.out.println("6) Go back");
         System.out.println();
+    }
+
+    public int getMenuOptionSelection(){
+        String title = "Meal-Planner";
+        String prompt = "What would you like to do?";
+        String[] options = {
+            "Search mealplans",
+            "Import a mealplan",
+            "Export a mealplan",
+            "Create a new mealplan",
+            "Select a mealplan",
+            "Go back"
+        };
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
     }
 
     public String getSearchQuery() {
@@ -152,6 +129,4 @@ public class MealPlannerView implements CLI_Menu{
         return true;
     }
 
-    public void execute() {
-    }
 }
