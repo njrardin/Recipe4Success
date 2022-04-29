@@ -222,10 +222,6 @@ public class MealPlan extends Entity implements Portable {
      */
     @Override
     public String toString() {
-        String temp = "";
-        for (Meal meal : meals) {
-            temp += meal.getRecipe().getName() + "\n";
-        }
-        return this.name + ":\nDescription: " + this.description + "\nMeals:\n" + temp;
+        return this.name + ": " + this.description;
     }
 }
