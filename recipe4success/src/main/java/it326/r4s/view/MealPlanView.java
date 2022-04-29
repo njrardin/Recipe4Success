@@ -3,6 +3,7 @@ package it326.r4s.view;
 import java.util.Scanner;
 
 import it326.r4s.controller.MealPlanController;
+import it326.r4s.controller.RecipeBookController;
 
 /**
  * View for R4S MealPlanner
@@ -40,7 +41,7 @@ public class MealPlanView implements CLI_Menu {
         System.out.println("Created on: " + mealPlanController.getMealPlan().getMealPlanDate());
         System.out.println();
         System.out.println("Recipes: ");
-        //displayRecipes();
+        RecipeBookView.displayRecipes(mealPlanController.getRecipeControllers());
         System.out.println();
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");   

@@ -1,7 +1,10 @@
 package it326.r4s.controller;
 
 
+import java.util.ArrayList;
+
 import it326.r4s.model.MealPlan;
+import it326.r4s.model.Recipe;
 import it326.r4s.view.MealPlanView;
 
 /**
@@ -32,6 +35,18 @@ public class MealPlanController  {
      */
     public MealPlanView getMealPlanView() {
         return mealPlanView;
+    }
+
+    /**
+     * Gets an ArrayList of RecipeControllers associated with all recipes in the recipeBook
+     * @return the ArrayList of RecipeControllers
+     */
+    public ArrayList<RecipeController> getRecipeControllers(){
+        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
+        for(Recipe recipe: mealPlan.getRecipes()){
+            recipeControllers.add(new RecipeController(recipe));
+        }
+        return recipeControllers;
     }
 
     /**

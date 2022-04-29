@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
+import it326.r4s.model.Recipe;
 /**
  * View for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -68,7 +69,7 @@ public class RecipeBookView implements CLI_Menu {
      * list of recipeControllers
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
-    public void displayRecipes(ArrayList<RecipeController> recipeControllers){
+    public static void displayRecipes(ArrayList<RecipeController> recipeControllers){
         int i = 1;
         for(RecipeController recipeController: recipeControllers){
             System.out.print(i + ") ");
