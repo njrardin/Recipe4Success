@@ -11,12 +11,22 @@ import it326.r4s.controller.MealPlanController;
  */
 public class MealPlanView implements CLI_Menu {
 
+    //*Instance Variables*\\
     private MealPlanController mealPlanController;
 
+    //*Constructor*\\
+    /**
+     * Constructor for R4S's MealPlanview
+     * @param mealPlanController - the MealPlanView's controller
+     */
     public MealPlanView(MealPlanController mealPlanController){
         this.mealPlanController = mealPlanController;
     }
 
+    //*Methods*\\
+    /**
+     * Displays the meal plan to the screen
+     */
     public void displayMealPlan() {
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
@@ -34,7 +44,7 @@ public class MealPlanView implements CLI_Menu {
 
     public void displayMealPlanOptions(){
         System.out.println();
-        System.out.println("                             -- Meal Plan Options --                                ");
+        System.out.println("                             -- Mealplan Options --                                ");
         System.out.println("");
         System.out.println("1) Add Recipe to Meal Plan");
         System.out.println("2) Remove Recipe from Meal Plan");
@@ -47,6 +57,30 @@ public class MealPlanView implements CLI_Menu {
         System.out.println();
     }
 
+    /**
+     * Allows the user to select one of a series of options
+     * @return an int representing the selected option
+     */
+    public int getMenuOptionSelection(){
+        String title = "Mealplan: " + mealPlanController.getMealPlan().getMealPlanName();
+        String prompt = "What would you like to do?";
+        String[] options = {
+            "Add Recipe to Mealplan",
+            "Remove Recipe from Mealplan",
+            "Set Mealplan Serving Size",
+            "Move this Mealplan's Ingredients to My Grocery List",
+            "Export this Mealplan",
+            "Delete this Mealplan",
+            "Re-Display Recipe",
+            "Go back"
+        };
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+    }
+
+    /**
+     * Asks of the user a confirmation of deletion
+     * @return true if confirmed to delete, false if deletion denied
+     */
     public boolean deletionConfirmation() {
         Scanner scan = ViewUtilities.scan;
         String input = "";
@@ -84,11 +118,7 @@ public class MealPlanView implements CLI_Menu {
     }
 
     public void displayOneline() {
-        
+        System.out.println(mealPlanController.getMealPlan().getMealPlanName() + ": " + mealPlanController.getMealPlan().getMealPlanDescription());
     }
 
-    public int getMenuOptionSelection() {
-        // TODO Auto-generated method stub
-        return -1;
-    }
 }
