@@ -4,13 +4,16 @@ package it326.r4s;
 import java.util.Arrays;
 import java.util.Collection;
 
-import it326.r4s.Review.Rating;
-
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runners.Parameterized.*;
+
+import it326.r4s.model.Review;
+import it326.r4s.model.User;
+import it326.r4s.model.Review.Rating;
+
 import org.junit.runner.RunWith;
 
 @RunWith(Enclosed.class)
@@ -42,7 +45,9 @@ public class ReviewTest {
 
         @Test
         public void testGetRatingValue(){
-            Review newReview = new Review(new User("Testman"), ratingEnum);
+            User theUser = new User("Testman");
+            
+            Review newReview = new Review(theUser, ratingEnum);
 
             int actualValue = newReview.getRatingValue();        
             assertEquals(expectedValue, actualValue);
