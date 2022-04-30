@@ -1,7 +1,8 @@
 package it326.r4s.view;
 
+import java.util.Scanner;
+
 import it326.r4s.controller.RecipeSearchController;
-import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S RecipeSearch
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -27,13 +28,13 @@ public class RecipeSearchView {
      * @return - the search query as a String
      */
     public String getSearchQuery() {
-        InputAccess inputAccess = new InputAccess();
-        String response = "";
+        Scanner scan = ViewUtilities.scan;
+        String input = "";
         do{
             System.out.println("Please enter the term to search the recipes for:");
-            response = inputAccess.getInputLine().toLowerCase();
-        } while (response == "");
+            input = scan.nextLine().toLowerCase();
+        } while (input == "");
 
-        return response;
+        return input;
     }
 }

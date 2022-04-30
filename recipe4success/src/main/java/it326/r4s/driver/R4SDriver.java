@@ -3,8 +3,7 @@ package it326.r4s.driver;
 import it326.r4s.controller.MainMenuController;
 import it326.r4s.controller.UserController;
 import it326.r4s.model.User;
-import it326.r4s.view.utilities.DisplayUtils;
-import it326.r4s.view.utilities.InputAccess;
+import it326.r4s.view.ViewUtilities;
 public class R4SDriver {
     public static void main(String[] args) {     
         
@@ -47,8 +46,7 @@ public class R4SDriver {
         System.out.println("Thank you for using Recipe4Success!");
         System.out.println("\n\tapplication exiting...\n\n");
 
-        InputAccess inputAccess = new InputAccess();
-        inputAccess.close();
+        ViewUtilities.scan.close();
         System.exit(0);
      }
 }

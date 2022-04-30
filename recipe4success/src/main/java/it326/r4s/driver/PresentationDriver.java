@@ -15,7 +15,7 @@ import it326.r4s.model.RecipeBook;
 import it326.r4s.model.UnitConverter;
 import it326.r4s.model.User;
 import it326.r4s.model.Recipe.RecipeBuilder;
-import it326.r4s.view.utilities.InputAccess;
+import it326.r4s.view.ViewUtilities;
 
 /**
  * Controller for R4S RecipeBook
@@ -61,8 +61,7 @@ public class PresentationDriver {
         System.out.println("Thank you for using Recipe4Success!");
         System.out.println("\n\tapplication exiting...\n\n");
         
-        InputAccess inputAccess = new InputAccess();
-        inputAccess.close();
+        ViewUtilities.scan.close();
         System.exit(0);
     }
     

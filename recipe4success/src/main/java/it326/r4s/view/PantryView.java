@@ -1,17 +1,18 @@
 package it326.r4s.view;
 
+import java.util.Scanner;
+
 import it326.r4s.controller.PantryController;
 import it326.r4s.controller.UnitController;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
-import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S Pantry
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class PantryView implements R4SMenu{
+public class PantryView implements CLI_Menu{
     
     private PantryController pantryController;
 
@@ -60,8 +61,7 @@ public class PantryView implements R4SMenu{
             "List Recipes Makable with the Ingredients in My Pantry",
             "Go back"
         };
-        InputAccess inputAccess = new InputAccess();
-        return inputAccess.getOptionSelection(title, prompt, options);
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
     }
     
     /**
@@ -71,7 +71,7 @@ public class PantryView implements R4SMenu{
     public IngredientList getNewIngredientsFromUser() {
         System.out.println("Alright! Let's add some ingredients to your pantry.");
  
-        InputAccess inputAccess = new InputAccess();
+        Scanner scan = ViewUtilities.scan;
         String resp = "";
  
         String ingredientName;
@@ -91,7 +91,7 @@ public class PantryView implements R4SMenu{
             else{
                 System.out.println("What is the next ingredient?\n");
             }
-            ingredientName = inputAccess.getInputLine().toLowerCase();
+            ingredientName = scan.nextLine().toLowerCase();
  
             //get the unit
             System.out.println("What is the unit of measure for " + ingredientName + "?");
@@ -99,16 +99,7 @@ public class PantryView implements R4SMenu{
  
             //get the quantity
             System.out.println("How many " + unit.stringRep + "s are needed?");
-            ingredientQuantity = -1;
-            do{
-                try{
-                    ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Please select an option by typing the corresponding number");
-                    continue;
-                }
-            } while(true);
+            ingredientQuantity = Double.parseDouble(scan.nextLine());
             
             //confirm accuracy
             System.out.println("You provided ingredient #" + ingredientNum + " as\n\n \"" 
@@ -116,7 +107,7 @@ public class PantryView implements R4SMenu{
             + ingredientQuantity + " " + unit.stringRep + "s of " + ingredientName +
  
             "\"\n\n is this correct? (Y/N)");
-            resp = inputAccess.getInputLine().toLowerCase();
+            resp = scan.nextLine().toLowerCase();
             if(resp.equals("y")){
  
                 ingredientList.addIngredient(new Ingredient(ingredientName, ingredientQuantity, unit));
@@ -129,7 +120,7 @@ public class PantryView implements R4SMenu{
             //check to see if the user wishes to add another step
             do {
                 System.out.println("Would you like to add another ingredient? (Y/N)");
-                resp = inputAccess.getInputLine().toLowerCase();
+                resp = scan.nextLine().toLowerCase();
             } while (!(resp.equals("y") || resp.equals("n")));
             
             if(resp.equals("n")){
