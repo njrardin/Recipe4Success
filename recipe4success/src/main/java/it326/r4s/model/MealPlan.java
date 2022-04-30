@@ -238,6 +238,6 @@ public class MealPlan extends Entity implements Portable {
      */
     @Override
     public String toString() {
-        return this.name + ": " + this.description;
+        return this.name + ": \"" + this.description + "\"";
     }
 }
