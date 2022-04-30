@@ -222,7 +222,7 @@ public class Recipe extends Entity implements Portable {
      */
     @Override
     public String toString() {
-        return name + ": " + description;
+        return name + ": \"" + description + "\"";
     }
 
     /**
