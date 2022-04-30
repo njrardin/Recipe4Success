@@ -3,12 +3,14 @@ package it326.r4s.view;
 import java.util.Scanner;
 
 import it326.r4s.controller.MainMenuController;
+import it326.r4s.view.utilities.DisplayUtils;
+import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S MainMenu
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class MainMenuView implements CLI_Menu{
+public class MainMenuView implements R4SMenu{
     
     //*Instance Variables\\
     public MainMenuController mmController;
@@ -37,7 +39,8 @@ public class MainMenuView implements CLI_Menu{
             "Access my grocery list:\t(view and edit your current grocery list.)",
             "Exit Application"
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+        InputAccess input = new InputAccess();
+        return input.getOptionSelection(title, prompt, options);
     }
 
 }

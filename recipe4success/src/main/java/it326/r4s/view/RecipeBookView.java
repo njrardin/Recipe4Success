@@ -5,12 +5,14 @@ import java.util.Scanner;
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
 import it326.r4s.model.Recipe;
+import it326.r4s.view.utilities.DisplayUtils;
+import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeBookView implements CLI_Menu {
+public class RecipeBookView implements R4SMenu {
     
     //*Instance Variables*\\
     private RecipeBookController rbController;
@@ -54,7 +56,8 @@ public class RecipeBookView implements CLI_Menu {
             "Select a recipe",
             "Go back"
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+        InputAccess inputAccess = new InputAccess();
+        return inputAccess.getOptionSelection(title, prompt, options);
     }
 
     /**
@@ -93,12 +96,12 @@ public class RecipeBookView implements CLI_Menu {
         //Selection loop; only exits once a valid recipe is selcted
         String input;
         int inputNum = -1;
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         do{
             System.out.println("\n Which recipe would you like to select?");
             System.out.println("(please type the selection number or type \"exit\" to go back)");
 
-            input = scan.nextLine();
+            input = inputAccess.getInputLine();
             if(input.toLowerCase().equals("exit")){
                 throw new RuntimeException();
             }
@@ -125,13 +128,13 @@ public class RecipeBookView implements CLI_Menu {
      * @return true if confirmed, false if denied
      */
     private static boolean askSelectRecipe() {
-        Scanner scan = ViewUtilities.scan;
-        String input = "";
+        InputAccess inputAccess = new InputAccess();
+        String response = "";
         do{
         System.out.println("Would you like to select a recipe? (Y/N)");
-        input = scan.nextLine().toLowerCase();
-        } while ( !(input.equals("y") || input.equals("n")) );
-        if(input.equals("n")){
+        response = inputAccess.getInputLine().toLowerCase();
+        } while ( !(response.equals("y") || response.equals("n")) );
+        if(response.equals("n")){
             return false;
         }
         return true;

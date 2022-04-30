@@ -8,12 +8,14 @@ import it326.r4s.controller.UnitController;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
+import it326.r4s.view.utilities.DisplayUtils;
+import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S GroceryList
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class GroceryListView implements CLI_Menu{
+public class GroceryListView implements R4SMenu{
     
     //*Instance Variable*\\
     private GroceryListController glController;
@@ -56,7 +58,9 @@ public class GroceryListView implements CLI_Menu{
             "Export this Grocery List",
             "Go back"
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+
+        InputAccess input = new InputAccess();
+        return input.getOptionSelection(title, prompt, options);
     }
 
     /**
@@ -80,7 +84,7 @@ public class GroceryListView implements CLI_Menu{
     public IngredientList getNewIngredientsFromUser() {
        System.out.println("Alright! Let's add some ingredients to the list.");
 
-       Scanner scan = ViewUtilities.scan;
+       InputAccess input = new InputAccess();
        String resp = "";
 
        String ingredientName;
@@ -100,7 +104,7 @@ public class GroceryListView implements CLI_Menu{
            else{
                System.out.println("What is the next ingredient?\n");
            }
-           ingredientName = scan.nextLine().toLowerCase();
+           ingredientName = input.getInputLine().toLowerCase();
 
            //get the unit
            System.out.println("What is the unit of measure for " + ingredientName + "?");
@@ -108,7 +112,7 @@ public class GroceryListView implements CLI_Menu{
 
            //get the quantity
            System.out.println("How many " + unit.stringRep + "s are needed?");
-           ingredientQuantity = Double.parseDouble(scan.nextLine());
+           ingredientQuantity = Double.parseDouble(input.getInputLine());
            
            //confirm accuracy
            System.out.println("You provided ingredient #" + ingredientNum + " as\n\n \"" 
@@ -116,7 +120,7 @@ public class GroceryListView implements CLI_Menu{
            + ingredientQuantity + " " + unit.stringRep + "s of " + ingredientName +
 
            "\"\n\n is this correct? (Y/N)");
-           resp = scan.nextLine().toLowerCase();
+           resp = input.getInputLine().toLowerCase();
            if(resp.equals("y")){
 
                ingredientList.addIngredient(new Ingredient(ingredientName, ingredientQuantity, unit));
@@ -129,7 +133,7 @@ public class GroceryListView implements CLI_Menu{
            //check to see if the user wishes to add another step
            do {
                System.out.println("Would you like to add another ingredient? (Y/N)");
-               resp = scan.nextLine().toLowerCase();
+               resp = input.getInputLine().toLowerCase();
            } while (!(resp.equals("y") || resp.equals("n")));
            
            if(resp.equals("n")){
@@ -148,14 +152,14 @@ public class GroceryListView implements CLI_Menu{
 	}
 
     public boolean confirmTransfer() {
-        Scanner scan = ViewUtilities.scan;
-        String input = "";
+        InputAccess input = new InputAccess();
+        String response = "";
         do{
             System.out.println("Are you sure you want to transfer all the ingredients to your pantry? (Y/N)");
-            input = scan.nextLine().toLowerCase();
-        }  while ( !(input.equals("y") || input.equals("n") ));
+            response = input.getInputLine().toLowerCase();
+        }  while ( !(response.equals("y") || response.equals("n") ));
 
-        if(input.equals("n")){
+        if(response.equals("n")){
             return false;
         }
         else{
