@@ -90,6 +90,8 @@ public class RecipeBookController {
                 default:
                     System.out.println("Invalid input, please try again\n");
             }
+            recipeBookView.displayHeader();
+            recipeBookView.displayRecipeBook();
         }
     }
     

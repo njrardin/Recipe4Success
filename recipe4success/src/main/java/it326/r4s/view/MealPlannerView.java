@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it326.r4s.controller.MealPlanController;
 import it326.r4s.controller.MealPlannerController;
+import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S MealPlanner
@@ -29,13 +30,7 @@ public class MealPlannerView implements R4SMenu{
      * Displays the Meal Planner header 
      */
     public void displayHeader(){
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Meal Planner --                              ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println(DisplayUtils.getHeader("Meal Planner"));
     }
 
     /**
@@ -53,7 +48,7 @@ public class MealPlannerView implements R4SMenu{
      * @return an int representing the selected option
      */
     public int getMenuOptionSelection(){
-        String title = "Meal Planner";
+        String title = "Meal Planner Options";
         String prompt = "What would you like to do?";
         String[] options = {
             "Search mealplans",
@@ -74,12 +69,15 @@ public class MealPlannerView implements R4SMenu{
      * @param mealPlanControllers
      */
     public void displayMealPlans(ArrayList<MealPlanController> mealPlanControllers){
+        System.out.println("Meal Plans:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         int i = 1;
         for(MealPlanController mealPlanController: mealPlanControllers){
             System.out.print(i + ") ");
             mealPlanController.getMealPlanView().displayOneline();
             i++;
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
 
     /**

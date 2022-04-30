@@ -5,6 +5,7 @@ import it326.r4s.controller.UnitController;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
+import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S Pantry
@@ -21,14 +22,7 @@ public class PantryView implements R4SMenu{
 
     
 	public void displayHeader() {
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                                  -- Pantry --                                 ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        
+        System.out.println(DisplayUtils.getHeader("Pantry"));
 	}
 
 
@@ -36,14 +30,16 @@ public class PantryView implements R4SMenu{
      * Displays the pantry to the screen
      */
 	public void displayPantry() {
-        System.out.printf("%48s%n%n", "-- Pantry --");
+        System.out.println("Pantry:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         if(pantryController.getIngredientListController().getIngredientList().getIngredients().isEmpty()){
-            System.out.println("The pantry is currently empty\n");
+            System.out.println("\nThe pantry is currently empty\n");
         }
         else{
             pantryController.getIngredientListController().getIngredientListView().displayIngredients();
             System.out.println();
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
 	}
 
     /**
