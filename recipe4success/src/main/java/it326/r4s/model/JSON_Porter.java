@@ -2,11 +2,13 @@ package it326.r4s.model;
 
 import java.io.Reader;
 import java.io.Writer;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.InstanceCreator;
 
 /**
  * A class that imports and exports generic portable objects to/from JSON files.
@@ -27,6 +29,18 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
         gson = new GsonBuilder()
             .serializeNulls()
             .setPrettyPrinting()
+            .registerTypeAdapter(Category.Pool.class, new InstanceCreator<Category.Pool>() {
+                @Override
+                public Category.Pool createInstance(Type type) {
+                    return Category.Pool.getInstance();
+                }                
+            })
+            .registerTypeAdapter(FoodItem.Pool.class, new InstanceCreator<FoodItem.Pool>() {
+                @Override
+                public FoodItem.Pool createInstance(Type type) {
+                    return FoodItem.Pool.getInstance();
+                }
+            })
             .create();
         classT = null;
     }
