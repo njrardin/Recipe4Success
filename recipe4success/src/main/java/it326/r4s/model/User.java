@@ -137,6 +137,15 @@ public class User implements Portable {
     public void setRecipeBook(RecipeBook recipeBook){
         this.recipeBook = recipeBook;
     }
+
+    /**
+     * Override toString which returns the user's name
+     * @return a String of the user's name
+     */
+    @Override
+    public String toString(){
+        return this.name;
+    }
     
     @Override
     public boolean equals(Object obj) {
