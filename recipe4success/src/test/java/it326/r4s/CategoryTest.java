@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+// import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +49,7 @@ public class CategoryTest {
 
         @Before
         public void setUp() {
+
             theTestCategory = new Category("Vegetable");
             theFoodCollection.add(new Category("Vegetable"));
             theFoodCollection.add(new Category("Poultry"));
@@ -60,11 +62,6 @@ public class CategoryTest {
             pool1.getCategory(Type.FOODITEM, "Vegetable");
             pool1.getCategory(Type.RECIPE, "Scramble Egg");
             pool1.getCategory(Type.FOODITEM, "Poultry");
-        }
-
-        @Test
-        public void testConstructor() {
-            assertNotNull(pool1);
         }
 
         @Test
