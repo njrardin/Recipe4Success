@@ -2,7 +2,6 @@ package it326.r4s.view;
 
 
 import it326.r4s.controller.MealPlanSearchController;
-import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 
 public class MealPlanSearchView {

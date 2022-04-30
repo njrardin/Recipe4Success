@@ -2,11 +2,6 @@ package it326.r4s.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
-
-import javax.lang.model.util.ElementScanner14;
-
-import com.google.gson.internal.sql.SqlTypesSupport;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UnitController;
@@ -16,7 +11,6 @@ import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
-import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 
 /**

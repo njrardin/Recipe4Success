@@ -1,11 +1,8 @@
 package it326.r4s.view;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
-import it326.r4s.model.Recipe;
-import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S RecipeBook
