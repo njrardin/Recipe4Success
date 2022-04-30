@@ -3,6 +3,7 @@ package it326.r4s.view;
 import java.util.ArrayList;
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
+import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S RecipeBook
@@ -28,14 +29,7 @@ public class RecipeBookView implements R4SMenu {
      * Displays the Recipe Book header to the user
      */
     public void displayHeader(){
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Recipe Book --                               ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println();
+        System.out.println(DisplayUtils.getHeader("Recipe Book"));
     }
 
     /**
@@ -43,7 +37,7 @@ public class RecipeBookView implements R4SMenu {
      * @return an int representing the selected option
      */
     public int getMenuOptionSelection(){
-        String title = "Recipe Book";
+        String title = "Recipe Book Options";
         String prompt = "What would you like to do?";
         String[] options = {
             "Search and filter recipes",
@@ -70,12 +64,15 @@ public class RecipeBookView implements R4SMenu {
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
     public static void displayRecipes(ArrayList<RecipeController> recipeControllers){
+        System.out.println("Recipes:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         int i = 1;
         for(RecipeController recipeController: recipeControllers){
             System.out.print(i + ") ");
             recipeController.getRecipeView().displayOneline();
             i++;
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
 
     /**

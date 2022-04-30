@@ -36,9 +36,11 @@ public class InputAccess {
      * @return an int representing the selected option starting with the first option as 1, (e.g. selecting options[0] returns 1)
      */
     public int getOptionSelection(String title, String prompt, String[] options) {
-        System.out.printf("%52s%n", "-- " + title + " --");
+        System.out.println();
+        System.out.println(DisplayUtils.centerPadString(("-- " + title + " --"), DisplayUtils.CLI_WIDTH));
         System.out.println();
         System.out.println(prompt);
+        
         for(int i = 0; i < options.length; i++){
             System.out.println((i + 1) + ") " + options[i]);
         }
@@ -54,6 +56,7 @@ public class InputAccess {
                 continue;
             }
         } while( !(0 < selection && selection <= options.length));
+        System.out.println("\n");
 
         return selection;
     }

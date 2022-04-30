@@ -5,6 +5,7 @@ import it326.r4s.controller.UnitController;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
+import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S GroceryList
@@ -30,13 +31,7 @@ public class GroceryListView implements R4SMenu{
      * Displays the header for the grocery list menu
      */
     public void displayHeader() {
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Grocery List --                              ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println(DisplayUtils.getHeader("Grocery List"));
 	}
 
     /**
@@ -63,14 +58,17 @@ public class GroceryListView implements R4SMenu{
      * Displays the grocery list to the screen
      */
 	public void displayGroceryList() {
-        System.out.printf("%52s%n%n", "-- My Grocery List --");
+        System.out.println("Grocery List:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         if(glController.getIngredientListController().getIngredientList().getIngredients().isEmpty()){
-            System.out.println("The grocery list is currently empty\n");
+            System.out.println("\nThe grocery list is currently empty\n");
         }
         else{
             glController.getIngredientListController().getIngredientListView().displayIngredients();
             System.out.println();
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
+
 	}
 
     /**
