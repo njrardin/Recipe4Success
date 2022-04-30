@@ -5,12 +5,14 @@ import java.util.Scanner;
 
 import it326.r4s.controller.MealPlanController;
 import it326.r4s.controller.MealPlannerController;
+import it326.r4s.view.utilities.DisplayUtils;
+import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S MealPlanner
  * @author Zach Plattner (zmplatt@ilstu.edu) and Nate Rardin(njradi@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlannerView implements CLI_Menu{
+public class MealPlannerView implements R4SMenu{
 
     //*Instance Variables*\\
     private MealPlannerController mprController;
@@ -64,7 +66,8 @@ public class MealPlannerView implements CLI_Menu{
             "Set mealplan as 'Active'",
             "Go back"
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+        InputAccess inputAccess = new InputAccess();
+        return inputAccess.getOptionSelection(title, prompt, options);
     }
 
     /**
@@ -93,21 +96,21 @@ public class MealPlannerView implements CLI_Menu{
             throw new RuntimeException();
         }    
 
-        String input;
+        String selection = "";
         int inputNum = -1;
 
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         do{
             System.out.println("\n Which meal plan would you like to select?");
             System.out.println("(please type the selection number or type \"exit\" to go back)");
 
-            input = scan.nextLine();
-            if(input.toLowerCase().equals("exit")){
+            selection = inputAccess.getInputLine();
+            if(selection.toLowerCase().equals("exit")){
                 throw new RuntimeException();
             }
 
             try{
-                inputNum = Integer.parseInt(input);
+                inputNum = Integer.parseInt(selection);
             } catch (Exception e){
                 System.out.println("Invalid selection, selection must be a number.");
                 continue;
@@ -127,13 +130,13 @@ public class MealPlannerView implements CLI_Menu{
      * @return true if confirmed, false if denied
      */
     private boolean askSelectMealPlan() {
-        Scanner scan = ViewUtilities.scan;
-        String input = "";
+        InputAccess inputAccess = new InputAccess();
+        String selection = "";
         do{
         System.out.println("Would you like to select a meal plan? (Y/N)");
-        input = scan.nextLine().toLowerCase();
-        } while ( !(input.equals("y") || input.equals("n")) );
-        if(input.equals("n")){
+        selection = inputAccess.getInputLine().toLowerCase();
+        } while ( !(selection.equals("y") || selection.equals("n")) );
+        if(selection.equals("n")){
             return false;
         }
         return true;
@@ -147,12 +150,12 @@ public class MealPlannerView implements CLI_Menu{
         System.out.println("Please select one of the following meal plans: ");
         displayMealPlanner();
 
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         int selection = -1;
         do{
             System.out.println("Please select an option by entering the corresponding number:");
             try{
-                selection = Integer.parseInt(scan.nextLine());
+                selection = Integer.parseInt(inputAccess.getInputLine());
             } catch (Exception e) {
                 System.out.println("Invalid input, selection must be a number:");
                 continue;
@@ -174,15 +177,15 @@ public class MealPlannerView implements CLI_Menu{
      * @return
      */
     public String getMealPlanNameFromUser() {
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         String name = "";
 
         while(true){
             System.out.println("\nPlease provide the mealplan's name:");
-            name = scan.nextLine();
+            name = inputAccess.getInputLine();
             if(name != ""){
                 System.out.println("You provided the name \"" + name + ",\" is this correct? (Y/N)");
-                if(scan.nextLine().toLowerCase().equals("y")){
+                if(inputAccess.getInputLine().toLowerCase().equals("y")){
                     return name;
                 }
             }
@@ -195,13 +198,13 @@ public class MealPlannerView implements CLI_Menu{
      * @return boolean repesentation of response
      */
     public boolean wantToAddAnotherRecipe() {
-        Scanner scan = ViewUtilities.scan;
-        String input = "";
+        InputAccess inputAccess = new InputAccess();
+        String response = "";
         do{
         System.out.println("Would you like to add another recipe? (Y/N)");
-        input = scan.nextLine().toLowerCase();
-        } while ( !(input.equals("y") || input.equals("n")) );
-        if(input.equals("n")){
+        response = inputAccess.getInputLine().toLowerCase();
+        } while ( !(response.equals("y") || response.equals("n")) );
+        if(response.equals("n")){
             return false;
         }
         return true;
@@ -212,11 +215,11 @@ public class MealPlannerView implements CLI_Menu{
      * @return
      */
     public String getMealPlanDescriptionFromUser() {
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         String description = "";
         while(true){
             System.out.println("Please provide a description for the meal plan");
-            description = scan.nextLine();
+            description = inputAccess.getInputLine();
 
             System.out.println("You provided the description\n\n \"" 
 
@@ -224,7 +227,7 @@ public class MealPlannerView implements CLI_Menu{
 
             "\"\n\n is this correct? (Y/N)");
 
-            if(scan.nextLine().toLowerCase().equals("y")){
+            if(inputAccess.getInputLine().toLowerCase().equals("y")){
                 return description;
             }
         }

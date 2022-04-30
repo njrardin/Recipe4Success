@@ -2,6 +2,9 @@ package it326.r4s.view;
 
 import java.util.Scanner;
 
+import it326.r4s.view.utilities.DisplayUtils;
+import it326.r4s.view.utilities.InputAccess;
+
 /**
  * View for R4S Recipe
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -32,11 +35,11 @@ public class UnitView {
         System.out.println("14) Gram");
         System.out.println("15) Kilogram");
 
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         int selection = -1;
         do{
             try{
-                selection = Integer.parseInt(scan.nextLine());
+                selection = Integer.parseInt(inputAccess.getInputLine());
             } catch (Exception e) {
                 System.out.println("Please select an option by typing the corresponding number");
                 continue;
