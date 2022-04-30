@@ -3,13 +3,17 @@ package it326.r4s.view;
 import java.util.Scanner;
 
 import it326.r4s.controller.GroceryListController;
+/**
+ * View for R4S GroceryList
+ * @author Nate Rardin (njrardi@ilstu.edu) and Josh Nepomuceno
+ * @date 4/26/22
+ */
+public class GroceryListView implements CLI_View{
 
-public class GroceryListView {
+    private GroceryListController glController;
 
-    GroceryListController grlController;
-
-    public GroceryListView(GroceryListController grlController) {
-        this.grlController = grlController;
+    public GroceryListView(GroceryListController glController){
+        this.glController = glController;
     }
 
     public void execute(){
@@ -27,25 +31,25 @@ public class GroceryListView {
 
             switch (input) {
                 case "1":
-                    grlController.printGroceryList();
+                    glController.printGroceryList();
                     break;
                 case "2":
-                    grlController.exportGroceryList();
+                    glController.exportGroceryList();
                     break;
                 case "3":
-                    grlController.addItem();
+                    glController.addItem();
                     break;
                 case "4":
-                    grlController.removeItem();
+                    glController.removeItem();
                     break;
                 case "5":
-                    grlController.moveToPantry();
+                    glController.moveToPantry();
                     break;
                 case "6":
-                    grlController.organizeGroceryList();
+                    glController.organizeGroceryList();
                     break;
                 case "7":
-                    grlController.viewGroceryList();
+                    glController.viewGroceryList();
                     break;
                 case "8":
                     return;
