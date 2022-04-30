@@ -163,11 +163,18 @@ public class IngredientList extends Entity {
      */
     @Override
     public String toString() {
-        String result = "List of Ingredients:\n";
-        for (Ingredient ingredient : this.ingredients) {
-            result += " -\t" + ingredient.toString();
+        String string = "";
+        int i = 1;
+        for(Ingredient ingredient: ingredients){
+            if(i == 1){
+                string += (i + ") " + ingredient.toString());
+            } else {
+                string += ("\n" + i + ") " + ingredient.toString());
+            }
+            System.out.println(i + ") " + ingredient.toString());
+            i++;
         }
-        return result;
+        return string;
     }
 
     /**
