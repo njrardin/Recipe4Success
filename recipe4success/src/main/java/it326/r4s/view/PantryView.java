@@ -1,13 +1,10 @@
 package it326.r4s.view;
 
-import java.util.Scanner;
-
 import it326.r4s.controller.PantryController;
 import it326.r4s.controller.UnitController;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
-import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S Pantry
@@ -102,7 +99,16 @@ public class PantryView implements R4SMenu{
  
             //get the quantity
             System.out.println("How many " + unit.stringRep + "s are needed?");
-            ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
+            ingredientQuantity = -1;
+            do{
+                try{
+                    ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Please select an option by typing the corresponding number");
+                    continue;
+                }
+            } while(true);
             
             //confirm accuracy
             System.out.println("You provided ingredient #" + ingredientNum + " as\n\n \"" 

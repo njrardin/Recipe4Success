@@ -44,7 +44,7 @@ public class UnitView {
                 System.out.println("Please select an option by typing the corresponding number");
                 continue;
             }
-        } while(selection >= 15 && selection <=1);
+        } while(selection > 15 || selection <1);
         return selection;
     }
 }

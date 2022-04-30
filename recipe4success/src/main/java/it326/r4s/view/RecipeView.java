@@ -366,7 +366,16 @@ public class RecipeView implements R4SMenu{
 
                 //get the quantity
                 System.out.println("How many " + unit.stringRep + "s are used?");
-                ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
+                ingredientQuantity = -1;
+                do{
+                    try{
+                        ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Please select an option by typing the corresponding number");
+                        continue;
+                    }
+                } while(true);
                 
                 //confirm accuracy
                 System.out.println("You provided ingredient #" + ingredientNum + " as\n\n \"" 
