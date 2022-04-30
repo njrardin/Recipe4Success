@@ -1,8 +1,8 @@
 package it326.r4s.view;
 
-import java.util.Scanner;
 
 import it326.r4s.controller.MealPlanSearchController;
+import it326.r4s.view.utilities.InputAccess;
 
 public class MealPlanSearchView {
     
@@ -24,11 +24,11 @@ public class MealPlanSearchView {
      * @return - the search query as a String
      */
     public String getSearchQuery() {
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         String input = "";
         do{
             System.out.println("Please enter the term to search the meal plans for:");
-            input = scan.nextLine().toLowerCase();
+            input = inputAccess.getInputLine().toLowerCase();
         } while (input == "");
 
         return input;
