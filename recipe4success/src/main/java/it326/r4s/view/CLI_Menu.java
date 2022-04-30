@@ -4,7 +4,7 @@ package it326.r4s.view;
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public interface R4SMenu {
+public interface CLI_Menu {
     
     //displays the menu options for the class and returns a user selection
     public int getMenuOptionSelection();

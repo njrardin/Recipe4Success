@@ -2,6 +2,11 @@ package it326.r4s.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
+
+import javax.lang.model.util.ElementScanner14;
+
+import com.google.gson.internal.sql.SqlTypesSupport;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UnitController;
@@ -11,14 +16,13 @@ import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
-import it326.r4s.view.utilities.InputAccess;
 
 /**
  * View for R4S Recipe
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeView implements R4SMenu{
+public class RecipeView implements CLI_Menu{
 
     //*Instance Variables*\\
     private RecipeController recipeController;
@@ -71,8 +75,7 @@ public class RecipeView implements R4SMenu{
             "Re-Display Recipe",
             "Go back"
         };
-        InputAccess inputAccess = new InputAccess();
-        return inputAccess.getOptionSelection(title, prompt, options);
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
     }
     
     /**
@@ -90,8 +93,7 @@ public class RecipeView implements R4SMenu{
             "Instructions",
             "Go back",
         };
-        InputAccess inputAccess = new InputAccess();
-        return inputAccess.getOptionSelection(title, prompt, options);
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
     }
 
     /**
@@ -138,13 +140,13 @@ public class RecipeView implements R4SMenu{
      * @return an int representing the rating
      */
     public int getRatingFromUser(){
-        InputAccess inputAccess = new InputAccess();
+        Scanner scan = ViewUtilities.scan;
         int acceptableRatings[] = {1,2,3,4,5};
         int ratingNum;
 
         do{
             System.out.println("How many stars would you like to rate this recipe? (1, 2, 3, 4, or 5)");
-            ratingNum = Integer.parseInt(inputAccess.getInputLine());
+            ratingNum = Integer.parseInt(scan.nextLine());
         } while (Arrays.asList(acceptableRatings).contains(ratingNum));
 
         System.out.println("You have successfully rated " + recipeController.getRecipe().getName() + " with a total of " + ratingNum + "/5 stars.");
@@ -163,11 +165,11 @@ public class RecipeView implements R4SMenu{
      * @return true if confirmed to delete, false if deletion denied
      */
     public boolean deletionConfirmation() {
-        InputAccess inputAccess = new InputAccess();
+        Scanner scan = ViewUtilities.scan;
         String input = "";
         do{
             System.out.println("Are you sure you want to delete " + recipeController.getRecipe().getName() + " from your recipe book? (Y/N)");
-            input = inputAccess.getInputLine().toLowerCase();
+            input = scan.nextLine().toLowerCase();
         }  while ( !(input.equals("y") || input.equals("n") ));
 
         if(input.equals("n")){
@@ -213,15 +215,15 @@ public class RecipeView implements R4SMenu{
          * @return the recipes name
          */
         public static String getRecipeNameFromUser(){
-            InputAccess inputAccess = new InputAccess();
+            Scanner scan = ViewUtilities.scan;
             String name = "";
 
             while(true){
                 System.out.println("\nPlease provide the recipe's name:");
-                name = inputAccess.getInputLine();
+                name = scan.nextLine();
                 if(name != ""){
                     System.out.println("You provided the name \"" + name + ",\" is this correct? (Y/N)");
-                    if(inputAccess.getInputLine().toLowerCase().equals("y")){
+                    if(scan.nextLine().toLowerCase().equals("y")){
                         return name;
                     }
                 }
@@ -233,11 +235,11 @@ public class RecipeView implements R4SMenu{
          * @return the recipes description
          */
 		public static String getDescriptionFromUser() {
-            InputAccess inputAccess = new InputAccess();
+            Scanner scan = ViewUtilities.scan;
             String description = "";
             while(true){
                 System.out.println("Please provide a description for the recipe");
-                description = inputAccess.getInputLine();
+                description = scan.nextLine();
     
                 System.out.println("You provided the description\n\n \"" 
     
@@ -245,7 +247,7 @@ public class RecipeView implements R4SMenu{
     
                 "\"\n\n is this correct? (Y/N)");
     
-                if(inputAccess.getInputLine().toLowerCase().equals("y")){
+                if(scan.nextLine().toLowerCase().equals("y")){
                     return description;
                 }
             }
@@ -256,12 +258,12 @@ public class RecipeView implements R4SMenu{
          * @return the recipes serving size
          */
 		public static int getServingSizeFromUser() {
-            InputAccess inputAccess = new InputAccess();
+            Scanner scan = ViewUtilities.scan;
             int servingSize;
             while(true){
                 System.out.println("How many people does this recipe serve?");
                 try{
-                    servingSize = Integer.parseInt(inputAccess.getInputLine());
+                    servingSize = Integer.parseInt(scan.nextLine());
                 } catch (NumberFormatException e) {
                     continue;
                 }
@@ -271,7 +273,7 @@ public class RecipeView implements R4SMenu{
                 }
             
                 System.out.println("You provided a serving-size of \"" + servingSize + "\" is this correct? (Y/N)");
-                if(inputAccess.getInputLine().toLowerCase().equals("y")){
+                if(scan.nextLine().toLowerCase().equals("y")){
                     return servingSize;
                 }
             }
@@ -282,7 +284,7 @@ public class RecipeView implements R4SMenu{
          * @return the recipes name
          */
 		public static ArrayList<String> getInstructionsFromUser() {
-            InputAccess inputAccess = new InputAccess();
+            Scanner scan = ViewUtilities.scan;
             String resp = "";
             String instructionString;
             ArrayList<String> instructions = new ArrayList<String>();
@@ -298,7 +300,7 @@ public class RecipeView implements R4SMenu{
                     System.out.println("What is the next step in creating the recipe?\n");
                 }
     
-                instructionString = inputAccess.getInputLine();
+                instructionString = scan.nextLine();
                 
                 //confirming each step's correctness
                 System.out.println("You provided step #" + stepNum + " as\n\n \"" 
@@ -306,7 +308,7 @@ public class RecipeView implements R4SMenu{
                 + instructionString + 
     
                 "\"\n\nis this correct? (Y/N)");
-                resp = inputAccess.getInputLine().toLowerCase();
+                resp = scan.nextLine().toLowerCase();
                 if(resp.equals("y")){
                     instructions.add(instructionString);
                     stepNum++;
@@ -318,7 +320,7 @@ public class RecipeView implements R4SMenu{
                 //check to see if the user wishes to add another step
                 do {
                     System.out.println("Would you like to add another step? (Y/N)");
-                    resp = inputAccess.getInputLine().toLowerCase();
+                    resp = scan.nextLine().toLowerCase();
                 } while (!(resp.equals("y") || resp.equals("n")));
                 
                 if(resp.equals("n")){
@@ -332,7 +334,7 @@ public class RecipeView implements R4SMenu{
          * @return the recipes name
          */
 		public static IngredientList getIngredientsFromUser() {
-            InputAccess inputAccess = new InputAccess();
+            Scanner scan = ViewUtilities.scan;
             String resp = "";
 
             String ingredientName;
@@ -352,7 +354,7 @@ public class RecipeView implements R4SMenu{
                 else{
                     System.out.println("What is the next ingredient?\n");
                 }
-                ingredientName = inputAccess.getInputLine().toLowerCase();
+                ingredientName = scan.nextLine().toLowerCase();
 
                 //get the unit
                 System.out.println("What is the unit of measure for " + ingredientName + "?");
@@ -360,16 +362,7 @@ public class RecipeView implements R4SMenu{
 
                 //get the quantity
                 System.out.println("How many " + unit.stringRep + "s are used?");
-                ingredientQuantity = -1;
-                do{
-                    try{
-                        ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
-                        break;
-                    } catch (Exception e) {
-                        System.out.println("Please select an option by typing the corresponding number");
-                        continue;
-                    }
-                } while(true);
+                ingredientQuantity = Double.parseDouble(scan.nextLine());
                 
                 //confirm accuracy
                 System.out.println("You provided ingredient #" + ingredientNum + " as\n\n \"" 
@@ -377,7 +370,7 @@ public class RecipeView implements R4SMenu{
                 + ingredientQuantity + " " + unit.stringRep + "s of " + ingredientName +
     
                 "\"\n\n is this correct? (Y/N)");
-                resp = inputAccess.getInputLine().toLowerCase();
+                resp = scan.nextLine().toLowerCase();
                 if(resp.equals("y")){
 
                     ingredientList.addIngredient(new Ingredient(ingredientName, ingredientQuantity, unit));
@@ -390,7 +383,7 @@ public class RecipeView implements R4SMenu{
                 //check to see if the user wishes to add another step
                 do {
                     System.out.println("Would you like to add another ingredient? (Y/N)");
-                    resp = inputAccess.getInputLine().toLowerCase();
+                    resp = scan.nextLine().toLowerCase();
                 } while (!(resp.equals("y") || resp.equals("n")));
                 
                 if(resp.equals("n")){
@@ -405,7 +398,7 @@ public class RecipeView implements R4SMenu{
          * @return the recipes name
          */
 		public static ArrayList<Category> getCategoriesFromUser() {
-            InputAccess inputAccess = new InputAccess();
+            Scanner scan = ViewUtilities.scan;
             String resp = "";
             String categoryString;
             ArrayList<Category> categories = new ArrayList<Category>();
@@ -413,7 +406,7 @@ public class RecipeView implements R4SMenu{
 
             do{
                 System.out.println("Would you like to add any categories? (Y/N)");
-                resp = inputAccess.getInputLine().toLowerCase();
+                resp = scan.nextLine().toLowerCase();
             }while (!(resp.equals("y") || resp.equals("n")));
             if(resp.equals("n")){
                 return categories;
@@ -430,7 +423,7 @@ public class RecipeView implements R4SMenu{
                     System.out.println("What would you like to call the next category?\n");
                 }
     
-                categoryString = inputAccess.getInputLine();
+                categoryString = scan.nextLine();
                 
                 //confirm accuracy
                 System.out.println("You provided the category " 
@@ -438,7 +431,7 @@ public class RecipeView implements R4SMenu{
                 + categoryString + 
     
                 ". Is this correct? (Y/N)");
-                resp = inputAccess.getInputLine().toLowerCase();
+                resp = scan.nextLine().toLowerCase();
                 if(resp.equals("y")){
                     categories.add(new Category(categoryString));
                     categoryNum++;
@@ -450,7 +443,7 @@ public class RecipeView implements R4SMenu{
                 //check if adding another category
                 do {
                     System.out.println("Would you like to add another category? (Y/N)");
-                    resp = inputAccess.getInputLine().toLowerCase();
+                    resp = scan.nextLine().toLowerCase();
                 } while (!(resp.equals("y") || resp.equals("n")));
                 
                 if(resp.equals("n")){
@@ -465,7 +458,7 @@ public class RecipeView implements R4SMenu{
          * @return true if confirmed, false if not
          */
 		public static boolean confirmBuild() {
-            InputAccess inputAccess = new InputAccess();
+            Scanner scan = ViewUtilities.scan;
             String resp = "";
             //TODO: implement or delete this
 			return true;

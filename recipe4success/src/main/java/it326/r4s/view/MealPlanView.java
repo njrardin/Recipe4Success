@@ -1,13 +1,14 @@
 package it326.r4s.view;
 
+import java.util.Scanner;
+
 import it326.r4s.controller.MealPlanController;
-import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S MealPlanner
  * @author Zach Plattner (zmplatt@ilstu.edu) and Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class MealPlanView implements R4SMenu {
+public class MealPlanView implements CLI_Menu {
 
     //*Instance Variables*\\
     private MealPlanController mealPlanController;
@@ -56,8 +57,7 @@ public class MealPlanView implements R4SMenu {
             "Delete this Mealplan",
             "Go back"
         };
-        InputAccess inputAccess = new InputAccess();
-        return inputAccess.getOptionSelection(title, prompt, options);
+        return ViewUtilities.getOptionFromCLI(title, prompt, options);
     }
 
     /**
@@ -65,14 +65,14 @@ public class MealPlanView implements R4SMenu {
      * @return true if confirmed to delete, false if deletion denied
      */
     public boolean deletionConfirmation() {
-        InputAccess inputAccess = new InputAccess();
-        String response = "";
+        Scanner scan = ViewUtilities.scan;
+        String input = "";
         do{
             System.out.println("Are you sure you want to delete " + mealPlanController.getMealPlan().getMealPlanName() + " from your meal planner? (Y/N)");
-            response = inputAccess.getInputLine().toLowerCase();
-        }  while ( !(response.equals("y") || response.equals("n") ));
+            input = scan.nextLine().toLowerCase();
+        }  while ( !(input.equals("y") || input.equals("n") ));
 
-        if(response.equals("n")){
+        if(input.equals("n")){
             return false;
         }
         else{
@@ -87,13 +87,13 @@ public class MealPlanView implements R4SMenu {
      * @return
      */
     public int getNewServingSize() {
-        InputAccess inputAccess = new InputAccess();
+        Scanner scan = ViewUtilities.scan;
         int servingSize = -1;
 
         do{
             System.out.println("What is the new serving size?");
             try{
-                servingSize = Integer.parseInt(inputAccess.getInputLine());
+                servingSize = Integer.parseInt(scan.nextLine());
             } catch (NumberFormatException e) {
                 continue;
             }
