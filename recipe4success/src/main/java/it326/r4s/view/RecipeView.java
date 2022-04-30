@@ -2,12 +2,14 @@ package it326.r4s.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UnitController;
 import it326.r4s.controller.UserController;
 import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Category;
+import it326.r4s.model.Review;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
@@ -112,7 +114,7 @@ public class RecipeView implements R4SMenu{
      * Displays the recipe's instructions
      */
     private void displayInstructions() {
-        ArrayList<String > instructions = recipeController.getRecipe().getInstructions();
+        Collection<String> instructions = recipeController.getRecipe().getInstructions();
 
         int instNum = 1;
         for(String instruction: instructions){
@@ -127,7 +129,7 @@ public class RecipeView implements R4SMenu{
      */
     private String getRecipeRating(){
         try{
-            return String.valueOf(recipeController.getRecipe().getReviews().get(0).getRatingValue());
+            return String.valueOf(((Review) recipeController.getRecipe().getReviews().toArray()[0]).getRatingValue());
         } catch (Exception e) {
             return "none";
         }
