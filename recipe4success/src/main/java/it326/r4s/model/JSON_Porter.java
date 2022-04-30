@@ -17,7 +17,7 @@ import com.google.gson.GsonBuilder;
 public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T> {
     //* Instance variables *\\
     private Gson gson;
-    private Class<T> typeT;
+    private Class<T> classT;
 
     //* Constructors *\\
     /**
@@ -28,7 +28,7 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
             .serializeNulls()
             .setPrettyPrinting()
             .create();
-        typeT = null;
+        classT = null;
     }
 
     /**
@@ -37,7 +37,7 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
      */
     private JSON_Porter(Class<T> type) {
         this();
-        typeT = type;
+        classT = type;
     }
 
     //* Public Methods *\\
@@ -57,7 +57,7 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
     @Override
     public T importFrom(String filename) throws Exception {
         Reader reader = getReader(filename);
-        T obj = gson.fromJson(reader, typeT);
+        T obj = gson.fromJson(reader, classT);
         reader.close();
         return obj;
     }
