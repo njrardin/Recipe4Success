@@ -63,7 +63,7 @@ public class MealPlannerController {
     public ArrayList<MealPlanController> getMealPlanControllers() {
         ArrayList<MealPlanController> mealPlanControllers = new ArrayList<MealPlanController>();
         for(MealPlan mealPlan: mealPlanner.getMealPlans()){
-            mealPlanControllers.add(new MealPlanController(mealPlan));
+            mealPlanControllers.add(new MealPlanController(mealPlan, userController.getUser()));
         }
         return mealPlanControllers;
     }
@@ -153,7 +153,7 @@ public class MealPlannerController {
         MealPlan newMealPlan = new MealPlan(mealPlannerView.getMealPlanNameFromUser());
         newMealPlan.setMealPlanDescription(mealPlannerView.getMealPlanDescriptionFromUser());
 
-        MealPlanController mpc = new MealPlanController(newMealPlan);
+        MealPlanController mpc = new MealPlanController(newMealPlan, userController.getUser());
 
         do{
             mpc.addRecipeToMealPlan();
@@ -173,7 +173,7 @@ public class MealPlannerController {
     public void selectMealPlan(Collection<MealPlan> mealPlans) {
         ArrayList<MealPlanController> mealPlanControllers = new ArrayList<MealPlanController>();
         for(MealPlan mealplan: mealPlans){
-            mealPlanControllers.add(new MealPlanController(mealplan));
+            mealPlanControllers.add(new MealPlanController(mealplan, userController.getUser()));
         }
         try{
             MealPlanController selectedMealplanController = mealPlannerView.getMealPlanSelection(mealPlanControllers);
