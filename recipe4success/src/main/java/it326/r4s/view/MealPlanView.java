@@ -68,7 +68,7 @@ public class MealPlanView implements R4SMenu {
         InputAccess inputAccess = new InputAccess();
         String response = "";
         do{
-            System.out.println("Are you sure you want to delete " + mealPlanController.getMealPlan().getMealPlanName() + " from your meal planner? (Y/N)");
+            System.out.print("Are you sure you want to delete " + mealPlanController.getMealPlan().getMealPlanName() + " from your meal planner? (Y/N) : ");
             response = inputAccess.getInputLine().toLowerCase();
         }  while ( !(response.equals("y") || response.equals("n") ));
 
@@ -91,7 +91,7 @@ public class MealPlanView implements R4SMenu {
         int servingSize = -1;
 
         do{
-            System.out.println("What is the new serving size?");
+            System.out.print("What is the new serving size? : ");
             try{
                 servingSize = Integer.parseInt(inputAccess.getInputLine());
             } catch (NumberFormatException e) {
