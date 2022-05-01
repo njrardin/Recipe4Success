@@ -43,7 +43,8 @@ public class IngredientList extends Entity {
             if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
                 if (!ingredient.getUnit().equals(toAdd.getUnit()))
                     try{
-                        UnitConverter.convertUnit(ingredient.getUnit(), ingredient.getQuantity(), toAdd.getUnit());
+                        toAdd.setQuantity(UnitConverter.convertUnit(toAdd.getUnit(), toAdd.getQuantity(), ingredient.getUnit()));
+                        toAdd.setUnit(ingredient.getUnit());
                     } catch (Exception e) {
                         //do nothing
                     }
@@ -162,11 +163,18 @@ public class IngredientList extends Entity {
      */
     @Override
     public String toString() {
-        String result = "List of Ingredients:\n";
-        for (Ingredient ingredient : this.ingredients) {
-            result += " -\t" + ingredient.toString();
+        String string = "";
+        int i = 1;
+        for(Ingredient ingredient: ingredients){
+            if(i == 1){
+                string += (i + ") " + ingredient.toString());
+            } else {
+                string += ("\n" + i + ") " + ingredient.toString());
+            }
+            System.out.println(i + ") " + ingredient.toString());
+            i++;
         }
-        return result;
+        return string;
     }
 
     /**

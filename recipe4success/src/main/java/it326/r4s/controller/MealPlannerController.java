@@ -17,15 +17,17 @@ public class MealPlannerController {
     //*Isntance Variables*\\
     private MealPlanner mealPlanner;
     private MealPlannerView mealPlannerView;
-
+    private UserController userController;
+    
     //*Constructor*\\
     /**
      * Constructor for R4S's MealPlannerController
      * @param mealPlanner - the controller's MealPlanner
      */
-    public MealPlannerController(MealPlanner mealPlanner){
+    public MealPlannerController(MealPlanner mealPlanner, UserController userController){
         this.mealPlanner = mealPlanner;
         this.mealPlannerView = new MealPlannerView(this);
+        this.userController = userController;
     }
 
     //*Methods*\\
@@ -36,13 +38,21 @@ public class MealPlannerController {
     public MealPlanner getMealPlanner(){
         return this.mealPlanner;
     }
-
+    
     /**
      * Getter for the controller's MealPlannerView
      * @return the MealPlannerView object
      */
     public MealPlannerView getMealPlannerView(){
         return this.mealPlannerView;
+    }
+
+    /**
+     * Getter for the UserController which owns the MealPlannerController
+     * @return teh UserController
+     */
+    public UserController getUserController(){
+        return this.userController;
     }
     
     /**
@@ -53,7 +63,7 @@ public class MealPlannerController {
     public ArrayList<MealPlanController> getMealPlanControllers() {
         ArrayList<MealPlanController> mealPlanControllers = new ArrayList<MealPlanController>();
         for(MealPlan mealPlan: mealPlanner.getMealPlans()){
-            mealPlanControllers.add(new MealPlanController(mealPlan));
+            mealPlanControllers.add(new MealPlanController(mealPlan, userController.getUser()));
         }
         return mealPlanControllers;
     }
@@ -143,7 +153,7 @@ public class MealPlannerController {
         MealPlan newMealPlan = new MealPlan(mealPlannerView.getMealPlanNameFromUser());
         newMealPlan.setMealPlanDescription(mealPlannerView.getMealPlanDescriptionFromUser());
 
-        MealPlanController mpc = new MealPlanController(newMealPlan);
+        MealPlanController mpc = new MealPlanController(newMealPlan, userController.getUser());
 
         do{
             mpc.addRecipeToMealPlan();
@@ -163,7 +173,7 @@ public class MealPlannerController {
     public void selectMealPlan(Collection<MealPlan> mealPlans) {
         ArrayList<MealPlanController> mealPlanControllers = new ArrayList<MealPlanController>();
         for(MealPlan mealplan: mealPlans){
-            mealPlanControllers.add(new MealPlanController(mealplan));
+            mealPlanControllers.add(new MealPlanController(mealplan, userController.getUser()));
         }
         try{
             MealPlanController selectedMealplanController = mealPlannerView.getMealPlanSelection(mealPlanControllers);

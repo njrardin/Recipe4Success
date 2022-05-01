@@ -199,7 +199,7 @@ public class GroceryListView implements R4SMenu{
         System.out.println("Grocery List successfully re-organized!");
     }
 
-    public void displaReorganizeError() {
+    public void displayReorganizeError() {
         System.out.println("Oops, looks like there was an error re-organizing the list.");
     }
 

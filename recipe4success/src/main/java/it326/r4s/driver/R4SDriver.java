@@ -28,8 +28,7 @@ public class R4SDriver {
     private static void launchMainWindow(){
 
         User user = new User("Name"); //TODO: implement way to get this from user only on first pass through
-        UserController.initUserController(user);
-        UserController userController = UserController.getUserController();
+        UserController userController = new UserController(user);
         MainMenuController mmController = new MainMenuController(userController);
         
         mmController.launchMainMenu();

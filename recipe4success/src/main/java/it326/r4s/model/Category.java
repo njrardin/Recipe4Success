@@ -73,7 +73,7 @@ public class Category {
      */
     @Override
     public String toString() {
-        return "Category " + this.name;
+        return this.name;
     }
 
     public static enum Type { RECIPE, FOODITEM }

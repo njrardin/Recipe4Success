@@ -91,6 +91,6 @@ public class Meal {
      */
     @Override
     public String toString() {
-        return "Recipe:\n" + this.recipe.getName() + "\nServing Size: " + this.servingSize;
+        return "Recipe: " + this.recipe.getName();
     }
 }
