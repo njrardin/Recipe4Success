@@ -204,8 +204,7 @@ public class RecipeView implements R4SMenu{
          * Displays a message at the initialization of a recipe build process
          */
         public static void displayRecipeBuildInit(){
-            System.out.println("Alright "  + UserController.getUserController().getGlobalUser().getName() + "!");
-            System.out.println("Let's create a recipe!");
+            System.out.println("Alright!, Let's create a recipe!");
         }
 
         /**

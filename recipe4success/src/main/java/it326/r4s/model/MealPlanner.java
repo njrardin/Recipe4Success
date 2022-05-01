@@ -107,10 +107,16 @@ public class MealPlanner extends Entity {
      */
     @Override
     public String toString() {
-        String temp = "";
-        for (MealPlan plan : mealPlans) {
-            temp += plan.getMealPlanName() + "\n";
+        String string = "";
+        int i = 1;
+        for(MealPlan mealplan: mealPlans){
+            if(i == 1){
+                string += (i + ") " + mealplan.toString());
+            } else {
+                string += ("\n" + i + ") " + mealplan.toString());
+            }
+            i++;
         }
-        return "Meal Plans:\n" + temp;
+        return string;
     }
 }
