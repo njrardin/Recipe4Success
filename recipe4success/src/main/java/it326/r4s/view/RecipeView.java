@@ -2,6 +2,7 @@ package it326.r4s.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UnitController;
@@ -137,13 +138,14 @@ public class RecipeView implements R4SMenu{
      */
     public int getRatingFromUser(){
         InputAccess inputAccess = new InputAccess();
-        int acceptableRatings[] = {1,2,3,4,5};
+        Integer[] acceptableRatings = {1, 2, 3, 4, 5};
+        List<Integer> acceptableRatingsList = Arrays.asList(acceptableRatings);
         int ratingNum;
 
         do{
             System.out.print("How many stars would you like to rate this recipe? (1, 2, 3, 4, or 5) : ");
             ratingNum = Integer.parseInt(inputAccess.getInputLine());
-        } while (Arrays.asList(acceptableRatings).contains(ratingNum));
+        } while (acceptableRatingsList.contains(ratingNum));
 
         System.out.println("You have successfully rated " + recipeController.getRecipe().getName() + " with a total of " + ratingNum + "/5 stars.");
         return ratingNum;
