@@ -48,11 +48,11 @@ public class InputAccess {
         
         int selection = -1;
         do{
-            System.out.println("Please select an option by entering the corresponding number:");
+            System.out.print("Please select an option by entering the corresponding number: ");
             try{
                 selection = Integer.parseInt(scanner.nextLine());
             } catch (Exception e) {
-                System.out.println("Invalid input, selection must be a number:");
+                System.out.print("Invalid input, selection must be a number: ");
                 continue;
             }
         } while( !(0 < selection && selection <= options.length));
