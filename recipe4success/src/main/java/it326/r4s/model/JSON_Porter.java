@@ -104,6 +104,14 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
      * @throws Exception if there was a problem getting a writer object.
      */
     private Writer getWriter(String filename) throws Exception {
-        return Files.newBufferedWriter(Path.of(filename));
+        Path path = Path.of(filename);
+
+        if (path.getNameCount() > 1) {
+            try {
+                Files.createDirectories(path.getParent());
+            } catch (Exception e) {}
+        }
+             
+        return Files.newBufferedWriter(path);
     }
 }
