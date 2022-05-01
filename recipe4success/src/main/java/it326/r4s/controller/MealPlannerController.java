@@ -121,8 +121,12 @@ public class MealPlannerController {
      */
     public void searchMealPlans() {
         MealPlanSearchController mpsController = new MealPlanSearchController(mealPlanner.getMealPlans());
-        MealPlanController selectedController = new MealPlanController(selectMealPlan(mpsController.search()), userController.getUser());  
-        selectedController.openMealPlan();
+        try{
+            MealPlanController selectedController = new MealPlanController(selectMealPlan(mpsController.search()), userController.getUser());  
+            selectedController.openMealPlan();
+        }
+        catch (IllegalArgumentException ie) { /*Do Nothing*/ }
+        catch (RuntimeException e) { /*Do Nothing*/ }
     }
     
     /**
@@ -163,19 +167,26 @@ public class MealPlannerController {
         System.out.println();
     }
 
-    public MealPlanController selectMealPlanController(){
-        return selectMealPlanController(getMealPlanControllers());
+    public MealPlanController selectMealPlanController() throws RuntimeException, IllegalArgumentException{
+        try{
+            return selectMealPlanController(getMealPlanControllers());
+        }
+        catch (IllegalArgumentException ie) { throw ie; }
+        catch (RuntimeException e) { throw e; }
     }
 
     /**
      * Facilitates the process of the user
      * selecting one of the MealPlans in the mealPlanner
      */
-    public MealPlanController selectMealPlanController(Collection<MealPlanController> mealPlanControllers) {
+    public MealPlanController selectMealPlanController(Collection<MealPlanController> mealPlanControllers) throws RuntimeException, IllegalArgumentException{
         MealPlanController selectedMealPlanController = null;
         try{
             selectedMealPlanController = mealPlannerView.getMealPlanSelection(mealPlanControllers);
-        } catch (RuntimeException e) { /*do nothing*/ }
+        } 
+        catch (IllegalArgumentException ie) { throw ie; }
+        catch (RuntimeException e) { throw e; }
+
         return selectedMealPlanController;
     }
 
@@ -183,11 +194,15 @@ public class MealPlannerController {
      * Facilitates the process of the user
      * selecting one of the recipes from a collection of recipeControllers
      */
-    public MealPlan selectMealPlan(Collection<MealPlan> mealplans){
+    public MealPlan selectMealPlan(Collection<MealPlan> mealplans) throws RuntimeException, IllegalArgumentException{
         ArrayList<MealPlanController> mpControllers = new ArrayList<MealPlanController>();
         for(MealPlan mealplan : mealplans){
             mpControllers.add(new MealPlanController(mealplan, userController.getUser()));
         }
-        return selectMealPlanController(mpControllers).getMealPlan();
+        try{
+            return selectMealPlanController(mpControllers).getMealPlan();
+        }
+        catch (IllegalArgumentException ie) { throw ie; }
+        catch (RuntimeException e) { throw e; }
     }
 }

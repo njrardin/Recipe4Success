@@ -117,7 +117,7 @@ public class PantryController {
             pantry.removeRecipeIngredients(recipeController.getRecipe());
         } catch (RuntimeException e) { 
             System.out.println("Oops, looks like there was an error with removing the ingredients.");
-         }
+        }
     }
 
     private void listMakableRecipes() {        
@@ -125,7 +125,7 @@ public class PantryController {
         for(Recipe recipe: userController.getUser().getMakeableRecipes()){
             recipeControllers.add(new RecipeController(recipe, userController.getUser()));
         }
-
+        //TODO: implement
     }
     
 }
