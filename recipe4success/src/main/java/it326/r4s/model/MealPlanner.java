@@ -18,7 +18,7 @@ public class MealPlanner extends Entity {
      */
     public MealPlanner() {
         this.mealPlans = new ArrayList<MealPlan>();
-        this.activeMealPlanIndex = 0;
+        this.activeMealPlanIndex = -1;
     }
 
     /**
@@ -28,7 +28,7 @@ public class MealPlanner extends Entity {
      */
     public MealPlanner(ArrayList<MealPlan> mealPlans) {
         this.mealPlans = mealPlans;
-        this.activeMealPlanIndex = 0;
+        this.activeMealPlanIndex = -1;
     }
 
     // *Methods*\\
