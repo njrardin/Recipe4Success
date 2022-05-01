@@ -67,11 +67,16 @@ public class RecipeBookView implements R4SMenu {
     public void displayRecipes(Collection<RecipeController> recipeControllers){
         System.out.println("Recipes:");
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
-        int i = 1;
-        for(RecipeController recipeController: recipeControllers){
-            System.out.print(i + ") ");
-            recipeController.getRecipeView().displayOneline();
-            i++;
+        if(recipeControllers == null){
+            System.out.println("\n There are no recipes in the RecipeBook yet. Try adding some!");
+        }
+        else{
+            int i = 1;
+            for(RecipeController recipeController: recipeControllers){
+                System.out.print(i + ") ");
+                recipeController.getRecipeView().displayOneline();
+                i++;
+            }
         }
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
