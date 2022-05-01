@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UnitController;
-import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
@@ -186,18 +185,6 @@ public class RecipeView implements R4SMenu{
      */
     public static class RecipeBuilderView{
 
-        //*Instance Variables*\\
-        private RecipeBuilderController rBuildController;
-
-        //*Constructor*\\
-        /**
-         * Constructs a RecipeBuilderView from its controller
-         * @param rBuildController - the RecipeBuilderView's controller
-         */
-        public RecipeBuilderView(RecipeBuilderController rBuildController){
-            this.rBuildController = rBuildController;
-        }
-        
         //*Methods*\\
         /**
          * Displays a message at the initialization of a recipe build process
