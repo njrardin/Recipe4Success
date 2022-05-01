@@ -355,7 +355,7 @@ public class RecipeView implements R4SMenu{
                 ingredientName = inputAccess.getInputLine().toLowerCase();
 
                 //get the unit
-                System.out.println("What is the unit of measure for " + ingredientName + "?");
+                System.out.println("What is the unit of measure for " + ingredientName + "? : ");
                 unit = UnitController.getUnit();
 
                 //get the quantity
@@ -366,7 +366,7 @@ public class RecipeView implements R4SMenu{
                         ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
                         break;
                     } catch (Exception e) {
-                        System.out.print("Please enter a quantity in integer or decimal form : ");
+                        System.out.print("Please enter a quantity in integer or decimal form: ");
                         continue;
                     }
                 } while(true);
