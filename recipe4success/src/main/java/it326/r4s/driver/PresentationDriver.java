@@ -138,7 +138,8 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         ArrayList<Category> categories = new ArrayList<Category>();
-        categories.add(new Category("vegan"));
+        Category.Pool cPool = Category.Pool.getInstance();
+        categories.add(cPool.getCategory(Category.Type.RECIPE, "vegan"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe3 = recipeBuilder.build();
@@ -166,8 +167,8 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("mexican"));
-        categories.add(new Category("party"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"mexican"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"party"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe4 = recipeBuilder.build();
@@ -194,8 +195,8 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("italian"));
-        categories.add(new Category("simple"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"italian"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"simple"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe5 = recipeBuilder.build();
@@ -224,7 +225,7 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("breakfast"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"breakfast"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe6 = recipeBuilder.build();
@@ -255,7 +256,7 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("italian"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"italian"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe7 = recipeBuilder.build();

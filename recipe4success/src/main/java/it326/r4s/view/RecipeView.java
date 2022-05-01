@@ -410,6 +410,7 @@ public class RecipeView implements R4SMenu{
             InputAccess inputAccess = new InputAccess();
             String resp = "";
             String categoryString;
+            Category.Pool cPool = Category.Pool.getInstance();
             ArrayList<Category> categories = new ArrayList<Category>();
 
 
@@ -442,7 +443,7 @@ public class RecipeView implements R4SMenu{
                 "\". Is this correct? (Y/N) : ");
                 resp = inputAccess.getInputLine().toLowerCase();
                 if(resp.equals("y")){
-                    categories.add(new Category(categoryString));
+                    categories.add(cPool.getCategory(Category.Type.RECIPE, categoryString));
                     categoryNum++;
                 }
                 else{

@@ -53,7 +53,6 @@ public class RecipeSearchController {
      * @return an ArrayList of recipes that match the query
      */
     public ArrayList<Recipe> searchFor(String searchQuery) {
-        return new ArrayList<Recipe>( CollectionUtils.union(recipeSearch.searchFor(searchQuery), recipeSearch.searchFor(new Category(searchQuery))) );
-
+        return new ArrayList<Recipe>( CollectionUtils.union(recipeSearch.searchFor(searchQuery), recipeSearch.searchFor(Category.Pool.getInstance().getCategory(Category.Type.RECIPE,searchQuery))));
     }
 }
