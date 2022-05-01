@@ -5,6 +5,7 @@ import it326.r4s.controller.UnitController;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
+import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S GroceryList
@@ -30,13 +31,7 @@ public class GroceryListView implements R4SMenu{
      * Displays the header for the grocery list menu
      */
     public void displayHeader() {
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Grocery List --                              ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println(DisplayUtils.getHeader("Grocery List"));
 	}
 
     /**
@@ -63,14 +58,17 @@ public class GroceryListView implements R4SMenu{
      * Displays the grocery list to the screen
      */
 	public void displayGroceryList() {
-        System.out.printf("%52s%n%n", "-- My Grocery List --");
+        System.out.println("Grocery List:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         if(glController.getIngredientListController().getIngredientList().getIngredients().isEmpty()){
-            System.out.println("The grocery list is currently empty\n");
+            System.out.println("\nThe grocery list is currently empty\n");
         }
         else{
             glController.getIngredientListController().getIngredientListView().displayIngredients();
             System.out.println();
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
+
 	}
 
     /**
@@ -95,10 +93,10 @@ public class GroceryListView implements R4SMenu{
        while(true){
            //get ingredient name
            if(ingredientNum == 1){
-               System.out.println("What is the first ingredient?\n");
+               System.out.print("What is the first ingredient? : ");
            }
            else{
-               System.out.println("What is the next ingredient?\n");
+               System.out.print("What is the next ingredient? : ");
            }
            ingredientName = inputAccess.getInputLine().toLowerCase();
 
@@ -107,24 +105,24 @@ public class GroceryListView implements R4SMenu{
            unit = UnitController.getUnit();
 
            //get the quantity
-           System.out.println("How many " + unit.stringRep + "s are needed?");
+           System.out.print("How many " + unit.stringRep + "s are needed? : ");
             ingredientQuantity = -1;
             do{
                 try{
                     ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
                     break;
                 } catch (Exception e) {
-                    System.out.println("Please select an option by typing the corresponding number");
+                    System.out.print("Please enter a quantity in integer or decimal form : ");
                     continue;
                 }
             } while(true);
            
            //confirm accuracy
-           System.out.println("You provided ingredient #" + ingredientNum + " as\n\n \"" 
+           System.out.print("You provided ingredient #" + ingredientNum + " as\n\n \"" 
 
            + ingredientQuantity + " " + unit.stringRep + "s of " + ingredientName +
 
-           "\"\n\n is this correct? (Y/N)");
+           "\"\n\n is this correct? (Y/N) : ");
            resp = inputAccess.getInputLine().toLowerCase();
            if(resp.equals("y")){
 
@@ -137,7 +135,7 @@ public class GroceryListView implements R4SMenu{
            
            //check to see if the user wishes to add another step
            do {
-               System.out.println("Would you like to add another ingredient? (Y/N)");
+               System.out.print("Would you like to add another ingredient? (Y/N) : ");
                resp = inputAccess.getInputLine().toLowerCase();
            } while (!(resp.equals("y") || resp.equals("n")));
            
@@ -160,7 +158,7 @@ public class GroceryListView implements R4SMenu{
         InputAccess input = new InputAccess();
         String response = "";
         do{
-            System.out.println("Are you sure you want to transfer all the ingredients to your pantry? (Y/N)");
+            System.out.print("Are you sure you want to transfer all the ingredients to your pantry? (Y/N) : ");
             response = input.getInputLine().toLowerCase();
         }  while ( !(response.equals("y") || response.equals("n") ));
 

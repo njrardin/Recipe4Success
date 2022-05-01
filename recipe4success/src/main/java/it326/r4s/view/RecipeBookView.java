@@ -3,6 +3,7 @@ package it326.r4s.view;
 import java.util.ArrayList;
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
+import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S RecipeBook
@@ -28,14 +29,7 @@ public class RecipeBookView implements R4SMenu {
      * Displays the Recipe Book header to the user
      */
     public void displayHeader(){
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Recipe Book --                               ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println();
+        System.out.println(DisplayUtils.getHeader("Recipe Book"));
     }
 
     /**
@@ -43,14 +37,14 @@ public class RecipeBookView implements R4SMenu {
      * @return an int representing the selected option
      */
     public int getMenuOptionSelection(){
-        String title = "Recipe Book";
+        String title = "Recipe Book Options";
         String prompt = "What would you like to do?";
         String[] options = {
             "Search and filter recipes",
             "Import a recipe",
             "Export a recipe",
             "Create a new recipe",
-            "Select a recipe",
+            "Open a recipe",
             "Go back"
         };
         InputAccess inputAccess = new InputAccess();
@@ -70,12 +64,15 @@ public class RecipeBookView implements R4SMenu {
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
     public static void displayRecipes(ArrayList<RecipeController> recipeControllers){
+        System.out.println("Recipes:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         int i = 1;
         for(RecipeController recipeController: recipeControllers){
             System.out.print(i + ") ");
             recipeController.getRecipeView().displayOneline();
             i++;
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
 
     /**
@@ -86,7 +83,7 @@ public class RecipeBookView implements R4SMenu {
      */
     public static RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
         displayRecipes(recipeControllers);
-        if (askSelectRecipe() == false){ //TODO: use menu system to do this
+        if (askSelectRecipe() == false){
             throw new RuntimeException();
         }    
 
@@ -95,8 +92,8 @@ public class RecipeBookView implements R4SMenu {
         int inputNum = -1;
         InputAccess inputAccess = new InputAccess();
         do{
-            System.out.println("\n Which recipe would you like to select?");
-            System.out.println("(please type the selection number or type \"exit\" to go back)");
+            System.out.println("\n Which recipe would you like to open?");
+            System.out.print("(please type the selection number or type \"exit\" to go back) : ");
 
             input = inputAccess.getInputLine();
             if(input.toLowerCase().equals("exit")){
@@ -121,14 +118,14 @@ public class RecipeBookView implements R4SMenu {
     }
 
     /**
-     * A confirmation option for selecting a recipe
+     * A confirmation option for opening a recipe
      * @return true if confirmed, false if denied
      */
     private static boolean askSelectRecipe() {
         InputAccess inputAccess = new InputAccess();
         String response = "";
         do{
-        System.out.println("Would you like to select a recipe? (Y/N)");
+        System.out.print("Would you like to open a recipe? (Y/N) : ");
         response = inputAccess.getInputLine().toLowerCase();
         } while ( !(response.equals("y") || response.equals("n")) );
         if(response.equals("n")){

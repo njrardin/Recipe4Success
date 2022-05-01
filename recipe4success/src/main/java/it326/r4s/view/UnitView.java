@@ -1,8 +1,5 @@
 package it326.r4s.view;
 
-import java.util.Scanner;
-
-import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 
 /**
@@ -17,6 +14,7 @@ public class UnitView {
      * @return - an int representing the unit chosen
      */
     public static int getUnitSelection() {
+        System.out.println();
         System.out.println("Please select a unit of measure from the list:");
         System.out.println("");
         System.out.println("1) None");
@@ -39,9 +37,9 @@ public class UnitView {
         int selection = -1;
         do{
             try{
+                System.out.print("\nPlease select an option by typing the corresponding number: ");
                 selection = Integer.parseInt(inputAccess.getInputLine());
             } catch (Exception e) {
-                System.out.println("Please select an option by typing the corresponding number");
                 continue;
             }
         } while(selection > 15 || selection <1);

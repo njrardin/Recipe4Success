@@ -1,7 +1,6 @@
 package it326.r4s.model;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
 /**
  * Class used to manage, maintain, and access a collection of ingredients
@@ -19,7 +18,6 @@ public class IngredientList extends Entity {
      * Creates a default IngredientList object.
      */
     public IngredientList() {
-        super();
         this.ingredients = new ArrayList<Ingredient>();
     }
 

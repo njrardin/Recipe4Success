@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it326.r4s.controller.MealPlanController;
 import it326.r4s.controller.MealPlannerController;
+import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S MealPlanner
@@ -29,13 +30,7 @@ public class MealPlannerView implements R4SMenu{
      * Displays the Meal Planner header 
      */
     public void displayHeader(){
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Meal Planner --                              ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println(DisplayUtils.getHeader("Meal Planner"));
     }
 
     /**
@@ -53,7 +48,7 @@ public class MealPlannerView implements R4SMenu{
      * @return an int representing the selected option
      */
     public int getMenuOptionSelection(){
-        String title = "Meal Planner";
+        String title = "Meal Planner Options";
         String prompt = "What would you like to do?";
         String[] options = {
             "Search mealplans",
@@ -74,12 +69,15 @@ public class MealPlannerView implements R4SMenu{
      * @param mealPlanControllers
      */
     public void displayMealPlans(ArrayList<MealPlanController> mealPlanControllers){
+        System.out.println("Meal Plans:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         int i = 1;
         for(MealPlanController mealPlanController: mealPlanControllers){
             System.out.print(i + ") ");
             mealPlanController.getMealPlanView().displayOneline();
             i++;
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
 
     /**
@@ -100,7 +98,7 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         do{
             System.out.println("\n Which meal plan would you like to select?");
-            System.out.println("(please type the selection number or type \"exit\" to go back)");
+            System.out.print("(please type the selection number or type \"exit\" to go back) : ");
 
             selection = inputAccess.getInputLine();
             if(selection.toLowerCase().equals("exit")){
@@ -131,7 +129,7 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         String selection = "";
         do{
-        System.out.println("Would you like to select a meal plan? (Y/N)");
+        System.out.print("Would you like to select a meal plan? (Y/N) : ");
         selection = inputAccess.getInputLine().toLowerCase();
         } while ( !(selection.equals("y") || selection.equals("n")) );
         if(selection.equals("n")){
@@ -151,7 +149,7 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         int selection = -1;
         do{
-            System.out.println("Please select an option by entering the corresponding number:");
+            System.out.print("Please select an option by entering the corresponding number: ");
             try{
                 selection = Integer.parseInt(inputAccess.getInputLine());
             } catch (Exception e) {
@@ -179,10 +177,10 @@ public class MealPlannerView implements R4SMenu{
         String name = "";
 
         while(true){
-            System.out.println("\nPlease provide the mealplan's name:");
+            System.out.print("\nPlease provide the mealplan's name: ");
             name = inputAccess.getInputLine();
             if(name != ""){
-                System.out.println("You provided the name \"" + name + ",\" is this correct? (Y/N)");
+                System.out.print("You provided the name \"" + name + ",\" is this correct? (Y/N) : ");
                 if(inputAccess.getInputLine().toLowerCase().equals("y")){
                     return name;
                 }
@@ -199,7 +197,7 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         String response = "";
         do{
-        System.out.println("Would you like to add another recipe? (Y/N)");
+        System.out.println("Would you like to add another recipe? (Y/N) : ");
         response = inputAccess.getInputLine().toLowerCase();
         } while ( !(response.equals("y") || response.equals("n")) );
         if(response.equals("n")){
@@ -216,14 +214,14 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         String description = "";
         while(true){
-            System.out.println("Please provide a description for the meal plan");
+            System.out.println("Please provide a description for the meal plan:");
             description = inputAccess.getInputLine();
 
-            System.out.println("You provided the description\n\n \"" 
+            System.out.print("You provided the description\n\n \"" 
 
             + description + 
 
-            "\"\n\n is this correct? (Y/N)");
+            "\"\n\n is this correct? (Y/N) : ");
 
             if(inputAccess.getInputLine().toLowerCase().equals("y")){
                 return description;

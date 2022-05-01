@@ -1,10 +1,7 @@
 package it326.r4s.view;
 
-import java.util.Scanner;
-
 import it326.r4s.controller.IngredientListController;
 import it326.r4s.model.Ingredient;
-import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 
 /**
@@ -48,7 +45,7 @@ public class IngredientListView {
         InputAccess input = new InputAccess();
         int selection = -1;
         do{
-            System.out.println("Please select an option by entering the corresponding number:");
+            System.out.print("Please select an option by entering the corresponding number: ");
             try{
                 selection = Integer.parseInt(input.getInputLine());
             } catch (Exception e) {

@@ -5,6 +5,7 @@ import it326.r4s.controller.UnitController;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
+import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S Pantry
@@ -21,14 +22,7 @@ public class PantryView implements R4SMenu{
 
     
 	public void displayHeader() {
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                                  -- Pantry --                                 ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        
+        System.out.println(DisplayUtils.getHeader("Pantry"));
 	}
 
 
@@ -36,14 +30,16 @@ public class PantryView implements R4SMenu{
      * Displays the pantry to the screen
      */
 	public void displayPantry() {
-        System.out.printf("%48s%n%n", "-- Pantry --");
+        System.out.println("Pantry:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         if(pantryController.getIngredientListController().getIngredientList().getIngredients().isEmpty()){
-            System.out.println("The pantry is currently empty\n");
+            System.out.println("\nThe pantry is currently empty\n");
         }
         else{
             pantryController.getIngredientListController().getIngredientListView().displayIngredients();
             System.out.println();
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
 	}
 
     /**
@@ -86,10 +82,10 @@ public class PantryView implements R4SMenu{
         while(true){
             //get ingredient name
             if(ingredientNum == 1){
-                System.out.println("What is the first ingredient?\n");
+                System.out.print("What is the first ingredient? : ");
             }
             else{
-                System.out.println("What is the next ingredient?\n");
+                System.out.print("What is the next ingredient? : ");
             }
             ingredientName = inputAccess.getInputLine().toLowerCase();
  
@@ -98,24 +94,24 @@ public class PantryView implements R4SMenu{
             unit = UnitController.getUnit();
  
             //get the quantity
-            System.out.println("How many " + unit.stringRep + "s are needed?");
+            System.out.print("How many " + unit.stringRep + "s are needed? : ");
             ingredientQuantity = -1;
             do{
                 try{
                     ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
                     break;
                 } catch (Exception e) {
-                    System.out.println("Please select an option by typing the corresponding number");
+                    System.out.print("Please select an option by typing the corresponding number: ");
                     continue;
                 }
             } while(true);
             
             //confirm accuracy
-            System.out.println("You provided ingredient #" + ingredientNum + " as\n\n \"" 
+            System.out.print("You provided ingredient #" + ingredientNum + " as\n\n \"" 
  
             + ingredientQuantity + " " + unit.stringRep + "s of " + ingredientName +
  
-            "\"\n\n is this correct? (Y/N)");
+            "\"\n\n is this correct? (Y/N) : ");
             resp = inputAccess.getInputLine().toLowerCase();
             if(resp.equals("y")){
  
@@ -128,7 +124,7 @@ public class PantryView implements R4SMenu{
             
             //check to see if the user wishes to add another step
             do {
-                System.out.println("Would you like to add another ingredient? (Y/N)");
+                System.out.print("Would you like to add another ingredient? (Y/N) : ");
                 resp = inputAccess.getInputLine().toLowerCase();
             } while (!(resp.equals("y") || resp.equals("n")));
             

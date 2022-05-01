@@ -2,7 +2,6 @@ package it326.r4s.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Scanner;
 
 import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Recipe;
@@ -90,6 +89,8 @@ public class RecipeBookController {
                 default:
                     System.out.println("Invalid input, please try again\n");
             }
+            recipeBookView.displayHeader();
+            recipeBookView.displayRecipeBook();
         }
     }
     
