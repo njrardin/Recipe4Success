@@ -71,11 +71,16 @@ public class MealPlannerView implements R4SMenu{
     public void displayMealPlans(Collection<MealPlanController> mealPlanControllers){
         System.out.println("Meal Plans:");
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
-        int i = 1;
-        for(MealPlanController mealPlanController: mealPlanControllers){
-            System.out.print(i + ") ");
-            mealPlanController.getMealPlanView().displayOneline();
-            i++;
+        if(mealPlanControllers == null){
+            System.out.println("\nThere are no meal plans in your mealplanner. Try adding some!");
+        }
+        else {
+            int i = 1;
+            for(MealPlanController mealPlanController: mealPlanControllers){
+                System.out.print(i + ") ");
+                mealPlanController.getMealPlanView().displayOneline();
+                i++;
+            }
         }
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
