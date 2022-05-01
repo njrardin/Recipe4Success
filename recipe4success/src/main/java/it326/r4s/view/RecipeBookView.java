@@ -64,14 +64,19 @@ public class RecipeBookView implements R4SMenu {
      * list of recipeControllers
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
-    public void displayRecipes(Collection<RecipeController> recipeControllers){
+    public void displayRecipes(Collection<RecipeController> recipeControllers) {
         System.out.println("Recipes:");
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
-        int i = 1;
-        for(RecipeController recipeController: recipeControllers){
-            System.out.print(i + ") ");
-            recipeController.getRecipeView().displayOneline();
-            i++;
+        if(recipeControllers == null){
+            System.out.println("\n There are no recipes in the RecipeBook yet. Try adding some!");
+        }
+        else{
+            int i = 1;
+            for(RecipeController recipeController: recipeControllers){
+                System.out.print(i + ") ");
+                recipeController.getRecipeView().displayOneline();
+                i++;
+            }
         }
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
@@ -80,10 +85,14 @@ public class RecipeBookView implements R4SMenu {
      * Displays a series of recipes and allows the user to select one
      * @param recipeControllers - an ArrayList of RecipeControllers to present as selection options to the user
      * @return the RecipeController who's recipe was selected
-     * @throws RuntimeException - if the user aborts the selection process
+     * @throws RuntimeException if the user aborts the selection process
+     * @throws IllegalArgumentException if recipeControllers is null
      */
-    public RecipeController getRecipeSelection(Collection<RecipeController> recipeControllers) throws RuntimeException{    
+    public RecipeController getRecipeSelection(Collection<RecipeController> recipeControllers) throws RuntimeException, IllegalArgumentException{    
         displayRecipes(recipeControllers);
+        if(recipeControllers == null){
+            throw new IllegalArgumentException();
+        }
         if (askSelectRecipe() == false){
             throw new RuntimeException();
         }    
