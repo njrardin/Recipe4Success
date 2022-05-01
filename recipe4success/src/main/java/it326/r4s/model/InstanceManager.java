@@ -6,7 +6,7 @@ package it326.r4s.model;
  * @date 4/30/22
  */
 public abstract class InstanceManager<T extends Portable> {
-    private static String parentDirectory = System.getenv("APPDATA") + "/r4s/";
+    private static String parentDirectory = System.getenv("APPDATA") + "\\r4s\\";
 
     /**
      * Constructs a default instance manager.
