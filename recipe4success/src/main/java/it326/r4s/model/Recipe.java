@@ -55,7 +55,7 @@ public class Recipe extends Entity implements Portable {
     }
 
     /**
-     * Removes the category from the recipe
+     * Removes the category from the recipe.
      * 
      * @param theCategory
      */
@@ -64,12 +64,21 @@ public class Recipe extends Entity implements Portable {
     }
 
     /**
-     * Adds the category to the recipe
+     * Adds the category to the recipe if it is not already present.
      * 
      * @param theCategory
      */
     public void addCategory(Category theCategory) {
-        categories.add(theCategory);
+        if (!categories.contains(theCategory)) {
+            categories.add(theCategory);
+        }        
+    }
+
+    /**
+     * Removes all categories from the recipe.
+     */
+    public void clearCategories() {
+        categories.clear();
     }
 
     /**
@@ -286,9 +295,9 @@ public class Recipe extends Entity implements Portable {
         private int servingSize;
         private Date createdOn;
         private IngredientList ingredientList;
-        private ArrayList<Review> reviews;
-        private ArrayList<Category> categories;
-        private ArrayList<String> instructions;
+        private Collection<Review> reviews;
+        private Collection<Category> categories;
+        private Collection<String> instructions;
 
         // * Constructor *\\
 
