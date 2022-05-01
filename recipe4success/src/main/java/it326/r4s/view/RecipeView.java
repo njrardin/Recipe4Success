@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UnitController;
-import it326.r4s.controller.UserController;
 import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
