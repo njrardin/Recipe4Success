@@ -43,7 +43,7 @@ public class RecipeView implements R4SMenu{
         System.out.println("Description: " + recipeController.getRecipe().getDescription());
         System.out.println("Serving Size: " + recipeController.getRecipe().getServingSize());
         System.out.println("Created on: " + recipeController.getRecipe().getCreatedOn());
-        System.out.println("Your rating: " + getRecipeRating() + "/5 stars");
+        System.out.println("Your rating: " + getRecipeRating());
         System.out.println();
         System.out.println("Ingredients: ");
         displayIngredients();
@@ -127,7 +127,7 @@ public class RecipeView implements R4SMenu{
      */
     private String getRecipeRating(){
         try{
-            return String.valueOf(recipeController.getRecipe().getReviews().get(0).getRatingValue());
+            return String.valueOf(recipeController.getRecipe().getReviews().get(0).getRatingValue()) + "/5 stars";
         } catch (Exception e) {
             return "none";
         }
