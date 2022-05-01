@@ -347,10 +347,10 @@ public class RecipeView implements R4SMenu{
             while(true){
                 //get ingredient name
                 if(ingredientNum == 1){
-                    System.out.println("What is the first ingredient?\n");
+                    System.out.print("What is the first ingredient? : ");
                 }
                 else{
-                    System.out.println("What is the next ingredient?\n");
+                    System.out.print("What is the next ingredient? : ");
                 }
                 ingredientName = inputAccess.getInputLine().toLowerCase();
 
@@ -410,7 +410,6 @@ public class RecipeView implements R4SMenu{
             String categoryString;
             ArrayList<Category> categories = new ArrayList<Category>();
 
-
             do{
                 System.out.print("Would you like to add any categories? (Y/N) : ");
                 resp = inputAccess.getInputLine().toLowerCase();
@@ -424,10 +423,10 @@ public class RecipeView implements R4SMenu{
             System.out.println("Alright, let's add some categories for the recipe.");
             while(true){
                 if(categoryNum == 1){
-                    System.out.println("What would you like to call the first category?\n");
+                    System.out.print("What would you like to call the first category? : ");
                 }
                 else{
-                    System.out.println("What would you like to call the next category?\n");
+                    System.out.print("What would you like to call the next category? : ");
                 }
     
                 categoryString = inputAccess.getInputLine();
@@ -467,8 +466,15 @@ public class RecipeView implements R4SMenu{
 		public static boolean confirmBuild() {
             InputAccess inputAccess = new InputAccess();
             String resp = "";
-            //TODO: implement or delete this
-			return true;
+            System.out.println("\nRecipe construction complete.\n");
+            do {
+                System.out.print("Please confirm the addition of this recipe to your Recipe Book. (Y/N) : ");
+                resp = inputAccess.getInputLine().toLowerCase();
+            } while (!(resp.equals("y") || resp.equals("n")));
+            if (resp.equals("n")) {
+                return false;
+            }
+            return true;
 		}
 
     }
