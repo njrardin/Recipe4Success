@@ -41,9 +41,7 @@ public class PresentationDriver {
         
         User user = prepopulateUser();
         
-        UserController.initUserController(user);
-        UserController userController = UserController.getUserController();
-
+        UserController userController = new UserController(user);
         MainMenuController mmController = new MainMenuController(userController);
         
         mmController.launchMainMenu();
