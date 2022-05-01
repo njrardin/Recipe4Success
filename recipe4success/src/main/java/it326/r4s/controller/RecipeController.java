@@ -1,5 +1,7 @@
 package it326.r4s.controller;
 
+import it326.r4s.model.Exporter;
+import it326.r4s.model.ExporterProducer;
 import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
 import it326.r4s.model.User;
@@ -154,6 +156,11 @@ public class RecipeController {
      */
 	public void exportRecipe() {
         //TODO: This is Alex's problem
+        Recipe recipe = null;
+        Exporter<Recipe> exporter = ExporterProducer.getExporter(ExporterProducer.Type.JSON, Recipe.class);
+        try {
+            exporter.exportTo(recipe, "filename");
+        } catch (Exception e) {}
 	}
 
     /**
