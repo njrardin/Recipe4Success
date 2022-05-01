@@ -92,8 +92,6 @@ public class MealPlannerController {
                 default:
                     System.out.println("Invalid input, please try again\n");
             }
-            mealPlannerView.displayHeader();
-            mealPlannerView.displayMealPlanner();
         }
     }
 

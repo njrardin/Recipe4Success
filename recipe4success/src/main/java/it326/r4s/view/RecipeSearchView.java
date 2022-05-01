@@ -30,7 +30,7 @@ public class RecipeSearchView {
         InputAccess inputAccess = new InputAccess();
         String response = "";
         do{
-            System.out.print("Please enter the term to search the recipes for: ");
+            System.out.println("Please enter the term to search the recipes for:");
             response = inputAccess.getInputLine().toLowerCase();
         } while (response == "");
 

@@ -18,7 +18,13 @@ public class R4SDriver {
     }
 
     private static void displayWelcome(){
-        System.out.println(DisplayUtils.getHeader("-- WELCOME TO RECIPE 4 SUCCESS --"));
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("---                                                                               ---");
+        System.out.println("---                      -- WELCOME TO RECIPES 4 SUCCESS! --                      ---");
+        System.out.println("---                                                                               ---");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------");
     }
 
     private static void importFileData() {

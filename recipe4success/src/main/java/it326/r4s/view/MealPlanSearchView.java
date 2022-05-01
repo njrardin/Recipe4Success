@@ -27,7 +27,7 @@ public class MealPlanSearchView {
         InputAccess inputAccess = new InputAccess();
         String input = "";
         do{
-            System.out.print("Please enter the term to search the meal plans for: ");
+            System.out.println("Please enter the term to search the meal plans for:");
             input = inputAccess.getInputLine().toLowerCase();
         } while (input == "");
 
