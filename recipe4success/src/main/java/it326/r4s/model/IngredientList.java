@@ -18,7 +18,6 @@ public class IngredientList extends Entity {
      * Creates a default IngredientList object.
      */
     public IngredientList() {
-        super();
         this.ingredients = new ArrayList<Ingredient>();
     }
 

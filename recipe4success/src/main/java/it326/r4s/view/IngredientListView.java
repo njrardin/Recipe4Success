@@ -45,7 +45,7 @@ public class IngredientListView {
         InputAccess input = new InputAccess();
         int selection = -1;
         do{
-            System.out.println("Please select an option by entering the corresponding number:");
+            System.out.print("Please select an option by entering the corresponding number: ");
             try{
                 selection = Integer.parseInt(input.getInputLine());
             } catch (Exception e) {

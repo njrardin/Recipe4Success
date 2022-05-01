@@ -142,11 +142,6 @@ public class Ingredient {
      */
     @Override
     public String toString() {
-        if(this.quantity > 1){ //plural form on unit
-            return this.foodItem.getName() + ": " + this.quantity + " " + this.unit.toString().toLowerCase() + "s";
-        }
-        else{//singular form on unit
-            return this.foodItem.getName() + ": " + String.format("%.2",this.quantity) + " " + this.unit;
-        }
+        return this.foodItem.getName() + ": " + String.format("%.2f", this.quantity) + " " + this.unit;
     }
 }

@@ -87,7 +87,7 @@ public class RecipeBookView implements R4SMenu {
      */
     public RecipeController getRecipeSelection(Collection<RecipeController> recipeControllers) throws RuntimeException{    
         displayRecipes(recipeControllers);
-        if (askSelectRecipe() == false){ //TODO: use menu system to do this
+        if (askSelectRecipe() == false){
             throw new RuntimeException();
         }    
 
@@ -97,7 +97,7 @@ public class RecipeBookView implements R4SMenu {
         InputAccess inputAccess = new InputAccess();
         do{
             System.out.println("\n Which recipe would you like to select?");
-            System.out.println("(please type the selection number or type \"exit\" to go back)");
+            System.out.print("(please type the selection number or type \"exit\" to go back) : ");
 
             input = inputAccess.getInputLine();
             if(input.toLowerCase().equals("exit")){
@@ -129,7 +129,7 @@ public class RecipeBookView implements R4SMenu {
         InputAccess inputAccess = new InputAccess();
         String response = "";
         do{
-        System.out.println("Would you like to select a recipe? (Y/N)");
+        System.out.print("Would you like to select a recipe? (Y/N) : ");
         response = inputAccess.getInputLine().toLowerCase();
         } while ( !(response.equals("y") || response.equals("n")) );
         if(response.equals("n")){

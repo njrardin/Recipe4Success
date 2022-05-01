@@ -33,7 +33,7 @@ public class MainMenuView implements R4SMenu{
             "Open my RecipeBook:\t\t(search, edit, or create new tasty recipes!)",
             "Open my MealPlanner:\t\t(organize your recipes into comprehensive meal plans)",
             "Open my Pantry:\t\t(organize your recipes into comprehensive meal plans.)",
-            "Open my grocery list:\t(view and edit your current grocery list.)",
+            "Open my Grocery List:\t(view and edit your current grocery list.)",
             "Exit Application"
         };
         InputAccess input = new InputAccess();
