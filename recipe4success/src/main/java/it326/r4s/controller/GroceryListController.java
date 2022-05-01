@@ -151,7 +151,7 @@ public class GroceryListController {
             glView.displayReorganizeSuccess();
         }
         else{
-            glView.displaReorganizeError();
+            glView.displayReorganizeError();
         }
         //display a use case success message
     }
