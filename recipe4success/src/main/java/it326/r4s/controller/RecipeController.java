@@ -180,16 +180,7 @@ public class RecipeController {
     public IngredientListController getIngredientListController() {
         return new IngredientListController(recipe.getIngredientList());
     }
-
-    /**
-     * Removes a Recipe's ingredients from the user's pantry
-     */
-    private void removeRecipeIngredients() {        
-        //TODO: implement
-    }
-
-
-
+    
     /**
      * Controller for R4S RecipeBuilder
      * @author Nate Rardin (njrardi@ilstu.edu)
