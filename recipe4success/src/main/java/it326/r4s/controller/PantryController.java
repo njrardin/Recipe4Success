@@ -81,7 +81,7 @@ public class PantryController {
                     removeIngredient();
                     break;
                 case 3:
-                    removeRecipeIngredients();
+                    removeRecipeControllerIngredients(userController.getRecipeBookController().selectRecipeController());
                     break;
                 case 4:
                     listMakableRecipes();
@@ -114,36 +114,20 @@ public class PantryController {
         pantry.removeIngredient(pantryView.getIngredientRemovalFromUser());
     }
 
-    private void removeRecipeIngredients() {
-        User theUser = UserController.getUserController().getGlobalUser();
-        
-        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
-        for(Recipe recipe: theUser.getRecipeBook().getRecipes()){
-            recipeControllers.add(new RecipeController(recipe));
-        }
+    private void removeRecipeControllerIngredients(RecipeController recipeController) {        
         try{
-            RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(recipeControllers);
-            Recipe selectedRecipe = selectedRecipeController.getRecipe();
-            pantry.removeRecipeIngredients(selectedRecipe);
+            pantry.removeRecipeIngredients(recipeController.getRecipe());
         } catch (RuntimeException e) { 
             System.out.println("Oops, looks like there was an error with removing the ingredients.");
          }
     }
 
-    private void listMakableRecipes() {
-        User theUser = UserController.getUserController().getGlobalUser();
-        
+    private void listMakableRecipes() {        
         ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
-        for(Recipe recipe: theUser.getMakeableRecipes()){
-            recipeControllers.add(new RecipeController(recipe));
+        for(Recipe recipe: userController.getUser().getMakeableRecipes()){
+            recipeControllers.add(new RecipeController(recipe, userController.getUser()));
         }
-        try{
-            RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(recipeControllers);
-            Recipe selectedRecipe = selectedRecipeController.getRecipe();
-            pantry.removeRecipeIngredients(selectedRecipe);
-        } catch (RuntimeException e) { 
-            System.out.println("Oops, looks like there was an error with removing the ingredients.");
-        }
+
     }
     
 }
