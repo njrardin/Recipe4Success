@@ -1,6 +1,10 @@
 package it326.r4s.view;
 
 import java.util.ArrayList;
+import java.util.Collection;
+
+import org.apache.commons.collections4.iterators.CollatingIterator;
+
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
 import it326.r4s.view.utilities.DisplayUtils;
@@ -63,7 +67,7 @@ public class RecipeBookView implements R4SMenu {
      * list of recipeControllers
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
-    public void displayRecipes(ArrayList<RecipeController> recipeControllers){
+    public void displayRecipes(Collection<RecipeController> recipeControllers){
         System.out.println("Recipes:");
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         int i = 1;
@@ -81,7 +85,7 @@ public class RecipeBookView implements R4SMenu {
      * @return the RecipeController who's recipe was selected
      * @throws RuntimeException - if the user aborts the selection process
      */
-    public RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
+    public RecipeController getRecipeSelection(Collection<RecipeController> recipeControllers) throws RuntimeException{    
         displayRecipes(recipeControllers);
         if (askSelectRecipe() == false){ //TODO: use menu system to do this
             throw new RuntimeException();
@@ -114,7 +118,7 @@ public class RecipeBookView implements R4SMenu {
         } while(inputNum <= 0 || recipeControllers.size() < inputNum);
 
         //returns the selected RecipeController
-        return recipeControllers.get(inputNum - 1);
+        return (RecipeController) recipeControllers.toArray()[inputNum - 1];
     }
 
     /**
