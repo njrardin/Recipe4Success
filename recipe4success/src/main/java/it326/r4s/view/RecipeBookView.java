@@ -83,7 +83,7 @@ public class RecipeBookView implements R4SMenu {
      */
     public static RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
         displayRecipes(recipeControllers);
-        if (askSelectRecipe() == false){ //TODO: use menu system to do this
+        if (askSelectRecipe() == false){
             throw new RuntimeException();
         }    
 
@@ -125,7 +125,7 @@ public class RecipeBookView implements R4SMenu {
         InputAccess inputAccess = new InputAccess();
         String response = "";
         do{
-        System.out.println("Would you like to select a recipe? (Y/N)");
+        System.out.print("Would you like to select a recipe? (Y/N) : ");
         response = inputAccess.getInputLine().toLowerCase();
         } while ( !(response.equals("y") || response.equals("n")) );
         if(response.equals("n")){
