@@ -39,7 +39,7 @@ public class UnitView {
             try{
                 selection = Integer.parseInt(inputAccess.getInputLine());
             } catch (Exception e) {
-                System.out.println("\nPlease select an option by typing the corresponding number");
+                System.out.print("\nPlease select an option by typing the corresponding number: ");
                 continue;
             }
         } while(selection > 15 || selection <1);
