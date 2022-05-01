@@ -39,7 +39,7 @@ public class RecipeBookController {
     public RecipeBook getRecipeBook(){
         return this.recipeBook;
     }
-    
+
     /**
      * Getter for the controller's RecipeBookview
      * @return the RecipeBookView object
@@ -61,10 +61,10 @@ public class RecipeBookController {
      * Gets an ArrayList of RecipeControllers associated with all recipes in the recipeBook
      * @return the ArrayList of RecipeControllers
      */
-    public ArrayList<RecipeController> getRecipeControllers(){
+    public Collection<RecipeController> getRecipeControllers(){
         ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
         for(Recipe recipe: recipeBook.getRecipes()){
-            recipeControllers.add(new RecipeController(recipe));
+            recipeControllers.add(new RecipeController(recipe, userController.getUser()));
         }
         return recipeControllers;
     }
@@ -93,7 +93,7 @@ public class RecipeBookController {
                     createRecipe();
                     break;
                 case 5:
-                    selectRecipe(recipeBook.getRecipes());
+                    selectRecipeController().openRecipe();
                     break;
                 case 6:
                     return;
@@ -114,7 +114,11 @@ public class RecipeBookController {
         String searchQuery = rsController.getRecipeSearchView().getSearchQuery();
         ArrayList<Recipe> returnRecipes = rsController.searchFor(searchQuery);
         
-        selectRecipe(returnRecipes);
+        ArrayList<RecipeController> rControllers = new ArrayList<RecipeController>();
+        for(Recipe recipe : returnRecipes){
+            rControllers.add(new RecipeController(recipe, userController.getUser()));
+        }
+        recipeBookView.displayRecipes(rControllers);
     }
 
     /**
@@ -149,16 +153,21 @@ public class RecipeBookController {
 
     /**
      * Facilitates the process of the user
-     * selecting one of the recipes in the recipeNook
+     * selecting one of the recipes in the recipeBook
      */
-    public void selectRecipe(Collection<Recipe> recipes){
-        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
-        for(Recipe recipe: recipes){
-            recipeControllers.add(new RecipeController(recipe));
-        }
+    public RecipeController selectRecipeController(){
+        return selectRecipeController(getRecipeControllers());
+    }
+
+    /**
+     * Facilitates the process of the user
+     * selecting one of the recipes from a collection of recipeControllers
+     */
+    public RecipeController selectRecipeController(Collection<RecipeController> recipeControllers){
+        RecipeController selectedRecipeController = null;
         try{
-            RecipeController selectedRecipeController = recipeBookView.getRecipeSelection(recipeControllers);
-            selectedRecipeController.openRecipe();
+            selectedRecipeController = recipeBookView.getRecipeSelection(recipeControllers);
         } catch (RuntimeException e) { /*do nothing*/ }
+        return selectedRecipeController;
     }
 }
