@@ -43,7 +43,8 @@ public class IngredientList extends Entity {
             if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
                 if (!ingredient.getUnit().equals(toAdd.getUnit()))
                     try{
-                        UnitConverter.convertUnit(ingredient.getUnit(), ingredient.getQuantity(), toAdd.getUnit());
+                        toAdd.setQuantity(UnitConverter.convertUnit(toAdd.getUnit(), toAdd.getQuantity(), ingredient.getUnit()));
+                        toAdd.setUnit(ingredient.getUnit());
                     } catch (Exception e) {
                         //do nothing
                     }
