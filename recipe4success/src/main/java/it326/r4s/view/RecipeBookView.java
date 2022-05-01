@@ -63,7 +63,7 @@ public class RecipeBookView implements R4SMenu {
      * list of recipeControllers
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
-    public static void displayRecipes(ArrayList<RecipeController> recipeControllers){
+    public void displayRecipes(ArrayList<RecipeController> recipeControllers){
         System.out.println("Recipes:");
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         int i = 1;
@@ -81,7 +81,7 @@ public class RecipeBookView implements R4SMenu {
      * @return the RecipeController who's recipe was selected
      * @throws RuntimeException - if the user aborts the selection process
      */
-    public static RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
+    public RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
         displayRecipes(recipeControllers);
         if (askSelectRecipe() == false){ //TODO: use menu system to do this
             throw new RuntimeException();
