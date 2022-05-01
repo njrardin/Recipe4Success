@@ -2,11 +2,10 @@ package it326.r4s.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UnitController;
-import it326.r4s.controller.UserController;
-import it326.r4s.controller.RecipeController.RecipeBuilderController;
 import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
@@ -139,13 +138,14 @@ public class RecipeView implements R4SMenu{
      */
     public int getRatingFromUser(){
         InputAccess inputAccess = new InputAccess();
-        int acceptableRatings[] = {1,2,3,4,5};
+        Integer[] acceptableRatings = {1, 2, 3, 4, 5};
+        List<Integer> acceptableRatingsList = Arrays.asList(acceptableRatings);
         int ratingNum;
 
         do{
             System.out.print("How many stars would you like to rate this recipe? (1, 2, 3, 4, or 5) : ");
             ratingNum = Integer.parseInt(inputAccess.getInputLine());
-        } while (Arrays.asList(acceptableRatings).contains(ratingNum));
+        } while (acceptableRatingsList.contains(ratingNum));
 
         System.out.println("You have successfully rated " + recipeController.getRecipe().getName() + " with a total of " + ratingNum + "/5 stars.");
         return ratingNum;
@@ -187,18 +187,6 @@ public class RecipeView implements R4SMenu{
      */
     public static class RecipeBuilderView{
 
-        //*Instance Variables*\\
-        private RecipeBuilderController rBuildController;
-
-        //*Constructor*\\
-        /**
-         * Constructs a RecipeBuilderView from its controller
-         * @param rBuildController - the RecipeBuilderView's controller
-         */
-        public RecipeBuilderView(RecipeBuilderController rBuildController){
-            this.rBuildController = rBuildController;
-        }
-        
         //*Methods*\\
         /**
          * Displays a message at the initialization of a recipe build process

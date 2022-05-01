@@ -1,9 +1,6 @@
 package it326.r4s.view;
 
-import java.util.ArrayList;
 import java.util.Collection;
-
-import org.apache.commons.collections4.iterators.CollatingIterator;
 
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;

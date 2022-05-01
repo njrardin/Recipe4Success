@@ -2,24 +2,11 @@ package it326.r4s.driver;
 
 import java.util.ArrayList;
 
-import it326.r4s.controller.MainMenuController;
-import it326.r4s.controller.UserController;
-import it326.r4s.model.Category;
-import it326.r4s.model.FoodItem;
-import it326.r4s.model.GroceryList;
-import it326.r4s.model.Ingredient;
-import it326.r4s.model.IngredientList;
-import it326.r4s.model.Meal;
-import it326.r4s.model.MealPlan;
-import it326.r4s.model.MealPlanner;
-import it326.r4s.model.Recipe;
-import it326.r4s.model.RecipeBook;
-import it326.r4s.model.UnitConverter;
-import it326.r4s.model.User;
+import it326.r4s.controller.*;
+import it326.r4s.model.*;
 import it326.r4s.model.Recipe.RecipeBuilder;
 import it326.r4s.model.UnitConverter.Unit;
-import it326.r4s.view.utilities.DisplayUtils;
-import it326.r4s.view.utilities.InputAccess;
+import it326.r4s.view.utilities.*;
 
 /**
  * Controller for R4S RecipeBook

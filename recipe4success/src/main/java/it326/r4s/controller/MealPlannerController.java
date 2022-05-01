@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.MealPlanner;
-import it326.r4s.view.MealPlanSearchView;
 import it326.r4s.view.MealPlannerView;
 /**
  * Controller for R4S MealPlanner
@@ -122,10 +121,8 @@ public class MealPlannerController {
      */
     public void searchMealPlans() {
         MealPlanSearchController mpsController = new MealPlanSearchController(mealPlanner.getMealPlans());
-        String searchQuery = new MealPlanSearchView(mpsController).getSearchQuery();
-        ArrayList<MealPlan> returnMealPlans = mpsController.searchFor(searchQuery);
-        
-        selectMealPlan(returnMealPlans);    
+        MealPlanController selectedController = new MealPlanController(selectMealPlan(mpsController.search()), userController.getUser());  
+        selectedController.openMealPlan();
     }
     
     /**
@@ -166,20 +163,31 @@ public class MealPlannerController {
         System.out.println();
     }
 
+    public MealPlanController selectMealPlanController(){
+        return selectMealPlanController(getMealPlanControllers());
+    }
+
     /**
      * Facilitates the process of the user
      * selecting one of the MealPlans in the mealPlanner
      */
-    public void selectMealPlan(Collection<MealPlan> mealPlans) {
-        ArrayList<MealPlanController> mealPlanControllers = new ArrayList<MealPlanController>();
-        for(MealPlan mealplan: mealPlans){
-            mealPlanControllers.add(new MealPlanController(mealplan, userController.getUser()));
-        }
+    public MealPlanController selectMealPlanController(Collection<MealPlanController> mealPlanControllers) {
+        MealPlanController selectedMealPlanController = null;
         try{
-            MealPlanController selectedMealplanController = mealPlannerView.getMealPlanSelection(mealPlanControllers);
-            selectedMealplanController.openMealPlan();
+            selectedMealPlanController = mealPlannerView.getMealPlanSelection(mealPlanControllers);
         } catch (RuntimeException e) { /*do nothing*/ }
-
+        return selectedMealPlanController;
     }
 
+    /**
+     * Facilitates the process of the user
+     * selecting one of the recipes from a collection of recipeControllers
+     */
+    public MealPlan selectMealPlan(Collection<MealPlan> mealplans){
+        ArrayList<MealPlanController> mpControllers = new ArrayList<MealPlanController>();
+        for(MealPlan mealplan : mealplans){
+            mpControllers.add(new MealPlanController(mealplan, userController.getUser()));
+        }
+        return selectMealPlanController(mpControllers).getMealPlan();
+    }
 }

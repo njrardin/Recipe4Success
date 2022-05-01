@@ -1,6 +1,6 @@
 package it326.r4s.view;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 import it326.r4s.controller.MealPlanController;
 import it326.r4s.controller.MealPlannerController;
@@ -72,7 +72,7 @@ public class MealPlannerView implements R4SMenu{
      * in a given list of mealplan controllers
      * @param mealPlanControllers
      */
-    public void displayMealPlans(ArrayList<MealPlanController> mealPlanControllers){
+    public void displayMealPlans(Collection<MealPlanController> mealPlanControllers){
         System.out.println("Meal Plans:");
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         int i = 1;
@@ -90,7 +90,7 @@ public class MealPlannerView implements R4SMenu{
      * @return the MealPlanController who's mealplan was selected
      * @throws RuntimeException - if the user aborts the selection process
      */
-    public MealPlanController getMealPlanSelection(ArrayList<MealPlanController> mealPlanControllers) throws RuntimeException{    
+    public MealPlanController getMealPlanSelection(Collection<MealPlanController> mealPlanControllers) throws RuntimeException{    
         displayMealPlans(mealPlanControllers);
         if (askSelectMealPlan() == false){
             throw new RuntimeException();
@@ -122,7 +122,7 @@ public class MealPlannerView implements R4SMenu{
 
         } while(inputNum <= 0 || mealPlanControllers.size() < inputNum);
 
-        return mealPlanControllers.get(inputNum - 1);
+        return (MealPlanController) mealPlanControllers.toArray()[inputNum - 1];
     }
 
     /**

@@ -111,14 +111,8 @@ public class RecipeBookController {
      */
     public void searchRecipes() {
         RecipeSearchController rsController = new RecipeSearchController(recipeBook.getRecipes());
-        String searchQuery = rsController.getRecipeSearchView().getSearchQuery();
-        ArrayList<Recipe> returnRecipes = rsController.searchFor(searchQuery);
-        
-        ArrayList<RecipeController> rControllers = new ArrayList<RecipeController>();
-        for(Recipe recipe : returnRecipes){
-            rControllers.add(new RecipeController(recipe, userController.getUser()));
-        }
-        recipeBookView.displayRecipes(rControllers);
+        RecipeController selectedController = new RecipeController(selectRecipe(rsController.search()), userController.getUser());
+        selectedController.openRecipe();
     }
 
     /**
@@ -170,4 +164,17 @@ public class RecipeBookController {
         } catch (RuntimeException e) { /*do nothing*/ }
         return selectedRecipeController;
     }
+
+    /**
+     * Facilitates the process of the user
+     * selecting one of the recipes from a collection of recipeControllers
+     */
+    public Recipe selectRecipe(Collection<Recipe> recipes){
+        ArrayList<RecipeController> rControllers = new ArrayList<RecipeController>();
+        for(Recipe recipe : recipes){
+            rControllers.add(new RecipeController(recipe, userController.getUser()));
+        }
+        return selectRecipeController(rControllers).getRecipe();
+    }
+
 }

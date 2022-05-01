@@ -9,17 +9,12 @@ import it326.r4s.view.utilities.InputAccess;
  */
 public class RecipeSearchView {
     
-    //*Instance Variables*\\
-    private RecipeSearchController recipeSearchController;
-
     //*Constructor*\\
     /**
      * Constructor for R4S's RecipeSearchView
      * @param recipeSearchController - the RecipeSearchView's controller
      */
-    public RecipeSearchView(RecipeSearchController recipeSearchController){
-        this.recipeSearchController = recipeSearchController;
-    }
+    public RecipeSearchView(RecipeSearchController recipeSearchController){}
 
     //*Methods*\\
     /**

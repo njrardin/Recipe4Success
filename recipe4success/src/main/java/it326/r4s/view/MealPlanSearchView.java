@@ -6,17 +6,11 @@ import it326.r4s.view.utilities.InputAccess;
 
 public class MealPlanSearchView {
     
-    //*Instance variable*\\
-    private MealPlanSearchController mpsController;
-
     //*Constructor*\\
     /**
      * Constructor for R4S's MealPlanSearchView
-     * @param mpsController
      */
-    public MealPlanSearchView(MealPlanSearchController mpsController){
-        this.mpsController = mpsController;
-    }
+    public MealPlanSearchView(MealPlanSearchController mpsController){}
 
     //*Methods*\\
     /**
