@@ -33,7 +33,7 @@ public class MealPlanView implements R4SMenu {
         System.out.println("Created on: " + mealPlanController.getMealPlan().getMealPlanDate());
         System.out.println();
         System.out.println("Recipes: ");
-        RecipeBookView.displayRecipes(mealPlanController.getRecipeControllers()); 
+        mealPlanController.getAuthorController().getRecipeBookController().getRecipeBookView().displayRecipes(mealPlanController.getRecipeControllers());
         System.out.println();
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");   

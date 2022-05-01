@@ -18,7 +18,6 @@ public class IngredientList extends Entity {
      * Creates a default IngredientList object.
      */
     public IngredientList() {
-        super();
         this.ingredients = new ArrayList<Ingredient>();
     }
 
@@ -42,14 +41,18 @@ public class IngredientList extends Entity {
     public boolean addIngredient(Ingredient toAdd) { //TODO: this is just straight up bad. Rework the model if needed but seriously
         for (Ingredient ingredient : this.ingredients) {
             if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
-                if (!ingredient.getUnit().equals(toAdd.getUnit()))
-                    try{
-                        UnitConverter.convertUnit(ingredient.getUnit(), ingredient.getQuantity(), toAdd.getUnit());
-                    } catch (Exception e) {
-                        //do nothing
+                if (ingredient.getUnit().unitType == toAdd.getUnit().unitType) {
+                    if (!ingredient.getUnit().equals(toAdd.getUnit())) {
+                        try{
+                            toAdd.setQuantity(UnitConverter.convertUnit(toAdd.getUnit(), toAdd.getQuantity(), ingredient.getUnit()));
+                            toAdd.setUnit(ingredient.getUnit());
+                        } catch (Exception e) {
+                            //do nothing
+                        }
                     }
-                ingredient.setQuantity(ingredient.getQuantity() + toAdd.getQuantity());
-                return true;
+                    ingredient.setQuantity(ingredient.getQuantity() + toAdd.getQuantity());
+                    return true;
+                }
             }
         }
         this.ingredients.add(toAdd);
@@ -163,11 +166,18 @@ public class IngredientList extends Entity {
      */
     @Override
     public String toString() {
-        String result = "List of Ingredients:\n";
-        for (Ingredient ingredient : this.ingredients) {
-            result += " -\t" + ingredient.toString();
+        String string = "";
+        int i = 1;
+        for(Ingredient ingredient: ingredients){
+            if(i == 1){
+                string += (i + ") " + ingredient.toString());
+            } else {
+                string += ("\n" + i + ") " + ingredient.toString());
+            }
+            System.out.println(i + ") " + ingredient.toString());
+            i++;
         }
-        return result;
+        return string;
     }
 
     /**
