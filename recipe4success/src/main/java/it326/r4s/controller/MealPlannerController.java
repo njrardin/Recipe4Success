@@ -17,15 +17,17 @@ public class MealPlannerController {
     //*Isntance Variables*\\
     private MealPlanner mealPlanner;
     private MealPlannerView mealPlannerView;
-
+    private UserController userController;
+    
     //*Constructor*\\
     /**
      * Constructor for R4S's MealPlannerController
      * @param mealPlanner - the controller's MealPlanner
      */
-    public MealPlannerController(MealPlanner mealPlanner){
+    public MealPlannerController(MealPlanner mealPlanner, UserController userController){
         this.mealPlanner = mealPlanner;
         this.mealPlannerView = new MealPlannerView(this);
+        this.userController = userController;
     }
 
     //*Methods*\\
@@ -36,13 +38,21 @@ public class MealPlannerController {
     public MealPlanner getMealPlanner(){
         return this.mealPlanner;
     }
-
+    
     /**
      * Getter for the controller's MealPlannerView
      * @return the MealPlannerView object
      */
     public MealPlannerView getMealPlannerView(){
         return this.mealPlannerView;
+    }
+
+    /**
+     * Getter for the UserController which owns the MealPlannerController
+     * @return teh UserController
+     */
+    public UserController getUserController(){
+        return this.userController;
     }
     
     /**

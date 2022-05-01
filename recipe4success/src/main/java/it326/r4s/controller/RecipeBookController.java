@@ -16,20 +16,30 @@ import it326.r4s.view.RecipeBookView;
 public class RecipeBookController {
     
     //*Instance Variables*\\
-    public RecipeBook recipeBook;
-    public RecipeBookView recipeBookView;
+    private RecipeBook recipeBook;
+    private RecipeBookView recipeBookView;
+    private UserController userController;
 
     //*Constructor*\\
     /**
      * Constructor for R4S's RecipeBookController
      * @param recipeBook - the controller's RecipeBook
      */
-    public RecipeBookController(RecipeBook recipeBook){
+    public RecipeBookController(RecipeBook recipeBook, UserController userController){
         this.recipeBook = recipeBook;
         this.recipeBookView = new RecipeBookView(this);
+        this.userController = userController;
     }
 
     //*Methods*\\
+    /**
+     * Getter for the controller's ReciepBook
+     * @return the RecipeBook object
+     */
+    public RecipeBook getRecipeBook(){
+        return this.recipeBook;
+    }
+    
     /**
      * Getter for the controller's RecipeBookview
      * @return the RecipeBookView object
@@ -39,12 +49,13 @@ public class RecipeBookController {
     }
 
     /**
-     * Getter for the controller's ReciepBook
-     * @return the RecipeBook object
+     * Getter for the UserController which owns the RecipeBookController
+     * @return the UserController
      */
-    public RecipeBook getRecipeBook(){
-        return this.recipeBook;
+    public UserController getUserController(){
+        return this.userController;
     }
+
 
     /**
      * Gets an ArrayList of RecipeControllers associated with all recipes in the recipeBook

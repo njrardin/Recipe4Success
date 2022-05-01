@@ -15,6 +15,7 @@ public class GroceryListController {
     //*Instance variables*\\
     private GroceryList groceryList;
     private GroceryListView glView;
+    private UserController userController;
 
     //*Constructor*\\
     /**
@@ -27,6 +28,34 @@ public class GroceryListController {
     }
 
     //*Methods*\\
+    /**
+     * Getter for the GroceryListController's GroceryList
+     * @return the GroceryList object
+     */
+    public GroceryList getGroceryList(){
+        return this.groceryList;
+    }
+
+    /**
+     * Getter for the GroceryListController's GroceryListView
+     * @return the GroceryListView object
+     */
+    public GroceryListView getGroceryListView(){
+        return this.glView;
+    }
+
+    /**
+     * Getter for the UserController that controls this GroceryListController
+     * @return the GroceryListController object
+     */
+    public UserController getUserController(){
+        return this.userController;
+    }
+
+    /**
+     * Getter for the IngredientListController which controls the GroceryList's IngredientList
+     * @return the IngredientListController
+     */
     public IngredientListController getIngredientListController() {
 		return new IngredientListController(groceryList.getIngredientList());
 	}
