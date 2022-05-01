@@ -13,12 +13,16 @@ import java.util.Collections;
 public class FoodItem extends Entity {
     // * Instance Variables *\\
     private String name;
+    private Collection<Category> categories;
 
     // *Constructors*\\
     /**
      * Creates a default FoodItem object.
      */
-    private FoodItem() {}
+    private FoodItem() {
+        name = "";
+        categories = new ArrayList<>();
+    }
 
     /**
      * Creates a FoodItem object with a specified name.
@@ -26,10 +30,36 @@ public class FoodItem extends Entity {
      * @param name the name of the FoodItem
      */
     private FoodItem(String name){
+        this();
         this.name = name;
     }
 
     // * Methods *\\
+    /**
+     * Adds the category if it is not already present.
+     * @param category the category to be added.
+     */
+    public void addCategory(Category category) {
+        if (!categories.contains(category)) {
+            categories.add(category);
+        }        
+    }
+
+    /**
+     * Removes the category.
+     * @param category the category to be removed.
+     */
+    public void removeCategory(Category category) {
+        categories.remove(category);
+    }
+
+    /**
+     * Removes all categories from the food item.
+     */
+    public void clearCategories() {
+        categories.clear();
+    }
+
     /**
      * Gets the FoodItem's name.
      * 
@@ -37,6 +67,14 @@ public class FoodItem extends Entity {
      */
     public String getName(){
         return this.name;
+    }
+
+    /**
+     * Gets the food items's categories.
+     * @return the collection of categories.
+     */
+    public Collection<Category> getCategories() {
+        return this.categories;
     }
 
     /**
