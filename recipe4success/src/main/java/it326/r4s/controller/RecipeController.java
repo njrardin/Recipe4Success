@@ -1,7 +1,5 @@
 package it326.r4s.controller;
 
-import java.util.Collection;
-
 import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
 import it326.r4s.model.User;

@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import it326.r4s.model.Meal;
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.Recipe;
-import it326.r4s.model.RecipeBook;
 import it326.r4s.model.User;
 import it326.r4s.view.MealPlanView;
-import it326.r4s.view.RecipeBookView;
 
 /**
  * Controller for R4S MealPlan
