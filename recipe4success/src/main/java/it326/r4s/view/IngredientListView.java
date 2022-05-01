@@ -1,9 +1,8 @@
 package it326.r4s.view;
 
-import java.util.Scanner;
-
 import it326.r4s.controller.IngredientListController;
 import it326.r4s.model.Ingredient;
+import it326.r4s.view.utilities.InputAccess;
 
 /**
  * View for R4S Recipe
@@ -43,12 +42,12 @@ public class IngredientListView {
         System.out.println();
         displayIngredients();
 
-        Scanner scan = ViewUtilities.scan;
+        InputAccess input = new InputAccess();
         int selection = -1;
         do{
             System.out.println("Please select an option by entering the corresponding number:");
             try{
-                selection = Integer.parseInt(scan.nextLine());
+                selection = Integer.parseInt(input.getInputLine());
             } catch (Exception e) {
                 System.out.println("Invalid input, selection must be a number:");
                 continue;

@@ -2,11 +2,6 @@ package it326.r4s.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
-
-import javax.lang.model.util.ElementScanner14;
-
-import com.google.gson.internal.sql.SqlTypesSupport;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UnitController;
@@ -16,13 +11,14 @@ import it326.r4s.model.Category;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
+import it326.r4s.view.utilities.InputAccess;
 
 /**
  * View for R4S Recipe
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeView implements CLI_Menu{
+public class RecipeView implements R4SMenu{
 
     //*Instance Variables*\\
     private RecipeController recipeController;
@@ -75,7 +71,8 @@ public class RecipeView implements CLI_Menu{
             "Re-Display Recipe",
             "Go back"
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+        InputAccess inputAccess = new InputAccess();
+        return inputAccess.getOptionSelection(title, prompt, options);
     }
     
     /**
@@ -93,7 +90,8 @@ public class RecipeView implements CLI_Menu{
             "Instructions",
             "Go back",
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+        InputAccess inputAccess = new InputAccess();
+        return inputAccess.getOptionSelection(title, prompt, options);
     }
 
     /**
@@ -140,13 +138,13 @@ public class RecipeView implements CLI_Menu{
      * @return an int representing the rating
      */
     public int getRatingFromUser(){
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         int acceptableRatings[] = {1,2,3,4,5};
         int ratingNum;
 
         do{
-            System.out.println("How many stars would you like to rate this recipe? (1, 2, 3, 4, or 5)");
-            ratingNum = Integer.parseInt(scan.nextLine());
+            System.out.print("How many stars would you like to rate this recipe? (1, 2, 3, 4, or 5) : ");
+            ratingNum = Integer.parseInt(inputAccess.getInputLine());
         } while (Arrays.asList(acceptableRatings).contains(ratingNum));
 
         System.out.println("You have successfully rated " + recipeController.getRecipe().getName() + " with a total of " + ratingNum + "/5 stars.");
@@ -165,11 +163,11 @@ public class RecipeView implements CLI_Menu{
      * @return true if confirmed to delete, false if deletion denied
      */
     public boolean deletionConfirmation() {
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         String input = "";
         do{
-            System.out.println("Are you sure you want to delete " + recipeController.getRecipe().getName() + " from your recipe book? (Y/N)");
-            input = scan.nextLine().toLowerCase();
+            System.out.print("Are you sure you want to delete " + recipeController.getRecipe().getName() + " from your recipe book? (Y/N) : ");
+            input = inputAccess.getInputLine().toLowerCase();
         }  while ( !(input.equals("y") || input.equals("n") ));
 
         if(input.equals("n")){
@@ -215,15 +213,15 @@ public class RecipeView implements CLI_Menu{
          * @return the recipes name
          */
         public static String getRecipeNameFromUser(){
-            Scanner scan = ViewUtilities.scan;
+            InputAccess inputAccess = new InputAccess();
             String name = "";
 
             while(true){
-                System.out.println("\nPlease provide the recipe's name:");
-                name = scan.nextLine();
+                System.out.print("\nPlease provide the recipe's name: ");
+                name = inputAccess.getInputLine();
                 if(name != ""){
-                    System.out.println("You provided the name \"" + name + ",\" is this correct? (Y/N)");
-                    if(scan.nextLine().toLowerCase().equals("y")){
+                    System.out.print("You provided the name \"" + name + "\", is this correct? (Y/N) : ");
+                    if(inputAccess.getInputLine().toLowerCase().equals("y")){
                         return name;
                     }
                 }
@@ -235,19 +233,19 @@ public class RecipeView implements CLI_Menu{
          * @return the recipes description
          */
 		public static String getDescriptionFromUser() {
-            Scanner scan = ViewUtilities.scan;
+            InputAccess inputAccess = new InputAccess();
             String description = "";
             while(true){
-                System.out.println("Please provide a description for the recipe");
-                description = scan.nextLine();
+                System.out.println("Please provide a description for the recipe:");
+                description = inputAccess.getInputLine();
     
-                System.out.println("You provided the description\n\n \"" 
+                System.out.println("You provided the description -\n\n \"" 
     
                 + description + 
     
-                "\"\n\n is this correct? (Y/N)");
+                "\"\n\n - is this correct? (Y/N) : ");
     
-                if(scan.nextLine().toLowerCase().equals("y")){
+                if(inputAccess.getInputLine().toLowerCase().equals("y")){
                     return description;
                 }
             }
@@ -258,12 +256,12 @@ public class RecipeView implements CLI_Menu{
          * @return the recipes serving size
          */
 		public static int getServingSizeFromUser() {
-            Scanner scan = ViewUtilities.scan;
+            InputAccess inputAccess = new InputAccess();
             int servingSize;
             while(true){
-                System.out.println("How many people does this recipe serve?");
+                System.out.print("How many people does this recipe serve? : ");
                 try{
-                    servingSize = Integer.parseInt(scan.nextLine());
+                    servingSize = Integer.parseInt(inputAccess.getInputLine());
                 } catch (NumberFormatException e) {
                     continue;
                 }
@@ -272,8 +270,8 @@ public class RecipeView implements CLI_Menu{
                     continue;
                 }
             
-                System.out.println("You provided a serving-size of \"" + servingSize + "\" is this correct? (Y/N)");
-                if(scan.nextLine().toLowerCase().equals("y")){
+                System.out.print("You provided a serving-size of \"" + servingSize + "\" is this correct? (Y/N) : ");
+                if(inputAccess.getInputLine().toLowerCase().equals("y")){
                     return servingSize;
                 }
             }
@@ -284,7 +282,7 @@ public class RecipeView implements CLI_Menu{
          * @return the recipes name
          */
 		public static ArrayList<String> getInstructionsFromUser() {
-            Scanner scan = ViewUtilities.scan;
+            InputAccess inputAccess = new InputAccess();
             String resp = "";
             String instructionString;
             ArrayList<String> instructions = new ArrayList<String>();
@@ -300,15 +298,15 @@ public class RecipeView implements CLI_Menu{
                     System.out.println("What is the next step in creating the recipe?\n");
                 }
     
-                instructionString = scan.nextLine();
+                instructionString = inputAccess.getInputLine();
                 
                 //confirming each step's correctness
-                System.out.println("You provided step #" + stepNum + " as\n\n \"" 
+                System.out.print("You provided step #" + stepNum + " as\n\n \"" 
     
                 + instructionString + 
     
-                "\"\n\nis this correct? (Y/N)");
-                resp = scan.nextLine().toLowerCase();
+                "\"\n\nis this correct? (Y/N) : ");
+                resp = inputAccess.getInputLine().toLowerCase();
                 if(resp.equals("y")){
                     instructions.add(instructionString);
                     stepNum++;
@@ -319,8 +317,8 @@ public class RecipeView implements CLI_Menu{
     
                 //check to see if the user wishes to add another step
                 do {
-                    System.out.println("Would you like to add another step? (Y/N)");
-                    resp = scan.nextLine().toLowerCase();
+                    System.out.print("Would you like to add another step? (Y/N) : ");
+                    resp = inputAccess.getInputLine().toLowerCase();
                 } while (!(resp.equals("y") || resp.equals("n")));
                 
                 if(resp.equals("n")){
@@ -334,7 +332,7 @@ public class RecipeView implements CLI_Menu{
          * @return the recipes name
          */
 		public static IngredientList getIngredientsFromUser() {
-            Scanner scan = ViewUtilities.scan;
+            InputAccess inputAccess = new InputAccess();
             String resp = "";
 
             String ingredientName;
@@ -349,28 +347,37 @@ public class RecipeView implements CLI_Menu{
             while(true){
                 //get ingredient name
                 if(ingredientNum == 1){
-                    System.out.println("What is the first ingredient?\n");
+                    System.out.print("What is the first ingredient? : ");
                 }
                 else{
-                    System.out.println("What is the next ingredient?\n");
+                    System.out.print("What is the next ingredient? : ");
                 }
-                ingredientName = scan.nextLine().toLowerCase();
+                ingredientName = inputAccess.getInputLine().toLowerCase();
 
                 //get the unit
                 System.out.println("What is the unit of measure for " + ingredientName + "?");
                 unit = UnitController.getUnit();
 
                 //get the quantity
-                System.out.println("How many " + unit.stringRep + "s are used?");
-                ingredientQuantity = Double.parseDouble(scan.nextLine());
+                System.out.print("How many " + unit.stringRep + "s are used? : ");
+                ingredientQuantity = -1;
+                do{
+                    try{
+                        ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
+                        break;
+                    } catch (Exception e) {
+                        System.out.print("Please enter a quantity in integer or decimal form : ");
+                        continue;
+                    }
+                } while(true);
                 
                 //confirm accuracy
-                System.out.println("You provided ingredient #" + ingredientNum + " as\n\n \"" 
+                System.out.print("You provided ingredient #" + ingredientNum + " as\n\n \"" 
     
                 + ingredientQuantity + " " + unit.stringRep + "s of " + ingredientName +
     
-                "\"\n\n is this correct? (Y/N)");
-                resp = scan.nextLine().toLowerCase();
+                "\"\n\n is this correct? (Y/N) : ");
+                resp = inputAccess.getInputLine().toLowerCase();
                 if(resp.equals("y")){
 
                     ingredientList.addIngredient(new Ingredient(ingredientName, ingredientQuantity, unit));
@@ -382,8 +389,8 @@ public class RecipeView implements CLI_Menu{
                 
                 //check to see if the user wishes to add another step
                 do {
-                    System.out.println("Would you like to add another ingredient? (Y/N)");
-                    resp = scan.nextLine().toLowerCase();
+                    System.out.print("Would you like to add another ingredient? (Y/N) : ");
+                    resp = inputAccess.getInputLine().toLowerCase();
                 } while (!(resp.equals("y") || resp.equals("n")));
                 
                 if(resp.equals("n")){
@@ -398,15 +405,14 @@ public class RecipeView implements CLI_Menu{
          * @return the recipes name
          */
 		public static ArrayList<Category> getCategoriesFromUser() {
-            Scanner scan = ViewUtilities.scan;
+            InputAccess inputAccess = new InputAccess();
             String resp = "";
             String categoryString;
             ArrayList<Category> categories = new ArrayList<Category>();
 
-
             do{
-                System.out.println("Would you like to add any categories? (Y/N)");
-                resp = scan.nextLine().toLowerCase();
+                System.out.print("Would you like to add any categories? (Y/N) : ");
+                resp = inputAccess.getInputLine().toLowerCase();
             }while (!(resp.equals("y") || resp.equals("n")));
             if(resp.equals("n")){
                 return categories;
@@ -417,21 +423,21 @@ public class RecipeView implements CLI_Menu{
             System.out.println("Alright, let's add some categories for the recipe.");
             while(true){
                 if(categoryNum == 1){
-                    System.out.println("What would you like to call the first category?\n");
+                    System.out.print("What would you like to call the first category? : ");
                 }
                 else{
-                    System.out.println("What would you like to call the next category?\n");
+                    System.out.print("What would you like to call the next category? : ");
                 }
     
-                categoryString = scan.nextLine();
+                categoryString = inputAccess.getInputLine();
                 
                 //confirm accuracy
-                System.out.println("You provided the category " 
+                System.out.print("You provided the category \"" 
     
                 + categoryString + 
     
-                ". Is this correct? (Y/N)");
-                resp = scan.nextLine().toLowerCase();
+                "\". Is this correct? (Y/N) : ");
+                resp = inputAccess.getInputLine().toLowerCase();
                 if(resp.equals("y")){
                     categories.add(new Category(categoryString));
                     categoryNum++;
@@ -442,8 +448,8 @@ public class RecipeView implements CLI_Menu{
                 
                 //check if adding another category
                 do {
-                    System.out.println("Would you like to add another category? (Y/N)");
-                    resp = scan.nextLine().toLowerCase();
+                    System.out.print("Would you like to add another category? (Y/N) : ");
+                    resp = inputAccess.getInputLine().toLowerCase();
                 } while (!(resp.equals("y") || resp.equals("n")));
                 
                 if(resp.equals("n")){
@@ -458,10 +464,17 @@ public class RecipeView implements CLI_Menu{
          * @return true if confirmed, false if not
          */
 		public static boolean confirmBuild() {
-            Scanner scan = ViewUtilities.scan;
+            InputAccess inputAccess = new InputAccess();
             String resp = "";
-            //TODO: implement or delete this
-			return true;
+            System.out.println("\nRecipe construction complete.\n");
+            do {
+                System.out.print("Please confirm the addition of this recipe to your Recipe Book. (Y/N) : ");
+                resp = inputAccess.getInputLine().toLowerCase();
+            } while (!(resp.equals("y") || resp.equals("n")));
+            if (resp.equals("n")) {
+                return false;
+            }
+            return true;
 		}
 
     }

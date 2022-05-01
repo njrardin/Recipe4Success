@@ -50,7 +50,10 @@ public class MealPlanner extends Entity {
      * @param index the new active meal plan index.
      */
     public boolean setActiveMealPlanIndex(int index) {
-        this.activeMealPlanIndex = index; //TODO: Implement the logic to ensure this is within bounds
+        if(index < 0 || mealPlans.size() <= index){ //if out of range
+            return false;
+        }
+        this.activeMealPlanIndex = index;
         return true;
     }
 

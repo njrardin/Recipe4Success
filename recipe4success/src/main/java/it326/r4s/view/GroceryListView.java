@@ -1,19 +1,18 @@
 package it326.r4s.view;
 
-import java.util.Scanner;
-
 import it326.r4s.controller.GroceryListController;
-import it326.r4s.controller.IngredientListController;
 import it326.r4s.controller.UnitController;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
+import it326.r4s.view.utilities.DisplayUtils;
+import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S GroceryList
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class GroceryListView implements CLI_Menu{
+public class GroceryListView implements R4SMenu{
     
     //*Instance Variable*\\
     private GroceryListController glController;
@@ -32,13 +31,7 @@ public class GroceryListView implements CLI_Menu{
      * Displays the header for the grocery list menu
      */
     public void displayHeader() {
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Grocery List --                              ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println(DisplayUtils.getHeader("Grocery List"));
 	}
 
     /**
@@ -56,21 +49,26 @@ public class GroceryListView implements CLI_Menu{
             "Export this Grocery List",
             "Go back"
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+
+        InputAccess input = new InputAccess();
+        return input.getOptionSelection(title, prompt, options);
     }
 
     /**
      * Displays the grocery list to the screen
      */
 	public void displayGroceryList() {
-        System.out.printf("%52s%n%n", "-- My Grocery List --");
+        System.out.println("Grocery List:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         if(glController.getIngredientListController().getIngredientList().getIngredients().isEmpty()){
-            System.out.println("The grocery list is currently empty\n");
+            System.out.println("\nThe grocery list is currently empty\n");
         }
         else{
             glController.getIngredientListController().getIngredientListView().displayIngredients();
             System.out.println();
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
+
 	}
 
     /**
@@ -80,7 +78,7 @@ public class GroceryListView implements CLI_Menu{
     public IngredientList getNewIngredientsFromUser() {
        System.out.println("Alright! Let's add some ingredients to the list.");
 
-       Scanner scan = ViewUtilities.scan;
+       InputAccess inputAccess = new InputAccess();
        String resp = "";
 
        String ingredientName;
@@ -100,7 +98,7 @@ public class GroceryListView implements CLI_Menu{
            else{
                System.out.println("What is the next ingredient?\n");
            }
-           ingredientName = scan.nextLine().toLowerCase();
+           ingredientName = inputAccess.getInputLine().toLowerCase();
 
            //get the unit
            System.out.println("What is the unit of measure for " + ingredientName + "?");
@@ -108,7 +106,16 @@ public class GroceryListView implements CLI_Menu{
 
            //get the quantity
            System.out.println("How many " + unit.stringRep + "s are needed?");
-           ingredientQuantity = Double.parseDouble(scan.nextLine());
+            ingredientQuantity = -1;
+            do{
+                try{
+                    ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Please select an option by typing the corresponding number");
+                    continue;
+                }
+            } while(true);
            
            //confirm accuracy
            System.out.println("You provided ingredient #" + ingredientNum + " as\n\n \"" 
@@ -116,7 +123,7 @@ public class GroceryListView implements CLI_Menu{
            + ingredientQuantity + " " + unit.stringRep + "s of " + ingredientName +
 
            "\"\n\n is this correct? (Y/N)");
-           resp = scan.nextLine().toLowerCase();
+           resp = inputAccess.getInputLine().toLowerCase();
            if(resp.equals("y")){
 
                ingredientList.addIngredient(new Ingredient(ingredientName, ingredientQuantity, unit));
@@ -129,7 +136,7 @@ public class GroceryListView implements CLI_Menu{
            //check to see if the user wishes to add another step
            do {
                System.out.println("Would you like to add another ingredient? (Y/N)");
-               resp = scan.nextLine().toLowerCase();
+               resp = inputAccess.getInputLine().toLowerCase();
            } while (!(resp.equals("y") || resp.equals("n")));
            
            if(resp.equals("n")){
@@ -148,14 +155,14 @@ public class GroceryListView implements CLI_Menu{
 	}
 
     public boolean confirmTransfer() {
-        Scanner scan = ViewUtilities.scan;
-        String input = "";
+        InputAccess input = new InputAccess();
+        String response = "";
         do{
             System.out.println("Are you sure you want to transfer all the ingredients to your pantry? (Y/N)");
-            input = scan.nextLine().toLowerCase();
-        }  while ( !(input.equals("y") || input.equals("n") ));
+            response = input.getInputLine().toLowerCase();
+        }  while ( !(response.equals("y") || response.equals("n") ));
 
-        if(input.equals("n")){
+        if(response.equals("n")){
             return false;
         }
         else{

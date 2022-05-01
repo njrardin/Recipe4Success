@@ -1,10 +1,6 @@
 package it326.r4s.controller;
 
-import java.util.Scanner;
-
-import it326.r4s.model.User;
 import it326.r4s.view.MainMenuView;
-import it326.r4s.view.ViewUtilities;
 /**
  * Controller for R4S MainMenu
  * @author Nate Rardin (njrardi@ilstu.edu)

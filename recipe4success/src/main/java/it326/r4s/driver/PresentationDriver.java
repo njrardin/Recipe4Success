@@ -15,7 +15,8 @@ import it326.r4s.model.RecipeBook;
 import it326.r4s.model.UnitConverter;
 import it326.r4s.model.User;
 import it326.r4s.model.Recipe.RecipeBuilder;
-import it326.r4s.view.ViewUtilities;
+import it326.r4s.view.utilities.DisplayUtils;
+import it326.r4s.view.utilities.InputAccess;
 
 /**
  * Controller for R4S RecipeBook
@@ -33,13 +34,7 @@ public class PresentationDriver {
     }
 
     private static void displayWelcome(){
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                      -- WELCOME TO RECIPES 4 SUCCESS! --                      ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println(DisplayUtils.getHeader("-- WELCOME TO RECIPE 4 SUCCESS --"));
     }
 
     private static void launchProgram(){
@@ -61,7 +56,8 @@ public class PresentationDriver {
         System.out.println("Thank you for using Recipe4Success!");
         System.out.println("\n\tapplication exiting...\n\n");
         
-        ViewUtilities.scan.close();
+        InputAccess inputAccess = new InputAccess();
+        inputAccess.close();
         System.exit(0);
     }
     

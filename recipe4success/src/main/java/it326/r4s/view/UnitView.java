@@ -1,6 +1,6 @@
 package it326.r4s.view;
 
-import java.util.Scanner;
+import it326.r4s.view.utilities.InputAccess;
 
 /**
  * View for R4S Recipe
@@ -14,6 +14,7 @@ public class UnitView {
      * @return - an int representing the unit chosen
      */
     public static int getUnitSelection() {
+        System.out.println();
         System.out.println("Please select a unit of measure from the list:");
         System.out.println("");
         System.out.println("1) None");
@@ -32,16 +33,16 @@ public class UnitView {
         System.out.println("14) Gram");
         System.out.println("15) Kilogram");
 
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         int selection = -1;
         do{
             try{
-                selection = Integer.parseInt(scan.nextLine());
+                selection = Integer.parseInt(inputAccess.getInputLine());
             } catch (Exception e) {
-                System.out.println("Please select an option by typing the corresponding number");
+                System.out.println("\nPlease select an option by typing the corresponding number");
                 continue;
             }
-        } while(selection >= 15 && selection <=1);
+        } while(selection > 15 || selection <1);
         return selection;
     }
 }

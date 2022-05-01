@@ -1,16 +1,16 @@
 package it326.r4s.view;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
-import it326.r4s.model.Recipe;
+import it326.r4s.view.utilities.DisplayUtils;
+import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeBookView implements CLI_Menu {
+public class RecipeBookView implements R4SMenu {
     
     //*Instance Variables*\\
     private RecipeBookController rbController;
@@ -29,14 +29,7 @@ public class RecipeBookView implements CLI_Menu {
      * Displays the Recipe Book header to the user
      */
     public void displayHeader(){
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Recipe Book --                               ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println();
+        System.out.println(DisplayUtils.getHeader("Recipe Book"));
     }
 
     /**
@@ -44,7 +37,7 @@ public class RecipeBookView implements CLI_Menu {
      * @return an int representing the selected option
      */
     public int getMenuOptionSelection(){
-        String title = "Recipe Book";
+        String title = "Recipe Book Options";
         String prompt = "What would you like to do?";
         String[] options = {
             "Search and filter recipes",
@@ -54,7 +47,8 @@ public class RecipeBookView implements CLI_Menu {
             "Select a recipe",
             "Go back"
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+        InputAccess inputAccess = new InputAccess();
+        return inputAccess.getOptionSelection(title, prompt, options);
     }
 
     /**
@@ -70,12 +64,15 @@ public class RecipeBookView implements CLI_Menu {
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
     public static void displayRecipes(ArrayList<RecipeController> recipeControllers){
+        System.out.println("Recipes:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
         int i = 1;
         for(RecipeController recipeController: recipeControllers){
             System.out.print(i + ") ");
             recipeController.getRecipeView().displayOneline();
             i++;
         }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
 
     /**
@@ -86,19 +83,19 @@ public class RecipeBookView implements CLI_Menu {
      */
     public static RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
         displayRecipes(recipeControllers);
-        if (askSelectRecipe() == false){ //TODO: use menu system to do this
+        if (askSelectRecipe() == false){
             throw new RuntimeException();
         }    
 
         //Selection loop; only exits once a valid recipe is selcted
         String input;
         int inputNum = -1;
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         do{
             System.out.println("\n Which recipe would you like to select?");
             System.out.println("(please type the selection number or type \"exit\" to go back)");
 
-            input = scan.nextLine();
+            input = inputAccess.getInputLine();
             if(input.toLowerCase().equals("exit")){
                 throw new RuntimeException();
             }
@@ -125,13 +122,13 @@ public class RecipeBookView implements CLI_Menu {
      * @return true if confirmed, false if denied
      */
     private static boolean askSelectRecipe() {
-        Scanner scan = ViewUtilities.scan;
-        String input = "";
+        InputAccess inputAccess = new InputAccess();
+        String response = "";
         do{
-        System.out.println("Would you like to select a recipe? (Y/N)");
-        input = scan.nextLine().toLowerCase();
-        } while ( !(input.equals("y") || input.equals("n")) );
-        if(input.equals("n")){
+        System.out.print("Would you like to select a recipe? (Y/N) : ");
+        response = inputAccess.getInputLine().toLowerCase();
+        } while ( !(response.equals("y") || response.equals("n")) );
+        if(response.equals("n")){
             return false;
         }
         return true;
