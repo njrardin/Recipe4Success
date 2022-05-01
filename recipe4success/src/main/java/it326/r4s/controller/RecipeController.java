@@ -188,37 +188,31 @@ public class RecipeController {
      */
     public static class RecipeBuilderController {
 
-        private RecipeBuilderView rBuildView;
-
-        public RecipeBuilderController(){
-            this.rBuildView = new RecipeBuilderView(this);
-        }
-
         public Recipe buildUserRecipe() throws RuntimeException{
 
             Recipe newRecipe;
-            rBuildView.displayRecipeBuildInit();
+            RecipeBuilderView.displayRecipeBuildInit();
 
             //set name & create builder
-            Recipe.RecipeBuilder rBuild = new Recipe.RecipeBuilder(rBuildView.getRecipeNameFromUser());
+            Recipe.RecipeBuilder rBuild = new Recipe.RecipeBuilder(RecipeBuilderView.getRecipeNameFromUser());
             
             //set description
-            rBuild.setDescription(rBuildView.getDescriptionFromUser());
+            rBuild.setDescription(RecipeBuilderView.getDescriptionFromUser());
 
             //set serving size
-            rBuild.setServingSize(rBuildView.getServingSizeFromUser());
+            rBuild.setServingSize(RecipeBuilderView.getServingSizeFromUser());
 
             //set instructions
-            rBuild.setInstructions(rBuildView.getInstructionsFromUser());
+            rBuild.setInstructions(RecipeBuilderView.getInstructionsFromUser());
 
             //set ingredient list
-            rBuild.setIngredientList(rBuildView.getIngredientsFromUser());
+            rBuild.setIngredientList(RecipeBuilderView.getIngredientsFromUser());
 
             //set categories
-            rBuild.setCategories(rBuildView.getCategoriesFromUser());
+            rBuild.setCategories(RecipeBuilderView.getCategoriesFromUser());
 
             //confirm the build
-            while(!(rBuildView.confirmBuild())){
+            while(!(RecipeBuilderView.confirmBuild())){
                 //TODO: What to do if they don't confirm
             }
 
