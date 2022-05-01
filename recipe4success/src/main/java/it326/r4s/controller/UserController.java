@@ -10,10 +10,13 @@ import it326.r4s.view.UserView;
 public class UserController {
     
     //*Instance Variables*\\
-    private static UserController globalUC = null;
-
-    private User theUser;
+    private User user;
     private UserView userView;
+
+    private GroceryListController groceryListController;
+    private PantryController pantryController;
+    private MealPlannerController mealPlannerController;
+    private RecipeBookController recipeBookController;
 
     //*Constructor*\\
     /**
@@ -23,50 +26,61 @@ public class UserController {
      * and to provide a global access point for the User and its controller
      * @param theUser - the user associated with the controller
      */
-    private UserController(User theUser){
-        this.theUser = theUser;
-        this.userView = new UserView();
+    public UserController(User theUser){
+        this.user = theUser;
+        this.groceryListController = new GroceryListController(user.getGroceryList(), this);
+        this.pantryController = new PantryController(user.getPantry(), this);
+        this.mealPlannerController = new MealPlannerController(user.getMealPlanner(), this);
+        this.recipeBookController = new RecipeBookController(user.getRecipeBook(), this);
     }
 
     //*Methods\\
     /**
-     * Initializes the global user controller
-     * @param theUser - the user with which to assoicate the controller
-     * @return the controller
+     * Getter for the UserController's User
+     * @return the User object
      */
-    public static UserController initUserController(User theUser){
-        if (globalUC == null){
-            globalUC = new UserController(theUser);
-        }
-        return globalUC;
+    public User getUser(){
+        return user;
     }
 
     /**
-     * Static getter for the singleton user controller
-     * @return the user controller
-     * @throws IllegalStateException - thrown when getter is used without the controller being initialized
-     */
-    public static UserController getUserController() throws IllegalStateException{
-        if (globalUC == null){
-            throw new IllegalStateException();
-        }
-        return globalUC;
-    }
-
-    /**
-     * Getter for the controller's User
-     * @return
-     */
-    public User getGlobalUser(){
-        return theUser;
-    }
-
-    /**
-     * Getter for the controller's UserView
-     * @return
+     * Getter for the UserController's UserView
+     * @return the UserView object
      */
     public UserView getUserView(){
         return userView;
+    }
+    
+    /**
+     * Getter for the UserController's UserView
+     * @return the UserView object
+     */
+    public GroceryListController getGroceryListController(){
+        return this.groceryListController;
+    }
+
+    /**
+     * Getter for the UserController's GroceryListController
+     * @return the PantryController object
+     */
+    public PantryController getPantryController(){
+        return this.pantryController;
+    }
+
+    /**
+     * Getter for the UserController's MealPlannerController
+     * @return the MealPlannerController object
+     */
+    public MealPlannerController getMealPlannerController(){
+        return this.mealPlannerController;
+    }
+
+    /**
+     * Getter for the UserController's RecipeBookController
+     * @return the RecipeBookController object
+     */
+    public RecipeBookController getRecipeBookController(){
+        return this.recipeBookController;
     }
 
     /**
@@ -74,8 +88,7 @@ public class UserController {
      * to execute the process of opening that menu of the application
      */
     public void openRecipeBook(){
-        RecipeBookController rbController = new RecipeBookController(theUser.getRecipeBook());
-        rbController.openRecipeBook();
+        recipeBookController.openRecipeBook();
     }
 
     /**
@@ -83,8 +96,7 @@ public class UserController {
      * to execute the process of opening that menu of the application
      */
     public void openMealPlanner(){
-        MealPlannerController mpController = new MealPlannerController(theUser.getMealPlanner());
-        mpController.openMealPlanner();
+        mealPlannerController.openMealPlanner();
     }
 
     /**
@@ -92,7 +104,6 @@ public class UserController {
      * to execute the process of opening that menu of the application
      */
     public void openPantry(){
-        PantryController pantryController = new PantryController(theUser.getPantry());
         pantryController.openPantry();
     }
 
@@ -101,8 +112,7 @@ public class UserController {
      * to execute the process of opening that menu of the application
      */
     public void accessGroceryList(){
-        GroceryListController glController = new GroceryListController(theUser.getGroceryList());
-        glController.openGroceryList();
+        groceryListController.openGroceryList();
     }
     
 }
