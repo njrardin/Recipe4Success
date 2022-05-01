@@ -22,9 +22,10 @@ public class GroceryListController {
      * Constructor for R4S's GroceryListController
      * @param groceryList - the controller's GroceryList object
      */
-    public GroceryListController(GroceryList groceryList) {
+    public GroceryListController(GroceryList groceryList, UserController userController) {
         this.groceryList = groceryList;
         this.glView = new GroceryListView(this);
+        this.userController = userController;
     }
 
     //*Methods*\\
@@ -120,7 +121,7 @@ public class GroceryListController {
     public void transferToPantry() {
         if(glView.confirmTransfer()){
             //move ingredients to the pantry
-            Pantry thePantry = UserController.getUserController().getGlobalUser().getPantry();
+            Pantry thePantry = userController.getPantryController().getPantry();
             thePantry.addIngredientList(groceryList.getIngredientList());
             //remove all of the ingredients in the grocery list
             groceryList.getIngredientList().makeEmpty();
