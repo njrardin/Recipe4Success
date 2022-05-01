@@ -41,15 +41,18 @@ public class IngredientList extends Entity {
     public boolean addIngredient(Ingredient toAdd) { //TODO: this is just straight up bad. Rework the model if needed but seriously
         for (Ingredient ingredient : this.ingredients) {
             if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
-                if (!ingredient.getUnit().equals(toAdd.getUnit()))
-                    try{
-                        toAdd.setQuantity(UnitConverter.convertUnit(toAdd.getUnit(), toAdd.getQuantity(), ingredient.getUnit()));
-                        toAdd.setUnit(ingredient.getUnit());
-                    } catch (Exception e) {
-                        //do nothing
+                if (ingredient.getUnit().unitType == toAdd.getUnit().unitType) {
+                    if (!ingredient.getUnit().equals(toAdd.getUnit())) {
+                        try{
+                            toAdd.setQuantity(UnitConverter.convertUnit(toAdd.getUnit(), toAdd.getQuantity(), ingredient.getUnit()));
+                            toAdd.setUnit(ingredient.getUnit());
+                        } catch (Exception e) {
+                            //do nothing
+                        }
                     }
-                ingredient.setQuantity(ingredient.getQuantity() + toAdd.getQuantity());
-                return true;
+                    ingredient.setQuantity(ingredient.getQuantity() + toAdd.getQuantity());
+                    return true;
+                }
             }
         }
         this.ingredients.add(toAdd);
