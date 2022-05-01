@@ -107,9 +107,7 @@ public class MealPlanController  {
         System.out.println("Recipe added successfully");
     }
 
-    public void removeRecipeFromMealPlan() {
-        RecipeBook recipeBook = UserController.getUserController().getGlobalUser().getRecipeBook();
-        
+    public void removeRecipeFromMealPlan() {        
         System.out.println("Which recipe would you like to remove?");
 
         RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(getRecipeControllers());
