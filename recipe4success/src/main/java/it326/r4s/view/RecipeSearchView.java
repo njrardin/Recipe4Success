@@ -27,7 +27,7 @@ public class RecipeSearchView {
         do{
             System.out.print("Please enter the term to search the recipes for: ");
             response = inputAccess.getInputLine().toLowerCase();
-        } while (response == "");
+        } while (response.equals(""));
 
         return response;
     }
