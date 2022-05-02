@@ -3,6 +3,11 @@ package it326.r4s.controller;
 import it326.r4s.model.Ingredient;
 import it326.r4s.view.IngredientView;
 
+/**
+ * Controller for R4S IngredientController
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 5/01/22
+ */
 public class IngredientController {
     
     //*Instance Varaibles*\\

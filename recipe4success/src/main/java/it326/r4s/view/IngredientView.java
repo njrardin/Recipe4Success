@@ -3,6 +3,11 @@ package it326.r4s.view;
 import it326.r4s.controller.IngredientController;
 import it326.r4s.view.utilities.InputAccess;
 
+/**
+ * Controller for R4S IngredientView
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 5/01/22
+ */
 public class IngredientView {
     
     public IngredientController ingredientController;

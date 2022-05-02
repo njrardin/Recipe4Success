@@ -2,7 +2,11 @@ package it326.r4s.controller;
 
 import it326.r4s.model.FoodItem;
 import it326.r4s.view.FoodItemView;
-
+/**
+ * Controller for R4S FoodItem
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 5/01/22
+ */
 public class FoodItemController {
     
     //*Instance Variables*\\

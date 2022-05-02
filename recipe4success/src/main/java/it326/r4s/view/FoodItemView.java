@@ -2,6 +2,11 @@ package it326.r4s.view;
 
 import it326.r4s.view.utilities.InputAccess;
 
+/**
+ * Controller for R4S FoodItemView
+ * @author Nate Rardin (njrardi@ilstu.edu)
+ * @date 5/01/22
+ */
 public class FoodItemView {
     
     //*Constructor*\\
