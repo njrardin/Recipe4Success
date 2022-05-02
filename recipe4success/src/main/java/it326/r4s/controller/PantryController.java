@@ -101,7 +101,7 @@ public class PantryController {
      * adding an ingredient to the pantry
      */
     public void addIngredient() {
-        pantry.addIngredientList(pantryView.getNewIngredientsFromUser());
+        pantry.addIngredients(pantryView.getNewIngredientsFromUser());
     }
     
     /**
