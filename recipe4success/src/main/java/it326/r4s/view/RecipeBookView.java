@@ -1,9 +1,6 @@
 package it326.r4s.view;
 
-import java.util.ArrayList;
 import java.util.Collection;
-
-import org.apache.commons.collections4.iterators.CollatingIterator;
 
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
@@ -48,7 +45,7 @@ public class RecipeBookView implements R4SMenu {
             "Import a recipe",
             "Export a recipe",
             "Create a new recipe",
-            "Select a recipe",
+            "Open a recipe",
             "Go back"
         };
         InputAccess inputAccess = new InputAccess();
@@ -67,14 +64,19 @@ public class RecipeBookView implements R4SMenu {
      * list of recipeControllers
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
-    public void displayRecipes(Collection<RecipeController> recipeControllers){
+    public void displayRecipes(Collection<RecipeController> recipeControllers) {
         System.out.println("Recipes:");
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
-        int i = 1;
-        for(RecipeController recipeController: recipeControllers){
-            System.out.print(i + ") ");
-            recipeController.getRecipeView().displayOneline();
-            i++;
+        if(recipeControllers == null){
+            System.out.println("\n There are no recipes in the RecipeBook yet. Try adding some!");
+        }
+        else{
+            int i = 1;
+            for(RecipeController recipeController: recipeControllers){
+                System.out.print(i + ") ");
+                recipeController.getRecipeView().displayOneline();
+                i++;
+            }
         }
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
@@ -83,10 +85,14 @@ public class RecipeBookView implements R4SMenu {
      * Displays a series of recipes and allows the user to select one
      * @param recipeControllers - an ArrayList of RecipeControllers to present as selection options to the user
      * @return the RecipeController who's recipe was selected
-     * @throws RuntimeException - if the user aborts the selection process
+     * @throws RuntimeException if the user aborts the selection process
+     * @throws IllegalArgumentException if recipeControllers is null
      */
-    public RecipeController getRecipeSelection(Collection<RecipeController> recipeControllers) throws RuntimeException{    
+    public RecipeController getRecipeSelection(Collection<RecipeController> recipeControllers) throws RuntimeException, IllegalArgumentException{    
         displayRecipes(recipeControllers);
+        if(recipeControllers == null){
+            throw new IllegalArgumentException();
+        }
         if (askSelectRecipe() == false){
             throw new RuntimeException();
         }    
@@ -96,7 +102,7 @@ public class RecipeBookView implements R4SMenu {
         int inputNum = -1;
         InputAccess inputAccess = new InputAccess();
         do{
-            System.out.println("\n Which recipe would you like to select?");
+            System.out.println("\n Which recipe would you like to open?");
             System.out.print("(please type the selection number or type \"exit\" to go back) : ");
 
             input = inputAccess.getInputLine();
@@ -122,14 +128,14 @@ public class RecipeBookView implements R4SMenu {
     }
 
     /**
-     * A confirmation option for selecting a recipe
+     * A confirmation option for opening a recipe
      * @return true if confirmed, false if denied
      */
     private static boolean askSelectRecipe() {
         InputAccess inputAccess = new InputAccess();
         String response = "";
         do{
-        System.out.print("Would you like to select a recipe? (Y/N) : ");
+        System.out.print("Would you like to open a recipe? (Y/N) : ");
         response = inputAccess.getInputLine().toLowerCase();
         } while ( !(response.equals("y") || response.equals("n")) );
         if(response.equals("n")){

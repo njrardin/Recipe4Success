@@ -46,6 +46,15 @@ public class RecipeSearchController {
     public RecipeSearchView getRecipeSearchView(){
         return recipeSearchView;
     }
+    
+    /**
+     * Facilitates the user
+     * searching through meal plans
+     * @return a list of mealplans that meet the search criteria
+     */
+    public Collection<Recipe> search(){
+        return searchFor(recipeSearchView.getSearchQuery());
+    }
 
     /**
      * Searches through the recipeSearch object's recipes attributes and categories using the searchQuery
@@ -53,7 +62,6 @@ public class RecipeSearchController {
      * @return an ArrayList of recipes that match the query
      */
     public ArrayList<Recipe> searchFor(String searchQuery) {
-        return new ArrayList<Recipe>( CollectionUtils.union(recipeSearch.searchFor(searchQuery), recipeSearch.searchFor(new Category(searchQuery))) );
-
+        return new ArrayList<Recipe>( CollectionUtils.union(recipeSearch.searchFor(searchQuery), recipeSearch.searchFor(Category.Pool.getInstance().getCategory(Category.Type.RECIPE,searchQuery))));
     }
 }

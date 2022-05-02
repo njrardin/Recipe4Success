@@ -73,7 +73,7 @@ public class JSON_PorterTest {
             assertTrue(importedUser.equals(user));
         } catch (Exception e) {
             // If any exception is thrown, then the test fails.
-            fail();
+            fail(e.getClass().toString());            
         }
     }
 }

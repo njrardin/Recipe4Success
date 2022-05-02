@@ -103,7 +103,7 @@ public class GroceryListController {
      * adding an ingredient to the grocerylist
      */
     public void addIngredient() {
-        groceryList.addIngredientList(glView.getNewIngredientsFromUser());
+        groceryList.addIngredients(glView.getNewIngredientsFromUser());
     }
     
     /**
@@ -122,7 +122,7 @@ public class GroceryListController {
         if(glView.confirmTransfer()){
             //move ingredients to the pantry
             Pantry thePantry = userController.getPantryController().getPantry();
-            thePantry.addIngredientList(groceryList.getIngredientList());
+            thePantry.addIngredients(groceryList.getIngredientList());
             //remove all of the ingredients in the grocery list
             groceryList.getIngredientList().makeEmpty();
             glView.displayTransferSuccess();

@@ -4,7 +4,7 @@ package it326.r4s.model;
  * An interface for classes that import generic portable objects from various file types.
  * @author Alex Smith (alsmi14@ilstu.edu)
  * @date 4/19/22
- * @param <T> the type of the Portable object being ported.
+ * @param <T> the type of the Portable object being imported.
  */
 public interface Importer<T extends Portable> {
     /**
