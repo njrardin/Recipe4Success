@@ -28,7 +28,7 @@ public class MealPlannerController {
         this.mealPlanner = mealPlanner;
         this.mealPlannerView = new MealPlannerView(this);
         this.userController = userController;
-        mealPlanPorter = PorterController.of(MealPlan.class);
+        mealPlanPorter = PorterController.of(MealPlan.class, userController);
     }
 
     //*Methods*\\

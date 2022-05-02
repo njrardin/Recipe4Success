@@ -32,7 +32,7 @@ public class MealPlanController  {
         this.mealPlan = mealPlan;
         this.mealPlanView = new MealPlanView(this);
         this.authorController = new UserController(author);
-        mealPlanPorter = PorterController.of(MealPlan.class);
+        mealPlanPorter = PorterController.of(MealPlan.class, authorController);
     }
 
     //*Methods*\\

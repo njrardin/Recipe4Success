@@ -30,7 +30,7 @@ public class RecipeBookController {
         this.recipeBook = recipeBook;
         this.recipeBookView = new RecipeBookView(this);
         this.userController = userController;
-        recipePorter = PorterController.of(Recipe.class);
+        recipePorter = PorterController.of(Recipe.class, userController);
     }
 
     //*Methods*\\

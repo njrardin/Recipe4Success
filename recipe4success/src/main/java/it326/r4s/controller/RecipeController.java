@@ -29,7 +29,7 @@ public class RecipeController {
         this.recipe = recipe;
         this.recipeView = new RecipeView(this);
         this.authorController = new UserController(author);
-        recipePorter = PorterController.of(Recipe.class);
+        recipePorter = PorterController.of(Recipe.class, authorController);
     }
 
     //*Methods*\\

@@ -27,7 +27,7 @@ public class GroceryListController {
         this.groceryList = groceryList;
         this.glView = new GroceryListView(this);
         this.userController = userController;
-        groceryListPorter = PorterController.of(GroceryList.class);
+        groceryListPorter = PorterController.of(GroceryList.class, userController);
     }
 
     //*Methods*\\
