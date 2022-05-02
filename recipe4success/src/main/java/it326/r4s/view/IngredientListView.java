@@ -32,6 +32,7 @@ public class IngredientListView {
             System.out.println(i + ") " + ingredient.toString());
             i++;
         }
+        System.out.println();
     }
 
     /**
@@ -55,5 +56,19 @@ public class IngredientListView {
         } while( !(0 < selection && selection <= igController.getIngredientList().getIngredients().size()));
 
         return igController.getIngredientList().getIngredients().get(selection - 1);
+    }
+
+    /**
+     * Displays a message for the initialization of the edit process
+     */
+    public void displayInitEdit(){
+        System.out.println("\nWhich ingredient would you like to change?");
+    }
+
+    /**
+     * Displays a message declaring the success of the edit process
+     */
+    public void displayEditSuccess(){
+        System.out.println("\nIngredient edit successful!");
     }
 }

@@ -95,7 +95,9 @@ public class RecipeBookController {
                     createRecipe();
                     break;
                 case 5:
+                try{
                     selectRecipeController().openRecipe();
+                } catch (RuntimeException re) { /* Do nothing */ }
                     break;
                 case 6:
                     return;

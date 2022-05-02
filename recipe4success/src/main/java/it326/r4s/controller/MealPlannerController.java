@@ -91,7 +91,9 @@ public class MealPlannerController {
                     createMealPlan();
                     break;
                 case 5:
-                    selectMealPlan(mealPlanner.getMealPlans());
+                    try{
+                        selectMealPlanController().openMealPlan();
+                    } catch (RuntimeException re) { /* Do nothing */ }
                     break;
                 case 6:
                     setActiveMealPlan();
