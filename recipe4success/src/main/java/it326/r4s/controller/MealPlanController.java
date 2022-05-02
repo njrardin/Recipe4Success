@@ -17,10 +17,10 @@ import it326.r4s.view.MealPlanView;
 public class MealPlanController  {
 
     //*Instance Variables\\
-    public MealPlan mealPlan;
-    public MealPlanView mealPlanView;
+    private MealPlan mealPlan;
+    private MealPlanView mealPlanView;
 
-    public UserController authorController; //controller for the author's user object
+    private UserController authorController; //controller for the author's user object
 
     //*Constructor*\\
     /**

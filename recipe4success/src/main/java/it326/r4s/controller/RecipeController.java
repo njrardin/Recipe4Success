@@ -16,10 +16,10 @@ import it326.r4s.view.RecipeView.RecipeBuilderView;
 public class RecipeController {
     
     //*Instance Variables*\\
-    public Recipe recipe;
-    public RecipeView recipeView;
+    private Recipe recipe;
+    private RecipeView recipeView;
 
-    public UserController authorController; //controller for the author's user object
+    private UserController authorController; //controller for the author's user object
     
     //*Constructor*\\
     /**
