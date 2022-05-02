@@ -80,7 +80,6 @@ public class UserManager extends InstanceManager<User> {
             Collection<Category> categories = new ArrayList<>(recipe.getCategories());
             recipe.clearCategories();
             for (Category category : categories) {
-                recipe.removeCategory(category);
                 recipe.addCategory(categoryPool.getCategory(Category.Type.RECIPE, category.getName()));
             }
         }
