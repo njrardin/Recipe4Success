@@ -39,7 +39,10 @@ public class IngredientController {
      */
     public boolean editIngredient(){
         //edit fooditem
-        new FoodItemController(ingredient.getFoodItem()).editFoodItem();
+        FoodItemController fiControl = new FoodItemController(ingredient.getFoodItem());
+        fiControl.editFoodItem();
+        
+        ingredient.setFoodItem(fiControl.getFoodItem());
         //edit unit
         ingredient.changeUnit(UnitController.getUnit());
         //edit quantity

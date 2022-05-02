@@ -2,6 +2,7 @@ package it326.r4s.controller;
 
 import it326.r4s.model.IngredientList;
 import it326.r4s.view.IngredientListView;
+import it326.r4s.view.RecipeView.RecipeBuilderView;
 
 /**
  * View for R4S Recipe
@@ -49,13 +50,22 @@ public class IngredientListController {
     public boolean editIngredientList(){
         //init message
         igView.displayInitEdit();
-        //recieve selected ingredient from the user
-        IngredientController ingController = new IngredientController(igView.selectIngredient());
-        //run edit ingredient process
-        if(ingController.editIngredient()){
-            //display success message
-            igView.displayEditSuccess();
-            return true;
+
+        int selection = igView.getEditSelectionOption();
+
+        switch(selection){
+            case 1: //edit an ingredient
+                //recieve selected ingredient from the user
+                IngredientController ingController = new IngredientController(igView.selectIngredient());
+                //run edit ingredient process
+                if(ingController.editIngredient()){
+                    //display success message
+                    igView.displayEditSuccess();
+                    return true;
+                }
+            case 2: //add a new ingredient
+                ingredientList = RecipeBuilderView.getIngredientsFromUser();   
+                return true;     
         }
         return false;
     }
