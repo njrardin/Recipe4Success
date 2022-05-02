@@ -40,8 +40,12 @@ public class R4SDriver {
     }
 
     private static User askUserForName() {
-        // TODO implement askUserForName
-        return new User("SomeName");
+        InputAccess inputAccess = new InputAccess();
+
+        System.out.print("Please enter your name: ");
+        String userName = inputAccess.getInputLine();
+
+        return new User(userName);
     }
 
     private static void launchMainWindow(User user){
