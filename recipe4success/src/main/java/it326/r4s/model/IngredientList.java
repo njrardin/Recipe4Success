@@ -23,6 +23,19 @@ public class IngredientList extends Entity {
     }
 
     /**
+     * Copy constructor to create a new ingredient list that is a copy of another
+     * @param ingredientList
+     */
+    public IngredientList(IngredientList ingredientList) {
+        this.ingredients = new ArrayList<Ingredient>();
+        if (!(ingredientList == null)) {
+            for (Ingredient ingredient : ingredientList.getIngredients()) {
+                this.ingredients.add(new Ingredient(ingredient));
+            }
+        }
+    }
+
+    /**
      * Creates a IngredientList object with a specified collection of ingredients.
      * 
      * @param ingredients a collection of ingredients.
