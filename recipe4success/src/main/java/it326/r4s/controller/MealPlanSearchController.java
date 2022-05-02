@@ -1,7 +1,7 @@
 package it326.r4s.controller;
 
 import java.util.ArrayList;
-
+import java.util.Collection;
 
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.MealPlanSearch;
@@ -24,7 +24,7 @@ public class MealPlanSearchController {
      * @param mealPlans
      */
     public MealPlanSearchController(ArrayList<MealPlan> mealPlans) {
-        MealPlanSearchView mealPlanSearchView = new MealPlanSearchView(this);
+        mealPlanSearchView = new MealPlanSearchView(this);
         this.mpSearch = new MealPlanSearch(mealPlans);
     }
 
@@ -37,12 +37,20 @@ public class MealPlanSearchController {
     }
 
     /**
+     * Facilitates the user
+     * searching through meal plans
+     * @return a list of mealplans that meet the search criteria
+     */
+    public Collection<MealPlan> search(){
+        return searchFor(mealPlanSearchView.getSearchQuery());
+    }
+
+    /**
      * Facilitates searching through the mealplans
      * @param searchQuery - the string to search for
      * @return an ArrayList of mealplans that fit the search parameters
      */
-    public ArrayList<MealPlan> searchFor(String searchQuery) {
+    private ArrayList<MealPlan> searchFor(String searchQuery) {
         return new ArrayList<MealPlan>( mpSearch.searchFor(searchQuery));
     }
-
 }

@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import it326.r4s.model.Pantry;
 import it326.r4s.model.Recipe;
-import it326.r4s.model.User;
 import it326.r4s.view.PantryView;
-import it326.r4s.view.RecipeBookView;
 /**
  * Controller for R4S Pantry
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -16,17 +14,57 @@ public class PantryController {
 
     private Pantry pantry;
     private PantryView pantryView;
+    private UserController userController;
 
-    public PantryController(Pantry pantry){
+    /**
+     * Constructor for R4S's PantryController
+     * @param pantry
+     * @param userController - the UserController which controls this Pantry
+     */
+    public PantryController(Pantry pantry, UserController userController){
         this.pantry = pantry;
         this.pantryView = new PantryView(this);
+        this.userController = userController;
     }
 
     //*Methods*\\
+    /**
+     * Getter for the PantryController's pantry
+     * @return the pantry
+     */
+    public Pantry getPantry(){
+        return this.pantry;
+    }
+
+    /**
+     * Getter for the PantryController's PantryView
+     * @return the PantryView
+     */
+    public PantryView getPantryView(){
+        return this.pantryView;
+    }
+
+    /**
+     * Getter for the UserController which owns the MealPlannerController
+     * @return the UserController
+     */
+    public UserController getUserController(){
+        return this.userController;
+    }
+
+    /**
+     * Getter for the IngredientListController which controls the Pantry's IngredientList
+     * @return the IngredientListController
+     */
     public IngredientListController getIngredientListController() {
         return new IngredientListController(pantry.getIngredientList());
     }
 
+    /**
+     * Launches the Pantry's main menu 
+     * to get a user option selection
+     * and then takes the appropriate action
+     */
     public void openPantry(){
         pantryView.displayHeader();
         pantryView.displayPantry();
@@ -41,7 +79,7 @@ public class PantryController {
                     removeIngredient();
                     break;
                 case 3:
-                    removeRecipeIngredients();
+                    removeRecipeControllerIngredients(userController.getRecipeBookController().selectRecipeController());
                     break;
                 case 4:
                     listMakableRecipes();
@@ -53,7 +91,8 @@ public class PantryController {
             }
             pantryView.displayHeader();
             pantryView.displayPantry();
-        }    }
+        }    
+    }
         
 
 
@@ -62,7 +101,7 @@ public class PantryController {
      * adding an ingredient to the pantry
      */
     public void addIngredient() {
-        pantry.addIngredientList(pantryView.getNewIngredientsFromUser());
+        pantry.addIngredients(pantryView.getNewIngredientsFromUser());
     }
     
     /**
@@ -73,36 +112,20 @@ public class PantryController {
         pantry.removeIngredient(pantryView.getIngredientRemovalFromUser());
     }
 
-    private void removeRecipeIngredients() {
-        User theUser = UserController.getUserController().getGlobalUser();
-        
-        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
-        for(Recipe recipe: theUser.getRecipeBook().getRecipes()){
-            recipeControllers.add(new RecipeController(recipe));
-        }
+    private void removeRecipeControllerIngredients(RecipeController recipeController) {        
         try{
-            RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(recipeControllers);
-            Recipe selectedRecipe = selectedRecipeController.getRecipe();
-            pantry.removeRecipeIngredients(selectedRecipe);
+            pantry.removeRecipeIngredients(recipeController.getRecipe());
         } catch (RuntimeException e) { 
             System.out.println("Oops, looks like there was an error with removing the ingredients.");
-         }
+        }
     }
 
-    private void listMakableRecipes() {
-        User theUser = UserController.getUserController().getGlobalUser();
-        
+    private void listMakableRecipes() {        
         ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
-        for(Recipe recipe: theUser.getMakeableRecipes()){
-            recipeControllers.add(new RecipeController(recipe));
+        for(Recipe recipe: userController.getUser().getMakeableRecipes()){
+            recipeControllers.add(new RecipeController(recipe, userController.getUser()));
         }
-        try{
-            RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(recipeControllers);
-            Recipe selectedRecipe = selectedRecipeController.getRecipe();
-            pantry.removeRecipeIngredients(selectedRecipe);
-        } catch (RuntimeException e) { 
-            System.out.println("Oops, looks like there was an error with removing the ingredients.");
-        }
+        //TODO: implement
     }
     
 }

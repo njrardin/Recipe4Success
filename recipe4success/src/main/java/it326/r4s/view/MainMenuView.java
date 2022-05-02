@@ -1,14 +1,13 @@
 package it326.r4s.view;
 
-import java.util.Scanner;
-
 import it326.r4s.controller.MainMenuController;
+import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S MainMenu
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class MainMenuView implements CLI_Menu{
+public class MainMenuView implements R4SMenu{
     
     //*Instance Variables\\
     public MainMenuController mmController;
@@ -34,10 +33,11 @@ public class MainMenuView implements CLI_Menu{
             "Open my RecipeBook:\t\t(search, edit, or create new tasty recipes!)",
             "Open my MealPlanner:\t\t(organize your recipes into comprehensive meal plans)",
             "Open my Pantry:\t\t(organize your recipes into comprehensive meal plans.)",
-            "Access my grocery list:\t(view and edit your current grocery list.)",
+            "Open my Grocery List:\t(view and edit your current grocery list.)",
             "Exit Application"
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+        InputAccess input = new InputAccess();
+        return input.getOptionSelection(title, prompt, options);
     }
 
 }

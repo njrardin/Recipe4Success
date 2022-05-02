@@ -117,6 +117,6 @@ public class Review extends Entity {
      */
     @Override
     public String toString() {
-        return "Reviewer: " + this.reviewer.toString() + "\tRating: " + this.rating;
+        return this.reviewer.toString() + ": " + this.rating + "/5";
     }
 }

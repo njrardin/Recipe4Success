@@ -49,8 +49,8 @@ public class JSON_PorterTest {
         user.getRecipeBook().addRecipe(omelette);
 
         MealPlan breakfast = new MealPlan("Breakfast");
-        breakfast.addMeal(new Meal(friedRice, 4));
-        breakfast.addMeal(new Meal(omelette, 2));
+        breakfast.addMeal(new Meal(friedRice));
+        breakfast.addMeal(new Meal(omelette));
         user.getMealPlanner().addMealPlan(breakfast);
     }
 
@@ -73,7 +73,7 @@ public class JSON_PorterTest {
             assertTrue(importedUser.equals(user));
         } catch (Exception e) {
             // If any exception is thrown, then the test fails.
-            fail();
+            fail(e.getClass().toString());            
         }
     }
 }

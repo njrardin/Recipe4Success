@@ -1,16 +1,17 @@
 package it326.r4s.view;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Collection;
+
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
-import it326.r4s.model.Recipe;
+import it326.r4s.view.utilities.DisplayUtils;
+import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class RecipeBookView implements CLI_Menu {
+public class RecipeBookView implements R4SMenu {
     
     //*Instance Variables*\\
     private RecipeBookController rbController;
@@ -29,14 +30,7 @@ public class RecipeBookView implements CLI_Menu {
      * Displays the Recipe Book header to the user
      */
     public void displayHeader(){
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("---                                                                               ---");
-        System.out.println("---                               -- Recipe Book --                               ---");
-        System.out.println("---                                                                               ---");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
-        System.out.println();
+        System.out.println(DisplayUtils.getHeader("Recipe Book"));
     }
 
     /**
@@ -44,17 +38,18 @@ public class RecipeBookView implements CLI_Menu {
      * @return an int representing the selected option
      */
     public int getMenuOptionSelection(){
-        String title = "Recipe Book";
+        String title = "Recipe Book Options";
         String prompt = "What would you like to do?";
         String[] options = {
             "Search and filter recipes",
             "Import a recipe",
             "Export a recipe",
             "Create a new recipe",
-            "Select a recipe",
+            "Open a recipe",
             "Go back"
         };
-        return ViewUtilities.getOptionFromCLI(title, prompt, options);
+        InputAccess inputAccess = new InputAccess();
+        return inputAccess.getOptionSelection(title, prompt, options);
     }
 
     /**
@@ -69,36 +64,45 @@ public class RecipeBookView implements CLI_Menu {
      * list of recipeControllers
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
-    public static void displayRecipes(ArrayList<RecipeController> recipeControllers){
-        int i = 1;
-        for(RecipeController recipeController: recipeControllers){
-            System.out.print(i + ") ");
-            recipeController.getRecipeView().displayOneline();
-            i++;
+    public void displayRecipes(Collection<RecipeController> recipeControllers) {
+        System.out.println("Recipes:");
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
+        if(recipeControllers == null){
+            System.out.println("\n There are no recipes in the RecipeBook yet. Try adding some!");
         }
+        else{
+            int i = 1;
+            for(RecipeController recipeController: recipeControllers){
+                System.out.print(i + ") ");
+                recipeController.getRecipeView().displayOneline();
+                i++;
+            }
+        }
+        System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
 
     /**
      * Displays a series of recipes and allows the user to select one
      * @param recipeControllers - an ArrayList of RecipeControllers to present as selection options to the user
      * @return the RecipeController who's recipe was selected
-     * @throws RuntimeException - if the user aborts the selection process
+     * @throws RuntimeException if the user aborts the selection process
+     * @throws IllegalArgumentException if recipeControllers is null
      */
-    public static RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
+    public RecipeController getRecipeSelection(Collection<RecipeController> recipeControllers) throws RuntimeException, IllegalArgumentException{    
         displayRecipes(recipeControllers);
-        if (askSelectRecipe() == false){ //TODO: use menu system to do this
-            throw new RuntimeException();
-        }    
+        if(recipeControllers == null){
+            throw new IllegalArgumentException();
+        }
 
         //Selection loop; only exits once a valid recipe is selcted
         String input;
         int inputNum = -1;
-        Scanner scan = ViewUtilities.scan;
+        InputAccess inputAccess = new InputAccess();
         do{
             System.out.println("\n Which recipe would you like to select?");
-            System.out.println("(please type the selection number or type \"exit\" to go back)");
+            System.out.print("(please type the selection number or type \"exit\" to go back) : ");
 
-            input = scan.nextLine();
+            input = inputAccess.getInputLine();
             if(input.toLowerCase().equals("exit")){
                 throw new RuntimeException();
             }
@@ -106,35 +110,18 @@ public class RecipeBookView implements CLI_Menu {
             try{
                 inputNum = Integer.parseInt(input);
             } catch (Exception e){
-                System.out.println("Invalid selection, selection must be a number.");
+                System.out.println("\nInvalid selection, selection must be a number.");
                 continue;
             }
             
             if (inputNum <= 0 || recipeControllers.size() < inputNum){
-                System.out.println("Invalid selection, selection out of range.");
+                System.out.println("\nInvalid selection, selection out of range.");
             }
 
         } while(inputNum <= 0 || recipeControllers.size() < inputNum);
 
         //returns the selected RecipeController
-        return recipeControllers.get(inputNum - 1);
-    }
-
-    /**
-     * A confirmation option for selecting a recipe
-     * @return true if confirmed, false if denied
-     */
-    private static boolean askSelectRecipe() {
-        Scanner scan = ViewUtilities.scan;
-        String input = "";
-        do{
-        System.out.println("Would you like to select a recipe? (Y/N)");
-        input = scan.nextLine().toLowerCase();
-        } while ( !(input.equals("y") || input.equals("n")) );
-        if(input.equals("n")){
-            return false;
-        }
-        return true;
+        return (RecipeController) recipeControllers.toArray()[inputNum - 1];
     }
 
 }

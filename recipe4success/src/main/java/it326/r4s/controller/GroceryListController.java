@@ -15,18 +15,50 @@ public class GroceryListController {
     //*Instance variables*\\
     private GroceryList groceryList;
     private GroceryListView glView;
+    private UserController userController;
+    private PorterController<GroceryList> groceryListPorter;
 
     //*Constructor*\\
     /**
      * Constructor for R4S's GroceryListController
      * @param groceryList - the controller's GroceryList object
      */
-    public GroceryListController(GroceryList groceryList) {
+    public GroceryListController(GroceryList groceryList, UserController userController) {
         this.groceryList = groceryList;
         this.glView = new GroceryListView(this);
+        this.userController = userController;
+        groceryListPorter = PorterController.of(GroceryList.class, userController);
     }
 
     //*Methods*\\
+    /**
+     * Getter for the GroceryListController's GroceryList
+     * @return the GroceryList object
+     */
+    public GroceryList getGroceryList(){
+        return this.groceryList;
+    }
+
+    /**
+     * Getter for the GroceryListController's GroceryListView
+     * @return the GroceryListView object
+     */
+    public GroceryListView getGroceryListView(){
+        return this.glView;
+    }
+
+    /**
+     * Getter for the UserController that controls this GroceryListController
+     * @return the GroceryListController object
+     */
+    public UserController getUserController(){
+        return this.userController;
+    }
+
+    /**
+     * Getter for the IngredientListController which controls the GroceryList's IngredientList
+     * @return the IngredientListController
+     */
     public IngredientListController getIngredientListController() {
 		return new IngredientListController(groceryList.getIngredientList());
 	}
@@ -73,7 +105,7 @@ public class GroceryListController {
      * adding an ingredient to the grocerylist
      */
     public void addIngredient() {
-        groceryList.addIngredientList(glView.getNewIngredientsFromUser());
+        groceryList.addIngredients(glView.getNewIngredientsFromUser());
     }
     
     /**
@@ -91,8 +123,8 @@ public class GroceryListController {
     public void transferToPantry() {
         if(glView.confirmTransfer()){
             //move ingredients to the pantry
-            Pantry thePantry = UserController.getUserController().getGlobalUser().getPantry();
-            thePantry.addIngredientList(groceryList.getIngredientList());
+            Pantry thePantry = userController.getPantryController().getPantry();
+            thePantry.addIngredients(groceryList.getIngredientList());
             //remove all of the ingredients in the grocery list
             groceryList.getIngredientList().makeEmpty();
             glView.displayTransferSuccess();
@@ -121,7 +153,7 @@ public class GroceryListController {
             glView.displayReorganizeSuccess();
         }
         else{
-            glView.displaReorganizeError();
+            glView.displayReorganizeError();
         }
         //display a use case success message
     }
@@ -131,6 +163,6 @@ public class GroceryListController {
      * exporting their grocery list
      */
     public void exportGroceryList(){
-
+        groceryListPorter.exportTo(groceryList);
     }
 }

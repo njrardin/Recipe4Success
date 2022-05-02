@@ -3,7 +3,7 @@ package it326.r4s.model;
 /*
 * The Meal object class for Recipe4Success application
 * A Meal holds a recipe and its serving size
-* @author: Shu Liao (fliao@ilstu.edu)
+* @author: Shu Liao (fliao@ilstu.edu) and Zach Plattner
 * @date: 4/14/2022
 */
 
@@ -11,17 +11,18 @@ public class Meal {
     // *Instance Variables*\\
     private Recipe recipe;
     private int servingSize;
+    private IngredientList ingredientList;
 
     // *Constructor*\\
     /**
-     * Creates a Meal object with specified recipe and serving size.
+     * Creates a Meal object with specified recipe, serving size, and ingredient list.
      * 
-     * @param recipe      the recipe of the Meal.
-     * @param servingSize the serving size of the Meal.
+     * @param recipe the recipe of the Meal.
      */
-    public Meal(Recipe recipe, int servingSize) {
+    public Meal(Recipe recipe) {
         this.recipe = recipe;
-        this.servingSize = servingSize;
+        this.servingSize = recipe.getServingSize();
+        this.ingredientList = new IngredientList(recipe.getIngredientList());
     }
 
     // *Methods*\\
@@ -53,12 +54,34 @@ public class Meal {
     }
 
     /**
-     * Sets the Meal's serving size.
-     * 
-     * @param servingSize the new serving size of the Meal.
+     * adjusts the quantities of all ingredients in the list to reflect the new serving size of this meal
+     * @param newServingSize
      */
-    public void setServingSize(int servingSize) {
-        this.servingSize = servingSize;
+    public void adjustServingSize(int newServingSize) {
+        int oldServingSize = this.servingSize;
+        for(Ingredient ingredient: ingredientList.getIngredients()){
+            double newQuantity = ((double) newServingSize / (double) oldServingSize) * ingredient.getQuantity();
+            ingredient.setQuantity(newQuantity);
+        }
+        this.servingSize = newServingSize;
+    }
+
+    /**
+     * Gets the Meal's ingredientlist.
+     * 
+     * @return the ingredientlist of the Meal.
+     */
+    public IngredientList getIngredientList() {
+        return this.ingredientList;
+    }
+
+    /**
+     * Sets the Meal's ingredientlist.
+     * 
+     * @param ingredientList the new ingredientlist of the Meal.
+     */
+    public void setIngredientList(IngredientList ingredientList) {
+        this.ingredientList = ingredientList;
     }
 
     /**
@@ -91,6 +114,6 @@ public class Meal {
      */
     @Override
     public String toString() {
-        return "Recipe:\n" + this.recipe.getName() + "\nServing Size: " + this.servingSize;
+        return "Recipe: " + this.recipe.getName();
     }
 }

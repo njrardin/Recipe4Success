@@ -35,6 +35,16 @@ public class Ingredient {
         this.unit = unit;
     }
 
+    /**
+     * Copy Constructor
+     * @param ingredient
+     */
+    public Ingredient(Ingredient ingredient) {
+        this.foodItem = ingredient.getFoodItem();
+        this.quantity = ingredient.getQuantity();
+        this.unit = ingredient.getUnit();
+    }
+
     // *Methods*\\
     /**
      * Changes the unit of the Ingredient object and converts the quantity between
@@ -142,11 +152,6 @@ public class Ingredient {
      */
     @Override
     public String toString() {
-        if(this.quantity > 1){
-            return this.foodItem.getName() + ": " + this.quantity + " " + this.unit.toString().toLowerCase() + "s";
-        }
-        else{
-            return this.foodItem.getName() + ": " + String.format("%.2",this.quantity) + " " + this.unit;
-        }
+        return this.foodItem.getName() + ": " + String.format("%.2f", this.quantity) + " " + this.unit;
     }
 }

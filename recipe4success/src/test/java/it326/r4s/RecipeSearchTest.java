@@ -10,7 +10,8 @@ import it326.r4s.model.RecipeSearch;
 import java.util.ArrayList;
 
 public class RecipeSearchTest {
-    
+    static Category.Pool cPool = Category.Pool.getInstance();
+
     @Test
     public void testSearchFor_SearchString(){
 
@@ -76,9 +77,9 @@ public class RecipeSearchTest {
         ArrayList<Recipe> inputList = new ArrayList<Recipe>();
         ArrayList<Recipe> returnList = new ArrayList<Recipe>();
 
-        Category category1 = new Category("Category 1");
-        Category category2 = new Category("Category 2");
-        Category category3 = new Category("Category 3");
+        Category category1 = cPool.getCategory(Category.Type.RECIPE, "Category 1");
+        Category category2 = cPool.getCategory(Category.Type.RECIPE, "Category 2");
+        Category category3 = cPool.getCategory(Category.Type.RECIPE, "Category 3");
 
         //Demo recipe 1. Is valid
         demoRecipe = new Recipe.RecipeBuilder("Recipe 1")
@@ -141,9 +142,9 @@ public class RecipeSearchTest {
         ArrayList<Recipe> inputList = new ArrayList<Recipe>();
         ArrayList<Recipe> returnList = new ArrayList<Recipe>();
 
-        Category category1 = new Category("Category 1");
-        Category category2 = new Category("Category 2");
-        Category category3 = new Category("Category 3");
+        Category category1 = cPool.getCategory(Category.Type.RECIPE, "Category 1");
+        Category category2 = cPool.getCategory(Category.Type.RECIPE, "Category 2");
+        Category category3 = cPool.getCategory(Category.Type.RECIPE, "Category 3");
         ArrayList<Category> categoryListQuery = new ArrayList<Category>();
         categoryListQuery.add(category1);
         categoryListQuery.add(category2);
