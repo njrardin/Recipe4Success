@@ -110,7 +110,7 @@ public class RecipeController {
                 recipe.adjustServingSize(RecipeBuilderView.getServingSizeFromUser());
                 break;
             case 4:
-                recipe.setIngredientList(RecipeBuilderView.getIngredientsFromUser());
+                getIngredientListController().editIngredientList();
                 break;
             case 5:
                 recipe.setInstructions(RecipeBuilderView.getInstructionsFromUser());

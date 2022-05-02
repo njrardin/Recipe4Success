@@ -26,4 +26,18 @@ public class IngredientListController {
         return this.ingredientList;
     }
 
+    public boolean editIngredientList(){
+        //init message
+        igView.displayInitEdit();
+        //recieve selected ingredient from the user
+        IngredientController ingController = new IngredientController(igView.selectIngredient());
+        //run edit ingredient process
+        if(ingController.editIngredient()){
+            //display success message
+            igView.displayEditSuccess();
+            return true;
+        }
+        return false;
+    }
+
 }
