@@ -17,11 +17,11 @@ import it326.r4s.model.UnitConverter.Unit;
 import it326.r4s.model.User;
 
 /**
- * Controller for R4S RecipeBook
+ * Utilites for the Driver
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class PresentationDriver {    
+public class DemoUtils {    
     public static User prepopulateUser() {
         //Instantiate the user object
         User user = new User("Rishi Saripalle");

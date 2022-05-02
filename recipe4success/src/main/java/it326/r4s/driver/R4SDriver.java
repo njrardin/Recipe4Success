@@ -30,7 +30,7 @@ public class R4SDriver {
         
         if (user == null) {
             //user = askUserForName();
-            user = PresentationDriver.prepopulateUser();
+            user = DemoUtils.prepopulateUser();
         }
 
         return user;
