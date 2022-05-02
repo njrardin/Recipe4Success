@@ -19,7 +19,7 @@ public class PorterController<T extends Portable> {
         return new PorterController<S>(type);
     }
 
-    public void export(T portable) {
+    public void exportTo(T portable) {
         String exportPath = porterView.getExportPath();
 
         if (!exportPath.equals("")) {
@@ -51,6 +51,10 @@ public class PorterController<T extends Portable> {
             }
         } else {
             System.out.println("No file was selected, exiting ...");
-        }   
+        }
+    }
+
+    public T importFrom() {
+
     }
 }

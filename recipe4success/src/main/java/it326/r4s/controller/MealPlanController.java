@@ -143,7 +143,7 @@ public class MealPlanController  {
     }
 
     public void exportMealPlan() {
-        mealPlanPorter.export(mealPlan);
+        mealPlanPorter.exportTo(mealPlan);
     }
 
     public void addToGroceryList() {

@@ -163,6 +163,6 @@ public class GroceryListController {
      * exporting their grocery list
      */
     public void exportGroceryList(){
-        groceryListPorter.export(groceryList);
+        groceryListPorter.exportTo(groceryList);
     }
 }

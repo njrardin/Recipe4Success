@@ -166,7 +166,7 @@ public class RecipeController {
      * exporting the recipe
      */
 	public void exportRecipe() {
-        recipePorter.export(recipe);   
+        recipePorter.exportTo(recipe);   
 	}
 
     /**
