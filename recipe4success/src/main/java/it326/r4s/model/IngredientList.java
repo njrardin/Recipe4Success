@@ -48,7 +48,8 @@ public class IngredientList extends Entity {
      * @param toAdd an Ingredient to be added to the IngredientList.
      * @return true if toAdd is already in ingredients, false otherwise.
      */
-    public boolean addIngredient(Ingredient toAdd) {
+    public boolean addIngredient(Ingredient toAdd) { 
+
         for (Ingredient ingredient : this.ingredients) {
             if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
                 if (ingredient.getUnit().unitType == toAdd.getUnit().unitType) {
@@ -66,6 +67,7 @@ public class IngredientList extends Entity {
             }
         }
         this.ingredients.add(toAdd);
+
         return false;
     }
 
@@ -143,23 +145,27 @@ public class IngredientList extends Entity {
      * @return True if this ingredient list contains all the ingredients (quantities
      *         of this list must be larger) of the collection, false otherwise.
      */
-    public boolean containsIngredients(Collection<Ingredient> otherIngredients) {
-        if (this.ingredients.containsAll(otherIngredients))
+    public boolean containsIngredients(Collection<Ingredient> otherCollection) { //TODO: This logic doesn't work!!!
+        Collection<Ingredient> thisCollection = ingredients;
+
+        if (thisCollection.containsAll(otherCollection)){
             return true;
-        else {
 
-            for (Ingredient ingredient : otherIngredients) {
+        } else {
 
-                for (Ingredient otherIngredient : this.ingredients) {
+            for (Ingredient otherIngredient : otherCollection) {
 
-                    if (!ingredient.equals(otherIngredient)) {
+                for (Ingredient thisIngredient : thisCollection) { //for each possible comparison
 
-                        if (ingredient.getQuantity() > otherIngredient.getQuantity())
-                            return false;
+                    if (!otherIngredient.equals(thisIngredient)) { //if not equal
+
+                        if (otherIngredient.getQuantity() > thisIngredient.getQuantity()) //return false if ther's less of this
+                            return false;                                                 //ingredient than the other
                     }
                 }
             }
         }
+
         return true;
     }
 
