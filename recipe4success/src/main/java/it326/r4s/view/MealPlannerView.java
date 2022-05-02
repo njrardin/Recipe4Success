@@ -138,7 +138,7 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         String selection = "";
         do{
-        System.out.print("Would you like to open a meal plan? (Y/N) : ");
+        System.out.print("Would you like to select a meal plan? (Y/N) : ");
         selection = inputAccess.getInputLine().toLowerCase();
         } while ( !(selection.equals("y") || selection.equals("n")) );
         if(selection.equals("n")){
