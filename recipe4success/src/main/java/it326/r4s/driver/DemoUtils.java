@@ -226,17 +226,17 @@ public class DemoUtils {
         //Mealplan 1
         MealPlan demoMP1 = new MealPlan("Saturday Meals");
         demoMP1.setMealPlanDescription("Just some meals for my day off");
-        demoMP1.addMeal(new Meal(demoRecipe6, 2));
-        demoMP1.addMeal(new Meal(demoRecipe1, 2));
-        demoMP1.addMeal(new Meal(demoRecipe7, 2));
+        demoMP1.addMeal(new Meal(demoRecipe6));
+        demoMP1.addMeal(new Meal(demoRecipe1));
+        demoMP1.addMeal(new Meal(demoRecipe7));
 
         //Mealplan 2
         MealPlan demoMP2 = new MealPlan("Some meals");
         demoMP2.setMealPlanDescription("These don't go together at all but I need more for the demo");
-        demoMP2.addMeal(new Meal(demoRecipe6, 2));
-        demoMP2.addMeal(new Meal(demoRecipe5, 2));
-        demoMP2.addMeal(new Meal(demoRecipe4, 5));
-        demoMP2.addMeal(new Meal(demoRecipe2, 5));
+        demoMP2.addMeal(new Meal(demoRecipe6));
+        demoMP2.addMeal(new Meal(demoRecipe5));
+        demoMP2.addMeal(new Meal(demoRecipe4));
+        demoMP2.addMeal(new Meal(demoRecipe2));
 
         MealPlanner mp = new MealPlanner();
         mp.addMealPlan(demoMP1);

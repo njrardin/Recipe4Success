@@ -31,6 +31,9 @@ public class MealPlanView implements R4SMenu {
         System.out.println("Name: " + mealPlanController.getMealPlan().getMealPlanName());
         System.out.println("Description: " + mealPlanController.getMealPlan().getMealPlanDescription());
         System.out.println("Created on: " + mealPlanController.getMealPlan().getMealPlanDate());
+        if(mealPlanController.getMealPlan().getMPServingSize()!=0) {
+        System.out.println("Serves: " + mealPlanController.getMealPlan().getMPServingSize());
+        }
         System.out.println();
         mealPlanController.getAuthorController().getRecipeBookController().getRecipeBookView().displayRecipes(mealPlanController.getRecipeControllers());
         System.out.println();
@@ -80,6 +83,10 @@ public class MealPlanView implements R4SMenu {
         }
     }
 
+    /**
+     * Confirms if the user wants to add all ingredients in the meal plan to the grocery list
+     * @return true if confirmed, false otherwise
+     */
     public boolean addToGroceryListConfirmation() {
         InputAccess inputAccess = new InputAccess();
         String response = "";
@@ -94,6 +101,11 @@ public class MealPlanView implements R4SMenu {
         return true;
     }
 
+    /**
+     * Confirms if the user wants to set all meals in the meal plan to this serving size
+     * @param newServingSize
+     * @return true if confirmed, false otherwise
+     */
     public boolean adjustMPServingSizeConfirmation(int newServingSize) {
         InputAccess inputAccess = new InputAccess();
         String response = "";
@@ -111,7 +123,7 @@ public class MealPlanView implements R4SMenu {
     /**
      * Gets from the user a new serving size
      * for a mealplan
-     * @return
+     * @return int servingSize
      */
     public int getNewServingSize() {
         InputAccess inputAccess = new InputAccess();
