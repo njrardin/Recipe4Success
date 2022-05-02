@@ -147,9 +147,13 @@ public class IngredientList extends Entity {
         if (this.ingredients.containsAll(otherIngredients))
             return true;
         else {
+
             for (Ingredient ingredient : otherIngredients) {
+
                 for (Ingredient otherIngredient : this.ingredients) {
+
                     if (!ingredient.equals(otherIngredient)) {
+
                         if (ingredient.getQuantity() > otherIngredient.getQuantity())
                             return false;
                     }
@@ -157,6 +161,17 @@ public class IngredientList extends Entity {
             }
         }
         return true;
+    }
+
+    /**
+     * Checks whether this IngredientList contains all the ingredients of another IngredientList 
+     * 
+     * @param ingredientList the IngredientList to be compared against.
+     * @return True if this ingredient list contains all the ingredients (quantities
+     *         of this list must be larger) of the collection, false otherwise.
+     */
+    public boolean containsIngredients(IngredientList ingredientList) {
+        return containsIngredients(ingredientList.getIngredients());
     }
 
     /**
