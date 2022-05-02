@@ -132,7 +132,9 @@ public class MealPlanController  {
 
     public void adjustMealPlanServingSize() {
         int servingSize = mealPlanView.getNewServingSize();
-        mealPlan.setMealServingSize(servingSize);
+        if(mealPlanView.adjustMPServingSizeConfirmation(servingSize)){
+            mealPlan.setMealServingSize(servingSize);
+        }
     }
 
     public void exportMealPlan() {
@@ -141,11 +143,13 @@ public class MealPlanController  {
     }
 
     public void addToGroceryList() {
-        authorController.getUser().addMealPlanToGroceryList(mealPlan);
-        System.out.println("Ingredients added successfully");
+        if(mealPlanView.addToGroceryListConfirmation()){
+            authorController.getUser().addMealPlanToGroceryList(mealPlan);
+            System.out.println("Ingredients added successfully");
+        }
     }
 
-    public void deleteMealPlan() {//req 11
+    public void deleteMealPlan() {
         if(mealPlanView.deletionConfirmation()){
             authorController.getUser().getMealPlanner().removeMealPlan(mealPlan);
         }
