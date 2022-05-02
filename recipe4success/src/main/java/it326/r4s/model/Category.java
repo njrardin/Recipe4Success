@@ -112,15 +112,16 @@ public class Category {
 
             return addCategory(type, name);
         }
+        
+        public Collection<Category> getCategories(Type type) {
+            return Collections.unmodifiableCollection(allCategories.get(type));
+        }
 
         public boolean removeCategory(Type type, String name) {
             Category c = new Category(name);
             return allCategories.get(type).remove(c);
         }
 
-        public Collection<Category> getCategories(Type type) {
-            return Collections.unmodifiableCollection(allCategories.get(type));
-        }
 
         public boolean contains(Type type, String name)  {
             Category c = new Category(name);
