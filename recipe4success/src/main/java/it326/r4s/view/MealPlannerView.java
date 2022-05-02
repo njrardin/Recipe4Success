@@ -128,23 +128,6 @@ public class MealPlannerView implements R4SMenu{
     }
 
     /**
-     * A confirmation option for selecting a mealplan
-     * @return true if confirmed, false if denied
-     */
-    private boolean askSelectMealPlan() {
-        InputAccess inputAccess = new InputAccess();
-        String selection = "";
-        do{
-        System.out.print("Would you like to select a meal plan? (Y/N) : ");
-        selection = inputAccess.getInputLine().toLowerCase();
-        } while ( !(selection.equals("y") || selection.equals("n")) );
-        if(selection.equals("n")){
-            return false;
-        }
-        return true;
-    }
-
-    /**
      * Gets from the user the index of in the mealplanner which contains
      * the meal plan which they wish to set as "active"
      */

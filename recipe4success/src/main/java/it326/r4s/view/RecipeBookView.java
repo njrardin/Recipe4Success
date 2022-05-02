@@ -124,21 +124,4 @@ public class RecipeBookView implements R4SMenu {
         return (RecipeController) recipeControllers.toArray()[inputNum - 1];
     }
 
-    /**
-     * A confirmation option for selecting a recipe
-     * @return true if confirmed, false if denied
-     */
-    private static boolean askSelectRecipe() {
-        InputAccess inputAccess = new InputAccess();
-        String response = "";
-        do{
-        System.out.print("Would you like to select a recipe? (Y/N) : ");
-        response = inputAccess.getInputLine().toLowerCase();
-        } while ( !(response.equals("y") || response.equals("n")) );
-        if(response.equals("n")){
-            return false;
-        }
-        return true;
-    }
-
 }
