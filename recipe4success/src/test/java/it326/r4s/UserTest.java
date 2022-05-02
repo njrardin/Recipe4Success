@@ -74,16 +74,22 @@ public class UserTest {
 
     @Test
     public void testMoveGroceryListToPantry() {
-        user.getGroceryList().addIngredientList(ingredients);
+        user.getGroceryList().addIngredients(ingredients);
+        // Collection<Ingredient> ingredients = new ArrayList<Ingredient>();
+        // ingredients.add(ingredient1);
+        // ingredients.add(ingredient2);
+        // ingredients.add(ingredient3);
+        user.getGroceryList().addIngredients(ingredients);
         int count = user.getGroceryList().getIngredientList().getIngredients().size();
         user.moveGroceryListToPantry();
         assertEquals(0, user.getGroceryList().getIngredientList().getIngredients().size());
         assertEquals(count, user.getPantry().getIngredientList().getIngredients().size());
-        assertEquals(ingredients, user.getPantry().getIngredientList());
+        assertEquals(ingredients, user.getPantry().getIngredientList().getIngredients());
 
         fItem = fiPool.getFoodItem("Peach");
-        ingredients.addIngredient(ingredient1 = new Ingredient(fItem, 1, Unit.POUND));
-        user.getGroceryList().addIngredientList(ingredients);
+        // ingredient1 = ;
+        ingredients.addIngredient(new Ingredient(fItem, 1, Unit.POUND));
+        user.getGroceryList().addIngredients(ingredients);
         count = user.getGroceryList().getIngredientList().getIngredients().size();
         user.moveGroceryListToPantry();
         assertEquals(0, user.getGroceryList().getIngredientList().getIngredients().size());
@@ -105,7 +111,7 @@ public class UserTest {
         System.out.println(outputRecipe.toString());
 
         ingredients.removeIngredient(ingredient3);
-        user.getPantry().addIngredientList(ingredients);
+        user.getPantry().getIngredientList().addIngredients(ingredients);
         outputRecipe = user.getMakeableRecipes();
         Collection<Recipe> expectedRecipe = new ArrayList<Recipe>();
         expectedRecipe.add(recipe1);
