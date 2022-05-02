@@ -70,7 +70,7 @@ public class MealPlanner extends Entity {
      * Attempts to add a MealPlan object to the MealPlanner.
      * 
      * @param toAdd the new MealPlan to be added.
-     * @return true when the MealPlan is successfuly add to the MealPlanner, false
+     * @return true when the MealPlan is successfully add to the MealPlanner, false
      *         otherwise.
      */
     public boolean addMealPlan(MealPlan toAdd) {

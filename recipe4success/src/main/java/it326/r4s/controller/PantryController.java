@@ -97,7 +97,7 @@ public class PantryController {
 
 
     /**
-     * Facilitats the process of the user
+     * Facilitates the process of the user
      * adding an ingredient to the pantry
      */
     public void addIngredient() {
@@ -105,7 +105,7 @@ public class PantryController {
     }
     
     /**
-     * Facilitats the process of the user
+     * Facilitates the process of the user
      * removing an ingredient from the pantry
      */
     public void removeIngredient() {

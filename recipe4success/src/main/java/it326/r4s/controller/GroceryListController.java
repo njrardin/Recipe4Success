@@ -101,7 +101,7 @@ public class GroceryListController {
     }
 
     /**
-     * Facilitats the process of the user
+     * Facilitates the process of the user
      * adding an ingredient to the grocerylist
      */
     public void addIngredient() {
@@ -109,7 +109,7 @@ public class GroceryListController {
     }
     
     /**
-     * Facilitats the process of the user
+     * Facilitates the process of the user
      * removing an ingredient from the grocerylist
      */
     public void removeIngredient() {
@@ -117,7 +117,7 @@ public class GroceryListController {
     }
 
     /**
-     * Facilitats the process of the user
+     * Facilitates the process of the user
      * transferring items to pantry
      */
     public void transferToPantry() {
@@ -139,17 +139,17 @@ public class GroceryListController {
      * organizing the items on their grocery list
      */
     public void organizeGroceryList() {
-        //display use case initilization message
+        //display use case initialization message
         glView.displayOrganizeInit();
         //print out grocery list and get the
         //selected ingredient toMove
         glView.askForToMove();
         Ingredient toMove = getIngredientListController().getIngredientListView().selectIngredient();
-        //get a selected ingerdient after which to place toMove 
+        //get a selected ingredient after which to place toMove 
         glView.askForMoveAfter();
         Ingredient moveAfter = getIngredientListController().getIngredientListView().selectIngredient();
         //re-order the ingredients
-        if(getIngredientListController().getIngredientList().reoganizeIngredients(toMove, moveAfter)){
+        if(getIngredientListController().getIngredientList().reorganizeIngredients(toMove, moveAfter)){
             glView.displayReorganizeSuccess();
         }
         else{

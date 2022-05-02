@@ -38,7 +38,7 @@ public class UnitConverter {
         OUNCE (28.350, "Ounce", UnitType.WEIGHT), 
         MILLIGRAM (0.001, "Milligram", UnitType.MASS), 
         GRAM (1.000, "Gram", UnitType.MASS), 
-        KILOGRAM (1000.000, "Killogram", UnitType.MASS);
+        KILOGRAM (1000.000, "Kilogram", UnitType.MASS);
 
         public final double amountInBaseUnit;
         public final String stringRep;
@@ -66,9 +66,9 @@ public class UnitConverter {
      *                        oldUnit, must be valid quantity > 0.
      * @param newUnit         The desired new unit.
      * @return The quantity of substance as measured in the newUnit; throws
-     *         IllegalArgumentException if units are unconvertable or quantities not
+     *         IllegalArgumentException if units are unconvertible or quantities not
      *         valid.
-     * @throws IllegalArgumentException if units are unconvertable or quantity is
+     * @throws IllegalArgumentException if units are unconvertible or quantity is
      *                                  not valid.
      */
     public static double convertUnit(Unit oldUnit, double oldUnitQuantity, Unit newUnit)

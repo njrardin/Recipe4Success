@@ -32,7 +32,7 @@ public class RecipeBook extends Entity {
 
     // * Methods *\\
     /**
-     * Attemps to add a recipe to the RecipeBook.
+     * Attempts to add a recipe to the RecipeBook.
      * 
      * @param toAdd the recipe object to be added.
      * @return true if the recipe has been successfully added to the RecipeBook,
@@ -50,7 +50,7 @@ public class RecipeBook extends Entity {
     }
 
     /**
-     * Attemps to remove a recipe from the RecipeBook.
+     * Attempts to remove a recipe from the RecipeBook.
      * 
      * @param toRemove the recipe object to be removed.
      * @return true if the recipe has been successfully remove from the RecipeBook,

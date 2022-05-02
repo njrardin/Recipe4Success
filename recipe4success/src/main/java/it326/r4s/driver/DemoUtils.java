@@ -17,7 +17,7 @@ import it326.r4s.model.UnitConverter.Unit;
 import it326.r4s.model.User;
 
 /**
- * Utilites for the Driver
+ * Utilities for the Driver
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
@@ -206,8 +206,8 @@ public class DemoUtils {
         ingredientList = new IngredientList();
         ingredientList.addIngredient(new Ingredient("pizza dough", 200, UnitConverter.Unit.GRAM));
         ingredientList.addIngredient(new Ingredient("marinara sauce", 3, UnitConverter.Unit.TABLESPOON));
-        ingredientList.addIngredient(new Ingredient("shredded mozzerella", 0.5, UnitConverter.Unit.CUP));
-        ingredientList.addIngredient(new Ingredient("pepperonni", 12, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("shredded mozzarella", 0.5, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("pepperoni", 12, UnitConverter.Unit.NONE));
 
         recipeBuilder.setIngredientList(ingredientList);
 

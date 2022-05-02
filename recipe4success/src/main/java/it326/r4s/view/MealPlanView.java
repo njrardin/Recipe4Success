@@ -14,7 +14,7 @@ public class MealPlanView implements R4SMenu {
 
     //*Constructor*\\
     /**
-     * Constructor for R4S's MealPlanview
+     * Constructor for R4S's MealPlanView
      * @param mealPlanController - the MealPlanView's controller
      */
     public MealPlanView(MealPlanController mealPlanController){
@@ -40,7 +40,7 @@ public class MealPlanView implements R4SMenu {
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");   
     }
-    //TODO: behaviour to handle null values and format date better
+    //TODO: behavior to handle null values and format date better
 
     /**
      * Allows the user to select one of a series of options
@@ -147,7 +147,7 @@ public class MealPlanView implements R4SMenu {
     /**
      * Displays the mealplan in a one line format
      */
-    public void displayOneline() {
+    public void displayOneLine() {
         System.out.println(mealPlanController.getMealPlan().getMealPlanName() + ": " + mealPlanController.getMealPlan().getMealPlanDescription());
     }
 

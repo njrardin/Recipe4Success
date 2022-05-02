@@ -13,7 +13,7 @@ import it326.r4s.view.MealPlannerView;
  */
 public class MealPlannerController {
     
-    //*Isntance Variables*\\
+    //*Instance Variables*\\
     private MealPlanner mealPlanner;
     private MealPlannerView mealPlannerView;
     private UserController userController;
@@ -172,7 +172,7 @@ public class MealPlannerController {
         mealPlanner.addMealPlan(mpc.getMealPlan());
 
         System.out.println("You have successfully created the meal plan: \n");
-        mpc.getMealPlanView().displayOneline();
+        mpc.getMealPlanView().displayOneLine();
         System.out.println();
     }
 

@@ -10,13 +10,13 @@ import it326.r4s.view.IngredientView;
  */
 public class IngredientController {
     
-    //*Instance Varaibles*\\
+    //*Instance Variables*\\
     private Ingredient ingredient;
     private IngredientView ingredientView;
 
-    //*Contructor*\\
+    //*Constructor*\\
     /**
-     * Contructor for R4S's IngredientController
+     * Constructor for R4S's IngredientController
      * @param ingredient - the controller's Ingredient object
      */
     public IngredientController(Ingredient ingredient){

@@ -53,7 +53,7 @@ public class MealPlanController  {
     }
 
     /**
-     * Getter for the UserController which cantrols the MealPlanController's author
+     * Getter for the UserController which controls the MealPlanController's author
      * @return the UseController object
      */
     public UserController getAuthorController(){

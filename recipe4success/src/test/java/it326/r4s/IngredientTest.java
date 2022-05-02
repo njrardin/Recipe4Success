@@ -48,7 +48,7 @@ public class IngredientTest {
         @Test
         public void quantityConverted(){
 
-            final Unit INIT_UNIT = Unit.TEASPOON; //this should be irrelevant but is changable here just in case
+            final Unit INIT_UNIT = Unit.TEASPOON; //this should be irrelevant but is changeable here just in case
             Ingredient theIngredient = new Ingredient(fiPool.getFoodItem("Flour"), initialQuantity, INIT_UNIT);
 
             boolean returnedValidity = theIngredient.changeUnit(INIT_UNIT);
@@ -87,7 +87,7 @@ public class IngredientTest {
         @Test
         public void unitConverted(){
 
-            final double TEST_QUANTITY = 10; //should be irrelevant but is changable here
+            final double TEST_QUANTITY = 10; //should be irrelevant but is changeable here
             Ingredient theIngredient = new Ingredient(fiPool.getFoodItem("Flour"), TEST_QUANTITY, initialUnit);
 
             theIngredient.changeUnit(newUnit);

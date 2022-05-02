@@ -172,7 +172,7 @@ public class IngredientList extends Entity {
 
                     if (!otherIngredient.equals(thisIngredient)) { //if not equal
 
-                        if (otherIngredient.getQuantity() > thisIngredient.getQuantity()) //return false if ther's less of this
+                        if (otherIngredient.getQuantity() > thisIngredient.getQuantity()) //return false if there's less of this
                             return false;                                                 //ingredient than the other
                     }
                 }
@@ -250,7 +250,7 @@ public class IngredientList extends Entity {
      * @param toMove
      * @param moveAfter
      */
-    public boolean reoganizeIngredients(Ingredient toMove, Ingredient moveAfter) {
+    public boolean reorganizeIngredients(Ingredient toMove, Ingredient moveAfter) {
         if( ! ingredients.contains(moveAfter)){
             return false;
         }

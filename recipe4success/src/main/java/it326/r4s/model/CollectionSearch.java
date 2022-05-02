@@ -12,7 +12,7 @@ public interface CollectionSearch<Searchable> {
     /**
      * Searches for a String and returns an ArrayList of objects that fit the search criteria
      * @param searchString - the string to objects search for
-     * @return a collection of objects which are considered to fit the search critera given the searchString
+     * @return a collection of objects which are considered to fit the search criteria given the searchString
      */
     public ArrayList<Searchable> searchFor(String searchString);
 }

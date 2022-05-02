@@ -31,7 +31,7 @@ public class RecipeSearch implements CollectionSearch<Recipe> {
 
     // *Methods*\\
     /**
-     * Searches for a String and returns an ArrayList of any Recipes fufilling one
+     * Searches for a String and returns an ArrayList of any Recipes fulfilling one
      * of the following search criteria
      * 1) Name has a FuzzySearch partial ratio > 75
      * 2) Description FuzzySearch partial ratio > 75
@@ -39,7 +39,7 @@ public class RecipeSearch implements CollectionSearch<Recipe> {
      * @see https://github.com/xdrop/fuzzywuzzy
      * @param searchString - the string to objects search for
      * @return a collection of objects which are considered to fit the search
-     *         critera given the searchString
+     *         criteria given the searchString
      */
     @Override
     public ArrayList<Recipe> searchFor(String searchString) {
@@ -62,7 +62,7 @@ public class RecipeSearch implements CollectionSearch<Recipe> {
      * 
      * @param category - the category to search for
      * @return a collection of objects which are considered to fit the search
-     *         critera given the searchString
+     *         criteria given the searchString
      */
     public ArrayList<Recipe> searchFor(Category category) {
         ArrayList<Recipe> itemsThatPassed = new ArrayList<Recipe>();
@@ -81,7 +81,7 @@ public class RecipeSearch implements CollectionSearch<Recipe> {
      * 
      * @param category - the category to search for
      * @return a collection of objects which are considered to fit the search
-     *         critera given the searchString
+     *         criteria given the searchString
      */
     public ArrayList<Recipe> searchFor(Collection<Category> categoryList) {
         ArrayList<Recipe> itemsThatPassed = new ArrayList<Recipe>();

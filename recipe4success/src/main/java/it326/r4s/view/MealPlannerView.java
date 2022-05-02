@@ -82,7 +82,7 @@ public class MealPlannerView implements R4SMenu{
             int i = 1;
             for(MealPlanController mealPlanController: mealPlanControllers){
                 System.out.print(i + ") ");
-                mealPlanController.getMealPlanView().displayOneline();
+                mealPlanController.getMealPlanView().displayOneLine();
                 i++;
             }
         }
@@ -179,8 +179,8 @@ public class MealPlannerView implements R4SMenu{
 
     /**
      * Gets from the user a confirmation as to whether or not they
-     * wish to add anothe recipe to a meal plan
-     * @return boolean repesentation of response
+     * wish to add another recipe to a meal plan
+     * @return boolean representation of response
      */
     public boolean wantToAddAnotherRecipe() {
         InputAccess inputAccess = new InputAccess();

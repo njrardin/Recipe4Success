@@ -95,7 +95,7 @@ public class MealPlan extends Entity implements Portable {
      * Attempts to add a meal to the MealPlan.
      * 
      * @param theMeal the meal to be added.
-     * @return true if theMeal is sucessfully add to the MealPlan, false otherwise.
+     * @return true if theMeal is successfully add to the MealPlan, false otherwise.
      */
     public boolean addMeal(Meal theMeal) {
         return meals.add(theMeal);

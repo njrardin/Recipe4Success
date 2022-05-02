@@ -47,7 +47,7 @@ public class MealTest {
     }
     
     @Test
-    public void testGetServinSize(){
+    public void testGetServingSize(){
         assertEquals(SERVINGSIZE, theMeal.getServingSize());
     }
 

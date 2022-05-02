@@ -29,7 +29,7 @@ public class MealPlanSearch implements CollectionSearch<MealPlan> {
     }
 
     /**
-     * Searches for a String and returns an ArrayList of any MealPlans fufilling one
+     * Searches for a String and returns an ArrayList of any MealPlans fulfilling one
      * of the following search criteria
      * 1) Name has a FuzzySearch partial ratio > 75
      * 2) Description FuzzySearch partial ratio > 75
@@ -37,7 +37,7 @@ public class MealPlanSearch implements CollectionSearch<MealPlan> {
      * @see https://github.com/xdrop/fuzzywuzzy
      * @param searchString - the string to search MealPlans for
      * @return a collection of objects which are considered to fit the search
-     *         critera given the searchString
+     *         criteria given the searchString
      */
     @Override
     public ArrayList<MealPlan> searchFor(String searchString) {
@@ -56,13 +56,13 @@ public class MealPlanSearch implements CollectionSearch<MealPlan> {
 
     /**
      * Searches for a String and returns an ArrayList of any MealPlans whose recipes
-     * fufill the search critera
+     * fulfill the search criteria
      * specified in the class Recipe.java of the same package
      * 
      * @see it326.r4s.Recipe.java
      * @param searchString - the string to search Mealplan Recipes for
      * @return a collection of MealPlans which are considered to fit the search
-     *         critera given the searchString
+     *         criteria given the searchString
      */
     public ArrayList<MealPlan> searchRecipesFor(String searchString) {
         ArrayList<MealPlan> itemsThatPassed = new ArrayList<MealPlan>();

@@ -74,7 +74,7 @@ public class RecipeBookView implements R4SMenu {
             int i = 1;
             for(RecipeController recipeController: recipeControllers){
                 System.out.print(i + ") ");
-                recipeController.getRecipeView().displayOneline();
+                recipeController.getRecipeView().displayOneLine();
                 i++;
             }
         }
@@ -94,7 +94,7 @@ public class RecipeBookView implements R4SMenu {
             throw new IllegalArgumentException();
         }
 
-        //Selection loop; only exits once a valid recipe is selcted
+        //Selection loop; only exits once a valid recipe is selected
         String input;
         int inputNum = -1;
         InputAccess inputAccess = new InputAccess();

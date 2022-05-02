@@ -35,7 +35,7 @@ public class RecipeBookController {
 
     //*Methods*\\
     /**
-     * Getter for the controller's ReciepBook
+     * Getter for the controller's RecipeBook
      * @return the RecipeBook object
      */
     public RecipeBook getRecipeBook(){
@@ -43,7 +43,7 @@ public class RecipeBookController {
     }
 
     /**
-     * Getter for the controller's RecipeBookview
+     * Getter for the controller's RecipeBookView
      * @return the RecipeBookView object
      */
     public RecipeBookView getRecipeBookView(){

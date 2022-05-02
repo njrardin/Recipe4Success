@@ -122,8 +122,8 @@ public class GroceryList implements Portable {
             return true;
         }
 
-        GroceryList otheGroceryList = (GroceryList) obj;
-        return this.ingredientList.equals(otheGroceryList.getIngredientList());
+        GroceryList otherGroceryList = (GroceryList) obj;
+        return this.ingredientList.equals(otherGroceryList.getIngredientList());
     }
 
     /**
