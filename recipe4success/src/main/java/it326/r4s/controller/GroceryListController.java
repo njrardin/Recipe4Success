@@ -16,6 +16,7 @@ public class GroceryListController {
     private GroceryList groceryList;
     private GroceryListView glView;
     private UserController userController;
+    private PorterController<GroceryList> groceryListPorter;
 
     //*Constructor*\\
     /**
@@ -26,6 +27,7 @@ public class GroceryListController {
         this.groceryList = groceryList;
         this.glView = new GroceryListView(this);
         this.userController = userController;
+        groceryListPorter = PorterController.of(GroceryList.class);
     }
 
     //*Methods*\\
@@ -161,6 +163,6 @@ public class GroceryListController {
      * exporting their grocery list
      */
     public void exportGroceryList(){
-
+        groceryListPorter.export(groceryList);
     }
 }
