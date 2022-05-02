@@ -11,6 +11,9 @@ import it326.r4s.model.UserManager;
 import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 
+/**
+ * @author everyone :)
+ */
 public class R4SDriver {
     public static void main(String[] args) {
         displayWelcome();
@@ -54,7 +57,7 @@ public class R4SDriver {
             new CategoryPoolManager().save(Category.Pool.getInstance());
             new FoodItemPoolManager().save(FoodItem.Pool.getInstance());
         } catch (Exception e) {
-            System.err.println("An error occurred while saving");
+            System.err.println("An error occurred while saving: " + e.getClass());
         }
  
         System.out.println("Thank you for using Recipe4Success!");
