@@ -97,9 +97,6 @@ public class MealPlannerView implements R4SMenu{
      */
     public MealPlanController getMealPlanSelection(Collection<MealPlanController> mealPlanControllers) throws RuntimeException{    
         displayMealPlans(mealPlanControllers);
-        if (askSelectMealPlan() == false){
-            throw new RuntimeException();
-        }    
 
         String selection = "";
         int inputNum = -1;

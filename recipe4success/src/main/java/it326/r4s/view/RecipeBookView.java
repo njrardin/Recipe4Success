@@ -93,9 +93,6 @@ public class RecipeBookView implements R4SMenu {
         if(recipeControllers == null){
             throw new IllegalArgumentException();
         }
-        if (askSelectRecipe() == false){
-            throw new RuntimeException();
-        }    
 
         //Selection loop; only exits once a valid recipe is selcted
         String input;
