@@ -32,7 +32,6 @@ public class MealPlanView implements R4SMenu {
         System.out.println("Description: " + mealPlanController.getMealPlan().getMealPlanDescription());
         System.out.println("Created on: " + mealPlanController.getMealPlan().getMealPlanDate());
         System.out.println();
-        System.out.println("Recipes: ");
         mealPlanController.getAuthorController().getRecipeBookController().getRecipeBookView().displayRecipes(mealPlanController.getRecipeControllers());
         System.out.println();
         System.out.println("-------------------------------------------------------------------------------------");
@@ -79,6 +78,34 @@ public class MealPlanView implements R4SMenu {
             System.out.println("...deleting " + mealPlanController.getMealPlan().getMealPlanName());
             return true;
         }
+    }
+
+    public boolean addToGroceryListConfirmation() {
+        InputAccess inputAccess = new InputAccess();
+        String response = "";
+        do{
+            System.out.print("Are you sure you want to add all ingredients from this meal plan to your grocery list? (Y/N) : ");
+            response = inputAccess.getInputLine().toLowerCase();
+        }  while ( !(response.equals("y") || response.equals("n") ));
+
+        if(response.equals("n")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean adjustMPServingSizeConfirmation(int newServingSize) {
+        InputAccess inputAccess = new InputAccess();
+        String response = "";
+        do{
+            System.out.print("Are you sure you want to change all recipes in this meal plan to a serving size of " + newServingSize + "? (Y/N) : ");
+            response = inputAccess.getInputLine().toLowerCase();
+        }  while ( !(response.equals("y") || response.equals("n") ));
+
+        if(response.equals("n")){
+            return false;
+        }
+        return true;
     }
 
     /**
