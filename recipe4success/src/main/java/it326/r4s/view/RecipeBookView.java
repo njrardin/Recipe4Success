@@ -99,7 +99,7 @@ public class RecipeBookView implements R4SMenu {
         int inputNum = -1;
         InputAccess inputAccess = new InputAccess();
         do{
-            System.out.println("\n Which recipe would you like to open?");
+            System.out.println("\n Which recipe would you like to select?");
             System.out.print("(please type the selection number or type \"exit\" to go back) : ");
 
             input = inputAccess.getInputLine();
