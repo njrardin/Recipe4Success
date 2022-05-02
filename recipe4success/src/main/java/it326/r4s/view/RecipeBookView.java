@@ -128,14 +128,14 @@ public class RecipeBookView implements R4SMenu {
     }
 
     /**
-     * A confirmation option for opening a recipe
+     * A confirmation option for selecting a recipe
      * @return true if confirmed, false if denied
      */
     private static boolean askSelectRecipe() {
         InputAccess inputAccess = new InputAccess();
         String response = "";
         do{
-        System.out.print("Would you like to open a recipe? (Y/N) : ");
+        System.out.print("Would you like to select a recipe? (Y/N) : ");
         response = inputAccess.getInputLine().toLowerCase();
         } while ( !(response.equals("y") || response.equals("n")) );
         if(response.equals("n")){

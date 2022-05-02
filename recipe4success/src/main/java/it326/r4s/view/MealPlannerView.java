@@ -59,7 +59,7 @@ public class MealPlannerView implements R4SMenu{
             "Import a mealplan",
             "Export a mealplan",
             "Create a new mealplan",
-            "Select a mealplan",
+            "Open a mealplan",
             "Set mealplan as 'Active'",
             "Go back"
         };
@@ -117,12 +117,12 @@ public class MealPlannerView implements R4SMenu{
             try{
                 inputNum = Integer.parseInt(selection);
             } catch (Exception e){
-                System.out.println("Invalid selection, selection must be a number.");
+                System.out.println("\nInvalid selection, selection must be a number.");
                 continue;
             }
             
             if (inputNum <= 0 || mealPlanControllers.size() < inputNum){
-                System.out.println("Invalid selection, selection out of range.");
+                System.out.println("\nInvalid selection, selection out of range.");
             }
 
         } while(inputNum <= 0 || mealPlanControllers.size() < inputNum);
@@ -138,7 +138,7 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         String selection = "";
         do{
-        System.out.print("Would you like to select a meal plan? (Y/N) : ");
+        System.out.print("Would you like to open a meal plan? (Y/N) : ");
         selection = inputAccess.getInputLine().toLowerCase();
         } while ( !(selection.equals("y") || selection.equals("n")) );
         if(selection.equals("n")){
@@ -158,11 +158,11 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         int selection = -1;
         do{
-            System.out.print("Please select an option by entering the corresponding number: ");
+            System.out.print("Please select an option by entering the corresponding number to mark it as active: ");
             try{
                 selection = Integer.parseInt(inputAccess.getInputLine());
             } catch (Exception e) {
-                System.out.println("Invalid input, selection must be a number:");
+                System.out.print("Invalid input, selection must be a number: ");
                 continue;
             }
         } while( !(0 < selection && selection <= mprController.getMealPlanControllers().size()));
