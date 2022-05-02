@@ -118,7 +118,7 @@ public class MealPlanController  {
 
         RecipeController selectedRecipeController = authorController.getRecipeBookController().selectRecipeController();
 
-        mealPlan.addMeal(new Meal(selectedRecipeController.getRecipe(), selectedRecipeController.getRecipe().getServingSize()));
+        mealPlan.addMeal(new Meal(selectedRecipeController.getRecipe()));
 
         System.out.println("Recipe added successfully");
     }

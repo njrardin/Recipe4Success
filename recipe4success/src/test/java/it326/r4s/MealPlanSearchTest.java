@@ -27,7 +27,7 @@ public class MealPlanSearchTest {
         //MealPlan 1: Is valid
         demoMP = new MealPlan("MP1");
         demoRecipe = new Recipe.RecipeBuilder("demoMP1-demoR1").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("First mealplan");
         demoMP.setMealPlanDescription("This is my first mealplan ever!");
 
@@ -37,7 +37,7 @@ public class MealPlanSearchTest {
         //MealPlan 2: Is valid
         demoMP = new MealPlan("MP2");
         demoRecipe = new Recipe.RecipeBuilder("demoMP2-demoR1").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("Evermore menu");
         demoMP.setMealPlanDescription("A scrumptious fantasy menu.");
 
@@ -47,7 +47,7 @@ public class MealPlanSearchTest {
         //MealPlan 3: Is NOT valid
         demoMP = new MealPlan("MP3");
         demoRecipe = new Recipe.RecipeBuilder("demoMP3-demoR1").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("Des vacances en France");
         demoMP.setMealPlanDescription("Je ne savais pas ce qu'ils avaient alors j'ai cree ce plan de repas ci");
 
@@ -56,7 +56,7 @@ public class MealPlanSearchTest {
         //MealPlan 4: Is valid
         demoMP = new MealPlan("MP4");
         demoRecipe = new Recipe.RecipeBuilder("demoMP4-demoR1").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("Beverly Hills Mealplan");
         demoMP.setMealPlanDescription("I think its clever");
 
@@ -66,7 +66,7 @@ public class MealPlanSearchTest {
         //MealPlan 5: Is NOT valid
         demoMP = new MealPlan("MP5");
         demoRecipe = new Recipe.RecipeBuilder("demoMP5-demoR1").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("Oh no my ISU mealplan ran out");
         demoMP.setMealPlanDescription("guess I gotta buy groceries now");
 
@@ -95,7 +95,7 @@ public class MealPlanSearchTest {
         //MealPlan 1: Is valid
         demoMP = new MealPlan("MP1");
         demoRecipe = new Recipe.RecipeBuilder("apple pie").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("First mealplan");
         demoMP.setMealPlanDescription("This is my first mealplan ever!");
 
@@ -105,7 +105,7 @@ public class MealPlanSearchTest {
         //MealPlan 2: Is valid
         demoMP = new MealPlan("MP2");
         demoRecipe = new Recipe.RecipeBuilder("grandma's apple cider").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("Evermore menu");
         demoMP.setMealPlanDescription("A scrumptious fantasy menu.");
 
@@ -115,7 +115,7 @@ public class MealPlanSearchTest {
         //MealPlan 3: Is NOT valid
         demoMP = new MealPlan("MP3");
         demoRecipe = new Recipe.RecipeBuilder("cupcake thing").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("Des vacances en France");
         demoMP.setMealPlanDescription("Je ne savais pas ce qu'ils avaient alors j'ai cree ce plan de repas ci");
 
@@ -124,7 +124,7 @@ public class MealPlanSearchTest {
         //MealPlan 4: Is valid
         demoMP = new MealPlan("MP4");
         demoRecipe = new Recipe.RecipeBuilder("title that doesn't have the a word").setDescription("description that says apple").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("Beverly Hills Mealplan");
         demoMP.setMealPlanDescription("I think its clever");
 
@@ -134,7 +134,7 @@ public class MealPlanSearchTest {
         //MealPlan 5: Is NOT valid
         demoMP = new MealPlan("MP5");
         demoRecipe = new Recipe.RecipeBuilder("wawa we wa").build();
-        demoMP.addMeal(new Meal(demoRecipe, 4));
+        demoMP.addMeal(new Meal(demoRecipe));
         demoMP.setMealPlanName("Oh no my ISU mealplan ran out");
         demoMP.setMealPlanDescription("guess I gotta buy groceries now");
 

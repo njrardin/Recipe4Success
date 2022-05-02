@@ -49,8 +49,8 @@ public class JSON_PorterTest {
         user.getRecipeBook().addRecipe(omelette);
 
         MealPlan breakfast = new MealPlan("Breakfast");
-        breakfast.addMeal(new Meal(friedRice, 4));
-        breakfast.addMeal(new Meal(omelette, 2));
+        breakfast.addMeal(new Meal(friedRice));
+        breakfast.addMeal(new Meal(omelette));
         user.getMealPlanner().addMealPlan(breakfast);
     }
 
