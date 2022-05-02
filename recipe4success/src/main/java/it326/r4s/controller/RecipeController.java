@@ -23,7 +23,7 @@ public class RecipeController {
     public RecipeView recipeView;
     private PorterView porterView;
 
-    public UserController authorController; //controller for the author's user object
+    private UserController authorController; //controller for the author's user object
     
     //*Constructor*\\
     /**
@@ -47,7 +47,7 @@ public class RecipeController {
     }
 
     /**
-     * Getter for the UserController which cantrols the MealPlanController's author
+     * Getter for the UserController which controls the MealPlanController's author
      * @return the UseController object
      */
     public UserController getAuthorController(){
@@ -100,7 +100,7 @@ public class RecipeController {
     }
 
     /**
-     * Faciliates the process of the user
+     * Facilitates the process of the user
      * editing the recipe
      */
     public void editRecipe(){

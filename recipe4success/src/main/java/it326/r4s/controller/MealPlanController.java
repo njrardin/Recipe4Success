@@ -17,10 +17,10 @@ import it326.r4s.view.MealPlanView;
 public class MealPlanController  {
 
     //*Instance Variables\\
-    public MealPlan mealPlan;
-    public MealPlanView mealPlanView;
+    private MealPlan mealPlan;
+    private MealPlanView mealPlanView;
 
-    public UserController authorController; //controller for the author's user object
+    private UserController authorController; //controller for the author's user object
 
     //*Constructor*\\
     /**
@@ -97,9 +97,12 @@ public class MealPlanController  {
                     exportMealPlan();
                     return;
                 case 6:
-                    deleteMealPlan();
-                    mealPlanView.displayMealPlan();
-                    return;
+                    if(mealPlanView.deletionConfirmation()){
+                        deleteMealPlan();
+                        mealPlanView.displayMealPlan();
+                        return;
+                    }
+                    break;
                 case 7:
                     return;
                 default:
@@ -132,7 +135,9 @@ public class MealPlanController  {
 
     public void adjustMealPlanServingSize() {
         int servingSize = mealPlanView.getNewServingSize();
-        mealPlan.setMealServingSize(servingSize);
+        if(mealPlanView.adjustMPServingSizeConfirmation(servingSize)){
+            mealPlan.setMealServingSize(servingSize);
+        }
     }
 
     public void exportMealPlan() {
@@ -141,13 +146,13 @@ public class MealPlanController  {
     }
 
     public void addToGroceryList() {
-        authorController.getUser().addMealPlanToGroceryList(mealPlan);
-        System.out.println("Ingredients added successfully");
+        if(mealPlanView.addToGroceryListConfirmation()){
+            authorController.getUser().addMealPlanToGroceryList(mealPlan);
+            System.out.println("Ingredients added successfully");
+        }
     }
 
-    public void deleteMealPlan() {//req 11
-        if(mealPlanView.deletionConfirmation()){
+    public void deleteMealPlan() {
             authorController.getUser().getMealPlanner().removeMealPlan(mealPlan);
-        }
     }
 }

@@ -4,7 +4,7 @@ import java.util.*;
 
 /*
 * A collection of meal, it can return all of its recipes or ingredients
-* @author: Shu Liao (fliao@ilstu.edu)
+* @author: Shu Liao (fliao@ilstu.edu) and Zach Plattner (zmplatt@ilstu.edu)
 * @date: 4/14/2022
 */
 

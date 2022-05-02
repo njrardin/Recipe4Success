@@ -55,12 +55,12 @@ public class MealPlannerView implements R4SMenu{
         String title = "Meal Planner Options";
         String prompt = "What would you like to do?";
         String[] options = {
-            "Search mealplans",
-            "Import a mealplan",
-            "Export a mealplan",
-            "Create a new mealplan",
-            "Select a mealplan",
-            "Set mealplan as 'Active'",
+            "Search Meal Plans",
+            "Import a Meal Plan",
+            "Export a Meal Plan",
+            "Create a new Meal Plan",
+            "Open a Meal Plan",
+            "Set Meal Plan as 'Active'",
             "Go back"
         };
         InputAccess inputAccess = new InputAccess();
@@ -97,9 +97,6 @@ public class MealPlannerView implements R4SMenu{
      */
     public MealPlanController getMealPlanSelection(Collection<MealPlanController> mealPlanControllers) throws RuntimeException{    
         displayMealPlans(mealPlanControllers);
-        if (askSelectMealPlan() == false){
-            throw new RuntimeException();
-        }    
 
         String selection = "";
         int inputNum = -1;
@@ -117,34 +114,17 @@ public class MealPlannerView implements R4SMenu{
             try{
                 inputNum = Integer.parseInt(selection);
             } catch (Exception e){
-                System.out.println("Invalid selection, selection must be a number.");
+                System.out.println("\nInvalid selection, selection must be a number.");
                 continue;
             }
             
             if (inputNum <= 0 || mealPlanControllers.size() < inputNum){
-                System.out.println("Invalid selection, selection out of range.");
+                System.out.println("\nInvalid selection, selection out of range.");
             }
 
         } while(inputNum <= 0 || mealPlanControllers.size() < inputNum);
 
         return (MealPlanController) mealPlanControllers.toArray()[inputNum - 1];
-    }
-
-    /**
-     * A confirmation option for selecting a mealplan
-     * @return true if confirmed, false if denied
-     */
-    private boolean askSelectMealPlan() {
-        InputAccess inputAccess = new InputAccess();
-        String selection = "";
-        do{
-        System.out.print("Would you like to select a meal plan? (Y/N) : ");
-        selection = inputAccess.getInputLine().toLowerCase();
-        } while ( !(selection.equals("y") || selection.equals("n")) );
-        if(selection.equals("n")){
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -158,11 +138,11 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         int selection = -1;
         do{
-            System.out.print("Please select an option by entering the corresponding number: ");
+            System.out.print("Please select an option by entering the corresponding number to mark it as active: ");
             try{
                 selection = Integer.parseInt(inputAccess.getInputLine());
             } catch (Exception e) {
-                System.out.println("Invalid input, selection must be a number:");
+                System.out.print("Invalid input, selection must be a number: ");
                 continue;
             }
         } while( !(0 < selection && selection <= mprController.getMealPlanControllers().size()));
@@ -186,7 +166,7 @@ public class MealPlannerView implements R4SMenu{
         String name = "";
 
         while(true){
-            System.out.print("\nPlease provide the mealplan's name: ");
+            System.out.print("\nPlease provide the meal plan's name: ");
             name = inputAccess.getInputLine();
             if(!name.equals("")){
                 System.out.print("You provided the name \"" + name + ",\" is this correct? (Y/N) : ");

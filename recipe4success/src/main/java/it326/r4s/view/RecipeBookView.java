@@ -45,7 +45,7 @@ public class RecipeBookView implements R4SMenu {
             "Import a recipe",
             "Export a recipe",
             "Create a new recipe",
-            "Select a recipe",
+            "Open a recipe",
             "Go back"
         };
         InputAccess inputAccess = new InputAccess();
@@ -93,9 +93,6 @@ public class RecipeBookView implements R4SMenu {
         if(recipeControllers == null){
             throw new IllegalArgumentException();
         }
-        if (askSelectRecipe() == false){
-            throw new RuntimeException();
-        }    
 
         //Selection loop; only exits once a valid recipe is selcted
         String input;
@@ -113,35 +110,18 @@ public class RecipeBookView implements R4SMenu {
             try{
                 inputNum = Integer.parseInt(input);
             } catch (Exception e){
-                System.out.println("Invalid selection, selection must be a number.");
+                System.out.println("\nInvalid selection, selection must be a number.");
                 continue;
             }
             
             if (inputNum <= 0 || recipeControllers.size() < inputNum){
-                System.out.println("Invalid selection, selection out of range.");
+                System.out.println("\nInvalid selection, selection out of range.");
             }
 
         } while(inputNum <= 0 || recipeControllers.size() < inputNum);
 
         //returns the selected RecipeController
         return (RecipeController) recipeControllers.toArray()[inputNum - 1];
-    }
-
-    /**
-     * A confirmation option for selecting a recipe
-     * @return true if confirmed, false if denied
-     */
-    private static boolean askSelectRecipe() {
-        InputAccess inputAccess = new InputAccess();
-        String response = "";
-        do{
-        System.out.print("Would you like to select a recipe? (Y/N) : ");
-        response = inputAccess.getInputLine().toLowerCase();
-        } while ( !(response.equals("y") || response.equals("n")) );
-        if(response.equals("n")){
-            return false;
-        }
-        return true;
     }
 
 }
