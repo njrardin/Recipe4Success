@@ -89,7 +89,6 @@ public class RecipeBook extends Entity {
             } else {
                 string += ("\n" + i + ") " + recipe.toString());
             }
-            System.out.println(i + ") " + recipe.toString());
             i++;
         }
         return string;
