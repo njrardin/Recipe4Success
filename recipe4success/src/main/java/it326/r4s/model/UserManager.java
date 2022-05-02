@@ -38,9 +38,7 @@ public class UserManager extends InstanceManager<User> {
         try {
             user = importer.importFrom(userDirectory);
             rebuildUserReferences(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {}
 
         return user;
     }
