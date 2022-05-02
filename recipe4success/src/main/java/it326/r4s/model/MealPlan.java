@@ -13,6 +13,7 @@ public class MealPlan extends Entity implements Portable {
     private String description;
     private Collection<Meal> meals;
     private Date createdOn;
+    private int mpServingSize = 0;
 
     // *Constructor*\\
     /**
@@ -66,6 +67,10 @@ public class MealPlan extends Entity implements Portable {
      */
     public Date getMealPlanDate() {
         return (Date) this.createdOn.clone();
+    }
+
+    public int getMPServingSize() {
+        return this.mpServingSize;
     }
 
     /**
@@ -131,8 +136,9 @@ public class MealPlan extends Entity implements Portable {
      * @return true .
      */
     public boolean setMealServingSize(int servingSize) {
+        this.mpServingSize = servingSize;
         for (Meal theMeal : meals) {
-            theMeal.setServingSize(servingSize);
+            theMeal.adjustServingSize(servingSize);
         }
         return true;
     }
@@ -173,8 +179,7 @@ public class MealPlan extends Entity implements Portable {
     public Collection<Ingredient> getAllIngredients() {
         Collection<Ingredient> allIngredients = new ArrayList<Ingredient>(); // ingredients to be returned
         for (Meal meal : this.meals) { // iterate through meals
-            for (Ingredient ingredient : meal.getRecipe().getIngredientList().getIngredients()) { // iterate through
-                                                                                                  // meal ingredient
+            for (Ingredient ingredient : meal.getIngredientList().getIngredients()) { // iterate through meal ingredient
 
                 boolean alreadyAdded = false;
                 for (Ingredient existingIngredient : allIngredients) { // check if ingredient already exists
