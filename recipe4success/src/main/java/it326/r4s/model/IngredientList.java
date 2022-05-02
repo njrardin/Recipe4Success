@@ -61,27 +61,27 @@ public class IngredientList extends Entity {
      * @param toAdd an Ingredient to be added to the IngredientList.
      * @return true if toAdd is already in ingredients, false otherwise.
      */
-    public boolean addIngredient(Ingredient toAdd) { 
-
-        for (Ingredient ingredient : this.ingredients) {
-            if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
-                if (ingredient.getUnit().unitType == toAdd.getUnit().unitType) {
-                    double toAddQuantity = toAdd.getQuantity();
-                    if (!ingredient.getUnit().equals(toAdd.getUnit())) {
-                        try{
-                            toAddQuantity = UnitConverter.convertUnit(toAdd.getUnit(), toAddQuantity, ingredient.getUnit());
-                        } catch (Exception e) {
-                            //do nothing
-                        }
-                    }
-                    ingredient.setQuantity(ingredient.getQuantity() + toAddQuantity);
-                    return true;
+    public boolean addIngredient(Ingredient ingredient) { 
+        boolean alreadyAdded = false;
+        for (Ingredient existingIngredient : this.ingredients) { // check if ingredient already exists
+            if (ingredient.getFoodItem().equals(existingIngredient.getFoodItem())) {
+                this.ingredients.remove(existingIngredient);
+                Ingredient copyIngredient = new Ingredient(existingIngredient.getFoodItem(),
+                        existingIngredient.getQuantity(), existingIngredient.getUnit());
+                if (!copyIngredient.changeUnit(ingredient.getUnit())) {
+                    this.ingredients.add(copyIngredient);
+                    break;
                 }
+                copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
+                this.ingredients.add(copyIngredient);
+                alreadyAdded = true;
+                break;
             }
         }
-        this.ingredients.add(toAdd);
-
-        return false;
+        if (!alreadyAdded) {
+            this.ingredients.add(ingredient);
+        }
+        return true;
     }
 
     /**
