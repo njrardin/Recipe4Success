@@ -93,16 +93,13 @@ public class RecipeBookView implements R4SMenu {
         if(recipeControllers == null){
             throw new IllegalArgumentException();
         }
-        if (askSelectRecipe() == false){
-            throw new RuntimeException();
-        }    
 
         //Selection loop; only exits once a valid recipe is selcted
         String input;
         int inputNum = -1;
         InputAccess inputAccess = new InputAccess();
         do{
-            System.out.println("\n Which recipe would you like to open?");
+            System.out.println("\n Which recipe would you like to select?");
             System.out.print("(please type the selection number or type \"exit\" to go back) : ");
 
             input = inputAccess.getInputLine();
@@ -113,12 +110,12 @@ public class RecipeBookView implements R4SMenu {
             try{
                 inputNum = Integer.parseInt(input);
             } catch (Exception e){
-                System.out.println("Invalid selection, selection must be a number.");
+                System.out.println("\nInvalid selection, selection must be a number.");
                 continue;
             }
             
             if (inputNum <= 0 || recipeControllers.size() < inputNum){
-                System.out.println("Invalid selection, selection out of range.");
+                System.out.println("\nInvalid selection, selection out of range.");
             }
 
         } while(inputNum <= 0 || recipeControllers.size() < inputNum);
