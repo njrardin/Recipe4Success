@@ -59,6 +59,7 @@ public class User implements Portable {
     public Collection<Recipe> getMakeableRecipes() {
         Collection<Recipe> makeable = new ArrayList<Recipe>();
         Collection<Recipe> recipes = recipeBook.getRecipes();
+        
         // Add each recipe in the user's collection that can be made with ingredients in the pantry.
         for (Recipe recipe : recipes) {
             if (pantry.getIngredientList().containsIngredients(recipe.getIngredientList().getIngredients())) {
