@@ -158,11 +158,11 @@ public class MealPlannerView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         int selection = -1;
         do{
-            System.out.print("Please select an option by entering the corresponding number: ");
+            System.out.print("Please select an option by entering the corresponding number to mark it as active: ");
             try{
                 selection = Integer.parseInt(inputAccess.getInputLine());
             } catch (Exception e) {
-                System.out.println("Invalid input, selection must be a number:");
+                System.out.print("Invalid input, selection must be a number: ");
                 continue;
             }
         } while( !(0 < selection && selection <= mprController.getMealPlanControllers().size()));
