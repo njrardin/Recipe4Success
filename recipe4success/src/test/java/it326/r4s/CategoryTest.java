@@ -3,6 +3,9 @@ package it326.r4s;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -19,9 +22,11 @@ public class CategoryTest {
     public static class CategoryMethods {
         @Test
         public void testEquals(){
-            Category category1 = new Category("Vegan");
-            Category category2 = new Category("vegan");
-            Category category3 = new Category("not vegan");
+            Category.Pool catPool = Category.Pool.getInstance();
+
+            Category category1 = catPool.getCategory(Type.RECIPE, "Vegan");
+            Category category2 = catPool.getCategory(Type.RECIPE, "vegan");
+            Category category3 = catPool.getCategory(Type.RECIPE, "not vegan");
     
             assertTrue(category1.equals(category2));
             assertTrue(category2.equals(category2));
@@ -50,13 +55,13 @@ public class CategoryTest {
 
         @Test
         public void testGetCategories(){
-            ArrayList<Category> fiCategoryList = new ArrayList<Category>();
-            fiCategoryList.add(new Category("Vegetable"));
-            fiCategoryList.add(new Category("Fruit"));
-            fiCategoryList.add(new Category("Meat"));
-            assertTrue(pool.getCategories(Type.FOODITEM).containsAll(fiCategoryList));
-            fiCategoryList.add(new Category("a recipe category"));
-            assertFalse(pool.getCategories(Type.FOODITEM).containsAll(fiCategoryList));
+            Collection<Category> fiCategories = pool.getCategories(Type.FOODITEM);
+
+            String[] fiNamesArr = {"Vegetable", "Fruit", "Meat"};
+            List<String> fiNames = Arrays.asList(fiNamesArr);
+            for(Category category: fiCategories){
+                assertTrue(fiNames.contains(category.getName()));
+            }
         }
 
         @Test
