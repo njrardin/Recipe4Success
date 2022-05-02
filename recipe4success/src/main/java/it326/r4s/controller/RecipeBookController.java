@@ -136,9 +136,7 @@ public class RecipeBookController {
      * exporting a recipe out of the application
      */
     public void exportRecipe() {
-        //TODO - req 7
-        //note for alex: use the selectRecipe method first then 
-        //export the selected recipe
+        selectRecipeController().exportRecipe();
     }
 
     /**

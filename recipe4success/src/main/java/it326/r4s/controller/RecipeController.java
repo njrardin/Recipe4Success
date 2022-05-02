@@ -1,14 +1,9 @@
 package it326.r4s.controller;
 
-import org.apache.commons.io.FilenameUtils;
-
-import it326.r4s.model.Exporter;
-import it326.r4s.model.ExporterProducer;
 import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
-import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
-import it326.r4s.view.PorterView;
+import it326.r4s.model.User;
 import it326.r4s.view.RecipeView;
 import it326.r4s.view.RecipeView.RecipeBuilderView;
 /**
@@ -19,11 +14,11 @@ import it326.r4s.view.RecipeView.RecipeBuilderView;
 public class RecipeController {
     
     //*Instance Variables*\\
-    public Recipe recipe;
-    public RecipeView recipeView;
-    private PorterView porterView;
+    private Recipe recipe;
+    private RecipeView recipeView;
 
     private UserController authorController; //controller for the author's user object
+    private PorterController<Recipe> recipePorter;
     
     //*Constructor*\\
     /**
@@ -33,8 +28,8 @@ public class RecipeController {
     public RecipeController(Recipe recipe, User author){
         this.recipe = recipe;
         this.recipeView = new RecipeView(this);
-        this.porterView = new PorterView();
         this.authorController = new UserController(author);
+        recipePorter = PorterController.of(Recipe.class);
     }
 
     //*Methods*\\
@@ -171,39 +166,7 @@ public class RecipeController {
      * exporting the recipe
      */
 	public void exportRecipe() {
-        //TODO: This works but it needs to be broken up
-        String exportPath = porterView.getExportPath();
-
-        if (!exportPath.equals("")) {
-            String extension = FilenameUtils.getExtension(exportPath);
-            exportPath = FilenameUtils.removeExtension(exportPath);
-            ExporterProducer.Type exportType = null;
-
-            // Get the export type.
-            if (!extension.equals("")) {
-                for (ExporterProducer.Type type : ExporterProducer.Type.values()) {
-                    if (extension.equalsIgnoreCase(type.name())) {
-                        exportType = type;
-                        break;
-                    }
-                }
-            }
-            
-            // Get type from user.
-            if (exportType == null) {
-                exportType = porterView.getExportType();
-            }
-
-            exportPath += "." + exportType.name().toLowerCase();
-            Exporter<Recipe> exporter = ExporterProducer.getExporter(exportType, Recipe.class);
-            try {
-                exporter.exportTo(recipe, exportPath);
-            } catch (Exception e) {
-                System.err.println("An error occurred while exporting.");
-            }
-        } else {
-            System.out.println("No file was selected, exiting ...");
-        }        
+        recipePorter.export(recipe);   
 	}
 
     /**
