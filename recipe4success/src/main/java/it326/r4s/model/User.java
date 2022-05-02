@@ -75,7 +75,7 @@ public class User implements Portable {
      * @return True if all ingredients were added, false otherwise.
      */
     public boolean addMealPlanToGroceryList(MealPlan mealPlan) {
-        return groceryList.getIngredientList().addIngredients(mealPlan.getAllIngredients());
+        return groceryList.addIngredients(mealPlan.getAllIngredients());
     }
 
     //* Getters and Setters *\\
