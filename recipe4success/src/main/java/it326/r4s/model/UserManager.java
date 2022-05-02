@@ -1,5 +1,8 @@
 package it326.r4s.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * A class that saves and loads user objects.
  * @author Alex Smith (alsmi14@ilstu.edu)
@@ -35,7 +38,9 @@ public class UserManager extends InstanceManager<User> {
         try {
             user = importer.importFrom(userDirectory);
             rebuildUserReferences(user);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return user;
     }
@@ -74,7 +79,9 @@ public class UserManager extends InstanceManager<User> {
      */
     private void rebuildRecipeCategories(User user) {
         for (Recipe recipe : user.getRecipeBook().getRecipes()) {
-            for (Category category : recipe.getCategories()) {
+            Collection<Category> categories = new ArrayList<>(recipe.getCategories());
+            recipe.clearCategories();
+            for (Category category : categories) {
                 recipe.removeCategory(category);
                 recipe.addCategory(categoryPool.getCategory(Category.Type.RECIPE, category.getName()));
             }

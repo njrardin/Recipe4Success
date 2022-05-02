@@ -1,5 +1,8 @@
 package it326.r4s.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * A class that saves and loads food item pool objects.
  * @author Alex Smith (alsmi14@ilstu.edu)
@@ -62,8 +65,9 @@ public class FoodItemPoolManager extends InstanceManager<FoodItem.Pool> {
      */
     private void rebuildFoodItemCategories(FoodItem.Pool foodItemPool) {
         for (FoodItem foodItem : foodItemPool.getFoodItems()) {
-            for (Category category : foodItem.getCategories()) {
-                foodItem.removeCategory(category);
+            Collection<Category> categories = new ArrayList<>(foodItem.getCategories());
+            foodItem.clearCategories();
+            for (Category category : categories) {
                 foodItem.addCategory(categoryPool.getCategory(Category.Type.FOODITEM, category.getName()));
             }
         }
