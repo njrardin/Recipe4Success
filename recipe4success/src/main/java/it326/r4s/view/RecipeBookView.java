@@ -1,6 +1,7 @@
 package it326.r4s.view;
 
-import java.util.ArrayList;
+import java.util.Collection;
+
 import it326.r4s.controller.RecipeBookController;
 import it326.r4s.controller.RecipeController;
 import it326.r4s.view.utilities.DisplayUtils;
@@ -63,14 +64,19 @@ public class RecipeBookView implements R4SMenu {
      * list of recipeControllers
      * @param recipeControllers - recipeControllers which are associated with the recipes to display
      */
-    public static void displayRecipes(ArrayList<RecipeController> recipeControllers){
+    public void displayRecipes(Collection<RecipeController> recipeControllers) {
         System.out.println("Recipes:");
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
-        int i = 1;
-        for(RecipeController recipeController: recipeControllers){
-            System.out.print(i + ") ");
-            recipeController.getRecipeView().displayOneline();
-            i++;
+        if(recipeControllers == null){
+            System.out.println("\n There are no recipes in the RecipeBook yet. Try adding some!");
+        }
+        else{
+            int i = 1;
+            for(RecipeController recipeController: recipeControllers){
+                System.out.print(i + ") ");
+                recipeController.getRecipeView().displayOneline();
+                i++;
+            }
         }
         System.out.println(DisplayUtils.HYPHEN_DIVIDER);
     }
@@ -79,10 +85,14 @@ public class RecipeBookView implements R4SMenu {
      * Displays a series of recipes and allows the user to select one
      * @param recipeControllers - an ArrayList of RecipeControllers to present as selection options to the user
      * @return the RecipeController who's recipe was selected
-     * @throws RuntimeException - if the user aborts the selection process
+     * @throws RuntimeException if the user aborts the selection process
+     * @throws IllegalArgumentException if recipeControllers is null
      */
-    public static RecipeController getRecipeSelection(ArrayList<RecipeController> recipeControllers) throws RuntimeException{    
+    public RecipeController getRecipeSelection(Collection<RecipeController> recipeControllers) throws RuntimeException, IllegalArgumentException{    
         displayRecipes(recipeControllers);
+        if(recipeControllers == null){
+            throw new IllegalArgumentException();
+        }
         if (askSelectRecipe() == false){
             throw new RuntimeException();
         }    
@@ -114,7 +124,7 @@ public class RecipeBookView implements R4SMenu {
         } while(inputNum <= 0 || recipeControllers.size() < inputNum);
 
         //returns the selected RecipeController
-        return recipeControllers.get(inputNum - 1);
+        return (RecipeController) recipeControllers.toArray()[inputNum - 1];
     }
 
     /**

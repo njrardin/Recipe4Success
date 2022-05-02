@@ -59,6 +59,7 @@ public class User implements Portable {
     public Collection<Recipe> getMakeableRecipes() {
         Collection<Recipe> makeable = new ArrayList<Recipe>();
         Collection<Recipe> recipes = recipeBook.getRecipes();
+        
         // Add each recipe in the user's collection that can be made with ingredients in the pantry.
         for (Recipe recipe : recipes) {
             if (pantry.getIngredientList().containsIngredients(recipe.getIngredientList().getIngredients())) {
@@ -75,7 +76,7 @@ public class User implements Portable {
      * @return True if all ingredients were added, false otherwise.
      */
     public boolean addMealPlanToGroceryList(MealPlan mealPlan) {
-        return groceryList.getIngredientList().addIngredients(mealPlan.getAllIngredients());
+        return groceryList.addIngredients(mealPlan.getAllIngredients());
     }
 
     //* Getters and Setters *\\
@@ -136,6 +137,15 @@ public class User implements Portable {
     }
     public void setRecipeBook(RecipeBook recipeBook){
         this.recipeBook = recipeBook;
+    }
+
+    /**
+     * Override toString which returns the user's name
+     * @return a String of the user's name
+     */
+    @Override
+    public String toString(){
+        return this.name;
     }
     
     @Override

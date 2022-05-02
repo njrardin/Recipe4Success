@@ -46,6 +46,15 @@ public class RecipeSearchController {
     public RecipeSearchView getRecipeSearchView(){
         return recipeSearchView;
     }
+    
+    /**
+     * Facilitates the user
+     * searching through meal plans
+     * @return a list of mealplans that meet the search criteria
+     */
+    public Collection<Recipe> search(){
+        return searchFor(recipeSearchView.getSearchQuery());
+    }
 
     /**
      * Searches through the recipeSearch object's recipes attributes and categories using the searchQuery

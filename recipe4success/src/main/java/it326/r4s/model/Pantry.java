@@ -41,13 +41,78 @@ public class Pantry {
     }
 
     /**
-     * Adds the new ingredient list to the pantry
-     * @param toAdd - the ingredientlist to add
+     * Attempts to add an Ingredient to the Pantry.
+     * 
+     * @param toAdd an Ingredient to be added to the Pantry.
+     * @return true if toAdd is already in ingredientList, false otherwise.
      */
-    public void addIngredientList(IngredientList toAdd){
-        for(Ingredient ingredient: toAdd.getIngredients()){
-            ingredientList.addIngredient(ingredient);
-        }
+    public boolean addIngredient(Ingredient toAdd) {
+        return ingredientList.addIngredient(toAdd);
+    }
+
+    /**
+     * Attempts to add an IngredientList of Ingredients to the Pantry.
+     * 
+     * @param toAdd an IngredientList of Ingredients to be added to the Pantry.
+     * @return true if any Ingredient in toAdd is already in ingredientList, false
+     *         otherwise.
+     */
+    public boolean addIngredients(IngredientList toAdd){
+        return ingredientList.addIngredients(toAdd);
+    }
+
+    /**
+     * Attempts to add an collection of Ingredients to the Pantry.
+     * 
+     * @param toAdd a collection of Ingredients to be added to the Pantry.
+     * @return true if any Ingredient in toAdd is already in ingredientList, false
+     *         otherwise.
+     */
+    public boolean addIngredients(Collection<Ingredient> toAdd){
+        return ingredientList.addIngredients(toAdd);
+    }
+
+    /**
+     * Attempts to remove an Ingredient from the IngredientList
+     * 
+     * @param ingredient an Ingredients to be removed from the Pantry.
+     * @return false if toRemove is not in Ingredients, true otherwise.
+     */
+    public boolean removeIngredient(Ingredient toRemove){
+        return ingredientList.removeIngredient(toRemove);
+    }
+
+    /**
+     * Attempts to remove a collection of Ingredients from the Pantry.
+     * 
+     * @param toRemove a collection of Ingredients to be removed from the
+     *                 Pantry.
+     * @return false if toRemove is not in the Pantry, true otherwise.
+     */
+    public boolean removeIngredients(IngredientList toRemove) {
+        return ingredientList.removeIngredients(toRemove);
+    }
+
+    /**
+     * Attempts to remove a collection of Ingredients from the Pantry.
+     * 
+     * @param toRemove a collection of Ingredients to be removed from the
+     *                 Pantry.
+     * @return false if toRemove is not in the Pantry, true otherwise.
+     */
+    public boolean removeIngredients(Collection<Ingredient> toRemove) {
+        return ingredientList.removeIngredients(toRemove);
+    }
+
+    /**
+     * Attempts to remove a recipe's ingredients from the Pantry.
+     * 
+     * @param recipe a recipe that contains the ingredients to be removed.
+     * @return true when the ingredients of the recipe is successfully removed from
+     *         the Pantry, false otherwise.
+     */
+    public boolean removeRecipeIngredients(Recipe recipe) {
+        return this.ingredientList.removeIngredients(recipe.getIngredientList().getIngredients());
     }
 
     /**
@@ -58,29 +123,6 @@ public class Pantry {
     @Override
     public String toString() {
         return this.ingredientList.toString();
-    }
-
-    // method to remove a recipes ingredients from the pantry. returns false only if
-    // recipes ingredients DNE in pantry
-    /**
-     * Attempts to remove a recipe's ingredients from the Pantry.
-     * 
-     * @param recipe a recipe that contains the ingredients to be removed.
-     * @return true when the ingredients of the recipe is successfully removed from
-     *         the Pantry, false otherwise.
-     */
-    public boolean removeRecipeIngredients(Recipe recipe) {
-        Collection<Ingredient> recipeIngredients = recipe.getIngredientList().getIngredients();
-        return this.ingredientList.removeIngredients(recipeIngredients);
-    }
-
-    /**
-     * Removes an ingredient from the pantry
-     * @param ingredient
-     * @return
-     */
-    public boolean removeIngredient(Ingredient ingredient){
-        return ingredientList.removeIngredient(ingredient);
     }
 
 

@@ -1,5 +1,7 @@
 package it326.r4s.model;
 
+import java.util.Collection;
+
 /**
  * The basic GroceryList class of the Recipes4Success application.
  * Essentially just holds an ingredientList object as the groceryList
@@ -39,17 +41,67 @@ public class GroceryList {
     }
 
     /**
-     * Adds the new ingredient list to the grocery list
-     * @param toAdd - the ingredientlist to add
+     * Attempts to add an Ingredient to the GroceryList.
+     * 
+     * @param toAdd an Ingredient to be added to the GroceryList.
+     * @return true if toAdd is already in ingredientList, false otherwise.
      */
-    public void addIngredientList(IngredientList toAdd){
-        for(Ingredient ingredient: toAdd.getIngredients()){
-            ingredientList.addIngredient(ingredient);
-        }
+    public boolean addIngredient(Ingredient toAdd) {
+        return ingredientList.addIngredient(toAdd);
     }
 
-    public boolean removeIngredient(Ingredient ingredient){
-        return ingredientList.removeIngredient(ingredient);
+    /**
+     * Attempts to add an IngredientList of Ingredients to the GroceryList.
+     * 
+     * @param toAdd an IngredientList of Ingredients to be added to the GroceryList.
+     * @return true if any Ingredient in toAdd is already in ingredientList, false
+     *         otherwise.
+     */
+    public boolean addIngredients(IngredientList toAdd){
+        return ingredientList.addIngredients(toAdd);
+    }
+
+    /**
+     * Attempts to add an collection of Ingredients to the GroceryList.
+     * 
+     * @param toAdd a collection of Ingredients to be added to the GroceryList.
+     * @return true if any Ingredient in toAdd is already in ingredientList, false
+     *         otherwise.
+     */
+    public boolean addIngredients(Collection<Ingredient> toAdd){
+        return ingredientList.addIngredients(toAdd);
+    }
+
+    /**
+     * Attempts to remove an Ingredient from the IngredientList
+     * 
+     * @param ingredient an Ingredients to be removed from the GroceryList.
+     * @return false if toRemove is not in Ingredients, true otherwise.
+     */
+    public boolean removeIngredient(Ingredient toRemove){
+        return ingredientList.removeIngredient(toRemove);
+    }
+
+    /**
+     * Attempts to remove a collection of Ingredients from the GroceryList.
+     * 
+     * @param toRemove a collection of Ingredients to be removed from the
+     *                 GroceryList.
+     * @return false if toRemove is not in the GroceryList, true otherwise.
+     */
+    public boolean removeIngredients(IngredientList toRemove) {
+        return ingredientList.removeIngredients(toRemove);
+    }
+
+    /**
+     * Attempts to remove a collection of Ingredients from the GroceryList.
+     * 
+     * @param toRemove a collection of Ingredients to be removed from the
+     *                 GroceryList.
+     * @return false if toRemove is not in the GroceryList, true otherwise.
+     */
+    public boolean removeIngredients(Collection<Ingredient> toRemove) {
+        return ingredientList.removeIngredients(toRemove);
     }
 
     /**

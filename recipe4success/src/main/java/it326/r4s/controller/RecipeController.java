@@ -18,15 +18,18 @@ public class RecipeController {
     //*Instance Variables*\\
     public Recipe recipe;
     public RecipeView recipeView;
+
+    public UserController authorController; //controller for the author's user object
     
     //*Constructor*\\
     /**
      * Constructs a recipe controller from a given recipe
      * @param recipe
      */
-    public RecipeController(Recipe recipe){
+    public RecipeController(Recipe recipe, User author){
         this.recipe = recipe;
         this.recipeView = new RecipeView(this);
+        this.authorController = new UserController(author);
     }
 
     //*Methods*\\
@@ -36,6 +39,14 @@ public class RecipeController {
      */
     public RecipeView getRecipeView(){
         return recipeView;
+    }
+
+    /**
+     * Getter for the UserController which cantrols the MealPlanController's author
+     * @return the UseController object
+     */
+    public UserController getAuthorController(){
+        return authorController;
     }
 
     /**
@@ -61,7 +72,7 @@ public class RecipeController {
                     editRecipe();
                     break;
                 case 2:
-                    addReview(UserController.getUserController().getGlobalUser());
+                    addReview(authorController.getUser());
                     break;
                 case 3:
                     adjustServingSize(RecipeBuilderView.getServingSizeFromUser());
@@ -101,7 +112,7 @@ public class RecipeController {
                 recipe.adjustServingSize(RecipeBuilderView.getServingSizeFromUser());
                 break;
             case 4:
-                recipe.setIngredientList(RecipeBuilderView.getIngredientsFromUser());
+                getIngredientListController().editIngredientList();
                 break;
             case 5:
                 recipe.setInstructions(RecipeBuilderView.getInstructionsFromUser());
@@ -137,7 +148,7 @@ public class RecipeController {
                 rating = Rating.FIVE;
                 break;
         }
-        Review newReview = new Review(UserController.getUserController().getGlobalUser(), rating);
+        Review newReview = new Review(authorController.getUser(), rating);
         recipe.addReview(newReview);
     }
 
@@ -169,16 +180,14 @@ public class RecipeController {
      */
 	public void deleteRecipe() {
         if(recipeView.deletionConfirmation()){
-            UserController.getUserController().getGlobalUser().getRecipeBook().removeRecipe(recipe);
+            authorController.getUser().getRecipeBook().removeRecipe(recipe);
         }
 	}
 
     public IngredientListController getIngredientListController() {
         return new IngredientListController(recipe.getIngredientList());
     }
-
-
-
+    
     /**
      * Controller for R4S RecipeBuilder
      * @author Nate Rardin (njrardi@ilstu.edu)
@@ -186,37 +195,31 @@ public class RecipeController {
      */
     public static class RecipeBuilderController {
 
-        private RecipeBuilderView rBuildView;
-
-        public RecipeBuilderController(){
-            this.rBuildView = new RecipeBuilderView(this);
-        }
-
         public Recipe buildUserRecipe() throws RuntimeException{
 
             Recipe newRecipe;
-            rBuildView.displayRecipeBuildInit();
+            RecipeBuilderView.displayRecipeBuildInit();
 
             //set name & create builder
-            Recipe.RecipeBuilder rBuild = new Recipe.RecipeBuilder(rBuildView.getRecipeNameFromUser());
+            Recipe.RecipeBuilder rBuild = new Recipe.RecipeBuilder(RecipeBuilderView.getRecipeNameFromUser());
             
             //set description
-            rBuild.setDescription(rBuildView.getDescriptionFromUser());
+            rBuild.setDescription(RecipeBuilderView.getDescriptionFromUser());
 
             //set serving size
-            rBuild.setServingSize(rBuildView.getServingSizeFromUser());
+            rBuild.setServingSize(RecipeBuilderView.getServingSizeFromUser());
 
             //set instructions
-            rBuild.setInstructions(rBuildView.getInstructionsFromUser());
+            rBuild.setInstructions(RecipeBuilderView.getInstructionsFromUser());
 
             //set ingredient list
-            rBuild.setIngredientList(rBuildView.getIngredientsFromUser());
+            rBuild.setIngredientList(RecipeBuilderView.getIngredientsFromUser());
 
             //set categories
-            rBuild.setCategories(rBuildView.getCategoriesFromUser());
+            rBuild.setCategories(RecipeBuilderView.getCategoriesFromUser());
 
             //confirm the build
-            while(!(rBuildView.confirmBuild())){
+            while(!(RecipeBuilderView.confirmBuild())){
                 //TODO: What to do if they don't confirm
             }
 

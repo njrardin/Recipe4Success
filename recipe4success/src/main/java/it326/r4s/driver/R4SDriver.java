@@ -14,16 +14,16 @@ import it326.r4s.view.utilities.InputAccess;
 public class R4SDriver {
     public static void main(String[] args) {
         displayWelcome();
-        importFileData();
-        launchMainWindow();
-        saveAndExit();
+        User user = importFileData();
+        launchMainWindow(user);
+        saveAndExit(user);
     }
 
     private static void displayWelcome(){
         System.out.println(DisplayUtils.getHeader("-- WELCOME TO RECIPE 4 SUCCESS --"));
     }
 
-    private static void importFileData() {
+    private static User importFileData() {
         new CategoryPoolManager().load();
         new FoodItemPoolManager().load();
         User user = new UserManager().load();
@@ -32,7 +32,7 @@ public class R4SDriver {
             user = askUserForName();
         }
 
-        UserController.initUserController(user);
+        return user;
     }
 
     private static User askUserForName() {
@@ -40,16 +40,16 @@ public class R4SDriver {
         return new User("SomeName");
     }
 
-    private static void launchMainWindow(){
-        UserController userController = UserController.getUserController();
+    private static void launchMainWindow(User user){
+        UserController userController = new UserController(user);
         MainMenuController mmController = new MainMenuController(userController);
         
         mmController.launchMainMenu();
     }
 
-    private static void saveAndExit() {
+    private static void saveAndExit(User user) {
         try {
-            new UserManager().save(UserController.getUserController().getGlobalUser());
+            new UserManager().save(user);
             new CategoryPoolManager().save(Category.Pool.getInstance());
             new FoodItemPoolManager().save(FoodItem.Pool.getInstance());
         } catch (Exception e) {

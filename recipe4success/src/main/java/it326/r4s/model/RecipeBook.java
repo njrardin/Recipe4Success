@@ -81,10 +81,17 @@ public class RecipeBook extends Entity {
      */
     @Override
     public String toString() {
-        String temp = "";
-        for (Recipe recipe : recipes) {
-            temp += recipe.toString() + "\n";
+        String string = "";
+        int i = 1;
+        for(Recipe recipe: recipes){
+            if(i == 1){
+                string += (i + ") " + recipe.toString());
+            } else {
+                string += ("\n" + i + ") " + recipe.toString());
+            }
+            System.out.println(i + ") " + recipe.toString());
+            i++;
         }
-        return "Recipes:\n" + temp;
+        return string;
     }
 }

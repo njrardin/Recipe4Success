@@ -2,21 +2,11 @@ package it326.r4s.driver;
 
 import java.util.ArrayList;
 
-import it326.r4s.controller.MainMenuController;
-import it326.r4s.controller.UserController;
-import it326.r4s.model.Category;
-import it326.r4s.model.Ingredient;
-import it326.r4s.model.IngredientList;
-import it326.r4s.model.Meal;
-import it326.r4s.model.MealPlan;
-import it326.r4s.model.MealPlanner;
-import it326.r4s.model.Recipe;
-import it326.r4s.model.RecipeBook;
-import it326.r4s.model.UnitConverter;
-import it326.r4s.model.User;
+import it326.r4s.controller.*;
+import it326.r4s.model.*;
 import it326.r4s.model.Recipe.RecipeBuilder;
-import it326.r4s.view.utilities.DisplayUtils;
-import it326.r4s.view.utilities.InputAccess;
+import it326.r4s.model.UnitConverter.Unit;
+import it326.r4s.view.utilities.*;
 
 /**
  * Controller for R4S RecipeBook
@@ -41,9 +31,7 @@ public class PresentationDriver {
         
         User user = prepopulateUser();
         
-        UserController.initUserController(user);
-        UserController userController = UserController.getUserController();
-
+        UserController userController = new UserController(user);
         MainMenuController mmController = new MainMenuController(userController);
         
         mmController.launchMainMenu();
@@ -287,6 +275,22 @@ public class PresentationDriver {
         mp.addMealPlan(demoMP2);
 
         user.setMealPlanner(mp);
+
+        //======================================================================================================
+        //Populate GroceryList with some ingredients used in demo recipes
+        
+        //IngredientList 1
+        IngredientList iList = new IngredientList();
+        iList.addIngredient(new Ingredient("Cheese", 2, Unit.NONE));
+        iList.addIngredient(new Ingredient("Macaroni", 3, Unit.CUP));
+        iList.addIngredient(new Ingredient("Potatoes", 17, Unit.NONE));
+        iList.addIngredient(new Ingredient("Butter", 2, Unit.TEASPOON));
+
+        GroceryList gList = new GroceryList();
+        gList.setIngredientList(iList);
+
+        user.setGroceryList(gList);
+
         return user;
     }
 }

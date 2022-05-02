@@ -16,28 +16,22 @@ import it326.r4s.view.RecipeBookView;
 public class RecipeBookController {
     
     //*Instance Variables*\\
-    public RecipeBook recipeBook;
-    public RecipeBookView recipeBookView;
+    private RecipeBook recipeBook;
+    private RecipeBookView recipeBookView;
+    private UserController userController;
 
     //*Constructor*\\
     /**
      * Constructor for R4S's RecipeBookController
      * @param recipeBook - the controller's RecipeBook
      */
-    public RecipeBookController(RecipeBook recipeBook){
+    public RecipeBookController(RecipeBook recipeBook, UserController userController){
         this.recipeBook = recipeBook;
         this.recipeBookView = new RecipeBookView(this);
+        this.userController = userController;
     }
 
     //*Methods*\\
-    /**
-     * Getter for the controller's RecipeBookview
-     * @return the RecipeBookView object
-     */
-    public RecipeBookView getRecipeBookView(){
-        return recipeBookView;
-    }
-
     /**
      * Getter for the controller's ReciepBook
      * @return the RecipeBook object
@@ -47,14 +41,33 @@ public class RecipeBookController {
     }
 
     /**
-     * Gets an ArrayList of RecipeControllers associated with all recipes in the recipeBook
-     * @return the ArrayList of RecipeControllers
+     * Getter for the controller's RecipeBookview
+     * @return the RecipeBookView object
      */
-    public ArrayList<RecipeController> getRecipeControllers(){
+    public RecipeBookView getRecipeBookView(){
+        return recipeBookView;
+    }
+
+    /**
+     * Getter for the UserController which owns the RecipeBookController
+     * @return the UserController
+     */
+    public UserController getUserController(){
+        return this.userController;
+    }
+
+
+    /**
+     * Gets a Collection of RecipeControllers associated with all recipes in the recipeBook
+     * @return the Collection of RecipeControllers
+     */
+    public Collection<RecipeController> getRecipeControllers() {
         ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
+
         for(Recipe recipe: recipeBook.getRecipes()){
-            recipeControllers.add(new RecipeController(recipe));
+            recipeControllers.add(new RecipeController(recipe, userController.getUser()));
         }
+
         return recipeControllers;
     }
 
@@ -82,7 +95,9 @@ public class RecipeBookController {
                     createRecipe();
                     break;
                 case 5:
-                    selectRecipe(recipeBook.getRecipes());
+                try{
+                    selectRecipeController().openRecipe();
+                } catch (RuntimeException re) { /* Do nothing */ }
                     break;
                 case 6:
                     return;
@@ -100,10 +115,12 @@ public class RecipeBookController {
      */
     public void searchRecipes() {
         RecipeSearchController rsController = new RecipeSearchController(recipeBook.getRecipes());
-        String searchQuery = rsController.getRecipeSearchView().getSearchQuery();
-        ArrayList<Recipe> returnRecipes = rsController.searchFor(searchQuery);
-        
-        selectRecipe(returnRecipes);
+        try{
+            RecipeController selectedController = new RecipeController(selectRecipe(rsController.search()), userController.getUser());
+            selectedController.openRecipe();
+        }
+        catch (IllegalArgumentException ie) { /*Do Nothing*/ }
+        catch (RuntimeException e) { /*Do Nothing*/ }
     }
 
     /**
@@ -138,16 +155,46 @@ public class RecipeBookController {
 
     /**
      * Facilitates the process of the user
-     * selecting one of the recipes in the recipeNook
+     * selecting one of the recipes in the recipeBook
      */
-    public void selectRecipe(Collection<Recipe> recipes){
-        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
-        for(Recipe recipe: recipes){
-            recipeControllers.add(new RecipeController(recipe));
+    public RecipeController selectRecipeController() throws RuntimeException, IllegalArgumentException {
+        try{
+            return selectRecipeController(getRecipeControllers());
+        }
+        catch (IllegalArgumentException ie) { throw ie; }
+        catch (RuntimeException e) { throw e; }
+    }
+
+    /**
+     * Facilitates the process of the user
+     * selecting one of the recipes from a collection of recipeControllers
+     */
+    public RecipeController selectRecipeController(Collection<RecipeController> recipeControllers) throws RuntimeException, IllegalArgumentException{
+        RecipeController selectedRecipeController = null;
+        try{
+            selectedRecipeController = recipeBookView.getRecipeSelection(recipeControllers);
+        } 
+        catch (IllegalArgumentException ie) { throw ie; }
+        catch (RuntimeException e) { throw e; }
+
+        return selectedRecipeController;
+    }
+
+    /**
+     * Facilitates the process of the user
+     * selecting one of the recipes from a collection of recipeControllers
+     * @throws IllegalArgumentException if a null collection is passed in
+     */
+    public Recipe selectRecipe(Collection<Recipe> recipes) throws RuntimeException, IllegalArgumentException{
+        ArrayList<RecipeController> rControllers = new ArrayList<RecipeController>();
+        for(Recipe recipe : recipes){
+            rControllers.add(new RecipeController(recipe, userController.getUser()));
         }
         try{
-            RecipeController selectedRecipeController = recipeBookView.getRecipeSelection(recipeControllers);
-            selectedRecipeController.openRecipe();
-        } catch (RuntimeException e) { /*do nothing*/ }
+            return selectRecipeController(rControllers).getRecipe();
+        }
+        catch (IllegalArgumentException ie) { throw ie; }
+        catch (RuntimeException e) { throw e; }
     }
+
 }

@@ -84,9 +84,7 @@ public class FoodItem extends Entity {
      */
     @Override
     public String toString() {
-        return "{" +
-            " name='" + getName() + "'" +
-            "}";
+        return this.name;
     }
     
     /**
