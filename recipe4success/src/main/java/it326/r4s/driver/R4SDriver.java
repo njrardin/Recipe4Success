@@ -29,7 +29,8 @@ public class R4SDriver {
         User user = new UserManager().load();
         
         if (user == null) {
-            user = askUserForName();
+            //user = askUserForName();
+            user = PresentationDriver.prepopulateUser();
         }
 
         return user;
