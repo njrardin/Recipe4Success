@@ -97,9 +97,12 @@ public class MealPlanController  {
                     exportMealPlan();
                     return;
                 case 6:
-                    deleteMealPlan();
-                    mealPlanView.displayMealPlan();
-                    return;
+                    if(mealPlanView.deletionConfirmation()){
+                        deleteMealPlan();
+                        mealPlanView.displayMealPlan();
+                        return;
+                    }
+                    break;
                 case 7:
                     return;
                 default:
@@ -150,8 +153,6 @@ public class MealPlanController  {
     }
 
     public void deleteMealPlan() {
-        if(mealPlanView.deletionConfirmation()){
             authorController.getUser().getMealPlanner().removeMealPlan(mealPlan);
-        }
     }
 }
