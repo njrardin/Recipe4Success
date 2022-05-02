@@ -31,8 +31,10 @@ public class MealPlanView implements R4SMenu {
         System.out.println("Name: " + mealPlanController.getMealPlan().getMealPlanName());
         System.out.println("Description: " + mealPlanController.getMealPlan().getMealPlanDescription());
         System.out.println("Created on: " + mealPlanController.getMealPlan().getMealPlanDate());
+        if(mealPlanController.getMealPlan().getMPServingSize()!=0) {
+        System.out.println("Serves: " + mealPlanController.getMealPlan().getMPServingSize());
+        }
         System.out.println();
-        System.out.println("Recipes: ");
         mealPlanController.getAuthorController().getRecipeBookController().getRecipeBookView().displayRecipes(mealPlanController.getRecipeControllers());
         System.out.println();
         System.out.println("-------------------------------------------------------------------------------------");
@@ -45,15 +47,15 @@ public class MealPlanView implements R4SMenu {
      * @return an int representing the selected option
      */
     public int getMenuOptionSelection(){
-        String title = "Mealplan: " + mealPlanController.getMealPlan().getMealPlanName();
+        String title = "Meal Plan: " + mealPlanController.getMealPlan().getMealPlanName();
         String prompt = "What would you like to do?";
         String[] options = {
-            "Add Recipe to Mealplan",
-            "Remove Recipe from Mealplan",
-            "Set Mealplan Serving Size",
-            "Move this Mealplan's Ingredients to My Grocery List",
-            "Export this Mealplan",
-            "Delete this Mealplan",
+            "Add Recipe to Meal Plan",
+            "Remove Recipe from Meal Plan",
+            "Set Meal Plan Serving Size",
+            "Move this Meal Plan's Ingredients to My Grocery List",
+            "Export this Meal Plan",
+            "Delete this Meal Plan",
             "Go back"
         };
         InputAccess inputAccess = new InputAccess();
@@ -82,9 +84,46 @@ public class MealPlanView implements R4SMenu {
     }
 
     /**
+     * Confirms if the user wants to add all ingredients in the meal plan to the grocery list
+     * @return true if confirmed, false otherwise
+     */
+    public boolean addToGroceryListConfirmation() {
+        InputAccess inputAccess = new InputAccess();
+        String response = "";
+        do{
+            System.out.print("Are you sure you want to add all ingredients from this meal plan to your grocery list? (Y/N) : ");
+            response = inputAccess.getInputLine().toLowerCase();
+        }  while ( !(response.equals("y") || response.equals("n") ));
+
+        if(response.equals("n")){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Confirms if the user wants to set all meals in the meal plan to this serving size
+     * @param newServingSize
+     * @return true if confirmed, false otherwise
+     */
+    public boolean adjustMPServingSizeConfirmation(int newServingSize) {
+        InputAccess inputAccess = new InputAccess();
+        String response = "";
+        do{
+            System.out.print("Are you sure you want to change all recipes in this meal plan to a serving size of " + newServingSize + "? (Y/N) : ");
+            response = inputAccess.getInputLine().toLowerCase();
+        }  while ( !(response.equals("y") || response.equals("n") ));
+
+        if(response.equals("n")){
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Gets from the user a new serving size
      * for a mealplan
-     * @return
+     * @return int servingSize
      */
     public int getNewServingSize() {
         InputAccess inputAccess = new InputAccess();

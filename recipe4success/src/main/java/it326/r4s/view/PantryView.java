@@ -101,7 +101,7 @@ public class PantryView implements R4SMenu{
                     ingredientQuantity = Double.parseDouble(inputAccess.getInputLine());
                     break;
                 } catch (Exception e) {
-                    System.out.println("Please select an option by typing the corresponding number");
+                    System.out.print("Please select an option by typing the corresponding number: ");
                     continue;
                 }
             } while(true);

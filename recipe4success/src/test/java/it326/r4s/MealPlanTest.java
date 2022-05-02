@@ -39,8 +39,8 @@ public class MealPlanTest {
         .build();
         recipe2.addIngredient(new Ingredient(repeatFoodItem, 1, Unit.TEASPOON));
         recipe2.addIngredient(new Ingredient(repeatFoodItem, 3, Unit.POUND));
-        meal1 = new Meal(recipe1, 4);
-        meal2 = new Meal(recipe2, 2);
+        meal1 = new Meal(recipe1);
+        meal2 = new Meal(recipe2);
 
         mainMealPlan = new MealPlan("Main");
         mainMealPlan.addMeal(meal1);

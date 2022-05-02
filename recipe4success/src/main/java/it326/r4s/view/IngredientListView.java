@@ -2,6 +2,7 @@ package it326.r4s.view;
 
 import it326.r4s.controller.IngredientListController;
 import it326.r4s.model.Ingredient;
+import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 
 /**
@@ -32,6 +33,7 @@ public class IngredientListView {
             System.out.println(i + ") " + ingredient.toString());
             i++;
         }
+        System.out.println();
     }
 
     /**
@@ -55,5 +57,29 @@ public class IngredientListView {
         } while( !(0 < selection && selection <= igController.getIngredientList().getIngredients().size()));
 
         return igController.getIngredientList().getIngredients().get(selection - 1);
+    }
+
+    /**
+     * Displays a message for the initialization of the edit process
+     */
+    public void displayInitEdit(){
+        System.out.println("\nWhich ingredient would you like to change?");
+    }
+
+    /**
+     * Displays a message declaring the success of the edit process
+     */
+    public void displayEditSuccess(){
+        System.out.println("\nIngredient edit successful!");
+    }
+
+    public int getEditSelectionOption() {
+        InputAccess inputAccess = new InputAccess();
+        String[] inputOptions = {
+            "Edit an ingredient",
+            "Remake ingredient list"
+        };
+
+        return inputAccess.getOptionSelection("Edit Ingredient List options", "What would you like to do?", inputOptions);
     }
 }

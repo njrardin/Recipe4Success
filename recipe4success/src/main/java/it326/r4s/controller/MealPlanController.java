@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import it326.r4s.model.Meal;
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.Recipe;
-import it326.r4s.model.RecipeBook;
 import it326.r4s.model.User;
 import it326.r4s.view.MealPlanView;
-import it326.r4s.view.RecipeBookView;
 
 /**
  * Controller for R4S MealPlan
@@ -19,10 +17,11 @@ import it326.r4s.view.RecipeBookView;
 public class MealPlanController  {
 
     //*Instance Variables\\
-    public MealPlan mealPlan;
-    public MealPlanView mealPlanView;
+    private MealPlan mealPlan;
+    private MealPlanView mealPlanView;
 
-    public UserController authorController; //controller for the author's user object
+    private UserController authorController; //controller for the author's user object
+    private PorterController<MealPlan> mealPlanPorter;
 
     //*Constructor*\\
     /**
@@ -33,6 +32,7 @@ public class MealPlanController  {
         this.mealPlan = mealPlan;
         this.mealPlanView = new MealPlanView(this);
         this.authorController = new UserController(author);
+        mealPlanPorter = PorterController.of(MealPlan.class, authorController);
     }
 
     //*Methods*\\
@@ -99,9 +99,12 @@ public class MealPlanController  {
                     exportMealPlan();
                     return;
                 case 6:
-                    deleteMealPlan();
-                    mealPlanView.displayMealPlan();
-                    return;
+                    if(mealPlanView.deletionConfirmation()){
+                        deleteMealPlan();
+                        mealPlanView.displayMealPlan();
+                        return;
+                    }
+                    break;
                 case 7:
                     return;
                 default:
@@ -117,7 +120,7 @@ public class MealPlanController  {
 
         RecipeController selectedRecipeController = authorController.getRecipeBookController().selectRecipeController();
 
-        mealPlan.addMeal(new Meal(selectedRecipeController.getRecipe(), selectedRecipeController.getRecipe().getServingSize()));
+        mealPlan.addMeal(new Meal(selectedRecipeController.getRecipe()));
 
         System.out.println("Recipe added successfully");
     }
@@ -134,22 +137,23 @@ public class MealPlanController  {
 
     public void adjustMealPlanServingSize() {
         int servingSize = mealPlanView.getNewServingSize();
-        mealPlan.setMealServingSize(servingSize);
+        if(mealPlanView.adjustMPServingSizeConfirmation(servingSize)){
+            mealPlan.setMealServingSize(servingSize);
+        }
     }
 
     public void exportMealPlan() {
-        //TODO - req 17 @Alex!
-        //  /\ "Lmao" - Nate
+        mealPlanPorter.exportTo(mealPlan);
     }
 
     public void addToGroceryList() {
-        authorController.getUser().addMealPlanToGroceryList(mealPlan);
-        System.out.println("Ingredients added successfully");
+        if(mealPlanView.addToGroceryListConfirmation()){
+            authorController.getUser().addMealPlanToGroceryList(mealPlan);
+            System.out.println("Ingredients added successfully");
+        }
     }
 
-    public void deleteMealPlan() {//req 11
-        if(mealPlanView.deletionConfirmation()){
+    public void deleteMealPlan() {
             authorController.getUser().getMealPlanner().removeMealPlan(mealPlan);
-        }
     }
 }

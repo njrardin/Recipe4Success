@@ -4,15 +4,16 @@ import java.util.*;
 
 /*
 * A collection of meal, it can return all of its recipes or ingredients
-* @author: Shu Liao (fliao@ilstu.edu)
+* @author: Shu Liao (fliao@ilstu.edu) and Zach Plattner (zmplatt@ilstu.edu)
 * @date: 4/14/2022
 */
 
 public class MealPlan extends Entity implements Portable {
     private String name;
     private String description;
-    private List<Meal> meals;
+    private Collection<Meal> meals;
     private Date createdOn;
+    private int mpServingSize = 0;
 
     // *Constructor*\\
     /**
@@ -51,12 +52,25 @@ public class MealPlan extends Entity implements Portable {
     }
 
     /**
+     * Gets the MealPlan's collection of meals.
+     * 
+     * @return the collection of meals.
+     */
+    public Collection<Meal> getMeals() {
+        return this.meals;
+    }
+
+    /**
      * Gets the MealPlan's create date.
      * 
      * @return the create date of the MealPlan.
      */
     public Date getMealPlanDate() {
         return (Date) this.createdOn.clone();
+    }
+
+    public int getMPServingSize() {
+        return this.mpServingSize;
     }
 
     /**
@@ -122,8 +136,9 @@ public class MealPlan extends Entity implements Portable {
      * @return true .
      */
     public boolean setMealServingSize(int servingSize) {
+        this.mpServingSize = servingSize;
         for (Meal theMeal : meals) {
-            theMeal.setServingSize(servingSize);
+            theMeal.adjustServingSize(servingSize);
         }
         return true;
     }
@@ -133,10 +148,14 @@ public class MealPlan extends Entity implements Portable {
      * 
      * @return a collection of ingredients.
      */
-    public IngredientList getIngredients(Meal theMeal) {
-        IngredientList mealIngredient;
-        mealIngredient = theMeal.getRecipe().getIngredientList();
-        return mealIngredient;
+    public Collection<Ingredient> getIngredients() {
+
+        Collection<Ingredient> allIngredient = new ArrayList<>();
+
+        for (Meal theMeal : meals) {
+            allIngredient.addAll(theMeal.getRecipe().getIngredientList().getIngredients());
+        }
+        return allIngredient;
     }
 
     /**
@@ -144,8 +163,8 @@ public class MealPlan extends Entity implements Portable {
      * 
      * @return a collection of recipes.
      */
-    public ArrayList<Recipe> getRecipes() {
-        ArrayList<Recipe> allRecipes = new ArrayList<>();
+    public Collection<Recipe> getRecipes() {
+        Collection<Recipe> allRecipes = new ArrayList<>();
         for (Meal meal : meals) {
             allRecipes.add(meal.getRecipe());
         }
@@ -160,14 +179,11 @@ public class MealPlan extends Entity implements Portable {
     public Collection<Ingredient> getAllIngredients() {
         Collection<Ingredient> allIngredients = new ArrayList<Ingredient>(); // ingredients to be returned
         for (Meal meal : this.meals) { // iterate through meals
-            for (Ingredient ingredient : meal.getRecipe().getIngredientList().getIngredients()) { // iterate through
-                                                                                                  // meal ingredient
+            for (Ingredient ingredient : meal.getIngredientList().getIngredients()) { // iterate through meal ingredient
 
                 boolean alreadyAdded = false;
                 for (Ingredient existingIngredient : allIngredients) { // check if ingredient already exists
-                    if (ingredient.getFoodItem() == existingIngredient.getFoodItem()) { // TODO - wait for FoodItem pool
-                                                                                        // to more correctly handle this
-                                                                                        // comparison!
+                    if (ingredient.getFoodItem().equals(existingIngredient.getFoodItem())) {
                         allIngredients.remove(existingIngredient);
                         Ingredient copyIngredient = new Ingredient(existingIngredient.getFoodItem(),
                                 existingIngredient.getQuantity(), existingIngredient.getUnit());

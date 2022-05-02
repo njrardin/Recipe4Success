@@ -2,10 +2,7 @@ package it326.r4s.driver;
 
 import java.util.ArrayList;
 
-import it326.r4s.controller.MainMenuController;
-import it326.r4s.controller.UserController;
 import it326.r4s.model.Category;
-import it326.r4s.model.FoodItem;
 import it326.r4s.model.GroceryList;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
@@ -13,59 +10,19 @@ import it326.r4s.model.Meal;
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.MealPlanner;
 import it326.r4s.model.Recipe;
+import it326.r4s.model.Recipe.RecipeBuilder;
 import it326.r4s.model.RecipeBook;
 import it326.r4s.model.UnitConverter;
-import it326.r4s.model.User;
-import it326.r4s.model.Recipe.RecipeBuilder;
 import it326.r4s.model.UnitConverter.Unit;
-import it326.r4s.view.utilities.DisplayUtils;
-import it326.r4s.view.utilities.InputAccess;
+import it326.r4s.model.User;
 
 /**
- * Controller for R4S RecipeBook
+ * Utilites for the Driver
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class PresentationDriver {
-    public static void main(String[] args) {     
-        
-        displayWelcome();
-
-        launchProgram();
-
-        saveAndExit();
-    }
-
-    private static void displayWelcome(){
-        System.out.println(DisplayUtils.getHeader("-- WELCOME TO RECIPE 4 SUCCESS --"));
-    }
-
-    private static void launchProgram(){
-        
-        User user = prepopulateUser();
-        
-        UserController userController = new UserController(user);
-        MainMenuController mmController = new MainMenuController(userController);
-        
-        mmController.launchMainMenu();
-    }
-
-    
-    private static void saveAndExit() {
-        //TODO: Save data from application before exit
-        
-        System.out.println("Thank you for using Recipe4Success!");
-        System.out.println("\n\tapplication exiting...\n\n");
-        
-        InputAccess inputAccess = new InputAccess();
-        inputAccess.close();
-        System.exit(0);
-    }
-    
-    private static User prepopulateUser() {
-        //Instantiate the user object
-        User user = new User("Rishi Saripalle");
-
+public class DemoUtils {    
+    public static void prepopulateUser(User user) {
         //======================================================================================================
         //Populate the recipeBook with a series of recipes
         RecipeBook recipeBook = new RecipeBook();
@@ -87,8 +44,8 @@ public class PresentationDriver {
         recipeBuilder.setInstructions(instructions);
 
         IngredientList ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Cheese", 2, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Macaroni", 4, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("cheese", 2, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("macaroni", 4, UnitConverter.Unit.CUP));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -110,8 +67,8 @@ public class PresentationDriver {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Cupcake batter", 4, UnitConverter.Unit.CUP));
-        ingredientList.addIngredient(new Ingredient("Cupcake icing", 2, UnitConverter.Unit.TABLESPOON));
+        ingredientList.addIngredient(new Ingredient("cupcake batter", 4, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("cupcake icing", 2, UnitConverter.Unit.TABLESPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -133,13 +90,14 @@ public class PresentationDriver {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Potatoes", 8, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Butter", 1, UnitConverter.Unit.TEASPOON));
+        ingredientList.addIngredient(new Ingredient("potatoes", 8, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("butter", 1, UnitConverter.Unit.TEASPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
 
         ArrayList<Category> categories = new ArrayList<Category>();
-        categories.add(new Category("vegan"));
+        Category.Pool cPool = Category.Pool.getInstance();
+        categories.add(cPool.getCategory(Category.Type.RECIPE, "vegan"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe3 = recipeBuilder.build();
@@ -160,15 +118,15 @@ public class PresentationDriver {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Taco shell",20, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Taco meat filling", 2, UnitConverter.Unit.CUP));
-        ingredientList.addIngredient(new Ingredient("Shredded triple cheddar cheese", 2, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("taco shell",20, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("taco meat filling", 2, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("shredded triple cheddar cheese", 2, UnitConverter.Unit.CUP));
 
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("mexican"));
-        categories.add(new Category("party"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"mexican"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"party"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe4 = recipeBuilder.build();
@@ -189,14 +147,14 @@ public class PresentationDriver {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Spaghetti", 5, UnitConverter.Unit.OUNCE));
-        ingredientList.addIngredient(new Ingredient("Spaghetti sauce", 3, UnitConverter.Unit.TABLESPOON));
+        ingredientList.addIngredient(new Ingredient("spaghetti", 5, UnitConverter.Unit.OUNCE));
+        ingredientList.addIngredient(new Ingredient("spaghetti sauce", 3, UnitConverter.Unit.TABLESPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("italian"));
-        categories.add(new Category("simple"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"italian"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"simple"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe5 = recipeBuilder.build();
@@ -217,21 +175,19 @@ public class PresentationDriver {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Bacon", 4, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Egg", 6, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Whole wheat bread", 2, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Grape Jelly", 2, UnitConverter.Unit.TEASPOON));
+        ingredientList.addIngredient(new Ingredient("bacon", 4, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("egg", 6, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("whole wheat bread", 2, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("grape jelly", 2, UnitConverter.Unit.TEASPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("breakfast"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"breakfast"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe6 = recipeBuilder.build();
         recipeBook.addRecipe(demoRecipe6);
-
-        user.setRecipeBook(recipeBook);
 
         //Demo recipe 7
         Recipe demoRecipe7;
@@ -248,15 +204,15 @@ public class PresentationDriver {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Pizza Dough", 200, UnitConverter.Unit.GRAM));
-        ingredientList.addIngredient(new Ingredient("Marinara Sauce", 3, UnitConverter.Unit.TABLESPOON));
-        ingredientList.addIngredient(new Ingredient("Shredded Mozzerella", 0.5, UnitConverter.Unit.CUP));
-        ingredientList.addIngredient(new Ingredient("Pepperonni", 12, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("pizza dough", 200, UnitConverter.Unit.GRAM));
+        ingredientList.addIngredient(new Ingredient("marinara sauce", 3, UnitConverter.Unit.TABLESPOON));
+        ingredientList.addIngredient(new Ingredient("shredded mozzerella", 0.5, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("pepperonni", 12, UnitConverter.Unit.NONE));
 
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("italian"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"italian"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe7 = recipeBuilder.build();
@@ -270,17 +226,17 @@ public class PresentationDriver {
         //Mealplan 1
         MealPlan demoMP1 = new MealPlan("Saturday Meals");
         demoMP1.setMealPlanDescription("Just some meals for my day off");
-        demoMP1.addMeal(new Meal(demoRecipe6, 2));
-        demoMP1.addMeal(new Meal(demoRecipe1, 2));
-        demoMP1.addMeal(new Meal(demoRecipe7, 2));
+        demoMP1.addMeal(new Meal(demoRecipe6));
+        demoMP1.addMeal(new Meal(demoRecipe1));
+        demoMP1.addMeal(new Meal(demoRecipe7));
 
         //Mealplan 2
         MealPlan demoMP2 = new MealPlan("Some meals");
         demoMP2.setMealPlanDescription("These don't go together at all but I need more for the demo");
-        demoMP2.addMeal(new Meal(demoRecipe6, 2));
-        demoMP2.addMeal(new Meal(demoRecipe5, 2));
-        demoMP2.addMeal(new Meal(demoRecipe4, 5));
-        demoMP2.addMeal(new Meal(demoRecipe2, 5));
+        demoMP2.addMeal(new Meal(demoRecipe6));
+        demoMP2.addMeal(new Meal(demoRecipe5));
+        demoMP2.addMeal(new Meal(demoRecipe4));
+        demoMP2.addMeal(new Meal(demoRecipe2));
 
         MealPlanner mp = new MealPlanner();
         mp.addMealPlan(demoMP1);
@@ -293,16 +249,14 @@ public class PresentationDriver {
         
         //IngredientList 1
         IngredientList iList = new IngredientList();
-        iList.addIngredient(new Ingredient("Cheese", 2, Unit.NONE));
-        iList.addIngredient(new Ingredient("Macaroni", 3, Unit.CUP));
-        iList.addIngredient(new Ingredient("Potatoes", 17, Unit.NONE));
-        iList.addIngredient(new Ingredient("Butter", 2, Unit.TEASPOON));
+        iList.addIngredient(new Ingredient("cheese", 2, Unit.NONE));
+        iList.addIngredient(new Ingredient("macaroni", 3, Unit.CUP));
+        iList.addIngredient(new Ingredient("potatoes", 17, Unit.NONE));
+        iList.addIngredient(new Ingredient("butter", 2, Unit.TEASPOON));
 
         GroceryList gList = new GroceryList();
         gList.setIngredientList(iList);
 
         user.setGroceryList(gList);
-
-        return user;
     }
 }

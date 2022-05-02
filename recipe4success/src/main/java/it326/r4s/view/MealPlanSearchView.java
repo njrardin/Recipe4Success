@@ -6,17 +6,11 @@ import it326.r4s.view.utilities.InputAccess;
 
 public class MealPlanSearchView {
     
-    //*Instance variable*\\
-    private MealPlanSearchController mpsController;
-
     //*Constructor*\\
     /**
      * Constructor for R4S's MealPlanSearchView
-     * @param mpsController
      */
-    public MealPlanSearchView(MealPlanSearchController mpsController){
-        this.mpsController = mpsController;
-    }
+    public MealPlanSearchView(MealPlanSearchController mpsController){}
 
     //*Methods*\\
     /**
@@ -29,7 +23,7 @@ public class MealPlanSearchView {
         do{
             System.out.print("Please enter the term to search the meal plans for: ");
             input = inputAccess.getInputLine().toLowerCase();
-        } while (input == "");
+        } while (input.equals(""));
 
         return input;
     }

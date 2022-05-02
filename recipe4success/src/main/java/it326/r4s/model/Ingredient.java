@@ -35,6 +35,16 @@ public class Ingredient {
         this.unit = unit;
     }
 
+    /**
+     * Copy Constructor
+     * @param ingredient
+     */
+    public Ingredient(Ingredient ingredient) {
+        this.foodItem = ingredient.getFoodItem();
+        this.quantity = ingredient.getQuantity();
+        this.unit = ingredient.getUnit();
+    }
+
     // *Methods*\\
     /**
      * Changes the unit of the Ingredient object and converts the quantity between

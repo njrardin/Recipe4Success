@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import it326.r4s.model.Pantry;
 import it326.r4s.model.Recipe;
-import it326.r4s.model.User;
 import it326.r4s.view.PantryView;
-import it326.r4s.view.RecipeBookView;
 /**
  * Controller for R4S Pantry
  * @author Nate Rardin (njrardi@ilstu.edu)
@@ -103,7 +101,7 @@ public class PantryController {
      * adding an ingredient to the pantry
      */
     public void addIngredient() {
-        pantry.addIngredientList(pantryView.getNewIngredientsFromUser());
+        pantry.addIngredients(pantryView.getNewIngredientsFromUser());
     }
     
     /**
@@ -119,7 +117,7 @@ public class PantryController {
             pantry.removeRecipeIngredients(recipeController.getRecipe());
         } catch (RuntimeException e) { 
             System.out.println("Oops, looks like there was an error with removing the ingredients.");
-         }
+        }
     }
 
     private void listMakableRecipes() {        
@@ -127,7 +125,7 @@ public class PantryController {
         for(Recipe recipe: userController.getUser().getMakeableRecipes()){
             recipeControllers.add(new RecipeController(recipe, userController.getUser()));
         }
-
+        //TODO: implement
     }
     
 }

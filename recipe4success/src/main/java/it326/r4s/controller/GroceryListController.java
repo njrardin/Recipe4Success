@@ -16,6 +16,7 @@ public class GroceryListController {
     private GroceryList groceryList;
     private GroceryListView glView;
     private UserController userController;
+    private PorterController<GroceryList> groceryListPorter;
 
     //*Constructor*\\
     /**
@@ -26,6 +27,7 @@ public class GroceryListController {
         this.groceryList = groceryList;
         this.glView = new GroceryListView(this);
         this.userController = userController;
+        groceryListPorter = PorterController.of(GroceryList.class, userController);
     }
 
     //*Methods*\\
@@ -103,7 +105,7 @@ public class GroceryListController {
      * adding an ingredient to the grocerylist
      */
     public void addIngredient() {
-        groceryList.addIngredientList(glView.getNewIngredientsFromUser());
+        groceryList.addIngredients(glView.getNewIngredientsFromUser());
     }
     
     /**
@@ -122,7 +124,7 @@ public class GroceryListController {
         if(glView.confirmTransfer()){
             //move ingredients to the pantry
             Pantry thePantry = userController.getPantryController().getPantry();
-            thePantry.addIngredientList(groceryList.getIngredientList());
+            thePantry.addIngredients(groceryList.getIngredientList());
             //remove all of the ingredients in the grocery list
             groceryList.getIngredientList().makeEmpty();
             glView.displayTransferSuccess();
@@ -161,6 +163,6 @@ public class GroceryListController {
      * exporting their grocery list
      */
     public void exportGroceryList(){
-
+        groceryListPorter.exportTo(groceryList);
     }
 }
