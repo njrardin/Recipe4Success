@@ -47,8 +47,8 @@ public class DemoUtils {
         recipeBuilder.setInstructions(instructions);
 
         IngredientList ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Cheese", 2, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Macaroni", 4, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("cheese", 2, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("macaroni", 4, UnitConverter.Unit.CUP));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -93,8 +93,8 @@ public class DemoUtils {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Potatoes", 8, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Butter", 1, UnitConverter.Unit.TEASPOON));
+        ingredientList.addIngredient(new Ingredient("potatoes", 8, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("butter", 1, UnitConverter.Unit.TEASPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
 
