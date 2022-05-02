@@ -21,7 +21,7 @@ public class Category {
      * 
      * @param name the name of the category.
      */
-    public Category(String name) {
+    private Category(String name) {
         this.name = name;
     }
 
@@ -63,7 +63,7 @@ public class Category {
             return true;
         }
         Category otherCategory = (Category) obj;
-        return this.name.equals(otherCategory.getName());
+        return this.name.toLowerCase().equals(otherCategory.getName().toLowerCase());
     }
 
     /**
@@ -112,15 +112,16 @@ public class Category {
 
             return addCategory(type, name);
         }
+        
+        public Collection<Category> getCategories(Type type) {
+            return Collections.unmodifiableCollection(allCategories.get(type));
+        }
 
         public boolean removeCategory(Type type, String name) {
             Category c = new Category(name);
             return allCategories.get(type).remove(c);
         }
 
-        public Collection<Category> getCategories(Type type) {
-            return Collections.unmodifiableCollection(allCategories.get(type));
-        }
 
         public boolean contains(Type type, String name)  {
             Category c = new Category(name);

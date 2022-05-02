@@ -15,9 +15,9 @@ public class Recipe extends Entity implements Portable {
     private int servingSize;
     private Date createdOn;
     private IngredientList ingredientList;
-    private ArrayList<Review> reviews; //TODO: should have an overall rating attribute that uses this
-    private ArrayList<Category> categories;
-    private ArrayList<String> instructions;
+    private Collection<Review> reviews; //TODO: should have an overall rating attribute that uses this
+    private Collection<Category> categories;
+    private Collection<String> instructions;
 
     // * Constructor *\\
 
@@ -55,7 +55,7 @@ public class Recipe extends Entity implements Portable {
     }
 
     /**
-     * Removes the category from the recipe
+     * Removes the category from the recipe.
      * 
      * @param theCategory
      */
@@ -64,12 +64,21 @@ public class Recipe extends Entity implements Portable {
     }
 
     /**
-     * Adds the category to the recipe
+     * Adds the category to the recipe if it is not already present.
      * 
      * @param theCategory
      */
     public void addCategory(Category theCategory) {
-        categories.add(theCategory);
+        if (!categories.contains(theCategory)) {
+            categories.add(theCategory);
+        }        
+    }
+
+    /**
+     * Removes all categories from the recipe.
+     */
+    public void clearCategories() {
+        categories.clear();
     }
 
     /**
@@ -185,7 +194,7 @@ public class Recipe extends Entity implements Portable {
      * 
      * @return the List<Review> of the recipe's reviews
      */
-    public ArrayList<Review> getReviews() {
+    public Collection<Review> getReviews() {
         return this.reviews;
     }
 
@@ -194,16 +203,16 @@ public class Recipe extends Entity implements Portable {
      * 
      * @return the List<Category> of the recipe's categories
      */
-    public ArrayList<Category> getCategories() {
+    public Collection<Category> getCategories() {
         return this.categories;
     }
 
     /**
      * Gets the Recipe's instructions.
      * 
-     * @return an ArrayList of instructions.
+     * @return a Collection of instructions.
      */
-    public ArrayList<String> getInstructions() {
+    public Collection<String> getInstructions() {
         return new ArrayList<String>(this.instructions);
     }
 
@@ -211,7 +220,7 @@ public class Recipe extends Entity implements Portable {
      * Setter for the recipe's instructions
      * @param instructions - arraylist of string instructions
      */
-    public void setInstructions(ArrayList<String> instructions){
+    public void setInstructions(Collection<String> instructions){
         this.instructions = instructions;
     }
     
@@ -234,9 +243,9 @@ public class Recipe extends Entity implements Portable {
      *            private int servingSize;
      *            private Date createdOn;
      *            private IngredientList ingredientList;
-     *            private List<Review> reviews;
-     *            private List<Category> categories;
-     *            private List<String> instructions;
+     *            private Collection<Review> reviews;
+     *            private Collection<Category> categories;
+     *            private Collection<String> instructions;
      * @return true if two Recipe objects are equal, false otherwise.
      */
     @Override
@@ -286,9 +295,9 @@ public class Recipe extends Entity implements Portable {
         private int servingSize;
         private Date createdOn;
         private IngredientList ingredientList;
-        private ArrayList<Review> reviews;
-        private ArrayList<Category> categories;
-        private ArrayList<String> instructions;
+        private Collection<Review> reviews;
+        private Collection<Category> categories;
+        private Collection<String> instructions;
 
         // * Constructor *\\
 

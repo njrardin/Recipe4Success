@@ -21,6 +21,7 @@ public class RecipeTest {
     static Recipe setupRecipe;
     static User theUser;
     static FoodItem.Pool fiPool = FoodItem.Pool.getInstance();
+    static Category.Pool cPool = Category.Pool.getInstance();
 
     @Before
     public void setUp(){
@@ -46,7 +47,7 @@ public class RecipeTest {
     @Test
     public void testRemoveCategory(){
         ArrayList<Category> categoryList = new ArrayList<Category>();
-        Category glutenFree = new Category("Gluten Free");
+        Category glutenFree = cPool.getCategory(Category.Type.RECIPE, "Gluten Free");
         categoryList.add(glutenFree);
 
         Recipe aRecipe = new Recipe.RecipeBuilder("Recipe with categories").setCategories(categoryList).build();
@@ -58,7 +59,7 @@ public class RecipeTest {
 
     @Test
     public void testAddCategory(){
-        Category newCategory = new Category("CATEGORY");
+        Category newCategory = cPool.getCategory(Category.Type.RECIPE, "CATEGORY");
 
         setupRecipe.addCategory(newCategory);
 

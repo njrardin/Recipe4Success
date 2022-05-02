@@ -11,7 +11,7 @@ import java.util.*;
 public class MealPlan extends Entity implements Portable {
     private String name;
     private String description;
-    private List<Meal> meals;
+    private Collection<Meal> meals;
     private Date createdOn;
 
     // *Constructor*\\
@@ -48,6 +48,15 @@ public class MealPlan extends Entity implements Portable {
      */
     public String getMealPlanDescription() {
         return this.description;
+    }
+
+    /**
+     * Gets the MealPlan's collection of meals.
+     * 
+     * @return the collection of meals.
+     */
+    public Collection<Meal> getMeals() {
+        return this.meals;
     }
 
     /**
@@ -133,9 +142,9 @@ public class MealPlan extends Entity implements Portable {
      * 
      * @return a collection of ingredients.
      */
-    public List<Ingredient> getIngredients() {
+    public Collection<Ingredient> getIngredients() {
 
-        List<Ingredient> allIngredient = new ArrayList<>();
+        Collection<Ingredient> allIngredient = new ArrayList<>();
 
         for (Meal theMeal : meals) {
             allIngredient.addAll(theMeal.getRecipe().getIngredientList().getIngredients());
@@ -148,8 +157,8 @@ public class MealPlan extends Entity implements Portable {
      * 
      * @return a collection of recipes.
      */
-    public ArrayList<Recipe> getRecipes() {
-        ArrayList<Recipe> allRecipes = new ArrayList<>();
+    public Collection<Recipe> getRecipes() {
+        Collection<Recipe> allRecipes = new ArrayList<>();
         for (Meal meal : meals) {
             allRecipes.add(meal.getRecipe());
         }
