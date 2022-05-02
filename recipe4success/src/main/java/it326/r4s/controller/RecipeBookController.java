@@ -19,6 +19,7 @@ public class RecipeBookController {
     private RecipeBook recipeBook;
     private RecipeBookView recipeBookView;
     private UserController userController;
+    private PorterController<Recipe> recipePorter;
 
     //*Constructor*\\
     /**
@@ -29,6 +30,7 @@ public class RecipeBookController {
         this.recipeBook = recipeBook;
         this.recipeBookView = new RecipeBookView(this);
         this.userController = userController;
+        recipePorter = PorterController.of(Recipe.class);
     }
 
     //*Methods*\\
@@ -128,7 +130,12 @@ public class RecipeBookController {
      * importing a recipe into the application
      */
     public void importRecipe() {
-        //TODO - req 8
+        Recipe recipe = recipePorter.importFrom();
+        if (recipe != null) {
+            if (!recipeBook.addRecipe(recipe)) {
+                System.out.println("That recipe is already in your recipe book!");
+            }
+        }
     }
 
     /**
