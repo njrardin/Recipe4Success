@@ -22,10 +22,7 @@ import it326.r4s.model.User;
  * @date 4/26/22
  */
 public class DemoUtils {    
-    public static User prepopulateUser() {
-        //Instantiate the user object
-        User user = new User("Rishi Saripalle");
-
+    public static void prepopulateUser(User user) {
         //======================================================================================================
         //Populate the recipeBook with a series of recipes
         RecipeBook recipeBook = new RecipeBook();
@@ -192,8 +189,6 @@ public class DemoUtils {
         demoRecipe6 = recipeBuilder.build();
         recipeBook.addRecipe(demoRecipe6);
 
-        user.setRecipeBook(recipeBook);
-
         //Demo recipe 7
         Recipe demoRecipe7;
 
@@ -263,7 +258,5 @@ public class DemoUtils {
         gList.setIngredientList(iList);
 
         user.setGroceryList(gList);
-
-        return user;
     }
 }

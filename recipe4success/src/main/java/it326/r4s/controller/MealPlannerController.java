@@ -17,6 +17,7 @@ public class MealPlannerController {
     private MealPlanner mealPlanner;
     private MealPlannerView mealPlannerView;
     private UserController userController;
+    private PorterController<MealPlan> mealPlanPorter;
     
     //*Constructor*\\
     /**
@@ -27,6 +28,7 @@ public class MealPlannerController {
         this.mealPlanner = mealPlanner;
         this.mealPlannerView = new MealPlannerView(this);
         this.userController = userController;
+        mealPlanPorter = PorterController.of(MealPlan.class, userController);
     }
 
     //*Methods*\\
@@ -136,7 +138,12 @@ public class MealPlannerController {
      * importing a MealPlan into the application
      */
     public void importMealPlan() {
-        //TODO - req 18
+        MealPlan mealPlan = mealPlanPorter.importFrom();
+        if (mealPlan != null) {
+            if (!mealPlanner.addMealPlan(mealPlan)) {
+                System.out.println("That meal plan is already in your meal planner!");
+            }
+        }
     }
 
     /**
@@ -144,7 +151,7 @@ public class MealPlannerController {
      * exporting a MealPlan out of application
      */
     public void exportMealPlan() {
-        //TODO - req 17
+        selectMealPlanController().exportMealPlan();
     }
     
     /**

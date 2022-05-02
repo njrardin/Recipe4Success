@@ -1,11 +1,9 @@
 package it326.r4s.controller;
 
-import it326.r4s.model.Exporter;
-import it326.r4s.model.ExporterProducer;
 import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
-import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
+import it326.r4s.model.User;
 import it326.r4s.view.RecipeView;
 import it326.r4s.view.RecipeView.RecipeBuilderView;
 /**
@@ -20,6 +18,7 @@ public class RecipeController {
     private RecipeView recipeView;
 
     private UserController authorController; //controller for the author's user object
+    private PorterController<Recipe> recipePorter;
     
     //*Constructor*\\
     /**
@@ -30,6 +29,7 @@ public class RecipeController {
         this.recipe = recipe;
         this.recipeView = new RecipeView(this);
         this.authorController = new UserController(author);
+        recipePorter = PorterController.of(Recipe.class, authorController);
     }
 
     //*Methods*\\
@@ -42,7 +42,7 @@ public class RecipeController {
     }
 
     /**
-     * Getter for the UserController which cantrols the MealPlanController's author
+     * Getter for the UserController which controls the MealPlanController's author
      * @return the UseController object
      */
     public UserController getAuthorController(){
@@ -95,7 +95,7 @@ public class RecipeController {
     }
 
     /**
-     * Faciliates the process of the user
+     * Facilitates the process of the user
      * editing the recipe
      */
     public void editRecipe(){
@@ -166,12 +166,7 @@ public class RecipeController {
      * exporting the recipe
      */
 	public void exportRecipe() {
-        //TODO: This is Alex's problem
-        Recipe recipe = null;
-        Exporter<Recipe> exporter = ExporterProducer.getExporter(ExporterProducer.Type.JSON, Recipe.class);
-        try {
-            exporter.exportTo(recipe, "filename");
-        } catch (Exception e) {}
+        recipePorter.exportTo(recipe);   
 	}
 
     /**

@@ -9,7 +9,7 @@ import java.util.Collection;
  * @author Zach Plattner (zmplatt@ilstu.edu)
  * @date 4/6/22
  */
-public class GroceryList {
+public class GroceryList implements Portable {
     // *Instance Variable*\\
     private IngredientList ingredientList;
 
