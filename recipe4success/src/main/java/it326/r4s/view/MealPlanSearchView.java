@@ -23,7 +23,7 @@ public class MealPlanSearchView {
         do{
             System.out.print("Please enter the term to search the meal plans for: ");
             input = inputAccess.getInputLine().toLowerCase();
-        } while (input == "");
+        } while (input.equals(""));
 
         return input;
     }

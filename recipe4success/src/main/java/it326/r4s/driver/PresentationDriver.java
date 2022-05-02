@@ -2,54 +2,27 @@ package it326.r4s.driver;
 
 import java.util.ArrayList;
 
-import it326.r4s.controller.*;
-import it326.r4s.model.*;
+import it326.r4s.model.Category;
+import it326.r4s.model.GroceryList;
+import it326.r4s.model.Ingredient;
+import it326.r4s.model.IngredientList;
+import it326.r4s.model.Meal;
+import it326.r4s.model.MealPlan;
+import it326.r4s.model.MealPlanner;
+import it326.r4s.model.Recipe;
 import it326.r4s.model.Recipe.RecipeBuilder;
+import it326.r4s.model.RecipeBook;
+import it326.r4s.model.UnitConverter;
 import it326.r4s.model.UnitConverter.Unit;
-import it326.r4s.view.utilities.*;
+import it326.r4s.model.User;
 
 /**
  * Controller for R4S RecipeBook
  * @author Nate Rardin (njrardi@ilstu.edu)
  * @date 4/26/22
  */
-public class PresentationDriver {
-    public static void main(String[] args) {     
-        
-        displayWelcome();
-
-        launchProgram();
-
-        saveAndExit();
-    }
-
-    private static void displayWelcome(){
-        System.out.println(DisplayUtils.getHeader("-- WELCOME TO RECIPE 4 SUCCESS --"));
-    }
-
-    private static void launchProgram(){
-        
-        User user = prepopulateUser();
-        
-        UserController userController = new UserController(user);
-        MainMenuController mmController = new MainMenuController(userController);
-        
-        mmController.launchMainMenu();
-    }
-
-    
-    private static void saveAndExit() {
-        //TODO: Save data from application before exit
-        
-        System.out.println("Thank you for using Recipe4Success!");
-        System.out.println("\n\tapplication exiting...\n\n");
-        
-        InputAccess inputAccess = new InputAccess();
-        inputAccess.close();
-        System.exit(0);
-    }
-    
-    private static User prepopulateUser() {
+public class PresentationDriver {    
+    public static User prepopulateUser() {
         //Instantiate the user object
         User user = new User("Rishi Saripalle");
 
@@ -126,7 +99,8 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         ArrayList<Category> categories = new ArrayList<Category>();
-        categories.add(new Category("vegan"));
+        Category.Pool cPool = Category.Pool.getInstance();
+        categories.add(cPool.getCategory(Category.Type.RECIPE, "vegan"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe3 = recipeBuilder.build();
@@ -154,8 +128,8 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("mexican"));
-        categories.add(new Category("party"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"mexican"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"party"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe4 = recipeBuilder.build();
@@ -182,8 +156,8 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("italian"));
-        categories.add(new Category("simple"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"italian"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"simple"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe5 = recipeBuilder.build();
@@ -212,7 +186,7 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("breakfast"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"breakfast"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe6 = recipeBuilder.build();
@@ -243,7 +217,7 @@ public class PresentationDriver {
         recipeBuilder.setIngredientList(ingredientList);
 
         categories = new ArrayList<Category>();
-        categories.add(new Category("italian"));
+        categories.add(cPool.getCategory(Category.Type.RECIPE,"italian"));
         recipeBuilder.setCategories(categories);
 
         demoRecipe7 = recipeBuilder.build();

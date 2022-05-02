@@ -2,11 +2,12 @@ package it326.r4s.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
 
 import it326.r4s.controller.RecipeController;
 import it326.r4s.controller.UnitController;
 import it326.r4s.model.Category;
+import it326.r4s.model.Review;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.UnitConverter.Unit;
@@ -111,7 +112,7 @@ public class RecipeView implements R4SMenu{
      * Displays the recipe's instructions
      */
     private void displayInstructions() {
-        ArrayList<String > instructions = recipeController.getRecipe().getInstructions();
+        Collection<String> instructions = recipeController.getRecipe().getInstructions();
 
         int instNum = 1;
         for(String instruction: instructions){
@@ -126,7 +127,7 @@ public class RecipeView implements R4SMenu{
      */
     private String getRecipeRating(){
         try{
-            return String.valueOf(recipeController.getRecipe().getReviews().get(0).getRatingValue());
+            return String.valueOf(((Review) recipeController.getRecipe().getReviews().toArray()[0]).getRatingValue());
         } catch (Exception e) {
             return "none";
         }
@@ -139,7 +140,7 @@ public class RecipeView implements R4SMenu{
     public int getRatingFromUser(){
         InputAccess inputAccess = new InputAccess();
         Integer[] acceptableRatings = {1, 2, 3, 4, 5};
-        List<Integer> acceptableRatingsList = Arrays.asList(acceptableRatings);
+        Collection<Integer> acceptableRatingsList = Arrays.asList(acceptableRatings);
         int ratingNum;
 
         do{
@@ -206,7 +207,7 @@ public class RecipeView implements R4SMenu{
             while(true){
                 System.out.print("\nPlease provide the recipe's name: ");
                 name = inputAccess.getInputLine();
-                if(name != ""){
+                if(!name.equals("")){
                     System.out.print("You provided the name \"" + name + "\", is this correct? (Y/N) : ");
                     if(inputAccess.getInputLine().toLowerCase().equals("y")){
                         return name;
@@ -395,6 +396,7 @@ public class RecipeView implements R4SMenu{
             InputAccess inputAccess = new InputAccess();
             String resp = "";
             String categoryString;
+            Category.Pool cPool = Category.Pool.getInstance();
             ArrayList<Category> categories = new ArrayList<Category>();
 
             do{
@@ -426,7 +428,7 @@ public class RecipeView implements R4SMenu{
                 "\". Is this correct? (Y/N) : ");
                 resp = inputAccess.getInputLine().toLowerCase();
                 if(resp.equals("y")){
-                    categories.add(new Category(categoryString));
+                    categories.add(cPool.getCategory(Category.Type.RECIPE, categoryString));
                     categoryNum++;
                 }
                 else{

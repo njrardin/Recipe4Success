@@ -188,7 +188,7 @@ public class MealPlannerView implements R4SMenu{
         while(true){
             System.out.print("\nPlease provide the mealplan's name: ");
             name = inputAccess.getInputLine();
-            if(name != ""){
+            if(!name.equals("")){
                 System.out.print("You provided the name \"" + name + ",\" is this correct? (Y/N) : ");
                 if(inputAccess.getInputLine().toLowerCase().equals("y")){
                     return name;

@@ -61,8 +61,7 @@ public class RecipeSearchController {
      * @param searchQuery - the string to search for
      * @return an ArrayList of recipes that match the query
      */
-    private ArrayList<Recipe> searchFor(String searchQuery) {
-        return new ArrayList<Recipe>( CollectionUtils.union(recipeSearch.searchFor(searchQuery), recipeSearch.searchFor(new Category(searchQuery))) );
-
+    public ArrayList<Recipe> searchFor(String searchQuery) {
+        return new ArrayList<Recipe>( CollectionUtils.union(recipeSearch.searchFor(searchQuery), recipeSearch.searchFor(Category.Pool.getInstance().getCategory(Category.Type.RECIPE,searchQuery))));
     }
 }
