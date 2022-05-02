@@ -10,6 +10,7 @@ import java.util.Collection;
  */
 
 public class IngredientList extends Entity {
+
     // *Instance Variable*\\
     private ArrayList<Ingredient> ingredients;
 
@@ -33,12 +34,22 @@ public class IngredientList extends Entity {
 
     // *methods*\\
     /**
-     * Attempts to add an ingredient to the IngredientList.
+     * Gets all ingredients in the IngredientList.
      * 
-     * @param toAdd an ingredient to be added to the IngredientList.
+     * @return a collection of ingredients.
+     */
+    public ArrayList<Ingredient> getIngredients() {
+        return this.ingredients;
+    }
+
+    /**
+     * Attempts to add an Ingredient to the IngredientList.
+     * 
+     * @param toAdd an Ingredient to be added to the IngredientList.
      * @return true if toAdd is already in ingredients, false otherwise.
      */
-    public boolean addIngredient(Ingredient toAdd) { //TODO: this is just straight up bad. Rework the model if needed but seriously
+    public boolean addIngredient(Ingredient toAdd) { 
+
         for (Ingredient ingredient : this.ingredients) {
             if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
                 if (ingredient.getUnit().unitType == toAdd.getUnit().unitType) {
@@ -56,14 +67,26 @@ public class IngredientList extends Entity {
             }
         }
         this.ingredients.add(toAdd);
+
         return false;
     }
 
     /**
-     * Attempts to add an collection of ingredients to the IngredientList.
+     * Attempts to add an IngredientList of Ingredients to the IngredientList.
      * 
-     * @param toAdd a collection of ingredients to be added to the IngredietnList.
-     * @return true if any Ingredient in toAdd is already in ingredients,false
+     * @param toAdd an IngredientList of Ingredients to be added to the IngredientList.
+     * @return true if any Ingredient in toAdd is already in ingredients, false
+     *         otherwise.
+     */
+    public boolean addIngredients(IngredientList listToAdd){
+        return addIngredients(getIngredients());
+    }
+
+    /**
+     * Attempts to add a collection of Ingredients to the IngredientList.
+     * 
+     * @param toAdd a collection of Ingredients to be added to the IngredientList.
+     * @return true if any Ingredient in toAdd is already in Ingredients, false
      *         otherwise.
      */
     public boolean addIngredients(Collection<Ingredient> toAdd) {
@@ -76,9 +99,9 @@ public class IngredientList extends Entity {
     }
 
     /**
-     * Attempts to remove an ingredient from the IngredientList.
+     * Attempts to remove an Ingredient from the IngredientList.
      * 
-     * @param toRemove a ingredient to be remove from the IngredientList.
+     * @param toRemove an Ingredient to be removed from the IngredientList.
      * @return false if toRemove is not in ingredients, true otherwise.
      */
     public boolean removeIngredient(Ingredient toRemove) {
@@ -86,9 +109,20 @@ public class IngredientList extends Entity {
     }
 
     /**
-     * Attempts to remove a collection of ingredients from the IngredientList.
+     * Attempts to remove another IngredientList from the IngredientList.
      * 
-     * @param toRemove a collection of ingredients to be removed from the
+     * @param toRemove another IngredientList to be removed from the
+     *                 IngredientList.
+     * @return false if toRemove is not in the IngredientList, true otherwise.
+     */
+    public boolean removeIngredients(IngredientList toRemove) {
+        return ingredients.removeAll(toRemove.getIngredients());
+    }
+
+    /**
+     * Attempts to remove a collection of Ingredients from the IngredientList.
+     * 
+     * @param toRemove a collection of Ingredients to be removed from the
      *                 IngredientList.
      * @return false if toRemove is not in the IngredientList, true otherwise.
      */
@@ -111,29 +145,39 @@ public class IngredientList extends Entity {
      * @return True if this ingredient list contains all the ingredients (quantities
      *         of this list must be larger) of the collection, false otherwise.
      */
-    public boolean containsIngredients(Collection<Ingredient> otherIngredients) {
-        if (this.ingredients.containsAll(otherIngredients))
+    public boolean containsIngredients(Collection<Ingredient> otherCollection) { //TODO: This logic doesn't work!!!
+        Collection<Ingredient> thisCollection = ingredients;
+
+        if (thisCollection.containsAll(otherCollection)){
             return true;
-        else {
-            for (Ingredient ingredient : otherIngredients) {
-                for (Ingredient otherIngredient : this.ingredients) {
-                    if (!ingredient.equals(otherIngredient)) {
-                        if (ingredient.getQuantity() > otherIngredient.getQuantity())
-                            return false;
+
+        } else {
+
+            for (Ingredient otherIngredient : otherCollection) {
+
+                for (Ingredient thisIngredient : thisCollection) { //for each possible comparison
+
+                    if (!otherIngredient.equals(thisIngredient)) { //if not equal
+
+                        if (otherIngredient.getQuantity() > thisIngredient.getQuantity()) //return false if ther's less of this
+                            return false;                                                 //ingredient than the other
                     }
                 }
             }
         }
+
         return true;
     }
 
     /**
-     * Gets all ingredients in the IngredientList.
+     * Checks whether this IngredientList contains all the ingredients of another IngredientList 
      * 
-     * @return a collection of ingredients.
+     * @param ingredientList the IngredientList to be compared against.
+     * @return True if this ingredient list contains all the ingredients (quantities
+     *         of this list must be larger) of the collection, false otherwise.
      */
-    public ArrayList<Ingredient> getIngredients() {
-        return this.ingredients;
+    public boolean containsIngredients(IngredientList ingredientList) {
+        return containsIngredients(ingredientList.getIngredients());
     }
 
     /**
