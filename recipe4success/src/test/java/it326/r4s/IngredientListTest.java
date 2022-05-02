@@ -6,7 +6,9 @@ import it326.r4s.model.*;
 import it326.r4s.model.UnitConverter.Unit;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -68,19 +70,17 @@ public class IngredientListTest {
 
     @Test
     public void testRemoveIngredients() {
-        // theIngredients contains items that are not in theIngredientList
-        // theIngredientList remove the item in its list
-        assertEquals(true, theIngredientList.removeIngredients(theIngredients));
+        assertTrue(theIngredientList.removeIngredients(theIngredients));
         theIngredients.remove(ingredient2);
         theIngredients.remove(ingredient3);
         theIngredientList.addIngredient(ingredient1);
-        assertEquals(true, theIngredientList.removeIngredients(theIngredients));
-        assertEquals(false, theIngredientList.removeIngredients(theIngredients));
+        assertTrue(theIngredientList.removeIngredients(theIngredients));
+        assertFalse(theIngredientList.removeIngredients(theIngredients));
         theIngredientList.addIngredient(ingredient1);
         theIngredients.remove(ingredient1);
         theIngredients.add(ingredient2);
         theIngredients.add(ingredient3);
-        assertEquals(false, theIngredientList.removeIngredients(theIngredients));
+        assertFalse(theIngredientList.removeIngredients(theIngredients));
         expectedList.add(ingredient1);
         ArrayList<Ingredient> actualList = theIngredientList.getIngredients();
         assertEquals(expectedList, actualList);
