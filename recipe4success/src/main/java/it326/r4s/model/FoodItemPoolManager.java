@@ -19,7 +19,7 @@ public class FoodItemPoolManager extends InstanceManager<FoodItem.Pool> {
         foodItemPoolDirectory = InstanceManager.getParentDirectory() + foodItemPoolFileName;
         importer = ImporterProducer.getImporter(ImporterProducer.Type.JSON, FoodItem.Pool.class);
         exporter = ExporterProducer.getExporter(ExporterProducer.Type.JSON, FoodItem.Pool.class);
-        categoryPool = new CategoryPoolManager().load();
+        categoryPool = Category.Pool.getInstance();
     }
 
     /**
@@ -62,9 +62,8 @@ public class FoodItemPoolManager extends InstanceManager<FoodItem.Pool> {
      */
     private void rebuildFoodItemCategories(FoodItem.Pool foodItemPool) {
         for (FoodItem foodItem : foodItemPool.getFoodItems()) {
-            Category[] categories = (Category[]) foodItem.getCategories().toArray();
-            foodItem.clearCategories();
-            for (Category category : categories) {
+            for (Category category : foodItem.getCategories()) {
+                foodItem.removeCategory(category);
                 foodItem.addCategory(categoryPool.getCategory(Category.Type.FOODITEM, category.getName()));
             }
         }

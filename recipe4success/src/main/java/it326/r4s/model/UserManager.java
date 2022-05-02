@@ -20,7 +20,7 @@ public class UserManager extends InstanceManager<User> {
         userDirectory = InstanceManager.getParentDirectory() + userFileName;
         importer = ImporterProducer.getImporter(ImporterProducer.Type.JSON, User.class);
         exporter = ExporterProducer.getExporter(ExporterProducer.Type.JSON, User.class);
-        foodItemPool = new FoodItemPoolManager().load();
+        foodItemPool = FoodItem.Pool.getInstance();
         categoryPool = Category.Pool.getInstance();
     }
 
@@ -74,10 +74,9 @@ public class UserManager extends InstanceManager<User> {
      */
     private void rebuildRecipeCategories(User user) {
         for (Recipe recipe : user.getRecipeBook().getRecipes()) {
-            Category[] categories = (Category[]) recipe.getCategories().toArray();
-            recipe.clearCategories();
-            for (Category category : categories) {
-                recipe.addCategory(categoryPool.getCategory(Category.Type.FOODITEM, category.getName()));
+            for (Category category : recipe.getCategories()) {
+                recipe.removeCategory(category);
+                recipe.addCategory(categoryPool.getCategory(Category.Type.RECIPE, category.getName()));
             }
         }
     }
@@ -99,8 +98,6 @@ public class UserManager extends InstanceManager<User> {
      * @param user the user object to rebuild.
      */
     private void rebuildPantryIngredients(User user) {
-        FoodItem.Pool foodItemPool = FoodItem.Pool.getInstance();
-
         for (Ingredient ingredient : user.getPantry().getIngredientList().getIngredients()) {
             ingredient.setFoodItem(foodItemPool.getFoodItem(ingredient.getFoodItem().getName()));
         }
@@ -111,8 +108,6 @@ public class UserManager extends InstanceManager<User> {
      * @param user the user object to rebuild.
      */
     private void rebuildGroceryListIngredients(User user) {
-        FoodItem.Pool foodItemPool = FoodItem.Pool.getInstance();
-
         for (Ingredient ingredient : user.getGroceryList().getIngredientList().getIngredients()) {
             ingredient.setFoodItem(foodItemPool.getFoodItem(ingredient.getFoodItem().getName()));
         }
