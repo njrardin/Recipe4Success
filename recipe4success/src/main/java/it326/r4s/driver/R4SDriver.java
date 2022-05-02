@@ -29,15 +29,15 @@ public class R4SDriver {
         User user = new UserManager().load();
         
         if (user == null) {
-            //user = askUserForName();
-            user = DemoUtils.prepopulateUser();
+            user = askUserForName();
+            DemoUtils.prepopulateUser(user);
         }
 
         return user;
     }
 
     private static User askUserForName() {
-        // TODO implement this
+        // TODO implement askUserForName
         return new User("SomeName");
     }
 
