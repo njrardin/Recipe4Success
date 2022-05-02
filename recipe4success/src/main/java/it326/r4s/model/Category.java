@@ -63,7 +63,7 @@ public class Category {
             return true;
         }
         Category otherCategory = (Category) obj;
-        return this.name.equals(otherCategory.getName());
+        return this.name.toLowerCase().equals(otherCategory.getName().toLowerCase());
     }
 
     /**
