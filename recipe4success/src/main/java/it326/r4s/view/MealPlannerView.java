@@ -55,12 +55,12 @@ public class MealPlannerView implements R4SMenu{
         String title = "Meal Planner Options";
         String prompt = "What would you like to do?";
         String[] options = {
-            "Search mealplans",
-            "Import a mealplan",
-            "Export a mealplan",
-            "Create a new mealplan",
-            "Open a mealplan",
-            "Set mealplan as 'Active'",
+            "Search Meal Plans",
+            "Import a Meal Plan",
+            "Export a Meal Plan",
+            "Create a new Meal Plan",
+            "Open a Meal Plan",
+            "Set Meal Plan as 'Active'",
             "Go back"
         };
         InputAccess inputAccess = new InputAccess();
@@ -186,7 +186,7 @@ public class MealPlannerView implements R4SMenu{
         String name = "";
 
         while(true){
-            System.out.print("\nPlease provide the mealplan's name: ");
+            System.out.print("\nPlease provide the meal plan's name: ");
             name = inputAccess.getInputLine();
             if(!name.equals("")){
                 System.out.print("You provided the name \"" + name + ",\" is this correct? (Y/N) : ");

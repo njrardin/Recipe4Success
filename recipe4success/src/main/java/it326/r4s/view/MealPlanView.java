@@ -44,15 +44,15 @@ public class MealPlanView implements R4SMenu {
      * @return an int representing the selected option
      */
     public int getMenuOptionSelection(){
-        String title = "Mealplan: " + mealPlanController.getMealPlan().getMealPlanName();
+        String title = "Meal Plan: " + mealPlanController.getMealPlan().getMealPlanName();
         String prompt = "What would you like to do?";
         String[] options = {
-            "Add Recipe to Mealplan",
-            "Remove Recipe from Mealplan",
-            "Set Mealplan Serving Size",
-            "Move this Mealplan's Ingredients to My Grocery List",
-            "Export this Mealplan",
-            "Delete this Mealplan",
+            "Add Recipe to Meal Plan",
+            "Remove Recipe from Meal Plan",
+            "Set Meal Plan Serving Size",
+            "Move this Meal Plan's Ingredients to My Grocery List",
+            "Export this Meal Plan",
+            "Delete this Meal Plan",
             "Go back"
         };
         InputAccess inputAccess = new InputAccess();
