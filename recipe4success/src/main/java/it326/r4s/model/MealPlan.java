@@ -178,9 +178,7 @@ public class MealPlan extends Entity implements Portable {
 
                 boolean alreadyAdded = false;
                 for (Ingredient existingIngredient : allIngredients) { // check if ingredient already exists
-                    if (ingredient.getFoodItem() == existingIngredient.getFoodItem()) { // TODO - wait for FoodItem pool
-                                                                                        // to more correctly handle this
-                                                                                        // comparison!
+                    if (ingredient.getFoodItem().equals(existingIngredient.getFoodItem())) {
                         allIngredients.remove(existingIngredient);
                         Ingredient copyIngredient = new Ingredient(existingIngredient.getFoodItem(),
                                 existingIngredient.getQuantity(), existingIngredient.getUnit());

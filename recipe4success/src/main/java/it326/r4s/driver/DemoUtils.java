@@ -44,8 +44,8 @@ public class DemoUtils {
         recipeBuilder.setInstructions(instructions);
 
         IngredientList ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Cheese", 2, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Macaroni", 4, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("cheese", 2, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("macaroni", 4, UnitConverter.Unit.CUP));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -67,8 +67,8 @@ public class DemoUtils {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Cupcake batter", 4, UnitConverter.Unit.CUP));
-        ingredientList.addIngredient(new Ingredient("Cupcake icing", 2, UnitConverter.Unit.TABLESPOON));
+        ingredientList.addIngredient(new Ingredient("cupcake batter", 4, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("cupcake icing", 2, UnitConverter.Unit.TABLESPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -90,8 +90,8 @@ public class DemoUtils {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Potatoes", 8, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Butter", 1, UnitConverter.Unit.TEASPOON));
+        ingredientList.addIngredient(new Ingredient("potatoes", 8, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("butter", 1, UnitConverter.Unit.TEASPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -118,9 +118,9 @@ public class DemoUtils {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Taco shell",20, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Taco meat filling", 2, UnitConverter.Unit.CUP));
-        ingredientList.addIngredient(new Ingredient("Shredded triple cheddar cheese", 2, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("taco shell",20, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("taco meat filling", 2, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("shredded triple cheddar cheese", 2, UnitConverter.Unit.CUP));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -147,8 +147,8 @@ public class DemoUtils {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Spaghetti", 5, UnitConverter.Unit.OUNCE));
-        ingredientList.addIngredient(new Ingredient("Spaghetti sauce", 3, UnitConverter.Unit.TABLESPOON));
+        ingredientList.addIngredient(new Ingredient("spaghetti", 5, UnitConverter.Unit.OUNCE));
+        ingredientList.addIngredient(new Ingredient("spaghetti sauce", 3, UnitConverter.Unit.TABLESPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -175,10 +175,10 @@ public class DemoUtils {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Bacon", 4, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Egg", 6, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Whole wheat bread", 2, UnitConverter.Unit.NONE));
-        ingredientList.addIngredient(new Ingredient("Grape Jelly", 2, UnitConverter.Unit.TEASPOON));
+        ingredientList.addIngredient(new Ingredient("bacon", 4, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("egg", 6, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("whole wheat bread", 2, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("grape jelly", 2, UnitConverter.Unit.TEASPOON));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -204,10 +204,10 @@ public class DemoUtils {
         recipeBuilder.setInstructions(instructions);
 
         ingredientList = new IngredientList();
-        ingredientList.addIngredient(new Ingredient("Pizza Dough", 200, UnitConverter.Unit.GRAM));
-        ingredientList.addIngredient(new Ingredient("Marinara Sauce", 3, UnitConverter.Unit.TABLESPOON));
-        ingredientList.addIngredient(new Ingredient("Shredded Mozzerella", 0.5, UnitConverter.Unit.CUP));
-        ingredientList.addIngredient(new Ingredient("Pepperonni", 12, UnitConverter.Unit.NONE));
+        ingredientList.addIngredient(new Ingredient("pizza dough", 200, UnitConverter.Unit.GRAM));
+        ingredientList.addIngredient(new Ingredient("marinara sauce", 3, UnitConverter.Unit.TABLESPOON));
+        ingredientList.addIngredient(new Ingredient("shredded mozzerella", 0.5, UnitConverter.Unit.CUP));
+        ingredientList.addIngredient(new Ingredient("pepperonni", 12, UnitConverter.Unit.NONE));
 
         recipeBuilder.setIngredientList(ingredientList);
 
@@ -249,10 +249,10 @@ public class DemoUtils {
         
         //IngredientList 1
         IngredientList iList = new IngredientList();
-        iList.addIngredient(new Ingredient("Cheese", 2, Unit.NONE));
-        iList.addIngredient(new Ingredient("Macaroni", 3, Unit.CUP));
-        iList.addIngredient(new Ingredient("Potatoes", 17, Unit.NONE));
-        iList.addIngredient(new Ingredient("Butter", 2, Unit.TEASPOON));
+        iList.addIngredient(new Ingredient("cheese", 2, Unit.NONE));
+        iList.addIngredient(new Ingredient("macaroni", 3, Unit.CUP));
+        iList.addIngredient(new Ingredient("potatoes", 17, Unit.NONE));
+        iList.addIngredient(new Ingredient("butter", 2, Unit.TEASPOON));
 
         GroceryList gList = new GroceryList();
         gList.setIngredientList(iList);

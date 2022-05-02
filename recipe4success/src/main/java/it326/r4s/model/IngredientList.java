@@ -53,15 +53,15 @@ public class IngredientList extends Entity {
         for (Ingredient ingredient : this.ingredients) {
             if (ingredient.getFoodItem().equals(toAdd.getFoodItem())) {
                 if (ingredient.getUnit().unitType == toAdd.getUnit().unitType) {
+                    double toAddQuantity = toAdd.getQuantity();
                     if (!ingredient.getUnit().equals(toAdd.getUnit())) {
                         try{
-                            toAdd.setQuantity(UnitConverter.convertUnit(toAdd.getUnit(), toAdd.getQuantity(), ingredient.getUnit()));
-                            toAdd.setUnit(ingredient.getUnit());
+                            toAddQuantity = UnitConverter.convertUnit(toAdd.getUnit(), toAddQuantity, ingredient.getUnit());
                         } catch (Exception e) {
                             //do nothing
                         }
                     }
-                    ingredient.setQuantity(ingredient.getQuantity() + toAdd.getQuantity());
+                    ingredient.setQuantity(ingredient.getQuantity() + toAddQuantity);
                     return true;
                 }
             }
@@ -79,7 +79,7 @@ public class IngredientList extends Entity {
      *         otherwise.
      */
     public boolean addIngredients(IngredientList listToAdd){
-        return addIngredients(getIngredients());
+        return addIngredients(listToAdd.getIngredients());
     }
 
     /**
