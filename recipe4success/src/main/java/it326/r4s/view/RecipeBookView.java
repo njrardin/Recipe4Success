@@ -110,12 +110,12 @@ public class RecipeBookView implements R4SMenu {
             try{
                 inputNum = Integer.parseInt(input);
             } catch (Exception e){
-                System.out.println("Invalid selection, selection must be a number.");
+                System.out.println("\nInvalid selection, selection must be a number.");
                 continue;
             }
             
             if (inputNum <= 0 || recipeControllers.size() < inputNum){
-                System.out.println("Invalid selection, selection out of range.");
+                System.out.println("\nInvalid selection, selection out of range.");
             }
 
         } while(inputNum <= 0 || recipeControllers.size() < inputNum);
