@@ -21,6 +21,7 @@ public class MealPlanController  {
     private MealPlanView mealPlanView;
 
     private UserController authorController; //controller for the author's user object
+    private PorterController<MealPlan> mealPlanPorter;
 
     //*Constructor*\\
     /**
@@ -31,6 +32,7 @@ public class MealPlanController  {
         this.mealPlan = mealPlan;
         this.mealPlanView = new MealPlanView(this);
         this.authorController = new UserController(author);
+        mealPlanPorter = PorterController.of(MealPlan.class);
     }
 
     //*Methods*\\
@@ -141,8 +143,7 @@ public class MealPlanController  {
     }
 
     public void exportMealPlan() {
-        //TODO - req 17 @Alex!
-        //  /\ "Lmao" - Nate
+        mealPlanPorter.export(mealPlan);
     }
 
     public void addToGroceryList() {

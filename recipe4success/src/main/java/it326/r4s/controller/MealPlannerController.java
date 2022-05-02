@@ -144,7 +144,7 @@ public class MealPlannerController {
      * exporting a MealPlan out of application
      */
     public void exportMealPlan() {
-        //TODO - req 17
+        selectMealPlanController().exportMealPlan();
     }
     
     /**
