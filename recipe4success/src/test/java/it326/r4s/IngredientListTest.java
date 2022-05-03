@@ -72,9 +72,10 @@ public class IngredientListTest {
         ingredientArray.add(ingredient1);
         ingredientArray.add(ingredient2);
         assertTrue(theIngredientList.removeIngredients(ingredientArray));
+        ingredientArray.clear();
         assertFalse(theIngredientList.removeIngredients(ingredientArray));
+        theIngredientList.clearIngredients();
         theIngredientList.addIngredient(ingredient1);
-        ingredientArray.remove(ingredient1);
         ingredientArray.add(ingredient2);
         ingredientArray.add(ingredient3);
         assertFalse(theIngredientList.removeIngredients(ingredientArray));
