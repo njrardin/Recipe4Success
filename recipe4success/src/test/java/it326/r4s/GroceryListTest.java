@@ -1,15 +1,16 @@
 package it326.r4s;
 
-import static org.junit.Assert.*;
-
-import it326.r4s.model.GroceryList;
-import it326.r4s.model.FoodItem;
-import it326.r4s.model.Ingredient;
-import it326.r4s.model.IngredientList;
-import it326.r4s.model.UnitConverter.Unit;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import it326.r4s.model.FoodItem;
+import it326.r4s.model.GroceryList;
+import it326.r4s.model.Ingredient;
+import it326.r4s.model.IngredientList;
+import it326.r4s.model.UnitConverter.Unit;
 
 public class GroceryListTest {
     private static FoodItem.Pool pool = null;

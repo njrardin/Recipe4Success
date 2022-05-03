@@ -1,17 +1,23 @@
 package it326.r4s;
 
-import org.junit.Assert.*;
-
-import it326.r4s.model.*;
-import it326.r4s.model.UnitConverter.Unit;
-
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
+
+import it326.r4s.model.Category;
+import it326.r4s.model.FoodItem;
+import it326.r4s.model.Ingredient;
+import it326.r4s.model.IngredientList;
+import it326.r4s.model.Meal;
+import it326.r4s.model.MealPlan;
+import it326.r4s.model.Recipe;
+import it326.r4s.model.Review;
+import it326.r4s.model.UnitConverter.Unit;
+import it326.r4s.model.User;
 
 public class UserTest {
     private static User user;

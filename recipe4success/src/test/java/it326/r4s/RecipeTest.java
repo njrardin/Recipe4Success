@@ -1,6 +1,12 @@
 package it326.r4s;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import it326.r4s.model.Category;
@@ -9,12 +15,9 @@ import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
-import it326.r4s.model.User;
 import it326.r4s.model.Review.Rating;
 import it326.r4s.model.UnitConverter.Unit;
-
-import org.junit.Before;
-import java.util.ArrayList;
+import it326.r4s.model.User;
 
 public class RecipeTest {
     

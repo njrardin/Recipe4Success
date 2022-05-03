@@ -1,15 +1,14 @@
 package it326.r4s;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import it326.r4s.model.FoodItem;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import it326.r4s.model.FoodItem;
 
 public class FoodItemTest {
     private static FoodItem.Pool pool1 = null;
