@@ -141,7 +141,36 @@ public class IngredientList extends Entity {
      * @return true if anything is removed, otherwise false.
      */
     public boolean removeIngredients(Collection<Ingredient> toRemove) {
-        return ingredients.removeAll(toRemove);
+        ingredients.removeAll(toRemove);
+        boolean changed = false;
+        for (Ingredient existingIngredient : ingredients) {
+            for (Ingredient ingredient : toRemove) {
+                if (ingredient.getFoodItem().equals(existingIngredient.getFoodItem())) {
+                    Ingredient copyIngredient = new Ingredient(existingIngredient);
+                    if (copyIngredient.getUnit() == ingredient.getUnit()) {
+                        double newQuantity = copyIngredient.getQuantity() - ingredient.getQuantity();
+                        if (newQuantity <= 0.02) {
+                            this.ingredients.remove(existingIngredient);
+                            changed = true;
+                            break;
+                        }
+                        existingIngredient.setQuantity(newQuantity);
+                        changed = true;
+                    }
+                    else if (copyIngredient.changeUnit(ingredient.getUnit())) {
+                        double newQuantity = copyIngredient.getQuantity() - ingredient.getQuantity();
+                        if (newQuantity <= 0.02) {
+                            this.ingredients.remove(existingIngredient);
+                            changed = true;
+                            break;
+                        }
+                        existingIngredient.setQuantity(newQuantity);
+                        changed = true;
+                    }
+                }
+            }
+        }
+        return changed;
     }
 
     /**
@@ -168,9 +197,10 @@ public class IngredientList extends Entity {
             boolean found = false;
             for (Ingredient thisIngredient : thisCollection) { // for each possible comparison
                 if (smallIngredient.getFoodItem().equals(thisIngredient.getFoodItem())) {
+                    Ingredient copyIngredient = new Ingredient(smallIngredient);
                     if (smallIngredient.getUnit() == thisIngredient.getUnit()
-                            || smallIngredient.changeUnit(thisIngredient.getUnit())) {
-                        if (smallIngredient.getQuantity() <= thisIngredient.getQuantity()) {
+                            || copyIngredient.changeUnit(thisIngredient.getUnit())) {
+                        if (copyIngredient.getQuantity() <= thisIngredient.getQuantity()) {
                             found = true;
                             break;
                         }
