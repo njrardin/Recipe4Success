@@ -99,7 +99,7 @@ public class MealPlan extends Entity implements Portable {
      */
     public boolean addMeal(Meal theMeal) {
         return meals.add(theMeal);
-        //TODO: logic to compare with the serving size and make internal adjustments
+        // TODO: logic to compare with the serving size and make internal adjustments
     }
 
     /**
@@ -121,8 +121,8 @@ public class MealPlan extends Entity implements Portable {
      *         otherwise.
      */
     public boolean removeMeal(Recipe theRecipe) {
-        for(Meal meal : meals){
-            if (meal.getRecipe().equals(theRecipe)){
+        for (Meal meal : meals) {
+            if (meal.getRecipe().equals(theRecipe)) {
                 return removeMeal(meal);
             }
         }
@@ -144,18 +144,14 @@ public class MealPlan extends Entity implements Portable {
     }
 
     /**
-     * Gets the ingredients of the MealPlan.
+     * Gets the ingredients of the the Meal.
      * 
      * @return a collection of ingredients.
      */
-    public Collection<Ingredient> getIngredients() {
-
-        Collection<Ingredient> allIngredient = new ArrayList<>();
-
-        for (Meal theMeal : meals) {
-            allIngredient.addAll(theMeal.getRecipe().getIngredientList().getIngredients());
-        }
-        return allIngredient;
+    public IngredientList getIngredients(Meal theMeal) {
+        IngredientList mealIngredient;
+        mealIngredient = theMeal.getRecipe().getIngredientList();
+        return mealIngredient;
     }
 
     /**
