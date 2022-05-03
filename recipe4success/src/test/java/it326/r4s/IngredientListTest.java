@@ -113,7 +113,7 @@ public class IngredientListTest {
         theIngredientList.addIngredient(ingredient2);
         theIngredientList.addIngredient(ingredient3);
         // move 1 after 2
-        theIngredientList.reoganizeIngredients(ingredient1, ingredient3);
+        theIngredientList.reorganizeIngredients(ingredient1, ingredient3);
         expectedList.add(ingredient2);
         expectedList.add(ingredient3);
         expectedList.add(ingredient1);
