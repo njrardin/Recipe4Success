@@ -1,6 +1,7 @@
 package it326.r4s.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import it326.r4s.model.Pantry;
 import it326.r4s.model.Recipe;
@@ -94,8 +95,6 @@ public class PantryController {
         }    
     }
         
-
-
     /**
      * Facilitates the process of the user
      * adding an ingredient to the pantry
@@ -121,11 +120,10 @@ public class PantryController {
     }
 
     private void listMakableRecipes() {        
-        ArrayList<RecipeController> recipeControllers = new ArrayList<RecipeController>();
+        Collection<RecipeController> recipeControllers = new ArrayList<RecipeController>();
         for(Recipe recipe: userController.getUser().getMakeableRecipes()){
             recipeControllers.add(new RecipeController(recipe, userController.getUser()));
         }
-        //TODO: implement
+        userController.getRecipeBookController().getRecipeBookView().displayRecipes(recipeControllers);
     }
-    
 }
