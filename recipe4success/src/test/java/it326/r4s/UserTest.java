@@ -17,6 +17,7 @@ import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.Meal;
 import it326.r4s.model.MealPlan;
+import it326.r4s.model.Pantry;
 import it326.r4s.model.Recipe;
 import it326.r4s.model.Review;
 import it326.r4s.model.UnitConverter.Unit;
@@ -110,18 +111,18 @@ public class UserTest {
 
     @Test
     public void testGetMakeableRecipes() {
-        Collection<Recipe> expectedRecipe = new ArrayList<Recipe>();
-        expectedRecipe.add(recipe1);
-        expectedRecipe.add(recipe2);
-        
-        assertEquals(expectedRecipe, user.getMakeableRecipes());
-        assertEquals(expectedRecipe.size(), user.getMakeableRecipes().size());
+        Collection<Recipe> expectedRecipes = new ArrayList<Recipe>();
+        expectedRecipes.add(recipe1);
+        expectedRecipes.add(recipe2);
 
-        ingredients.removeIngredient(ingredient3);
-        user.getPantry().getIngredientList().addIngredients(ingredients);
-        expectedRecipe.remove(recipe2);
-        assertEquals(1, user.getMakeableRecipes().size());
-        assertEquals(expectedRecipe, user.getMakeableRecipes());
+        Pantry pantry = new Pantry();
+        pantry.addIngredient(ingredient1);
+        pantry.addIngredient(ingredient2);
+        pantry.addIngredient(ingredient3);
+
+        user.setPantry(pantry);
+
+        assertEquals(expectedRecipes, user.getMakeableRecipes());
     }
 
     @Test
