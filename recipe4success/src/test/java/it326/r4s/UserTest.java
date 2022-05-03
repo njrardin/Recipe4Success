@@ -1,6 +1,7 @@
 package it326.r4s;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,6 +11,7 @@ import org.junit.Test;
 
 import it326.r4s.model.Category;
 import it326.r4s.model.FoodItem;
+import it326.r4s.model.GroceryList;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
 import it326.r4s.model.Meal;
@@ -80,28 +82,21 @@ public class UserTest {
 
     @Test
     public void testMoveGroceryListToPantry() {
-        user.getGroceryList().addIngredients(ingredients);
-        // Collection<Ingredient> ingredients = new ArrayList<Ingredient>();
-        // ingredients.add(ingredient1);
-        // ingredients.add(ingredient2);
-        // ingredients.add(ingredient3);
-        user.getGroceryList().addIngredients(ingredients);
-        int count = user.getGroceryList().getIngredientList().getIngredients().size();
-        user.moveGroceryListToPantry();
-        assertEquals(0, user.getGroceryList().getIngredientList().getIngredients().size());
-        assertEquals(count, user.getPantry().getIngredientList().getIngredients().size());
-        assertEquals(ingredients, user.getPantry().getIngredientList().getIngredients());
+        GroceryList gl = user.getGroceryList();
 
-        fItem = fiPool.getFoodItem("Peach");
-        // ingredient1 = ;
-        ingredients.addIngredient(new Ingredient(fItem, 1, Unit.POUND));
-        user.getGroceryList().addIngredients(ingredients);
-        count = user.getGroceryList().getIngredientList().getIngredients().size();
-        user.moveGroceryListToPantry();
-        assertEquals(0, user.getGroceryList().getIngredientList().getIngredients().size());
-        assertEquals(count, user.getPantry().getIngredientList().getIngredients().size());
-        assertEquals(ingredients, user.getPantry().getIngredientList());
+        gl.addIngredient(new Ingredient("Ingredient one", 1, Unit.TEASPOON));
+        gl.addIngredient(new Ingredient("Ingredient TWO", 2, Unit.TABLESPOON));
 
+        user.setGroceryList(gl);
+
+        //ensures the pantry is empty to start
+        assertTrue(user.getPantry().getIngredientList().getIngredients().isEmpty());
+
+        //moves items
+        user.moveGroceryListToPantry();
+
+        //tests to ensure items in pantry
+        assertTrue(user.getPantry().getIngredientList().getIngredients().containsAll(gl.getIngredientList().getIngredients()));
     }
 
     /**
