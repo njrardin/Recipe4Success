@@ -239,11 +239,14 @@ public class MealPlan extends Entity implements Portable {
 
     /**
      * An override for the .toString method of java.obj.
-     * 
      * @return a string representation of the MealPlan object.
      */
     @Override
     public String toString() {
-        return this.name + ": " + this.description;
+        return "Name: " + getMealPlanName() + "\n" +
+            "Description: " + getMealPlanDescription() + "\n" +
+            "Created on: " + getMealPlanDate() + "\n" +
+            "Serving size: " + getMPServingSize() + "\n" +
+            "Meals: \n" + getMeals() + "\n";
     }
 }

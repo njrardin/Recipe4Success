@@ -152,6 +152,6 @@ public class Ingredient {
      */
     @Override
     public String toString() {
-        return this.foodItem.getName() + ": " + String.format("%.2f", this.quantity) + " " + this.unit;
+        return this.foodItem + ": " + String.format("%.2f", this.quantity) + " " + this.unit;
     }
 }

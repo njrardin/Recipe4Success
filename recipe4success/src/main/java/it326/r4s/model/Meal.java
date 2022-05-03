@@ -109,11 +109,13 @@ public class Meal {
 
     /**
      * An override for the .toString method of java.obj.
-     * 
      * @return a string representation of the Meal object.
      */
     @Override
     public String toString() {
-        return "Recipe: " + this.recipe.getName();
+        return "Recipe name: " + getRecipe().getName() + "\n" +
+            "Recipe description: " + getRecipe().getDescription() + "\n" +
+            "Ingredients: \n" + getIngredientList() + "\n" +
+            "Instructions: \n" + getRecipe().getInstructions() + "\n";
     }
 }
