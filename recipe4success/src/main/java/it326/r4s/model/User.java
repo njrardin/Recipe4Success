@@ -66,7 +66,6 @@ public class User implements Portable {
                 makeable.add(recipe);
             }
         }
-
         return makeable;
     }
 
