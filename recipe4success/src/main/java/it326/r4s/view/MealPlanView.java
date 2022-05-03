@@ -26,7 +26,7 @@ public class MealPlanView implements R4SMenu {
      * Displays the meal plan to the screen
      */
     public void displayMealPlan() {
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("\n\n-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("Name: " + mealPlanController.getMealPlan().getMealPlanName());
         System.out.println("Description: " + mealPlanController.getMealPlan().getMealPlanDescription());
@@ -50,12 +50,13 @@ public class MealPlanView implements R4SMenu {
         String title = "Meal Plan: " + mealPlanController.getMealPlan().getMealPlanName();
         String prompt = "What would you like to do?";
         String[] options = {
-            "Add Recipe to Meal Plan",
-            "Remove Recipe from Meal Plan",
-            "Set Meal Plan Serving Size",
-            "Move this Meal Plan's Ingredients to My Grocery List",
-            "Export this Meal Plan",
-            "Delete this Meal Plan",
+            "Add Recipe to this Mealplan",
+            "Remove Recipe from this Mealplan",
+            "Open a Recipe in this Mealplan",
+            "Set Mealplan Serving Size",
+            "Move this Mealplan's Ingredients to My Grocery List",
+            "Export this Mealplan",
+            "Delete this Mealplan",
             "Go back"
         };
         InputAccess inputAccess = new InputAccess();

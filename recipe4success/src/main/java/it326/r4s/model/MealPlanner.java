@@ -74,8 +74,8 @@ public class MealPlanner extends Entity {
      *         otherwise.
      */
     public boolean addMealPlan(MealPlan toAdd) {
-        for (MealPlan meal : mealPlans) {
-            if (meal.equals(toAdd)) {
+        for (MealPlan mealPlan : mealPlans) {
+            if (mealPlan.equals(toAdd)) {
                 return false;
             }
         }
@@ -118,5 +118,19 @@ public class MealPlanner extends Entity {
             i++;
         }
         return string;
+    }
+
+    /**
+     * Removes all instances of the recipe from meals in the mealplanners mealplans
+     * @param recipe the recipe to remove
+     */
+    public void removeRecipeFromMealPlans(Recipe recipe) {
+        for(MealPlan mealPlan : mealPlans){
+            for(Meal meal : mealPlan.getMeals()){
+                if(meal.getRecipe().equals(recipe)){
+                    mealPlan.removeMeal(meal);
+                }
+            }
+        }
     }
 }

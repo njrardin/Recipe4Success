@@ -223,17 +223,15 @@ public class MealPlan extends Entity implements Portable {
         if (!(obj instanceof MealPlan)) {
             return false;
         }
-        MealPlan other = (MealPlan) obj;
-        if (!this.getMealPlanName().equals(other.getMealPlanName())) {
+
+        MealPlan otherMealPlan = (MealPlan) obj;
+        if (!this.getMealPlanName().equals(otherMealPlan.getMealPlanName())) {
             return false;
         }
-        if (!this.getMealPlanDescription().equals(other.getMealPlanDescription())) {
+        if (!this.getMealPlanDescription().equals(otherMealPlan.getMealPlanDescription())) {
             return false;
         }
-        if (!this.getMealPlanDate().equals(other.getMealPlanDate())) {
-            return false;
-        }
-        if (!this.getRecipes().equals(other.getRecipes())) {
+        if (!this.getRecipes().equals(otherMealPlan.getRecipes())) {
             return false;
         }
         return true;

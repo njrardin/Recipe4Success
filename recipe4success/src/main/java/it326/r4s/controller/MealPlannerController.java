@@ -167,6 +167,11 @@ public class MealPlannerController {
 
         MealPlanController mpc = new MealPlanController(newMealPlan, userController.getUser());
 
+        if(userController.getRecipeBookController().getRecipeBook().getRecipes().isEmpty()){
+            System.out.println("\nLooks like there's no recipes in the recipe book, try adding some in the recipebook menu!\n");
+            return;
+        }
+
         do{
             mpc.addRecipeToMealPlan();
         } while (mealPlannerView.wantToAddAnotherRecipe());

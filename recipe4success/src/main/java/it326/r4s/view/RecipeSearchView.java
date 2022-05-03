@@ -25,7 +25,7 @@ public class RecipeSearchView {
         InputAccess inputAccess = new InputAccess();
         String response = "";
         do{
-            System.out.print("Please enter the term to search the recipes for: ");
+            System.out.print("Please enter the term or category name for which to search the recipes: ");
             response = inputAccess.getInputLine().toLowerCase();
         } while (response.equals(""));
 
