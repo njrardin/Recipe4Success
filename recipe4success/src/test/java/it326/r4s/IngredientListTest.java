@@ -1,19 +1,18 @@
 package it326.r4s;
 
-import org.junit.Assert.*;
-
-import it326.r4s.model.*;
-import it326.r4s.model.UnitConverter.Unit;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import it326.r4s.model.FoodItem;
+import it326.r4s.model.Ingredient;
+import it326.r4s.model.IngredientList;
+import it326.r4s.model.UnitConverter.Unit;
 
 public class IngredientListTest {
     private static IngredientList theIngredientList;

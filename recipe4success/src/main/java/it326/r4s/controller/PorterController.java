@@ -126,6 +126,7 @@ public class PorterController<T extends Portable> {
 
     private void rebuildMeals(MealPlan mealPlan) {
         User user = userController.getUser();
+        FoodItem.Pool foodItemPool = FoodItem.Pool.getInstance();
 
         for (Meal meal : mealPlan.getMeals()) {
             for (Recipe recipe : user.getRecipeBook().getRecipes()) {
@@ -133,6 +134,9 @@ public class PorterController<T extends Portable> {
                     meal.setRecipe(recipe);
                 }
             }
+            for (Ingredient ingredient : meal.getIngredientList().getIngredients()) {
+                ingredient.setFoodItem(foodItemPool.getFoodItem(ingredient.getFoodItem().getName()));
+            }            
         }
     }
 

@@ -1,6 +1,9 @@
 package it326.r4s;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import it326.r4s.model.FoodItem;
@@ -9,8 +12,6 @@ import it326.r4s.model.IngredientList;
 import it326.r4s.model.Meal;
 import it326.r4s.model.Recipe;
 import it326.r4s.model.UnitConverter.Unit;
-
-import org.junit.Before;
 
 public class MealTest {
     

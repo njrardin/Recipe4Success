@@ -1,20 +1,19 @@
 package it326.r4s;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
-import org.junit.runners.Parameterized;
 import org.junit.experimental.runners.Enclosed;
-import org.junit.runners.Parameterized.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import it326.r4s.model.FoodItem;
 import it326.r4s.model.Ingredient;
-import it326.r4s.model.UnitConverter.*;
-
-import org.junit.runner.RunWith;
+import it326.r4s.model.UnitConverter.Unit;
 
 @RunWith(Enclosed.class)
 public class IngredientTest {

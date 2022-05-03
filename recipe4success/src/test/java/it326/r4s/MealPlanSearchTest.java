@@ -1,14 +1,16 @@
 package it326.r4s;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import it326.r4s.model.Meal;
 import it326.r4s.model.MealPlan;
 import it326.r4s.model.MealPlanSearch;
 import it326.r4s.model.Recipe;
-
-import java.util.ArrayList;
 
 public class MealPlanSearchTest {
     

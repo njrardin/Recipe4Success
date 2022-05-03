@@ -1,19 +1,18 @@
 package it326.r4s;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.Test;
-import org.junit.runners.Parameterized;
 import org.junit.experimental.runners.Enclosed;
-import org.junit.runners.Parameterized.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import it326.r4s.model.UnitConverter;
 import it326.r4s.model.UnitConverter.Unit;
-
-import org.junit.runner.RunWith;
 
 @RunWith(Enclosed.class)
 public class UnitConverterTest {
