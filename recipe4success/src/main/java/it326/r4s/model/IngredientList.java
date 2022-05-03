@@ -134,9 +134,8 @@ public class IngredientList extends Entity {
     /**
      * Attempts to remove a collection of Ingredients from the IngredientList.
      * 
-     * @param toRemove a collection of Ingredients to be removed from the
-     *                 IngredientList.
-     * @return false if toRemove is not in the IngredientList, true otherwise.
+     * @param toRemove a collection of Ingredients to be removed from the IngredientList.
+     * @return true if anything is removed, otherwise false.
      */
     public boolean removeIngredients(Collection<Ingredient> toRemove) {
         return ingredients.removeAll(toRemove);
