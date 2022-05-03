@@ -66,9 +66,9 @@ public class UserTest {
         user.getRecipeBook().addRecipe(recipe2);
 
         mealPlan = new MealPlan("Meal Plan one");
-        meal = new Meal(recipe1, 2);
+        meal = new Meal(recipe1);
         mealPlan.addMeal(meal);
-        meal = new Meal(recipe2, 3);
+        meal = new Meal(recipe2);
         mealPlan.addMeal(meal);
     }
 
