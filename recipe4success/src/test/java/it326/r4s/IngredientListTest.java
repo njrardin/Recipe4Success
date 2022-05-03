@@ -2,9 +2,11 @@ package it326.r4s;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,11 +32,11 @@ public class IngredientListTest {
         fItem = pool.getFoodItem("Cherry");
         ingredient3 = new Ingredient(fItem, 4, Unit.OUNCE);
         ingredient4 = new Ingredient(ingredient1);
-        ingredient4.setQuantity(ingredient4.getQuantity()*2);
+        ingredient4.setQuantity(ingredient4.getQuantity() * 2);
         ingredient5 = new Ingredient(ingredient2);
-        ingredient5.setQuantity(ingredient5.getQuantity()*2);
+        ingredient5.setQuantity(ingredient5.getQuantity() * 2);
         ingredient6 = new Ingredient(ingredient3);
-        ingredient6.setQuantity(ingredient6.getQuantity()*2);
+        ingredient6.setQuantity(ingredient6.getQuantity() * 2);
 
         theIngredientList = new IngredientList();
         theIngredientList.addIngredient(ingredient1);
@@ -45,7 +47,23 @@ public class IngredientListTest {
         ingredientArray = new ArrayList<Ingredient>();
     }
 
-    //ADD test copy constructor
+    @Test
+    public void testConstructor() {
+        Collection<Ingredient> theIngredients = new ArrayList<Ingredient>();
+        theIngredients.add(ingredient1);
+        theIngredients.add(ingredient2);
+        theIngredients.add(ingredient3);
+        theIngredientList = new IngredientList(theIngredients);
+        assertNotNull(theIngredientList);
+        assertEquals(theIngredients.size(), theIngredientList.getIngredients().size());
+
+        IngredientList otherIngredientList = new IngredientList();
+        otherIngredientList.addIngredient(ingredient2);
+        otherIngredientList.addIngredient(ingredient3);
+        theIngredientList = new IngredientList(otherIngredientList);
+        assertNotNull(theIngredientList);
+        assertEquals(2, theIngredientList.getIngredients().size());
+    }
     
     @Test
     public void testAddIngredient() {
@@ -94,9 +112,10 @@ public class IngredientListTest {
         theIngredientList.addIngredient(ingredient4);
         theIngredientList.addIngredient(ingredient5);
         theIngredientList.addIngredient(ingredient6);
-        
+
         theIngredientList.clearIngredients();
-        assertEquals(expectedList, theIngredientList.getIngredients());
+        Collection<Ingredient> emptyList = new ArrayList<>();
+        assertEquals(emptyList, theIngredientList.getIngredients());
     }
 
     @Test
@@ -108,14 +127,12 @@ public class IngredientListTest {
         assertTrue(theIngredientList.containsIngredients(ingredientArray));
     }
 
-    /**
-     * Fix reorganize the tests
-     */
     @Test
     public void testReorganizeIngredients() {
         theIngredientList.addIngredient(ingredient3);
         // move 1 after 3
         theIngredientList.reorganizeIngredients(ingredient1, ingredient3);
+        Collection<Ingredient> expectedList = new ArrayList<>();
         expectedList.add(ingredient2);
         expectedList.add(ingredient3);
         expectedList.add(ingredient1);
@@ -123,8 +140,7 @@ public class IngredientListTest {
         assertEquals(expectedList, actualList);
     }
 
-
-    //* White Box Tests for addIngredients - Zach Plattner *//
+    // * White Box Tests for addIngredients - Zach Plattner *//
     /**
      * test basis path 1 (43 --> 44 --> 48)
      */

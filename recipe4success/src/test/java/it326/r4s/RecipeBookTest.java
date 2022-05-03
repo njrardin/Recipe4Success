@@ -44,14 +44,12 @@ public class RecipeBookTest {
         theRecipeBook.addRecipe(recipe1);
     }
 
-    //ADD test contains
     @Test
     public void testAddRecipe() {
         assertEquals(true, theRecipeBook.addRecipe(recipe2));
         assertEquals(false, theRecipeBook.addRecipe(recipe1));
     }
 
-    //ADD test contains
     @Test
     public void testRemoveRecipe() {
         assertEquals(true, theRecipeBook.removeRecipe(recipe1));
