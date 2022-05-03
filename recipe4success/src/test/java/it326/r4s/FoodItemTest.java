@@ -1,6 +1,7 @@
 package it326.r4s;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,7 +29,14 @@ public class FoodItemTest {
         pool2.getFoodItem("Cherry");
     }
 
-    //TO DO: Add TestGetFoodItem()
+    @Test
+    public void TestGetFoodItem() {
+        FoodItem fi = pool1.getFoodItem("Apple");
+        assertEquals("Apple", fi.getName());
+        fi = pool1.getFoodItem("Will be Add to the Pool");
+        assertEquals("Will be Add to the Pool", fi.getName());
+    }
+
     @Test
     public void testGetFoodItems() {
         foodItems = pool1.getFoodItems();
@@ -47,7 +55,7 @@ public class FoodItemTest {
     public void testRemoveFoodItem() {
         assertEquals(true, pool1.removeFoodItem("Banana"));
         assertEquals(false, pool1.removeFoodItem("Banana"));
-        assertEquals(false, pool1.getFoodItems() == pool2.getFoodItems());
+        assertFalse(pool1.getFoodItems().equals(pool2.getFoodItems()));
     }
 
     @Test

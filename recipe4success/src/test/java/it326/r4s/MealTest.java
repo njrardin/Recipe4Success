@@ -42,13 +42,10 @@ public class MealTest {
         assertNotNull(theMeal);
     }
 
-    //ADD test cases for servingSize = 0 and <0
     @Test
     public void testAdjustServingSize(){
-
         int newServingSize = 4;
         theMeal.adjustServingSize(newServingSize);
-
         assertEquals(newServingSize, theMeal.getServingSize());
     }
 }

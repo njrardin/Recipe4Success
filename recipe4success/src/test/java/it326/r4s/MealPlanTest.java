@@ -1,5 +1,10 @@
 package it326.r4s;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -47,9 +52,33 @@ public class MealPlanTest {
         mainMealPlan.addMeal(meal2);
     }
 
-    //ADD TestSetMealServingSize()
+    @Test
+    public void TestSetMealServingSize(){
+        int newServingSize = 3;
+        assertTrue(mainMealPlan.setMealServingSize(newServingSize));
+        assertEquals(newServingSize, mainMealPlan.getMPServingSize());
+        for(Meal theMeal:mainMealPlan.getMeals()){
+            assertEquals(newServingSize, theMeal.getServingSize());
+        }
+        
+        //zero and negative number test case
+        // newServingSize = 0;
+        // assertFalse(mainMealPlan.setMealServingSize(newServingSize));
 
-    //ADD TestGetRecipes()
+        // newServingSize = -2;
+        // assertFalse(mainMealPlan.setMealServingSize(newServingSize));
+        
+    }
+
+    @Test
+    public void TestGetRecipes(){
+        Collection<Recipe> expectedRecipes = new ArrayList<>();
+        expectedRecipes.add(recipe1);
+        expectedRecipes.add(recipe2);
+        assertEquals(expectedRecipes, mainMealPlan.getRecipes());
+        assertEquals(2, mainMealPlan.getRecipes().size());
+    }
+
     @Test
     public void testGetAllIngredients() {
         Collection<Ingredient> mealPlanIngredients = mainMealPlan.getAllIngredients();

@@ -2,9 +2,11 @@ package it326.r4s;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,8 +21,6 @@ public class IngredientListTest {
     private static Ingredient ingredient1, ingredient2, ingredient3;
     private static FoodItem fItem;
     private static FoodItem.Pool pool = FoodItem.Pool.getInstance();
-    private static ArrayList<Ingredient> theIngredients = new ArrayList<Ingredient>();
-    private static ArrayList<Ingredient> expectedList = new ArrayList<Ingredient>();
 
     @Before
     public void setUp() {
@@ -34,16 +34,32 @@ public class IngredientListTest {
         theIngredientList = new IngredientList();
         theIngredientList.addIngredient(ingredient1);
 
+    }
+
+    @Test
+    public void testConstructor() {
+        Collection<Ingredient> theIngredients = new ArrayList<Ingredient>();
         theIngredients.add(ingredient1);
         theIngredients.add(ingredient2);
         theIngredients.add(ingredient3);
+        theIngredientList = new IngredientList(theIngredients);
+        assertNotNull(theIngredientList);
+        assertEquals(theIngredients.size(), theIngredientList.getIngredients().size());
 
+        IngredientList otherIngredientList = new IngredientList();
+        otherIngredientList.addIngredient(ingredient2);
+        otherIngredientList.addIngredient(ingredient3);
+        theIngredientList = new IngredientList(otherIngredientList);
+        assertNotNull(theIngredientList);
+        assertEquals(2, theIngredientList.getIngredients().size());
     }
 
-    //ADD test copy constructor
-    
     @Test
     public void testAddIngredient() {
+        Collection<Ingredient> theIngredients = new ArrayList<Ingredient>();
+        theIngredients.add(ingredient1);
+        theIngredients.add(ingredient2);
+        theIngredients.add(ingredient3);
         assertEquals(true, theIngredientList.addIngredient(ingredient1));
         assertEquals(false, theIngredientList.addIngredient(ingredient3));
         fItem = pool.getFoodItem("Banana");
@@ -53,80 +69,103 @@ public class IngredientListTest {
 
     @Test
     public void testAddIngredients() {
+        Collection<Ingredient> theIngredients = new ArrayList<Ingredient>();
+        theIngredients.add(ingredient1);
+        theIngredients.add(ingredient2);
+        theIngredients.add(ingredient3);
+        theIngredientList = new IngredientList();
+        theIngredientList.addIngredient(ingredient1);
         assertEquals(false, theIngredientList.addIngredients(theIngredients));
-        ArrayList<Ingredient> actualList = theIngredientList.getIngredients();
+
+        fItem = pool.getFoodItem("Apple");
+        ingredient1 = new Ingredient(fItem, 4, Unit.NONE);
+        Collection<Ingredient> expectedList = new ArrayList<>();
         expectedList.add(ingredient1);
         expectedList.add(ingredient2);
         expectedList.add(ingredient3);
-        assertEquals(expectedList, actualList);
+        assertEquals(expectedList, theIngredientList.getIngredients());
+
+        IngredientList otherIngredientList = new IngredientList();
+        fItem = pool.getFoodItem("Peach");
+        ingredient1 = new Ingredient(fItem, 1, Unit.NONE);
+        otherIngredientList.addIngredient(ingredient1);
+        otherIngredientList.addIngredient(ingredient3);
+        assertFalse(theIngredientList.addIngredients(otherIngredientList));
+        assertEquals(4, theIngredientList.getIngredients().size());
     }
 
     @Test
     public void testRemoveIngredient() {
-        theIngredientList.addIngredient(ingredient1);
         assertEquals(true, theIngredientList.removeIngredient(ingredient1));
         assertEquals(false, theIngredientList.removeIngredient(ingredient1));
     }
 
     @Test
     public void testRemoveIngredients() {
-        assertTrue(theIngredientList.removeIngredients(theIngredients));
-        theIngredients.remove(ingredient2);
-        theIngredients.remove(ingredient3);
-        theIngredientList.addIngredient(ingredient1);
-        assertTrue(theIngredientList.removeIngredients(theIngredients));
-        assertFalse(theIngredientList.removeIngredients(theIngredients));
-        theIngredientList.addIngredient(ingredient1);
-        theIngredients.remove(ingredient1);
+        Collection<Ingredient> theIngredients = new ArrayList<Ingredient>();
+        theIngredients.add(ingredient1);
         theIngredients.add(ingredient2);
         theIngredients.add(ingredient3);
+        assertTrue(theIngredientList.removeIngredients(theIngredients));
         assertFalse(theIngredientList.removeIngredients(theIngredients));
-        expectedList.add(ingredient1);
-        ArrayList<Ingredient> actualList = theIngredientList.getIngredients();
-        assertEquals(expectedList, actualList);
+
+        theIngredientList.addIngredient(ingredient1);
+        IngredientList otherIngredientList = new IngredientList();
+        otherIngredientList.addIngredient(ingredient2);
+        otherIngredientList.addIngredient(ingredient3);
+        assertFalse(theIngredientList.removeIngredients(otherIngredientList));
     }
 
     @Test
     public void testClearIngredients() {
         theIngredientList.clearIngredients();
-        assertEquals(expectedList, theIngredientList.getIngredients());
+        Collection<Ingredient> emptyList = new ArrayList<>();
+        assertEquals(emptyList, theIngredientList.getIngredients());
     }
 
     @Test
     public void testContainsIngredients() {
-        //Add Test case when theIngredients is null == true
-        assertEquals(false, theIngredientList.containsIngredients(theIngredients));
-        theIngredientList.removeIngredient(ingredient1);
-        theIngredientList.addIngredient(ingredient1);
+        Collection<Ingredient> theIngredients = new ArrayList<Ingredient>();
+        theIngredients.add(ingredient1);
+        theIngredients.add(ingredient2);
+        theIngredients.add(ingredient3);
+        IngredientList otherIngredientList = new IngredientList();
+        otherIngredientList.addIngredient(ingredient1);
+        otherIngredientList.addIngredient(ingredient3);
+        assertFalse(theIngredientList.containsIngredients(otherIngredientList));
+        assertTrue(theIngredientList.getIngredients().contains(ingredient1));
+        assertFalse(theIngredientList.getIngredients().containsAll(otherIngredientList.getIngredients()));
+
         theIngredientList.addIngredient(ingredient2);
         theIngredientList.addIngredient(ingredient3);
         assertEquals(true, theIngredientList.containsIngredients(theIngredients));
+        assertTrue(theIngredientList.getIngredients().containsAll(theIngredients));
+
+        theIngredients.clear();
+        assertTrue(theIngredientList.containsIngredients(theIngredients));
     }
 
-    /**
-     * Fix reorganize the tests
-     */
     @Test
     public void testReorganizeIngredients() {
         theIngredientList.addIngredient(ingredient2);
         theIngredientList.addIngredient(ingredient3);
-        // move 1 after 2
         theIngredientList.reorganizeIngredients(ingredient1, ingredient3);
+        Collection<Ingredient> expectedList = new ArrayList<>();
         expectedList.add(ingredient2);
         expectedList.add(ingredient3);
         expectedList.add(ingredient1);
+        assertEquals(expectedList, theIngredientList.getIngredients());
 
-        ArrayList<Ingredient> actualList = theIngredientList.getIngredients();
-        assertEquals(expectedList, actualList);
-        for(Ingredient ig:actualList){
-            System.out.println(ig.toString());
-        }
-        theIngredientList.reorganizeIngredients(ingredient2, ingredient3);
-        actualList = theIngredientList.getIngredients();
-        for(Ingredient ig:actualList){
-            System.out.println(ig.toString());
-        }
-        // System.out.println(actualList.toString());
+        theIngredientList.reorganizeIngredients(ingredient1, ingredient2);
+        expectedList.clear();
+        expectedList.add(ingredient2);
+        expectedList.add(ingredient1);
+        expectedList.add(ingredient3);
+        assertEquals(expectedList, theIngredientList.getIngredients());
+
+        fItem = pool.getFoodItem("Does not exitst");
+        ingredient1 = new Ingredient(fItem, 2, Unit.NONE);
+        assertFalse(theIngredientList.reorganizeIngredients(ingredient2, ingredient1));
     }
 
 }

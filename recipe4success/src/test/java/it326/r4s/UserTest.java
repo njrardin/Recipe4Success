@@ -1,6 +1,7 @@
 package it326.r4s;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -72,60 +73,53 @@ public class UserTest {
     }
 
     //ADD test for copy constructor
+    @Test
+    public void testConstructor(){
+        user = new User("Test User 2");
+        assertNotNull(user);
+        assertEquals("Test User 2", user.getName());
+    }
     
     @Test
     public void testMoveGroceryListToPantry() {
-        user.getGroceryList().addIngredients(ingredients);
-        // Collection<Ingredient> ingredients = new ArrayList<Ingredient>();
-        // ingredients.add(ingredient1);
-        // ingredients.add(ingredient2);
-        // ingredients.add(ingredient3);
         user.getGroceryList().addIngredients(ingredients);
         int count = user.getGroceryList().getIngredientList().getIngredients().size();
         user.moveGroceryListToPantry();
         assertEquals(0, user.getGroceryList().getIngredientList().getIngredients().size());
         assertEquals(count, user.getPantry().getIngredientList().getIngredients().size());
-        //Change Compare Object
-        assertEquals(ingredients, user.getPantry().getIngredientList().getIngredients());
+        Collection<Ingredient> expectedIngredients = new ArrayList<>();
+        for(Ingredient ig: ingredients.getIngredients()){
+            expectedIngredients.add(ig);
+        }
+        assertEquals(expectedIngredients, user.getPantry().getIngredientList().getIngredients());
 
-        fItem = fiPool.getFoodItem("Peach");
-        // ingredient1 = ;
-        ingredients.addIngredient(new Ingredient(fItem, 1, Unit.POUND));
-        user.getGroceryList().addIngredients(ingredients);
-        count = user.getGroceryList().getIngredientList().getIngredients().size();
+        user.getGroceryList().addIngredient(new Ingredient("Peach", 1, Unit.POUND));
+        expectedIngredients.add(new Ingredient("Peach", 1, Unit.POUND));
+        count = expectedIngredients.size();
         user.moveGroceryListToPantry();
         assertEquals(0, user.getGroceryList().getIngredientList().getIngredients().size());
         assertEquals(count, user.getPantry().getIngredientList().getIngredients().size());
-        assertEquals(ingredients, user.getPantry().getIngredientList());
+        assertEquals(expectedIngredients, user.getPantry().getIngredientList().getIngredients());
 
     }
 
-    /**
-     * Fail
-     * because the method should not return any recipe when the pantry is empty
-     */
     @Test
     public void testGetMakeableRecipes() {
-        Collection<Recipe> outputRecipe = new ArrayList<Recipe>();
-        outputRecipe = user.getMakeableRecipes();
-        // assertEquals(0,outputRecipe.size());
-        System.out.println("Pantry" + user.getPantry().getIngredientList().toString());
-        System.out.println(outputRecipe.toString());
+        Collection<Recipe> expectedRecipe = new ArrayList<Recipe>();
+        expectedRecipe.add(recipe1);
+        expectedRecipe.add(recipe2);
+        assertEquals(expectedRecipe,user.getMakeableRecipes());
+        assertEquals(expectedRecipe.size(), user.getMakeableRecipes().size());
 
         ingredients.removeIngredient(ingredient3);
         user.getPantry().getIngredientList().addIngredients(ingredients);
-        outputRecipe = user.getMakeableRecipes();
-        Collection<Recipe> expectedRecipe = new ArrayList<Recipe>();
-        expectedRecipe.add(recipe1);
-        assertEquals(1, outputRecipe.size());
-        assertEquals(expectedRecipe, outputRecipe);
-        System.out.println("Pantry" + user.getPantry().getIngredientList().toString());
-        System.out.println(outputRecipe.toString());
+        expectedRecipe.remove(recipe2);
+        assertEquals(1, user.getMakeableRecipes().size());
+        assertEquals(expectedRecipe, user.getMakeableRecipes());
     }
 
     @Test
     public void testAddMealPlanToGroceryList() {
-        // add meal plan's ingredients to groceryList
         user.addMealPlanToGroceryList(mealPlan);
         assertEquals(3, user.getGroceryList().getIngredientList().getIngredients().size());
         mealPlan = new MealPlan("Empty MealPlan");
