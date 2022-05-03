@@ -223,17 +223,15 @@ public class MealPlan extends Entity implements Portable {
         if (!(obj instanceof MealPlan)) {
             return false;
         }
-        MealPlan other = (MealPlan) obj;
-        if (!this.getMealPlanName().equals(other.getMealPlanName())) {
+
+        MealPlan otherMealPlan = (MealPlan) obj;
+        if (!this.getMealPlanName().equals(otherMealPlan.getMealPlanName())) {
             return false;
         }
-        if (!this.getMealPlanDescription().equals(other.getMealPlanDescription())) {
+        if (!this.getMealPlanDescription().equals(otherMealPlan.getMealPlanDescription())) {
             return false;
         }
-        if (!this.getMealPlanDate().equals(other.getMealPlanDate())) {
-            return false;
-        }
-        if (!this.getRecipes().equals(other.getRecipes())) {
+        if (!this.getRecipes().equals(otherMealPlan.getRecipes())) {
             return false;
         }
         return true;
@@ -241,11 +239,14 @@ public class MealPlan extends Entity implements Portable {
 
     /**
      * An override for the .toString method of java.obj.
-     * 
      * @return a string representation of the MealPlan object.
      */
     @Override
     public String toString() {
-        return this.name + ": " + this.description;
+        return "Name: " + getMealPlanName() + "\n" +
+            "Description: " + getMealPlanDescription() + "\n" +
+            "Created on: " + getMealPlanDate() + "\n" +
+            "Serving size: " + getMPServingSize() + "\n" +
+            "Meals: \n" + getMeals() + "\n";
     }
 }

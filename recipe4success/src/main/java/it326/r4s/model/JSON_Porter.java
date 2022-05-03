@@ -3,8 +3,6 @@ package it326.r4s.model;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -70,7 +68,7 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
      */
     @Override
     public T importFrom(String filename) throws Exception {
-        Reader reader = getReader(filename);
+        Reader reader = PorterUtilities.getReader(filename);
         T obj = gson.fromJson(reader, classT);
         reader.close();
         return obj;
@@ -81,37 +79,8 @@ public class JSON_Porter<T extends Portable> implements Importer<T>, Exporter<T>
      */
     @Override
     public void exportTo(T portable, String filename) throws Exception {
-        Writer writer = getWriter(filename);
+        Writer writer = PorterUtilities.getWriter(filename);
         gson.toJson(portable, writer);
         writer.close();
-    } 
-
-    //* Private Methods *\\
-    /**
-     * Gets a reader object for the specified file.
-     * @param filename the name of the file to be read.
-     * @return the reader object.
-     * @throws Exception if there was a problem getting a reader object.
-     */
-    private Reader getReader(String filename) throws Exception {
-        return Files.newBufferedReader(Path.of(filename));
-    }
-
-    /**
-     * Gets a writer object for the specified file.
-     * @param filename the name of the file to be written to.
-     * @return the writer object.
-     * @throws Exception if there was a problem getting a writer object.
-     */
-    private Writer getWriter(String filename) throws Exception {
-        Path path = Path.of(filename);
-
-        if (path.getNameCount() > 1) {
-            try {
-                Files.createDirectories(path.getParent());
-            } catch (Exception e) {}
-        }
-             
-        return Files.newBufferedWriter(path);
     }
 }

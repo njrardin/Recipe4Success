@@ -10,7 +10,8 @@ public class ExporterProducer {
      * An enumeration of available exporter types.
      */
     public static enum Type {
-        JSON
+        JSON,
+        TXT
     }
     
     /**
@@ -27,6 +28,9 @@ public class ExporterProducer {
         switch (type) {
             case JSON:
                 exporter = JSON_Porter.of(classT);
+                break;
+            case TXT:
+                exporter = new TXT_Exporter<T>();
                 break;
         }
 

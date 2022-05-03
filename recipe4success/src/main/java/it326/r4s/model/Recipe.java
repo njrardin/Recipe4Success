@@ -231,8 +231,16 @@ public class Recipe extends Entity implements Portable {
      */
     @Override
     public String toString() {
-        return name + ": " + description;
+        return "Name: " + getName() + "\n" +
+            "Description: " + getDescription() + "\n" +
+            "ServingSize: " + getServingSize() + "\n" +
+            "CreatedOn: " + getCreatedOn() + "\n" +
+            "IngredientList: \n" + getIngredientList() + "\n" +
+            "Reviews: \n" + getReviews() + "\n" +
+            "Categories: \n" + getCategories() + "\n" +
+            "Instructions: \n" + getInstructions() + "\n";
     }
+
 
     /**
      * An override for the .equals method of java.obj.

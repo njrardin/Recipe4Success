@@ -90,22 +90,26 @@ public class MealPlanController  {
                     removeRecipeFromMealPlan();
                     break;
                 case 3:
-                    adjustMealPlanServingSize();
+                    //select recipe
+                    openARecipe();
                     break;
                 case 4:
-                    addToGroceryList();
+                    adjustMealPlanServingSize();
                     break;
                 case 5:
+                    addToGroceryList();
+                    break;
+                case 6:
                     exportMealPlan();
                     return;
-                case 6:
+                case 7:
                     if(mealPlanView.deletionConfirmation()){
                         deleteMealPlan();
                         mealPlanView.displayMealPlan();
                         return;
                     }
                     break;
-                case 7:
+                case 8:
                     return;
                 default:
                     System.out.println("Invalid input, please try again\n");
@@ -117,22 +121,33 @@ public class MealPlanController  {
 
     public void addRecipeToMealPlan() {
         System.out.println("Which recipe would you like to add?");
+        try{
+            RecipeController selectedRecipeController = authorController.getRecipeBookController().selectRecipeController(getRecipeControllers());
+            mealPlan.addMeal(new Meal(selectedRecipeController.getRecipe()));
 
-        RecipeController selectedRecipeController = authorController.getRecipeBookController().selectRecipeController();
-
-        mealPlan.addMeal(new Meal(selectedRecipeController.getRecipe()));
-
-        System.out.println("Recipe added successfully");
+            System.out.println("Recipe added successfully");
+        } catch (RuntimeException re) {
+            System.out.println("Oops, something went wrong adding the recipe.");
+            return;
+        }
     }
 
     public void removeRecipeFromMealPlan() {
         System.out.println("Which recipe would you like to remove?");
         // TODO this is issue #5 on the trello, also needs a try catch
-        RecipeController selectedRecipeController = authorController.getRecipeBookController().selectRecipeController();
+        RecipeController selectedRecipeController = authorController.getRecipeBookController().selectRecipeController(getRecipeControllers());
 
         mealPlan.removeMeal(selectedRecipeController.getRecipe());
 
         System.out.println("Recipe removed successfully");
+    }
+
+    private void openARecipe() {
+        System.out.println("Which recipe would you like to open?");
+
+        RecipeController selectedRecipeController = authorController.getRecipeBookController().selectRecipeController(getRecipeControllers());
+        selectedRecipeController.openRecipe();
+        System.out.println();
     }
 
     public void adjustMealPlanServingSize() {
