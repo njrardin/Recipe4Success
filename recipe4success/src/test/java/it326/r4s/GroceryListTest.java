@@ -2,6 +2,7 @@ package it326.r4s;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -53,13 +54,7 @@ public class GroceryListTest {
     public void testAddIngredients() {
         ingredient1 = new Ingredient(pool.getFoodItem("Apple"), 3, Unit.NONE);
         ingredientList.addIngredient(ingredient1);
-        assertEquals(ingredientList3, theGroceryList.getIngredientList());
-
-        ingredient1 = new Ingredient(pool.getFoodItem("Tomato"), 2, Unit.NONE);
-        ingredientList2.removeIngredient(ingredient1);
-        ingredientList2.removeIngredient(ingredient2);
-        ingredientList2.removeIngredient(ingredient3);
-        assertEquals(ingredientList3, theGroceryList.getIngredientList());
+        assertTrue(theGroceryList.getIngredientList().getIngredients().contains(ingredient1));
     }
 
     @Test

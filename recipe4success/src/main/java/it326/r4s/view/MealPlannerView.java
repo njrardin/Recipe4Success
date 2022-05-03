@@ -37,11 +37,11 @@ public class MealPlannerView implements R4SMenu{
      * Displays the full meal planner to the user
      */
     public void displayMealPlanner() {
-        int index = mprController.getMealPlanner().getActiveMealPlanIndex();
-        if (index < 0 || index >= mprController.getMealPlanner().getMealPlans().size())
-            System.out.println("No currently active Mealplan");
-        else
-            System.out.println("\nCurrent active Mealplan: " + mprController.getMealPlanner().getMealPlans().get(index));
+        try{
+            System.out.println("\nCurrent active Mealplan: " + mprController.getMealPlanner().getMealPlans().get(mprController.getMealPlanner().getActiveMealPlanIndex()));
+        } catch (Exception e) {
+            System.out.println("\nCurrent active Mealplan: -- No currently active mealplan --" );
+        }
         System.out.println();
         displayMealPlans(mprController.getMealPlanControllers());
         System.out.println();
