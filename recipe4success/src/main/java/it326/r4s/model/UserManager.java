@@ -129,6 +129,9 @@ public class UserManager extends InstanceManager<User> {
                         meal.setRecipe(recipe);
                     }
                 }
+                for (Ingredient ingredient : meal.getIngredientList().getIngredients()) {
+                    ingredient.setFoodItem(foodItemPool.getFoodItem(ingredient.getFoodItem().getName()));
+                }
             }
         }
     }
