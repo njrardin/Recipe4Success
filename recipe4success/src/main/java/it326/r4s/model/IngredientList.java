@@ -64,20 +64,20 @@ public class IngredientList extends Entity {
     public boolean addIngredient(Ingredient ingredient) { 
         for (Ingredient existingIngredient : this.ingredients) { // check if ingredient already exists
             if (ingredient.getFoodItem().equals(existingIngredient.getFoodItem())) {
-                this.ingredients.remove(existingIngredient);
                 Ingredient copyIngredient = new Ingredient(existingIngredient.getFoodItem(),
                         existingIngredient.getQuantity(), existingIngredient.getUnit());
                 if (copyIngredient.getUnit() == ingredient.getUnit()) {
                     copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
                     this.ingredients.add(copyIngredient);
+                    this.ingredients.remove(existingIngredient);
                     return true;
                 }
-                else {
-                    ingredient.changeUnit(copyIngredient.getUnit());
+                else if (copyIngredient.changeUnit(ingredient.getUnit())) {
+                    copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
+                    this.ingredients.add(copyIngredient);
+                    this.ingredients.remove(existingIngredient);
+                    return true;
                 }
-                copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
-                this.ingredients.add(copyIngredient);
-                return true;
             }
         }
         this.ingredients.add(ingredient);
@@ -99,14 +99,13 @@ public class IngredientList extends Entity {
      * Attempts to add a collection of Ingredients to the IngredientList.
      * 
      * @param toAdd a collection of Ingredients to be added to the IngredientList.
-     * @return true if any Ingredient in toAdd is already in Ingredients, false
-     *         otherwise.
+     * @return true if all Ingredients in toAdd are in Ingredients, false otherwise.
      */
     public boolean addIngredients(Collection<Ingredient> toAdd) {
         boolean flag = true;
         for (Ingredient ingredientToAdd : toAdd) {
             if (!this.addIngredient(ingredientToAdd))
-                flag = false;
+                flag = false; //if if ingrient didn't already exist
         }
         return flag;
     }
@@ -135,9 +134,8 @@ public class IngredientList extends Entity {
     /**
      * Attempts to remove a collection of Ingredients from the IngredientList.
      * 
-     * @param toRemove a collection of Ingredients to be removed from the
-     *                 IngredientList.
-     * @return false if toRemove is not in the IngredientList, true otherwise.
+     * @param toRemove a collection of Ingredients to be removed from the IngredientList.
+     * @return true if anything is removed, otherwise false.
      */
     public boolean removeIngredients(Collection<Ingredient> toRemove) {
         return ingredients.removeAll(toRemove);
