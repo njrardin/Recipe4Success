@@ -42,7 +42,11 @@ public class MealPlannerView implements CLI_Menu{
      * Displays the full meal planner to the user
      */
     public void displayMealPlanner() {
-        System.out.println("\nCurrent active Mealplan: " + mprController.getMealPlanner().getMealPlans().get(mprController.getMealPlanner().getActiveMealPlanIndex()));
+        try{
+            System.out.println("\nCurrent active Mealplan: " + mprController.getMealPlanner().getMealPlans().get(mprController.getMealPlanner().getActiveMealPlanIndex()));
+        } catch (Exception e) {
+            System.out.println("\nCurrent active Mealplan: ...there is no active mealplan yet!" );
+        }
         System.out.println();
         displayMealPlans(mprController.getMealPlanControllers());
         System.out.println();

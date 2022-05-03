@@ -70,19 +70,23 @@ public class MealPlanController  {
                     removeRecipeFromMealPlan();
                     break;
                 case 3:
-                    adjustMealPlanServingSize();
+                    //select recipe
+                    openARecipe();
                     break;
                 case 4:
-                    addToGroceryList();
+                    adjustMealPlanServingSize();
                     break;
                 case 5:
+                    addToGroceryList();
+                    break;
+                case 6:
                     exportMealPlan();
                     return;
-                case 6:
+                case 7:
                     deleteMealPlan();
                     mealPlanView.displayMealPlan();
                     return;
-                case 7:
+                case 8:
                     return;
                 default:
                     System.out.println("Invalid input, please try again\n");
@@ -90,21 +94,26 @@ public class MealPlanController  {
             mealPlanView.displayMealPlan();
         }
     }
-    
+
+
     public MealPlan getMealPlan() {
         return this.mealPlan;
     }
 
     public void addRecipeToMealPlan() {
         RecipeBook recipeBook = UserController.getUserController().getGlobalUser().getRecipeBook();
-        
+
         System.out.println("Which recipe would you like to add?");
+        try{
+            RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(new RecipeBookController(recipeBook).getRecipeControllers());
+            mealPlan.addMeal(new Meal(selectedRecipeController.getRecipe(), selectedRecipeController.getRecipe().getServingSize()));
+            System.out.println("Recipe added successfully");
+        } catch (RuntimeException re) {
+            System.out.println("Oops, something went wrong adding the recipe.");
+            return;
+        }
 
-        RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(new RecipeBookController(recipeBook).getRecipeControllers());
 
-        mealPlan.addMeal(new Meal(selectedRecipeController.getRecipe(), selectedRecipeController.getRecipe().getServingSize()));
-
-        System.out.println("Recipe added successfully");
     }
 
     public void removeRecipeFromMealPlan() {        
@@ -115,6 +124,15 @@ public class MealPlanController  {
         mealPlan.removeMeal(selectedRecipeController.getRecipe());
 
         System.out.println("Recipe removed successfully");
+    }
+
+    private void openARecipe() {
+        System.out.println("Which recipe would you like to open?");
+
+        RecipeController selectedRecipeController = RecipeBookView.getRecipeSelection(getRecipeControllers());
+        
+        selectedRecipeController.openRecipe();
+        System.out.println();
     }
 
     public void adjustMealPlanServingSize() {

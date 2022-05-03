@@ -49,8 +49,9 @@ public class MealPlanView implements CLI_Menu {
         String title = "Mealplan: " + mealPlanController.getMealPlan().getMealPlanName();
         String prompt = "What would you like to do?";
         String[] options = {
-            "Add Recipe to Mealplan",
-            "Remove Recipe from Mealplan",
+            "Add Recipe to this Mealplan",
+            "Remove Recipe from this Mealplan",
+            "Open a Recipe in this Mealplan",
             "Set Mealplan Serving Size",
             "Move this Mealplan's Ingredients to My Grocery List",
             "Export this Mealplan",
