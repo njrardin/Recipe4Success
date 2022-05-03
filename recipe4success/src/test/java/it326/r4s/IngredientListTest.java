@@ -34,7 +34,6 @@ public class IngredientListTest {
 
         theIngredientList = new IngredientList();
         theIngredientList.addIngredient(ingredient1);
-        // theIngredientList.addIngredient(ingredient2);
 
         theIngredients.add(ingredient1);
         theIngredients.add(ingredient2);
@@ -96,8 +95,6 @@ public class IngredientListTest {
     public void testContainsIngredients() {
         assertEquals(false, theIngredientList.containsIngredients(theIngredients));
         theIngredientList.removeIngredient(ingredient1);
-        // did not pass null ingredientList test
-        // assertEquals(false, theIngredientList.containsIngredients(theIngredients));
         theIngredientList.addIngredient(ingredient1);
         theIngredientList.addIngredient(ingredient2);
         theIngredientList.addIngredient(ingredient3);
