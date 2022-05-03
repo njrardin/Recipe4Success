@@ -35,8 +35,6 @@ public class FoodItemTest {
         for (FoodItem fi : foodItems) {
             actualFoodItems.add(fi);
         }
-        Collection<FoodItem> foodItems2;
-        foodItems2 = pool2.getFoodItems();
         ArrayList<FoodItem> expectedFoodItems = new ArrayList<FoodItem>();
         for (FoodItem fi : foodItems) {
             expectedFoodItems.add(fi);
