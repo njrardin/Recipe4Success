@@ -141,16 +141,9 @@ public class IngredientList extends Entity {
      * @return true if anything is removed, otherwise false.
      */
     public boolean removeIngredients(Collection<Ingredient> toRemove) {
-        boolean changed = false;
-        
-        if(ingredients.removeAll(toRemove)){
-            return true;
-        }
-
+        boolean changed = ingredients.removeAll(toRemove);
         for (Ingredient existingIngredient : ingredients) {
-            
             for (Ingredient ingredientToRemove : toRemove) {
-
                 if (ingredientToRemove.getFoodItem().equals(existingIngredient.getFoodItem())) {
                     Ingredient copyIngredient = new Ingredient(existingIngredient);
                     if (copyIngredient.getUnit() == ingredientToRemove.getUnit()) {
