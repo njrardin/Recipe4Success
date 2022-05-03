@@ -99,7 +99,6 @@ public class MealPlan extends Entity implements Portable {
      */
     public boolean addMeal(Meal theMeal) {
         return meals.add(theMeal);
-        // TODO: logic to compare with the serving size and make internal adjustments
     }
 
     /**

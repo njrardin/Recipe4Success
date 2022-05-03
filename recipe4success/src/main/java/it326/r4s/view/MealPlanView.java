@@ -41,7 +41,6 @@ public class MealPlanView implements R4SMenu {
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");   
     }
-    //TODO: behavior to handle null values and format date better
 
     /**
      * Allows the user to select one of a series of options

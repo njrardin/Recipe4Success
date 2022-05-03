@@ -40,7 +40,6 @@ public class RecipeBook extends Entity {
      */
     public boolean addRecipe(Recipe toAdd) {
         for (Recipe recipe : recipes) {
-            // TODO only add the recipe if there is no other recipe with the same name (i.e. ensure all recipe names in the collection are unique)
             if (recipe.equals(toAdd)) {
                 return false;
             }

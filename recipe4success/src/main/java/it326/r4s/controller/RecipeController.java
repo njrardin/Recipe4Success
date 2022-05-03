@@ -221,7 +221,7 @@ public class RecipeController {
 
             //confirm the build
             while(!(RecipeBuilderView.confirmBuild())){
-                //TODO: What to do if they don't confirm
+                // !! What to do if they don't confirm
             }
 
             //finalizes build and returns recipe

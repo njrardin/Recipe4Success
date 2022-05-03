@@ -15,7 +15,7 @@ public class Recipe extends Entity implements Portable {
     private int servingSize;
     private Date createdOn;
     private IngredientList ingredientList;
-    private Collection<Review> reviews; //TODO: should have an overall rating attribute that uses this
+    private Collection<Review> reviews;
     private Collection<Category> categories;
     private Collection<String> instructions;
 
@@ -371,7 +371,7 @@ public class Recipe extends Entity implements Portable {
          */
         public RecipeBuilder setIngredientList(IngredientList ingredientList) {
             this.ingredientList = ingredientList;
-            return this;//TODO: Enforce at least one ingredient
+            return this;
         }
 
         /**
@@ -404,7 +404,7 @@ public class Recipe extends Entity implements Portable {
          */
         public RecipeBuilder setInstructions(ArrayList<String> instructions){
             this.instructions = instructions;
-            return this;//TODO: Enforce at least one instruction
+            return this;
         }
     }
 }

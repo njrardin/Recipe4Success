@@ -187,7 +187,7 @@ public class IngredientList extends Entity {
      * @return True if this ingredient list contains all the ingredients (quantities
      *         of this list must be larger) of the collection, false otherwise.
      */
-    public boolean containsIngredients(Collection<Ingredient> smallCollection) { // TODO: This logic doesn't work!!!
+    public boolean containsIngredients(Collection<Ingredient> smallCollection) {
         Collection<Ingredient> thisCollection = this.ingredients;
         if (thisCollection.containsAll(smallCollection)) {
             return true;
