@@ -136,6 +136,7 @@ public class MealPlan extends Entity implements Portable {
      * @return true .
      */
     public boolean setMealServingSize(int servingSize) {
+        if (servingSize <= 0) return false;
         this.mpServingSize = servingSize;
         for (Meal theMeal : meals) {
             theMeal.adjustServingSize(servingSize);
