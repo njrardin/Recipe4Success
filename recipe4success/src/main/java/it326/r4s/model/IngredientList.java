@@ -58,30 +58,30 @@ public class IngredientList extends Entity {
     /**
      * Attempts to add an Ingredient to the IngredientList.
      * 
-     * @param toAdd an Ingredient to be added to the IngredientList.
-     * @return true if toAdd is already in ingredients, false otherwise.
+     * @param ingredient an Ingredient to be added to the IngredientList.
+     * @return true if ingredient is already in ingredients, false otherwise.
      */
     public boolean addIngredient(Ingredient ingredient) { 
-        boolean alreadyAdded = false;
         for (Ingredient existingIngredient : this.ingredients) { // check if ingredient already exists
             if (ingredient.getFoodItem().equals(existingIngredient.getFoodItem())) {
                 this.ingredients.remove(existingIngredient);
                 Ingredient copyIngredient = new Ingredient(existingIngredient.getFoodItem(),
                         existingIngredient.getQuantity(), existingIngredient.getUnit());
-                if (!copyIngredient.changeUnit(ingredient.getUnit())) {
+                if (copyIngredient.getUnit() == ingredient.getUnit()) {
+                    copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
                     this.ingredients.add(copyIngredient);
-                    break;
+                    return true;
+                }
+                else {
+                    ingredient.changeUnit(copyIngredient.getUnit());
                 }
                 copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
                 this.ingredients.add(copyIngredient);
-                alreadyAdded = true;
-                break;
+                return true;
             }
         }
-        if (!alreadyAdded) {
-            this.ingredients.add(ingredient);
-        }
-        return true;
+        this.ingredients.add(ingredient);
+        return false;
     }
 
     /**
