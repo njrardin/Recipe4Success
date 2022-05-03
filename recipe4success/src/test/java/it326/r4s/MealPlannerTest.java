@@ -46,8 +46,8 @@ public class MealPlannerTest {
         recipe2.addIngredient(new Ingredient(repeatFoodItem, 1, Unit.TEASPOON));
         recipe2.addIngredient(new Ingredient(repeatFoodItem, 3, Unit.POUND));
 
-        meal1 = new Meal(recipe1, 4);
-        meal2 = new Meal(recipe2, 2);
+        meal1 = new Meal(recipe1);
+        meal2 = new Meal(recipe2);
 
         mealPlan1 = new MealPlan("Meal Plan one");
         mealPlan1.addMeal(meal1);
@@ -90,7 +90,7 @@ public class MealPlannerTest {
                 .setCategories(new ArrayList<Category>())
                 .setInstructions(new ArrayList<String>())
                 .build();
-        meal1 = new Meal(recipe1, 1);
+        meal1 = new Meal(recipe1);
         mealPlan3.addMeal(meal1);
         assertEquals(true, theMealPlanner.addMealPlan(mealPlan3));
         mealPlan3.setMealPlanName("Meal Plan one");
