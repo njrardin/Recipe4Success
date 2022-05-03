@@ -26,7 +26,7 @@ public class MealPlanView implements R4SMenu {
      * Displays the meal plan to the screen
      */
     public void displayMealPlan() {
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("\n\n-------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("Name: " + mealPlanController.getMealPlan().getMealPlanName());
         System.out.println("Description: " + mealPlanController.getMealPlan().getMealPlanDescription());
