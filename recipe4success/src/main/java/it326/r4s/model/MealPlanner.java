@@ -74,8 +74,8 @@ public class MealPlanner extends Entity {
      *         otherwise.
      */
     public boolean addMealPlan(MealPlan toAdd) {
-        for (MealPlan meal : mealPlans) {
-            if (meal.equals(toAdd)) {
+        for (MealPlan mealPlan : mealPlans) {
+            if (mealPlan.equals(toAdd)) {
                 return false;
             }
         }
