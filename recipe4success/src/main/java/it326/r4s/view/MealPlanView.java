@@ -1,6 +1,7 @@
 package it326.r4s.view;
 
 import it326.r4s.controller.MealPlanController;
+import it326.r4s.model.MealPlan;
 import it326.r4s.view.utilities.InputAccess;
 /**
  * View for R4S MealPlanner
@@ -149,7 +150,8 @@ public class MealPlanView implements R4SMenu {
      * Displays the mealplan in a one line format
      */
     public void displayOneLine() {
-        System.out.println(mealPlanController.getMealPlan().getMealPlanName() + ": " + mealPlanController.getMealPlan().getMealPlanDescription());
+        MealPlan meaPlan = mealPlanController.getMealPlan();
+        System.out.println(meaPlan.getMealPlanName() + ": " + meaPlan.getMealPlanDescription());
     }
 
 }

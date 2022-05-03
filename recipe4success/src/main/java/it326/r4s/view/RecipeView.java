@@ -10,6 +10,7 @@ import it326.r4s.model.Category;
 import it326.r4s.model.Review;
 import it326.r4s.model.Ingredient;
 import it326.r4s.model.IngredientList;
+import it326.r4s.model.Recipe;
 import it326.r4s.model.UnitConverter.Unit;
 import it326.r4s.view.utilities.InputAccess;
 
@@ -156,7 +157,8 @@ public class RecipeView implements R4SMenu{
      * Displays the recipe in a one line format
      */
     public void displayOneLine() {
-        System.out.println(recipeController.getRecipe().toString());
+        Recipe recipe = recipeController.getRecipe(); 
+        System.out.println(recipe.getName() + ": " + recipe.getDescription());
     }
 
     /**

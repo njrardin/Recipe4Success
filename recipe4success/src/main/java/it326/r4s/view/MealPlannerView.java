@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import it326.r4s.controller.MealPlanController;
 import it326.r4s.controller.MealPlannerController;
+import it326.r4s.model.MealPlan;
 import it326.r4s.view.utilities.DisplayUtils;
 import it326.r4s.view.utilities.InputAccess;
 /**
@@ -38,7 +39,8 @@ public class MealPlannerView implements R4SMenu{
      */
     public void displayMealPlanner() {
         try{
-            System.out.println("\nCurrent active Mealplan: " + mprController.getMealPlanner().getMealPlans().get(mprController.getMealPlanner().getActiveMealPlanIndex()));
+            MealPlan meaPlan = mprController.getMealPlanner().getMealPlans().get(mprController.getMealPlanner().getActiveMealPlanIndex());
+            System.out.println("\nCurrent active Mealplan: " + meaPlan.getMealPlanName() + ": " + meaPlan.getMealPlanDescription());
         } catch (Exception e) {
             System.out.println("\nCurrent active Mealplan: -- No currently active mealplan --" );
         }
