@@ -64,20 +64,14 @@ public class IngredientList extends Entity {
     public boolean addIngredient(Ingredient ingredient) { 
         for (Ingredient existingIngredient : this.ingredients) { // check if ingredient already exists
             if (ingredient.getFoodItem().equals(existingIngredient.getFoodItem())) {
-                this.ingredients.remove(existingIngredient);
                 Ingredient copyIngredient = new Ingredient(existingIngredient.getFoodItem(),
                         existingIngredient.getQuantity(), existingIngredient.getUnit());
-                if (copyIngredient.getUnit() == ingredient.getUnit()) {
+                if (copyIngredient.changeUnit(ingredient.getUnit())) {
                     copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
                     this.ingredients.add(copyIngredient);
+                    this.ingredients.remove(existingIngredient);
                     return true;
                 }
-                else {
-                    ingredient.changeUnit(copyIngredient.getUnit());
-                }
-                copyIngredient.setQuantity(copyIngredient.getQuantity() + ingredient.getQuantity());
-                this.ingredients.add(copyIngredient);
-                return true;
             }
         }
         this.ingredients.add(ingredient);
