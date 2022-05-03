@@ -48,18 +48,9 @@ public class GroceryListTest {
         theGroceryList.setIngredientList(ingredientList);
     }
 
+    //CHECK
     @Test
-    public void testConstructor() {
-        assertNotNull(theGroceryList);
-    }
-
-    @Test
-    public void testGetIngredientList() {
-        assertEquals(ingredientList2, theGroceryList.getIngredientList());
-    }
-
-    @Test
-    public void testAddIngredientList() {
+    public void testAddIngredients() {
         ingredient1 = new Ingredient(pool.getFoodItem("Apple"), 3, Unit.NONE);
         ingredientList.addIngredient(ingredient1);
         assertEquals(ingredientList3, theGroceryList.getIngredientList());
@@ -76,4 +67,6 @@ public class GroceryListTest {
         assertEquals(true, theGroceryList.removeIngredient(ingredient1));
         assertEquals(false, theGroceryList.removeIngredient(ingredient1));
     }
+
+    //ADD TestRemoveIngredients()
 }

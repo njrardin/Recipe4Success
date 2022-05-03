@@ -45,7 +45,7 @@ public class PantryTest {
         pantry = new Pantry();
         pantry.setIngredientList(ingredientList);
     }
-
+  
     @Test
     public void testRemoveRecipeIngredients() {
         IngredientList expectIngredientList = new IngredientList();

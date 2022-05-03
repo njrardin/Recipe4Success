@@ -7,13 +7,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import it326.r4s.model.Category;
-import it326.r4s.model.FoodItem;
-import it326.r4s.model.Ingredient;
-import it326.r4s.model.IngredientList;
-import it326.r4s.model.Recipe;
-import it326.r4s.model.RecipeBook;
-import it326.r4s.model.Review;
+import it326.r4s.model.*;
 import it326.r4s.model.UnitConverter.Unit;
 
 public class RecipeBookTest {
@@ -50,12 +44,14 @@ public class RecipeBookTest {
         theRecipeBook.addRecipe(recipe1);
     }
 
+    //ADD test contains
     @Test
     public void testAddRecipe() {
         assertEquals(true, theRecipeBook.addRecipe(recipe2));
         assertEquals(false, theRecipeBook.addRecipe(recipe1));
     }
 
+    //ADD test contains
     @Test
     public void testRemoveRecipe() {
         assertEquals(true, theRecipeBook.removeRecipe(recipe1));

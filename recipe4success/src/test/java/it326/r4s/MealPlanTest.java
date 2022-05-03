@@ -6,14 +6,7 @@ import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
 
-import it326.r4s.model.Category;
-import it326.r4s.model.FoodItem;
-import it326.r4s.model.Ingredient;
-import it326.r4s.model.IngredientList;
-import it326.r4s.model.Meal;
-import it326.r4s.model.MealPlan;
-import it326.r4s.model.Recipe;
-import it326.r4s.model.Review;
+import it326.r4s.model.*;
 import it326.r4s.model.UnitConverter.Unit;
 
 public class MealPlanTest {
@@ -54,6 +47,9 @@ public class MealPlanTest {
         mainMealPlan.addMeal(meal2);
     }
 
+    //ADD TestSetMealServingSize()
+
+    //ADD TestGetRecipes()
     @Test
     public void testGetAllIngredients() {
         Collection<Ingredient> mealPlanIngredients = mainMealPlan.getAllIngredients();

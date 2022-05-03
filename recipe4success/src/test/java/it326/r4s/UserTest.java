@@ -8,16 +8,9 @@ import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
 
-import it326.r4s.model.Category;
-import it326.r4s.model.FoodItem;
-import it326.r4s.model.Ingredient;
-import it326.r4s.model.IngredientList;
-import it326.r4s.model.Meal;
-import it326.r4s.model.MealPlan;
-import it326.r4s.model.Recipe;
-import it326.r4s.model.Review;
+import it326.r4s.model.*;
 import it326.r4s.model.UnitConverter.Unit;
-import it326.r4s.model.User;
+
 
 public class UserTest {
     private static User user;
@@ -78,6 +71,8 @@ public class UserTest {
         mealPlan.addMeal(meal);
     }
 
+    //ADD test for copy constructor
+    
     @Test
     public void testMoveGroceryListToPantry() {
         user.getGroceryList().addIngredients(ingredients);
@@ -90,6 +85,7 @@ public class UserTest {
         user.moveGroceryListToPantry();
         assertEquals(0, user.getGroceryList().getIngredientList().getIngredients().size());
         assertEquals(count, user.getPantry().getIngredientList().getIngredients().size());
+        //Change Compare Object
         assertEquals(ingredients, user.getPantry().getIngredientList().getIngredients());
 
         fItem = fiPool.getFoodItem("Peach");

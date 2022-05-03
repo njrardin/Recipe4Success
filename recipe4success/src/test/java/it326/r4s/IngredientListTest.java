@@ -40,6 +40,8 @@ public class IngredientListTest {
 
     }
 
+    //ADD test copy constructor
+    
     @Test
     public void testAddIngredient() {
         assertEquals(true, theIngredientList.addIngredient(ingredient1));
@@ -92,6 +94,7 @@ public class IngredientListTest {
 
     @Test
     public void testContainsIngredients() {
+        //Add Test case when theIngredients is null == true
         assertEquals(false, theIngredientList.containsIngredients(theIngredients));
         theIngredientList.removeIngredient(ingredient1);
         theIngredientList.addIngredient(ingredient1);
@@ -101,8 +104,7 @@ public class IngredientListTest {
     }
 
     /**
-     * fail when performing second reoganizeIngredients()
-     * result is same as the first time
+     * Fix reorganize the tests
      */
     @Test
     public void testReorganizeIngredients() {
@@ -113,11 +115,18 @@ public class IngredientListTest {
         expectedList.add(ingredient2);
         expectedList.add(ingredient3);
         expectedList.add(ingredient1);
-        expectedList.add(ingredient1);
 
         ArrayList<Ingredient> actualList = theIngredientList.getIngredients();
         assertEquals(expectedList, actualList);
-
+        for(Ingredient ig:actualList){
+            System.out.println(ig.toString());
+        }
+        theIngredientList.reorganizeIngredients(ingredient2, ingredient3);
+        actualList = theIngredientList.getIngredients();
+        for(Ingredient ig:actualList){
+            System.out.println(ig.toString());
+        }
+        // System.out.println(actualList.toString());
     }
 
 }

@@ -42,6 +42,8 @@ public class IngredientTest {
                 {-2, false},
             });
         }
+        
+        //ADD copy constructor test
 
         //Actual test for Ingredient.changeUnit() which checks for correct quantity conversion
         @Test

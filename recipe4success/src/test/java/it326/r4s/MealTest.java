@@ -41,29 +41,8 @@ public class MealTest {
     public void testConstructor(){
         assertNotNull(theMeal);
     }
-    
-    @Test
-    public void testGetRecipe(){
-        assertEquals(theRecipe, theMeal.getRecipe());
-    }
-    
-    @Test
-    public void testGetServingSize(){
-        assertEquals(SERVINGSIZE, theMeal.getServingSize());
-    }
 
-    @Test
-    public void testSetRecipe(){
-
-        Recipe newRecipe = new Recipe.RecipeBuilder("Chocolate Cupcakes")
-        .setDescription("Believe it or not it's actually red velvet but colored dark brown.")
-        .build();
-
-        theMeal.setRecipe(newRecipe);
-
-        assertEquals(newRecipe, theMeal.getRecipe());
-    }
-
+    //ADD test cases for servingSize = 0 and <0
     @Test
     public void testAdjustServingSize(){
 

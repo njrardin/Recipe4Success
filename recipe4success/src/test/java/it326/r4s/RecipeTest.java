@@ -9,15 +9,9 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import it326.r4s.model.Category;
-import it326.r4s.model.FoodItem;
-import it326.r4s.model.Ingredient;
-import it326.r4s.model.IngredientList;
-import it326.r4s.model.Recipe;
-import it326.r4s.model.Review;
+import it326.r4s.model.*;
 import it326.r4s.model.Review.Rating;
 import it326.r4s.model.UnitConverter.Unit;
-import it326.r4s.model.User;
 
 public class RecipeTest {
     
@@ -60,6 +54,7 @@ public class RecipeTest {
         assertFalse(aRecipe.getCategories().contains(glutenFree));
     }
 
+    //ADD newCategory again
     @Test
     public void testAddCategory(){
         Category newCategory = cPool.getCategory(Category.Type.RECIPE, "CATEGORY");

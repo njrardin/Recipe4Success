@@ -7,15 +7,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import it326.r4s.model.Category;
-import it326.r4s.model.FoodItem;
-import it326.r4s.model.Ingredient;
-import it326.r4s.model.IngredientList;
-import it326.r4s.model.Meal;
-import it326.r4s.model.MealPlan;
-import it326.r4s.model.MealPlanner;
-import it326.r4s.model.Recipe;
-import it326.r4s.model.Review;
+import it326.r4s.model.*;
 import it326.r4s.model.UnitConverter.Unit;
 
 public class MealPlannerTest {
@@ -78,11 +70,6 @@ public class MealPlannerTest {
         assertEquals(true, theMealPlanner.setActiveMealPlanIndex(0));
         assertEquals(false, theMealPlanner.setActiveMealPlanIndex(4));
         assertEquals(false, theMealPlanner.setActiveMealPlanIndex(-1));
-    }
-
-    @Test
-    public void testGetActiveMealPlanIndex() {
-        assertEquals(1, theMealPlanner.getActiveMealPlanIndex());
     }
 
     @Test
