@@ -34,7 +34,6 @@ public class JSON_PorterTest {
         importer = JSON_Porter.of(User.class);
         exporter = JSON_Porter.of(User.class);
 
-        // TODO maybe make this user object have more stuff. I was just lazy.
         user = new User("Alex");
 
         Recipe friedRice = new Recipe.RecipeBuilder("Fried Rice")
