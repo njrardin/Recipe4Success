@@ -128,7 +128,7 @@ public class MealPlanController  {
     public void removeRecipeFromMealPlan() {
         System.out.println("Which recipe would you like to remove?");
         // TODO this is issue #5 on the trello, also needs a try catch
-        RecipeController selectedRecipeController = authorController.getRecipeBookController().selectRecipeController();
+        RecipeController selectedRecipeController = authorController.getRecipeBookController().selectRecipeController(getRecipeControllers());
 
         mealPlan.removeMeal(selectedRecipeController.getRecipe());
 
