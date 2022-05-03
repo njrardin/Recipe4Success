@@ -2,6 +2,7 @@ package it326.r4s;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -84,5 +85,40 @@ public class GroceryListTest {
         expectedIngredients.clear();
         assertEquals(expectedIngredients, theGroceryList.getIngredientList().getIngredients());
 
+    }
+
+    @Test
+    public void testRemoveIngredients() {
+        ArrayList<Ingredient> groceryIngredients = new ArrayList<Ingredient>();
+        ArrayList<Ingredient> ingredientsToRemove = new ArrayList<Ingredient>();
+        ArrayList<Ingredient> expectedList = new ArrayList<Ingredient>();
+        ArrayList<Ingredient> notExpectedList = new ArrayList<Ingredient>();
+        ArrayList<Ingredient> actualList = new ArrayList<Ingredient>();
+
+        theGroceryList = new GroceryList();
+
+        theGroceryList.getIngredientList().clearIngredients();
+
+        groceryIngredients.add(ingredient1);
+        groceryIngredients.add(ingredient2);
+        groceryIngredients.add(ingredient3);
+        theGroceryList.addIngredients(groceryIngredients);
+
+
+        ingredientsToRemove.add(ingredient1);
+        ingredientsToRemove.add(ingredient2);
+
+        notExpectedList.add(ingredient1);
+        notExpectedList.add(ingredient2);
+        notExpectedList.add(ingredient3);
+
+        expectedList.add(ingredient3);
+
+        assertTrue(theGroceryList.removeIngredients(ingredientsToRemove));
+        assertFalse(theGroceryList.removeIngredients(ingredientsToRemove));
+
+        actualList = theGroceryList.getIngredientList().getIngredients();
+
+        assertTrue(expectedList.containsAll(actualList));
     }
 }

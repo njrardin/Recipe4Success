@@ -142,12 +142,19 @@ public class IngredientList extends Entity {
      */
     public boolean removeIngredients(Collection<Ingredient> toRemove) {
         boolean changed = false;
+        
+        if(ingredients.removeAll(toRemove)){
+            return true;
+        }
+
         for (Ingredient existingIngredient : ingredients) {
-            for (Ingredient ingredient : toRemove) {
-                if (ingredient.getFoodItem().equals(existingIngredient.getFoodItem())) {
+            
+            for (Ingredient ingredientToRemove : toRemove) {
+
+                if (ingredientToRemove.getFoodItem().equals(existingIngredient.getFoodItem())) {
                     Ingredient copyIngredient = new Ingredient(existingIngredient);
-                    if (copyIngredient.getUnit() == ingredient.getUnit()) {
-                        double newQuantity = copyIngredient.getQuantity() - ingredient.getQuantity();
+                    if (copyIngredient.getUnit() == ingredientToRemove.getUnit()) {
+                        double newQuantity = copyIngredient.getQuantity() - ingredientToRemove.getQuantity();
                         if (newQuantity <= 0.02) {
                             this.ingredients.remove(existingIngredient);
                             changed = true;
@@ -156,8 +163,8 @@ public class IngredientList extends Entity {
                         existingIngredient.setQuantity(newQuantity);
                         changed = true;
                     }
-                    else if (copyIngredient.changeUnit(ingredient.getUnit())) {
-                        double newQuantity = copyIngredient.getQuantity() - ingredient.getQuantity();
+                    else if (copyIngredient.changeUnit(ingredientToRemove.getUnit())) {
+                        double newQuantity = copyIngredient.getQuantity() - ingredientToRemove.getQuantity();
                         if (newQuantity <= 0.02) {
                             this.ingredients.remove(existingIngredient);
                             changed = true;

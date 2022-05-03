@@ -113,7 +113,8 @@ public class UserTest {
         Collection<Recipe> expectedRecipe = new ArrayList<Recipe>();
         expectedRecipe.add(recipe1);
         expectedRecipe.add(recipe2);
-        assertEquals(expectedRecipe,user.getMakeableRecipes());
+        
+        assertEquals(expectedRecipe, user.getMakeableRecipes());
         assertEquals(expectedRecipe.size(), user.getMakeableRecipes().size());
 
         ingredients.removeIngredient(ingredient3);
