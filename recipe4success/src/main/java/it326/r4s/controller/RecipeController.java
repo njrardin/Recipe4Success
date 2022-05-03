@@ -178,7 +178,10 @@ public class RecipeController {
      */
 	public void deleteRecipe() {
         if(recipeView.deletionConfirmation()){
+            //delete from recipebook
             authorController.getUser().getRecipeBook().removeRecipe(recipe);
+            //delete from mealplans
+            authorController.getUser().getMealPlanner().removeRecipeFromMealPlans(recipe);
         }
 	}
 

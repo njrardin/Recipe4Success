@@ -119,4 +119,18 @@ public class MealPlanner extends Entity {
         }
         return string;
     }
+
+    /**
+     * Removes all instances of the recipe from meals in the mealplanners mealplans
+     * @param recipe the recipe to remove
+     */
+    public void removeRecipeFromMealPlans(Recipe recipe) {
+        for(MealPlan mealPlan : mealPlans){
+            for(Meal meal : mealPlan.getMeals()){
+                if(meal.getRecipe().equals(recipe)){
+                    mealPlan.removeMeal(meal);
+                }
+            }
+        }
+    }
 }

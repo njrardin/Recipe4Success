@@ -167,7 +167,8 @@ public class RecipeView implements R4SMenu{
         InputAccess inputAccess = new InputAccess();
         String input = "";
         do{
-            System.out.print("Are you sure you want to delete " + recipeController.getRecipe().getName() + " from your recipe book? (Y/N) : ");
+            System.out.print("Are you sure you want to delete " + recipeController.getRecipe().getName() + " from your recipe book? " 
+            + "(this includes any instance of this recipe in a mealplan) (Y/N): ");
             input = inputAccess.getInputLine().toLowerCase();
         }  while ( !(input.equals("y") || input.equals("n") ));
 
