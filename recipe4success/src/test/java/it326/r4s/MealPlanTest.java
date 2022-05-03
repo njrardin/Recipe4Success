@@ -1,6 +1,7 @@
 package it326.r4s;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -60,11 +61,11 @@ public class MealPlanTest {
         }
         
         //zero and negative number test case
-        // newServingSize = 0;
-        // assertFalse(mainMealPlan.setMealServingSize(newServingSize));
+        newServingSize = 0;
+        assertFalse(mainMealPlan.setMealServingSize(newServingSize));
 
-        // newServingSize = -2;
-        // assertFalse(mainMealPlan.setMealServingSize(newServingSize));
+        newServingSize = -2;
+        assertFalse(mainMealPlan.setMealServingSize(newServingSize));
         
     }
 
