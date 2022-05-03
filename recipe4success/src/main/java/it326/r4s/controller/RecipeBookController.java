@@ -143,7 +143,9 @@ public class RecipeBookController {
      * exporting a recipe out of the application
      */
     public void exportRecipe() {
-        selectRecipeController().exportRecipe();
+        try{
+            selectRecipeController().exportRecipe();
+        } catch (RuntimeException re) {}
     }
 
     /**

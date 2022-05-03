@@ -151,7 +151,9 @@ public class MealPlannerController {
      * exporting a MealPlan out of application
      */
     public void exportMealPlan() {
-        selectMealPlanController().exportMealPlan();
+        try{
+            selectMealPlanController().exportMealPlan();
+        } catch (RuntimeException re) {}
     }
     
     /**
